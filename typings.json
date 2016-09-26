@@ -1,8 +1,13 @@
 {
-  "name": "flux-test-rig",
+  "name": "sandbar",
   "main": "",
   "globalDependencies": {
-    "node": "registry:dt/node#6.0.0+20160720070758",
-    "jasmine": "registry:dt/jasmine#2.2.0+20160621224255"
+    "jasmine": "registry:dt/jasmine#2.2.0+20160621224255",
+    "node": "registry:dt/node#6.0.0+20160720070758"
+  },
+  "dependencies": {
+    "react": "registry:npm/react#15.0.1+20160601175240",
+    "react-dom": "registry:npm/react-dom#15.0.1+20160826174104",
+    "redux": "npm:redux"
   }
 }

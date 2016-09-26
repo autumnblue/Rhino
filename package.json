@@ -9,7 +9,9 @@
     "compile": "tsc",
     "build:tsc": "npm run compile",
     "prebuild": "npm run clean && mkdir -p dist",
-    "build": "npm run build:tsc",
+    "build": "npm run build:tsc && npm run bundle",
+    "prebundle": "mkdir build/lib",
+    "bundle": "browserify --im build/js/main.js > build/lib/bundle.js",
     "prepack": "",
     "test": "rm -rf build && npm run build:tsc && istanbul cover jasmine",
     "posttest": "istanbul check-coverage --statements 80 --functions 80 --branches 80 --lines 80",
@@ -18,8 +20,13 @@
     "publish:patch": "npm version patch && npm run prepack && npm publish build",
     "typings": "typings"
   },
-  "dependencies": {},
+  "dependencies": {
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "redux": "^3.6.0"
+  },
   "devDependencies": {
+    "browserify": "^13.1.0",
     "istanbul": "^0.4.5",
     "jasmine": "^2.5.2",
     "typescript": "^2.0.3",
