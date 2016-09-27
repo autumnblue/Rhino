@@ -11,7 +11,7 @@ import { ClientState } from '../model/state/ClientState';
 const readClientList = (): ClientState[] => {
     return getService().readClientList()
     .map(dto => {
-        return <ClientState>{
+        return {
             id: dto.id,
             name: dto.name,
             url: dto.url,
@@ -24,14 +24,13 @@ const getService = (): IClientService => {
     return factory.of<IClientService>(ServiceType.CLIENT);
 }
 
-const reducer: Reducer<AppState> = (state: AppState, action: Action): AppState => {
-    switch(action.type) {
-        case ActionType.VIEW_CLIENT_LIST:
-            state.clients = readClientList();
-            return state;
+export const reducer: Reducer<ClientState[]> = 
+    (state: ClientState[] = readClientList(), action: Action): ClientState[] => {
+        switch(action.type) {
+            case ActionType.VIEW_CLIENT_LIST:
+                state = readClientList();
+                return state;
 
-        default: return state;
-    }
+            default: return state;
+        }
 };
-
-export default reducer;

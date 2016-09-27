@@ -1,5 +1,6 @@
 import { ClientDto } from '../../model/dto/ClientDto';
+import { Service } from '../Service';
 
-export interface IClientService {
+export interface IClientService extends Service {
     readClientList(): ClientDto[];
 }

@@ -1,14 +1,13 @@
 import * as React from 'react';
-import { ClientState } from '../../model/state/ClientState';
+import { CampaignState } from '../../model/state/CampaignState';
 import { connect } from 'react-redux';
 import { Table } from '../common/table/Table';
 import { Column } from '../common/table/Column';
 import { ActionCreator } from '../../actions/ActionCreator';
-import { AppState } from '../../model/state/AppState';
 
 interface Props {
     dispatch: Function,
-    clients: ClientState[]
+    campaigns: CampaignState[]
 }
 
 class Component extends React.Component<Props, void> {
@@ -20,17 +19,17 @@ class Component extends React.Component<Props, void> {
 
     public render() {
         return (
-            <Table data={this.props.clients}>
-                <Column head="Name" headKey="name" />
-                <Column head="URL" headKey="url" />
-                <Column head="Default Timezone" headKey="timezone" />
+            <Table data={this.props.campaigns}>
+                <Column head="Title" headKey="title" />
+                <Column head="Description" headKey="description" />
+                <Column head="Client" headKey="client" />
             </Table>        
         );
     }
 
-    static mapStateToProps(state: ClientState[]) {
+    static mapStateToProps(state: CampaignState[]) {
         return state;
     }
 }
 
-export const ClientList = connect(Component.mapStateToProps)(Component);    
+export const CampaignList = connect(Component.mapStateToProps)(Component);    
