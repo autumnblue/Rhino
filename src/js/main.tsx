@@ -5,8 +5,13 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducer from './reducers'
 import { App } from './components/App';
+import { AppState } from './model/state/AppState';
 
-const store = createStore(reducer);
+const initialState: AppState = {
+    clients: null,
+    user: {}
+}
+const store = createStore(reducer, initialState);
 
 ReactDom.render(
     <Provider store={store}>

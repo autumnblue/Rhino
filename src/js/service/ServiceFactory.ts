@@ -1,3 +1,5 @@
+import { UserService } from './user/UserService';
+import { MockUserService } from './user/MockUserService';
 import { ClientService } from './client/ClientService';
 import { MockClientService } from './client/MockClientService';
 import { CampaignService } from './campaign/CampaignService';
@@ -19,10 +21,16 @@ export const of = <T extends Service>(type: ServiceType): T => {
             return <T><Service>(isProd() 
                 ? new CampaignService()
                 : new MockCampaignService());
+            
+        case ServiceType.USER:
+            return <T><Service>(isProd() 
+                ? new UserService()
+                : new MockUserService());
     }
 }
 
 export enum ServiceType {
     CLIENT,
-    CAMPAIGN
+    CAMPAIGN,
+    USER
 }

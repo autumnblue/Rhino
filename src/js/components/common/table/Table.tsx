@@ -19,8 +19,14 @@ class Component extends React.Component<{ data: Array<Dto> }, {}> {
 
         const rows = this.props.data.map(datum => {
             const row = columns.map(column => {
+                const value = datum[column.headKey]
+                
+                let a: React.ReactElement<{}>;                
+                if(column.linkKey)
+                    a = <a href={ datum[column.linkKey] }>{ value }</a>
+
                 return(
-                    <td key={ `${column.headKey}${datum.id}` }>{ datum[column.headKey] }</td>
+                    <td key={ `${column.headKey}${datum.id}` }>{ a ? a : value }</td>
                 )
             });
 

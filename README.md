@@ -4,6 +4,7 @@ The result will be a bundled js file that will include all dependencies for use 
 
 # TODO
 * Update LICENSE.md
-* Update to Typescript 2.0
+* Update to Typescript 2.0 
+
 
 

@@ -13,16 +13,16 @@ interface Props {
 class Component extends React.Component<Props, void> {
     constructor() {
         super();
-
-        //dispatch(ActionCreator.viewClientList());
     }
 
     public render() {
+        //this.props.dispatch(ActionCreator.viewClientList());
+
         return (
             <Table data={this.props.campaigns}>
                 <Column head="Title" headKey="title" />
                 <Column head="Description" headKey="description" />
-                <Column head="Client" headKey="client" />
+                <Column head="Client" headKey="client" linkKey="link" />
             </Table>        
         );
     }

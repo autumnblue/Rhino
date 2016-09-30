@@ -15,7 +15,7 @@ const readCampaignList = (): CampaignState[] => {
             title: dto.title,
             description: dto.description,
             client: dto.client.name,
-            clientId: dto.client.id
+            link: `/clients/edit/${dto.client.id}`
         }    
     });
 }

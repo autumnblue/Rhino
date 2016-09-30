@@ -3,5 +3,5 @@ export interface CampaignState {
     title: string,
     description: string,
     client: string,
-    clientId: number
-}
+    link: string
+}   

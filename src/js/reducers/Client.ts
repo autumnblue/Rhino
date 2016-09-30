@@ -9,15 +9,16 @@ import { ClientState } from '../model/state/ClientState';
 
 //TODO: paging, etc
 const readClientList = (): ClientState[] => {
-    return getService().readClientList()
-    .map(dto => {
-        return {
-            id: dto.id,
-            name: dto.name,
-            url: dto.url,
-            timezone: dto.timezone
-        }    
-    });
+    // return getService().readClientList()
+    // .map(dto => {
+    //     return {
+    //         id: dto.id,
+    //         name: dto.name,
+    //         url: dto.url,
+    //         timezone: dto.timezone
+    //     }    
+    // });
+    return null;
 }
 
 const getService = (): IClientService => {
@@ -30,6 +31,8 @@ export const reducer: Reducer<ClientState[]> =
             case ActionType.VIEW_CLIENT_LIST:
                 state = readClientList();
                 return state;
+
+            
 
             default: return state;
         }
