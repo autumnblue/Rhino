@@ -13,7 +13,7 @@ services:
     volumes:
       - ./db:/root
     command: >
-      bash -c "sleep 10
+      bash -c "sleep 20
       && createdb -h postgres_db -p 5432 -U postgres -w -e sandbar_dev
       && pg_restore -h postgres_db -d sandbar_dev --no-owner -U postgres ~/dump.pg"
   postgReST:

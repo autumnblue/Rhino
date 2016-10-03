@@ -7,8 +7,10 @@ import { Column } from '../common/table/Column';
 import { ActionCreator } from '../../actions/ActionCreator';
 
 interface Props {
-    viewUserList?(): void 
-    user?: UserState
+    viewUserList?(): void
+    editUser?(): void
+    deleteUser?(): void 
+    state?: UserState
 }
 
 class Component extends React.Component<Props, void> {
@@ -19,7 +21,7 @@ class Component extends React.Component<Props, void> {
 
     public render() {
         return (
-            <Table data={this.props.user.data || []}>
+            <Table data={this.props.state.data || []}>
                 <Column head="Login" headKey="username" />
                 <Column head="Email" headKey="email" />
                 <Column head="First Name" headKey="first_name" />
@@ -32,7 +34,7 @@ class Component extends React.Component<Props, void> {
 
 const mapStateToProps = (state: AppState): Props => {
     return {
-        user: state.user
+        state: state.user
     }
 }
 

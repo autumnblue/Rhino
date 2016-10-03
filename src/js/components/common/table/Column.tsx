@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { ClientState } from '../../../model/state/ClientState';
 import { connect } from 'react-redux';
 import { ColumnProps } from './ColumnProps';
 

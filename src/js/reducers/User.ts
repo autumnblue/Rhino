@@ -1,10 +1,9 @@
+//http://stackoverflow.com/questions/34570758/why-do-we-need-middleware-for-async-flow-in-redux
 import { Reducer } from 'redux';
 import { Action } from '../actions/Action';
 import { ActionType } from '../actions/ActionType';
 import { UserState } from '../model/state/UserState';
 import { UserDto } from '../model/dto/UserDto';
-
-type SPromise = Promise<UserState[] | UserState>;
 
 //TODO: paging, etc
 const loadUsers = (dtos: UserDto[]): UserState => {
@@ -30,3 +29,15 @@ export const reducer: Reducer<UserState> = (state: UserState = {}, action: Actio
             default: return state;
         }
 };
+
+//---------
+
+// const list: Reducer<UserState> = (state: UserListState = {}, action: Action): UserListState => {
+
+// }
+
+// const edit: Reducer<UserState> = (state: UserEditState = {}, action: Action): UserEditState => {
+    
+// }
+
+// const create

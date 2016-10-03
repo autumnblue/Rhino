@@ -14,6 +14,10 @@ class ActionCreatorStatic {
         }));
     }
 
+    public login(dispatch): void {
+        
+    }
+
     public viewClientList():Action {
         return {
             type: ActionType.VIEW_CLIENT_LIST
