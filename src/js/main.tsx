@@ -8,20 +8,8 @@ import { App } from './components/App';
 import { AppState } from './model/state/AppState';
 import { ValidatableInput } from './common/validation/ValidatableInput';
 
-const initialState: AppState = {
-    clients: null,
-    user: {},
-    login: {
-        input: {
-            host: new ValidatableInput(),
-            port: new ValidatableInput(),
-            username: new ValidatableInput(),
-            password: new ValidatableInput()
-        },
-        isValid: false
-    }
-}
-const store = createStore(reducers, initialState);
+//initialState: AppState as second arg for hydration; default state handeled by each reducer
+const store = createStore(reducers);
 
 ReactDom.render(
     <Provider store={store}>
