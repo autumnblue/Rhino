@@ -17,7 +17,8 @@ const initialState: AppState = {
             port: new ValidatableInput(),
             username: new ValidatableInput(),
             password: new ValidatableInput()
-        }
+        },
+        isValid: false
     }
 }
 const store = createStore(reducers, initialState);

@@ -4,12 +4,12 @@ import { LoginState } from '../../model/state/LoginState';
 import { connect } from 'react-redux';
 import { Table } from '../common/table/Table';
 import { Column } from '../common/table/Column';
-import { ActionCreator } from '../../actions/ActionCreator';
 import { LoginAction } from '../../actions/LoginAction';
 import { InputMessageWrapper } from '../common/message/InputMessageWrapper';
 
 interface Props {
-    login?(): void
+    //dispatch
+    submit?(state: LoginState): void
     onHostChange?(event): void
     onPortChange?(event): void
     onUsernameChange?(event): void
@@ -20,7 +20,7 @@ interface Props {
 class Component extends React.Component<Props, void> {   
     public render() {
         return (
-            <div>
+            <form className="form-inline">
                 <InputMessageWrapper>
                     <input 
                         type="text"
@@ -49,9 +49,16 @@ class Component extends React.Component<Props, void> {
                         value={this.props.state.input.password.value}
                         onChange={this.props.onPasswordChange} />
                 </InputMessageWrapper>
-            </div>
+
+                <button
+                    type="button"
+                    className="btn btn-primary btn-lg"
+                    onClick={this.props.submit}>
+                        Login
+                </button>
+            </form>
         );
-    } 
+    }
 }
 
 const mapStateToProps = (state: AppState): Props => {
@@ -62,11 +69,11 @@ const mapStateToProps = (state: AppState): Props => {
 
 const mapDispatchToProps = (dispatch): Props => {
     return { 
-        login: () => { ActionCreator.login(dispatch) },
+        submit: (state) => { LoginAction.submit(dispatch, state) },
         onHostChange: (event) => { LoginAction.changeHost(dispatch, event.target.value) },
         onPortChange: (event) => { LoginAction.changePort(dispatch, event.target.value) },
         onUsernameChange: (event) => { LoginAction.changeUsername(dispatch, event.target.value) },
-        onPasswordChange: (event) => { LoginAction.changePassword(dispatch, event.target.value) }
+        onPasswordChange: (event) => { LoginAction.changePassword(dispatch, event.target.value) },
     }
 }
 

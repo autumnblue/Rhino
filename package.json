@@ -10,6 +10,8 @@
     "build:tsc": "npm run compile",
     "prebuild": "npm run clean && mkdir -p dist",
     "build": "npm run build:tsc && npm run bundle",
+    "setup:mock": "cd mock && docker-compose down && docker-compose up -d",
+    "teardown:mock": "cd mock && docker-compose down",
     "prebundle": "mkdir build/lib",
     "bundle": "browserify --im build/js/main.js > build/lib/bundle.js",
     "prepack": "",
@@ -30,6 +32,7 @@
     "browserify": "^13.1.0",
     "istanbul": "^0.4.5",
     "jasmine": "^2.5.2",
+    "npm-run-all": "^3.1.0",
     "typescript": "^2.0.3",
     "typings": "^1.4.0"
   },

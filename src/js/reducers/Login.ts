@@ -3,7 +3,6 @@ import { Action } from '../actions/Action';
 import { ActionType } from '../actions/ActionType';
 import { LoginState } from '../model/state/LoginState';
 import { copy } from '../common/Util';
-//import { LoginDto } from '../model/dto/LoginDto';
 import { ValidatableInput } from '../common/validation/ValidatableInput';
 
 const defaultState = {
@@ -12,7 +11,8 @@ const defaultState = {
             port: new ValidatableInput(),
             username: new ValidatableInput(),
             password: new ValidatableInput()
-        }
+        },
+    isValid: false
 }
 
 //http://stackoverflow.com/a/39200433

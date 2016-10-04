@@ -1,7 +1,8 @@
 import { ValidatableInput } from '../../common/validation/ValidatableInput';
 
 export interface LoginState {
-    input?: Fields 
+    input?: Fields
+    isValid: boolean 
 }
 
 interface Fields {

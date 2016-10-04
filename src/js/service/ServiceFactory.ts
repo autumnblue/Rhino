@@ -26,11 +26,18 @@ export const of = <T extends Service>(type: ServiceType): T => {
             return <T><Service>(isProd() 
                 ? new UserService()
                 : new MockUserService());
+            
+        case ServiceType.IDENTITY:
+            return <T><Service>(isProd() 
+                ? new (require('./identity/IdentityService'))()
+                : new (require('./identity/MockUserService'))()
+            )
     }
 }
 
 export enum ServiceType {
     CLIENT,
     CAMPAIGN,
-    USER
+    USER,
+    IDENTITY
 }

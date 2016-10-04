@@ -1,3 +1,3 @@
 export interface Dto {
-    id: number; 
+    id?: number; //optional for transient objects 
 }
