@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 
 export interface ActionProps {
     edit?: boolean,
-    delete?: boolean
+    onEdit?(id: number): void,
+    remove?: boolean
+    onRemove?(id: number): void
 } 
 
 export class ActionCol extends React.Component<ActionProps, {}> {

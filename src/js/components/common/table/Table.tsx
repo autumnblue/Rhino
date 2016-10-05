@@ -40,18 +40,18 @@ class Component extends React.Component<{ data: Array<Dto> }, {}> {
 
             if(actionCol) {
                 const attrib = actionCol;
-                const deleteIcon = attrib.delete 
+                const removeIcon = attrib.remove 
                     && <a href="#">
                             <span className="glyphicon glyphicon-remove"></span>
                         </a>
-                const editIcon = attrib.delete
-                    && <a href="#">
+                const editIcon = attrib.edit
+                    && <a href="#" onClick={() => attrib.onEdit(datum.id)}>
                             <span className="glyphicon glyphicon-pencil"></span>
                         </a>
                 row.push(
                     <td key = { `action${datum.id}` } >
                         { editIcon }
-                        { deleteIcon }
+                        { removeIcon }
                     </td>
                 )
             }

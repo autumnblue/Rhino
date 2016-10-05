@@ -5,8 +5,6 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducers from './reducers'
 import { App } from './components/App';
-import { AppState } from './model/state/AppState';
-import { ValidatableInput } from './common/validation/ValidatableInput';
 
 //initialState: AppState as second arg for hydration; default state handeled by each reducer
 const store = createStore(reducers);

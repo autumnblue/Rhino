@@ -5,4 +5,8 @@ export class UserService implements IUserService {
     public async readUsers(): Promise<UserDto[]> {
         return null
     }
+
+    public async readSingleUser(id: number): Promise<UserDto> {
+        return null
+    }
 }

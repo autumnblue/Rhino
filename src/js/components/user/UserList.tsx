@@ -1,23 +1,19 @@
 import * as React from 'react';
 import { AppState } from '../../model/state/AppState';
-import { UserState } from '../../model/state/UserState';
+import { UserListState } from '../../model/state/UserState';
 import { connect } from 'react-redux';
 import { Table } from '../common/table/Table';
 import { Column } from '../common/table/Column';
-import { ActionCreator } from '../../actions/ActionCreator';
+import { UserAction } from '../../actions/UserAction';
 import { ActionCol } from '../common/table/ActionCol';
 
-interface Props {
-    viewUserList?(): void
-    editUser?(): void
-    deleteUser?(): void 
-    state?: UserState
-}
-
 class Component extends React.Component<Props, void> {
+    private dispatch;
+
     constructor(props) {
         super(props);
-        this.props.viewUserList();
+        this.dispatch = this.props.dispatch;
+        this.viewUserList();
     }
 
     public render() {
@@ -28,22 +24,31 @@ class Component extends React.Component<Props, void> {
                 <Column head="First Name" headKey="first_name" />
                 <Column head="Last Name" headKey="last_name" />
                 <Column head="Is Active" headKey="is_active" />
-                <ActionCol edit delete />
+                <ActionCol edit delete onEdit={this.onEdit}/>
             </Table> 
         );
     } 
-}
 
-const mapStateToProps = (state: AppState): Props => {
-    return {
-        state: state.user
+    private onEdit = (id: number): void => {
+        UserAction.edit(this.dispatch, id);
+    }
+
+    private viewUserList = (): void => { 
+        UserAction.viewUserList(this.dispatch) 
     }
 }
 
-const mapDispatchToProps = (dispatch): Props => {
-    return { 
-        viewUserList: () => { ActionCreator.viewUserList(dispatch) }
-    }
+interface Props {
+    dispatch?
+    state?: UserListState
 }
+
+const mapStateToProps = (state: AppState): Props => ({
+    state: state.user.list
+});
+
+const mapDispatchToProps = (dispatch): Props => ({
+    dispatch: dispatch
+});
 
 export const UserList = connect(mapStateToProps, mapDispatchToProps)(Component);    
