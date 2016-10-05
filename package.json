@@ -10,7 +10,7 @@
     "build:tsc": "npm run compile",
     "prebuild": "npm run clean && mkdir -p dist",
     "build": "npm run build:tsc && npm run bundle",
-    "setup:mock": "npm run teardown:mock && docker-compose up -d",
+    "setup:mock": "cd mock && npm run teardown:mock && docker-compose up -d",
     "teardown:mock": "cd mock && docker-compose down",
     "prebundle": "mkdir build/lib",
     "bundle": "browserify --im build/js/main.js > build/lib/bundle.js",
@@ -26,6 +26,7 @@
     "popsicle": "^8.2.0",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
+    "react-redux": "^4.4.5",
     "redux": "^3.6.0"
   },
   "devDependencies": {
