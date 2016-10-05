@@ -3,19 +3,27 @@ import { ClientState } from '../../../model/state/ClientState';
 import { connect } from 'react-redux';
 import { ColumnProps } from './ColumnProps';
 import { Column } from './Column';
+import { ActionCol, ActionProps } from './ActionCol';
 import { Dto } from '../../../model/dto/Dto';
 
 class Component extends React.Component<{ data: Array<Dto> }, {}> {
     public render() {
         const columns = React.Children.map<ColumnProps>(this.props.children, child => {
-            if(child['type'] !== Column)
-                console.log('Children in <Table /> must be of type <Column />');
-            return child['props'];           
+            if(child['type'] == Column)
+                return child['props'];                    
         });
+
+        const actionCol = React.Children.map<ActionProps>(this.props.children, child => {
+            if(child['type'] == ActionCol)
+                return child['props'];
+        })[0];
 
         const headers = columns.map(column => {
             return <th key={ column.headKey }>{ column.head }</th>
         });
+
+        if(actionCol)
+            headers.push( <th key="action">Action</th> )
 
         const rows = this.props.data.map(datum => {
             const row = columns.map(column => {
@@ -30,6 +38,24 @@ class Component extends React.Component<{ data: Array<Dto> }, {}> {
                 )
             });
 
+            if(actionCol) {
+                const attrib = actionCol;
+                const deleteIcon = attrib.delete 
+                    && <a href="#">
+                            <span className="glyphicon glyphicon-remove"></span>
+                        </a>
+                const editIcon = attrib.delete
+                    && <a href="#">
+                            <span className="glyphicon glyphicon-pencil"></span>
+                        </a>
+                row.push(
+                    <td key = { `action${datum.id}` } >
+                        { editIcon }
+                        { deleteIcon }
+                    </td>
+                )
+            }
+                
             return(
                 <tr key={ datum.id }>
                     { row }        

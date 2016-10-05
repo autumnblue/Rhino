@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { Table } from '../common/table/Table';
 import { Column } from '../common/table/Column';
 import { ActionCreator } from '../../actions/ActionCreator';
+import { ActionCol } from '../common/table/ActionCol';
 
 interface Props {
     viewUserList?(): void
@@ -27,6 +28,7 @@ class Component extends React.Component<Props, void> {
                 <Column head="First Name" headKey="first_name" />
                 <Column head="Last Name" headKey="last_name" />
                 <Column head="Is Active" headKey="is_active" />
+                <ActionCol edit delete />
             </Table> 
         );
     } 
