@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { CampaignList } from './campaign/CampaignList';
 import { UserList } from './user/UserList';
+import { UserEditModal } from './user/UserEditModal';
 import { Login } from './identity/Login';
 
 export class App extends React.Component<void, void> {
@@ -8,6 +9,7 @@ export class App extends React.Component<void, void> {
         return (
             <div>
                 <UserList />
+                <UserEditModal />
                 <Login />
             </div>        
         );

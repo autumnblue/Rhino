@@ -1,9 +1,13 @@
 import { ClientState } from './ClientState';
-import { UserState } from './UserState';
+import { UserAddState, UserEditState, UserListState } from './UserState';
 import { LoginState } from './LoginState';
 
 export interface AppState {
     clients: Array<ClientState>;
-    user: UserState;
+    user: {
+        add: UserAddState;
+        edit: UserEditState;
+        list: UserListState; 
+    };
     login: LoginState;
 }
