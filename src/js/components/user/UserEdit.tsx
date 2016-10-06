@@ -1,85 +1,78 @@
-declare const $: any;
-
 import * as React from 'react';
 import { AppState } from '../../model/state/AppState';
-import { UserEditState } from '../../model/state/UserState';
+import { Fields } from '../../model/state/UserState';
 import { connect } from 'react-redux';
 import { UserAction } from '../../actions/UserAction';
-import { EditModal, EditModalProps } from '../common/modal/EditModal';
 import { InputMessageWrapper } from '../common/message/InputMessageWrapper';
 
-class Component extends React.Component<Props, void> {
-    private dispatch;   
-
-    constructor(props) {
-        super(props);
-        this.dispatch = this.props.dispatch;
-    }
-
+export class UserEdit extends React.Component<Props, void> {
     public render() {
-        let modal: React.ReactElement<EditModalProps>;
-        if(this.props.state.inFocus) {
-            const input = this.props.state.input;
-
-            modal = 
-            <EditModal title={`Edit user ${input.username.value}`}>
+        const input = this.props.input
+        return (
+            <form>
                 Login
                 <InputMessageWrapper>
                     <input 
                         type="text"
-                        value={input.username.value} />
+                        value={input.username.value} 
+                        onChange={this.props.onUsernameChange} />
                 </InputMessageWrapper>
                 First Name
                 <InputMessageWrapper>
                     <input 
                         type="text"
-                        value={input.firstName.value} />
+                        value={input.firstName.value} 
+                        onChange={this.props.onFirstNameChange} />
                 </InputMessageWrapper>
                 Last Name
                 <InputMessageWrapper>
                     <input 
                         type="text"
-                        value={input.lastName.value} />
+                        value={input.lastName.value} 
+                        onChange={this.props.onLastNameChange} />
                 </InputMessageWrapper>
                 Email
                 <InputMessageWrapper>
                     <input 
                         type="text"
-                        value={input.email.value} />
+                        value={input.email.value} 
+                        onChange={this.props.onEmailChange} />
                 </InputMessageWrapper>
-            </EditModal>
-        }
-
-        return (
-            <div>
-                { modal }
-            </div>
+            </form>
         );
     }
 
-    public componentDidUpdate() {
-        if(this.props.state.inFocus) {
-            $('#edit-modal').modal('show');
-        }
-    }
-
-    // private onPasswordChange = (event): void => {
-    //     LoginAction
-    //         .changePassword(this.dispatch, event.target.value)
+    // public static getButtons(): React.ReactElement<{}> {
+    //     return (
+    //         <button 
+    //             type="button" 
+    //             className="btn btn-primary"
+    //             onClick={this.}>
+    //                 Save
+    //         </button>
+    //     );
     // }
 }
 
-interface Props {
-    dispatch?
-    state?: UserEditState
+export class Buttons extends React.Component<{
+        onSubmit(): void
+    }, void> {
+    public render() {
+        return (
+            <button 
+                type="button" 
+                className="btn btn-primary"
+                onClick={this.props.onSubmit}>
+                    Save
+            </button>
+        );
+    }
 }
 
-const mapStateToProps = (state: AppState): Props => ({
-    state: state.user.edit
-})
-
-const mapDispatchToProps = (dispatch): Props => ({
-    dispatch: dispatch
-})
-
-export const UserEdit = connect(mapStateToProps, mapDispatchToProps)(Component);
+interface Props {
+    input: Fields
+    onUsernameChange(event): void
+    onFirstNameChange(event): void
+    onLastNameChange(event): void
+    onEmailChange(event): void
+}

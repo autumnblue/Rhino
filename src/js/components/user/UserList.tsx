@@ -24,12 +24,13 @@ class Component extends React.Component<Props, void> {
                 <Column head="First Name" headKey="first_name" />
                 <Column head="Last Name" headKey="last_name" />
                 <Column head="Is Active" headKey="is_active" />
-                <ActionCol edit delete onEdit={this.onEdit}/>
+                <ActionCol edit delete 
+                    editCallback={this.editCb}/>
             </Table> 
         );
     } 
 
-    private onEdit = (id: number): void => {
+    private editCb = (id: number): void => {
         UserAction.edit(this.dispatch, id);
     }
 

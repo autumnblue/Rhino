@@ -8,11 +8,13 @@ export interface UserState {
 
 export interface UserAddState {
     input?: Fields
+    isValid?: boolean
 }
 
 export interface UserEditState {
     input?: Fields
-    inFocus?: boolean
+    visible?: boolean
+    isValid?: boolean
 }
 
 export interface UserListState {
@@ -28,7 +30,7 @@ interface User {
     isActive: boolean
 }
 
-interface Fields {
+export interface Fields {
     username: ValidatableInput,
     email: ValidatableInput,
     firstName: ValidatableInput,

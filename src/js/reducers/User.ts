@@ -31,8 +31,8 @@ const loadUsers = (dtos: UserDto[]): UserListState => {
 
 const loadSingleUser = (dto: UserDto): UserEditState => {
     let state: UserEditState = {};
-    state.inFocus = true;
-
+    state.visible = true;
+    
     state.input = {
         username: new ValidatableInput(dto.username),
         email: new ValidatableInput(dto.email),
@@ -50,7 +50,8 @@ const defaultEditState: UserEditState = {
             firstName: new ValidatableInput(),
             lastName: new ValidatableInput()
         },
-    inFocus: false
+    visible: false,
+    isValid: false
 }
 
 const list: Reducer<UserListState> = (state: UserListState = {}, action: Action): UserListState => {
@@ -70,9 +71,27 @@ const add: Reducer<UserAddState> = (state: UserAddState = {}, action: Action): U
 };
 
 const edit: Reducer<UserEditState> = (state: UserEditState = defaultEditState, action: Action): UserEditState => {
+    const newState = copy<UserState>(state);
+
     switch(action.type) {
         case ActionType.USER_EDIT_ON:
             return loadSingleUser(action.payload);
+
+        case ActionType.CHANGE_USER_USERNAME:             
+                newState.edit.input.username.value = action.payload;
+                return newState;
+
+        case ActionType.CHANGE_USER_FIRSTNAME:             
+            newState.edit.input.firstName.value = action.payload;
+            return newState;
+
+        case ActionType.CHANGE_USER_LASTNAME:             
+            newState.edit.input.lastName.value = action.payload;
+            return newState;
+
+        case ActionType.CHANGE_USER_EMAIL:             
+            newState.edit.input.email.value = action.payload;
+            return newState;
 
         default: return state;
     }

@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { ClientState } from '../../../model/state/ClientState';
 import { connect } from 'react-redux';
-import { ColumnProps } from './ColumnProps';
-import { Column } from './Column';
+import { Column, ColumnProps } from './Column';
 import { ActionCol, ActionProps } from './ActionCol';
 import { Dto } from '../../../model/dto/Dto';
 
@@ -45,7 +44,7 @@ class Component extends React.Component<{ data: Array<Dto> }, {}> {
                             <span className="glyphicon glyphicon-remove"></span>
                         </a>
                 const editIcon = attrib.edit
-                    && <a href="#" onClick={() => attrib.onEdit(datum.id)}>
+                    && <a href="#" onClick={() => attrib.editCallback(datum.id)}>
                             <span className="glyphicon glyphicon-pencil"></span>
                         </a>
                 row.push(

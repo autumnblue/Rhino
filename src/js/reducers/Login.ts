@@ -18,25 +18,25 @@ const defaultState = {
 //http://stackoverflow.com/a/39200433
 //https://github.com/reactjs/redux/issues/454
 export const reducer: Reducer<LoginState> = (state = defaultState, action: Action): LoginState => {
-        const newState = copy<LoginState>(state);
+    const newState = copy<LoginState>(state);
 
-        switch(action.type) {
-            case ActionType.CHANGE_LOGIN_HOST:             
-                newState.input.host.value = action.payload;
-                return newState;
+    switch(action.type) {
+        case ActionType.CHANGE_LOGIN_HOST:             
+            newState.input.host.value = action.payload;
+            return newState;
 
-            case ActionType.CHANGE_LOGIN_PORT:             
-                newState.input.port.value = action.payload;
-                return newState;
+        case ActionType.CHANGE_LOGIN_PORT:             
+            newState.input.port.value = action.payload;
+            return newState;
 
-            case ActionType.CHANGE_LOGIN_USERNAME:             
-                newState.input.username.value = action.payload;
-                return newState;
+        case ActionType.CHANGE_LOGIN_USERNAME:             
+            newState.input.username.value = action.payload;
+            return newState;
 
-            case ActionType.CHANGE_LOGIN_PASSWORD:             
-                newState.input.password.value = action.payload;
-                return newState;
+        case ActionType.CHANGE_LOGIN_PASSWORD:             
+            newState.input.password.value = action.payload;
+            return newState;
 
-            default: return state;
-        }
+        default: return state;
+    }
 };
