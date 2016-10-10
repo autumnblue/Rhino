@@ -32,8 +32,18 @@ class Component extends React.Component<{ data: Array<Dto> }, {}> {
                 if(column.linkKey)
                     a = <a href={ datum[column.linkKey] }>{ value }</a>
 
+                let check: React.ReactElement<{}>;    
+                if(column.bool) {
+                    check = 
+                        value == true 
+                        ? <span className="glyphicon glyphicon-ok"></span>
+                        : null;
+                }
+
                 return(
-                    <td key={ `${column.headKey}${datum.id}` }>{ a ? a : value }</td>
+                    <td key={ `${column.headKey}${datum.id}` }>
+                        { a ? a : check ? check : value }
+                    </td>
                 )
             });
 

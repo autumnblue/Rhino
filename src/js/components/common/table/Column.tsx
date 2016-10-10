@@ -5,6 +5,7 @@ export interface ColumnProps {
     head: string
     headKey: string
     linkKey?: string
+    bool?: boolean
 }
 
 class Component extends React.Component<ColumnProps, {}> {

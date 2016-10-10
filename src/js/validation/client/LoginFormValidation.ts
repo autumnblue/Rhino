@@ -23,7 +23,7 @@ export class LoginFormValidation extends FormValidation<LoginState>{
         const host = this.handle(this.state.input.host);
         
         if(isBlank(host.value()))
-            host.err('Host cannot be empty');
+            host.err('Host required.');
         else
             host.clear();
 
@@ -33,8 +33,8 @@ export class LoginFormValidation extends FormValidation<LoginState>{
     private validatePort() {
         const port = this.handle(this.state.input.port);
         
-        if(port.value() && !Number.isInteger(port.value()))
-            port.err('Optional port must be a number');
+        if(port.value() && !Number.isInteger(parseInt(port.value())))
+            port.err('Optional port must be a number.');
         else
             port.clear();    
 

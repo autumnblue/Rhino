@@ -21,9 +21,9 @@ class Component extends React.Component<Props, void> {
             <Table data={this.props.state.data || []}>
                 <Column head="Login" headKey="username" />
                 <Column head="Email" headKey="email" />
-                <Column head="First Name" headKey="first_name" />
-                <Column head="Last Name" headKey="last_name" />
-                <Column head="Is Active" headKey="is_active" />
+                <Column head="First Name" headKey="firstName" />
+                <Column head="Last Name" headKey="lastName" />
+                <Column head="Is Active" bool headKey="isActive" />
                 <ActionCol edit delete 
                     editCallback={this.editCb}/>
             </Table> 

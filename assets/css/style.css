@@ -43,7 +43,12 @@ body {
     display: inline-block;
 }
 
-#login-form input {
+#login-form div {
+    /*margin-bottom: 30px;*/
+    height: 75px;
+}
+
+.input-msg {
+    margin-top: 3px;
     display: block;
-    margin-bottom: 20px;
 }
