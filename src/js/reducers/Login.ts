@@ -38,6 +38,9 @@ export const reducer: Reducer<LoginState> = (state = defaultState, action: Actio
             newState.input.password.value = action.payload;
             return newState;
 
+        case ActionType.INVALID_LOGIN_SUBMIT:            
+            return action.payload;
+
         case ActionType.LOGIN_SUCCESS:
             Identity.login(action.payload);
             return state;    

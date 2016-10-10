@@ -18,7 +18,7 @@ class Component extends React.Component<Props, void> {
     public render() {
         return (
             <form id="login-form" className="form-inline">
-                <InputMessageWrapper>
+                <InputMessageWrapper msg={this.props.state.input.host.validationMsg}>
                     <input
                         className="input-lg" 
                         type="text"
@@ -26,7 +26,7 @@ class Component extends React.Component<Props, void> {
                         value={this.props.state.input.host.value}
                         onChange={this.onHostChange} />
                 </InputMessageWrapper>
-                <InputMessageWrapper>
+                <InputMessageWrapper msg={this.props.state.input.port.validationMsg}>
                     <input
                         className="input-lg" 
                         type="text"
@@ -34,7 +34,7 @@ class Component extends React.Component<Props, void> {
                         value={this.props.state.input.port.value}
                         onChange={this.onPortChange} />
                 </InputMessageWrapper>
-                <InputMessageWrapper>
+                <InputMessageWrapper msg={this.props.state.input.username.validationMsg}>
                     <input 
                         className="input-lg"
                         type="text"
@@ -42,7 +42,7 @@ class Component extends React.Component<Props, void> {
                         value={this.props.state.input.username.value}
                         onChange={this.onUsernameChange} />
                 </InputMessageWrapper>
-                <InputMessageWrapper>
+                <InputMessageWrapper msg={this.props.state.input.password.validationMsg}>
                     <input
                         className="input-lg" 
                         type="text"

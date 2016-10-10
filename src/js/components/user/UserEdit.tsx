@@ -41,17 +41,6 @@ export class UserEdit extends React.Component<Props, void> {
             </form>
         );
     }
-
-    // public static getButtons(): React.ReactElement<{}> {
-    //     return (
-    //         <button 
-    //             type="button" 
-    //             className="btn btn-primary"
-    //             onClick={this.}>
-    //                 Save
-    //         </button>
-    //     );
-    // }
 }
 
 export class Buttons extends React.Component<{
