@@ -1,16 +1,12 @@
 import * as React from 'react';
-import { CampaignList } from './campaign/CampaignList';
-import { UserList } from './user/UserList';
-import { UserEditModal } from './user/UserEditModal';
-import { Login } from './identity/Login';
+import { Navbar } from './navigation/Navbar';
 
 export class App extends React.Component<void, void> {
     public render() {
         return (
             <div>
-                <UserList />
-                <UserEditModal />
-                <Login />
+                <Navbar />
+                { this.props.children }
             </div>        
         );
     }

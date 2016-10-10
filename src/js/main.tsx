@@ -5,13 +5,27 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducers from './reducers'
 import { App } from './components/App';
+import { Router, Route, browserHistory } from 'react-router';
+import { LoginPage } from './components/identity/LoginPage';
+import { UserPage } from './components/user/UserPage';
+import { Dir } from './common/Constants'; 
+import { permit } from './security/RenderRules';
 
 //initialState: AppState as second arg for hydration; default state handeled by each reducer
 const store = createStore(reducers);
 
+//http://stackoverflow.com/questions/28253162/react-router-dynamic-segments-crash-when-accessed
 ReactDom.render(
     <Provider store={store}>
-        <App />
+        <Router history={ browserHistory }>
+            <Route path="/" component={App}>
+                <Route path={ Dir.LOGIN } component={LoginPage} />
+                <Route 
+                    path={ Dir.USERS } 
+                    component={UserPage} 
+                    onEnter={ () => { permit('*') } }/>
+            </Route>
+        </Router>
     </Provider>, document.getElementById('mount')
 )
 

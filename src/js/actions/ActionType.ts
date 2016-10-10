@@ -7,6 +7,8 @@ export enum ActionType {
     CHANGE_LOGIN_PASSWORD,
     CHANGE_LOGIN_FORM, //XXX: experimental
     INVALID_LOGIN_SUBMIT,
+    LOGIN_SUCCESS,
+    LOGIN_FAIL,
 
     USER_EDIT_ON,
     CHANGE_USER_USERNAME,

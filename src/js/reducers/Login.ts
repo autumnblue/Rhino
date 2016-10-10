@@ -4,6 +4,7 @@ import { ActionType } from '../actions/ActionType';
 import { LoginState } from '../model/state/LoginState';
 import { copy } from '../common/Util';
 import { ValidatableInput } from '../common/validation/ValidatableInput';
+import { Identity } from '../security/Identity';
 
 const defaultState = {
     input: {
@@ -36,6 +37,10 @@ export const reducer: Reducer<LoginState> = (state = defaultState, action: Actio
         case ActionType.CHANGE_LOGIN_PASSWORD:             
             newState.input.password.value = action.payload;
             return newState;
+
+        case ActionType.LOGIN_SUCCESS:
+            Identity.login(action.payload);
+            return state;    
 
         default: return state;
     }
