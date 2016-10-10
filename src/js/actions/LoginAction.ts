@@ -6,12 +6,17 @@ import { ServiceType } from '../service/ServiceFactory';
 import { LoginState } from '../model/state/LoginState';
 import { LoginFormValidation } from '../validation/client/LoginFormValidation';
 import { mapLogin } from '../validation/server/mapper/IdentityValidationResponse';
+import { CurrentUser } from '../CurrentUser';
 
 class ActionCreator {
     private service: IIdentityService;
 
     public submit(dispatch, state: LoginState): void {
         if(this.localValidate(dispatch, state)) {
+            this.initSocket(
+                state.input.host.value, 
+                state.input.port.value);
+
             this.remoteValidate(dispatch, state)
             .then(valid => {
                 if(valid) {
@@ -63,6 +68,14 @@ class ActionCreator {
 
             return valid
         });
+    }
+
+    private initSocket(host: string, port: number) {
+        const socket = {
+            host: host,
+            port: port
+        }
+        CurrentUser.Session.setSocket(socket);
     }
 
     public changeHost(dispatch, value: string): void {

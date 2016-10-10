@@ -12,7 +12,6 @@ import { Column } from '../common/table/Column';
 import { LoginAction } from '../../actions/LoginAction';
 import { InputMessageWrapper } from '../common/message/InputMessageWrapper';
 
-//TODO menu hamburger
 export class Navbar extends React.Component<{ username: string }, void> {
     public render() {
         return (

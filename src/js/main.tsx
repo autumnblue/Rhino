@@ -14,7 +14,6 @@ import { permit } from './security/RenderRules';
 //initialState: AppState as second arg for hydration; default state handeled by each reducer
 const store = createStore(reducers);
 
-//http://stackoverflow.com/questions/28253162/react-router-dynamic-segments-crash-when-accessed
 ReactDom.render(
     <Provider store={store}>
         <Router history={ browserHistory }>
