@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { UserAction } from '../../actions/UserAction';
 import { Modal } from '../common/Modal';
 import { UserEdit, Buttons } from './UserEdit';
+import { Controls } from '../common/Controls';
 
 class Container extends React.Component<Props, void> {
     private dispatch;   
@@ -20,15 +21,17 @@ class Container extends React.Component<Props, void> {
         return (
             <Modal 
                 title={ `Edit user ${input.username.value}` }
-                buttons={ <Buttons 
-                            onSubmit={this.onSubmit}/> }
-                visible = { this.props.state.visible } >
-                <UserEdit 
-                    input={input}
-                    onUsernameChange={this.onUsernameChange} 
-                    onFirstNameChange={this.onFirstNameChange} 
-                    onLastNameChange={this.onLastNameChange}
-                    onEmailChange={this.onEmailChange} />
+                buttons={ <Buttons onSubmit={this.onSubmit}/> }
+                visible={ this.props.state.visible}>
+                    <Controls><button>REMOVE</button></Controls>
+                    <Controls><button><span className="glyphicon glyphicon-share-alt"></span>BACK</button></Controls>
+                    <Controls><button>SAVE</button></Controls>
+                    <UserEdit 
+                        input={input}
+                        onUsernameChange={this.onUsernameChange} 
+                        onFirstNameChange={this.onFirstNameChange} 
+                        onLastNameChange={this.onLastNameChange}
+                        onEmailChange={this.onEmailChange} />
             </Modal>
         );
     }

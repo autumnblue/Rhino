@@ -45,7 +45,7 @@ class Component extends React.Component<Props, void> {
                 <InputMessageWrapper msg={this.props.state.input.password.validationMsg}>
                     <input
                         className="input-lg" 
-                        type="text"
+                        type="password"
                         placeholder="Password"
                         value={this.props.state.input.password.value}
                         onChange={this.onPasswordChange} />

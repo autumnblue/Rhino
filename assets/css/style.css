@@ -1,6 +1,6 @@
 @font-face {
     font-family: firaSans;
-    src: url('../../assets/fonts/FiraSans-Regular.ttf');
+    src: url('../../assets/fonts/Rajdhani-Regular.ttf');
 }
 
 body {
@@ -8,31 +8,182 @@ body {
     font-family: firaSans;
 
     /*http://subtlepatterns.com/3px-tile/*/
-    background-image: url('../../assets/images/px.png');
+    background-image: url('../../assets/images/u.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 #content {
     text-align: center;
-    margin-top: 80px;
+    margin-top: 95px;
+}
+
+#content-body {
+    display:inline-block;
+    vertical-align: top;
+}
+
+#context-bar {
+    vertical-align: top;
+    display:inline-block;
+    font-size: 35px;
+    color: white;
+    padding: 10px;
+}
+
+#context-bar2 {
+    margin-top: 20px;
+    vertical-align: top;
+    display:inline-block;
+    font-size: 35px;
+    color: white;
+    padding: 10px;
+}
+
+.ic {
+    color: #f55e55;
+    text-align: right;
+}
+
+.btn {
+    font-family: firaSans;
+}
+
+#context-bar2 button {
+    background-color: white;
+    border: none;
+    color: #f55e55;
+    border-radius: 20px;
+    font-size: 20px;
+    padding: 8px 15px 8px 15px;
+    width: 120px;
+}
+
+#context-bar li {
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgb(51, 51, 61);
+}
+
+#context-bar li:last-child {
+    margin-bottom: 10px;
+    border-bottom: none;
 }
 
 #ribbon {
-    text-align: right;
+    text-align: left;
     color: white;
-    background-color: rgba(75,15,25, .65);
+    background-color: rgba(215,64,55, .7);
     width: 100%;
-    padding: 7px;
+    font-size: 28px;
 }
 
-#ribbon .btn-group {
+#ribbon a:link {
+    color: white
+}
+#ribbon a:visited {
+    color: white;
+}
+#ribbon li:hover {
+    background-color: #D74037;
+    color: white;
+}
+#ribbon a:active {
+    color: white;
+}
+
+#ribbon li {
+    padding: 2px 0px 2px 0px;
+}
+
+#ribbon li span {
+    vertical-align: middle;
     display: inline-block;
-    padding-right: 12px;
+    padding: 0px 6px 0px 6px;
+}
+
+#ribbon li:first-child {
+    border-right: 1px solid white;
+}
+
+#ribbon li:first-child a:link {
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+#ribbon .hilite {
+    background-color: #D74037
+}
+
+.list-inline {
+    margin: 0;
+}
+
+#gutter {
+    background-color: rgb(43, 43, 53);
+}
+
+#gutter li a {
+    display: block;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    padding: 6px 20px 6px 20px;
+}
+
+#gutter li {
+    font-size: 18px;
+    padding: 0;
+    border-right: 2px solid #33333D /*#474751;*/
+}
+
+#gutter a:link {
+    color: white
+}
+#gutter a:visited {
+    color: white;
+}
+#gutter li:hover a {
+    text-decoration: none;
+}
+#gutter li:hover {
+    background-color: #33333D;
+    color: white;
+}
+#gutter a:active {
+    color: white;
 }
 
 .panel {
     text-align: left;
-    max-width: 90%;
     display: inline-block;
+    background-color: rgba(28,28,38, .7);
+    border-radius: 0px;
+    border: 0px;
+    height: 100%;
+}
+
+.panel-heading {
+    display: flex;
+    justify-content: space-between;
+}
+
+#panel-title {
+    display: inline-block;
+    padding-right: 100%;
+}
+
+#panel-context {
+    padding-top: 16px;
+    font-size: 26px;
+    display: inline-block;
+}
+
+#content .panel-heading {
+    border: 0px;
+    border-radius: 0px;
+    color: white;
+    background-color: rgb(215,64,55);
 }
 
 .panel-body {
@@ -44,7 +195,6 @@ body {
 }
 
 #login-form div {
-    /*margin-bottom: 30px;*/
     height: 75px;
 }
 
@@ -52,3 +202,62 @@ body {
     margin-top: 3px;
     display: block;
 }
+
+.cell {
+    font-family: firaSans;
+    background-color: rgb(51, 51, 61);
+    padding: 10px;
+    float: left;
+    max-width: 100px;
+    min-width: 50px;
+    max-height: 100px;
+    min-height: 50px;
+    color: white;
+    font-size: 15px;
+    border: 1px solid rgb(43, 43, 53);
+}
+
+#footer {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    color: white;
+    background-color: rgb(28,28,38);
+    padding: 20px;
+    text-align: right;
+    width: 100%;
+}
+
+.modal {
+    border-radius: none;
+}
+
+.modal-dialog {
+    display:inline-block;
+}
+
+.modal-content {
+    background-color: rgb(43, 43, 53);
+    text-align: left;
+}
+
+.modal-title {
+    color: white;
+}
+
+.modal-header {
+    border-bottom: 2px solid rgb(51, 51, 61);
+}
+
+.modal input {
+    color: white;
+    border: none;
+    background-color: rgb(51, 51, 61);
+}
+
+.modal form label {
+    color: white;
+}
+
+/*https://dribbble.com/shots/1270032-SJQHUB-B-I-Dashboard/attachments/174562*/
+/*https://dribbble.com/shots/1423171-Some-Analytics*/

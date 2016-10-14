@@ -10,28 +10,28 @@ export class UserEdit extends React.Component<Props, void> {
         const input = this.props.input
         return (
             <form>
-                Login
+                <label>Username</label>
                 <InputMessageWrapper>
                     <input 
                         type="text"
                         value={input.username.value} 
                         onChange={this.props.onUsernameChange} />
                 </InputMessageWrapper>
-                First Name
+                <label>First Name</label>
                 <InputMessageWrapper>
                     <input 
                         type="text"
                         value={input.firstName.value} 
                         onChange={this.props.onFirstNameChange} />
                 </InputMessageWrapper>
-                Last Name
+                <label>Last Name</label>
                 <InputMessageWrapper>
                     <input 
                         type="text"
                         value={input.lastName.value} 
                         onChange={this.props.onLastNameChange} />
                 </InputMessageWrapper>
-                Email
+                <label>Email</label>
                 <InputMessageWrapper>
                     <input 
                         type="text"

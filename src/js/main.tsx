@@ -22,7 +22,7 @@ ReactDom.render(
                 <Route 
                     path={ Dir.USERS } 
                     component={UserPage} 
-                    onEnter={ () => { permit('*') } }/>
+                    />
             </Route>
         </Router>
     </Provider>, document.getElementById('mount')

@@ -6,6 +6,7 @@ import { Table } from '../common/table/Table';
 import { Column } from '../common/table/Column';
 import { UserAction } from '../../actions/UserAction';
 import { ActionCol } from '../common/table/ActionCol';
+import { Grid } from '../common/grid/Grid';
 
 class Component extends React.Component<Props, void> {
     private dispatch;
@@ -18,19 +19,20 @@ class Component extends React.Component<Props, void> {
 
     public render() {
         return (
-            <Table data={this.props.state.data || []}>
-                <Column head="Login" headKey="username" />
-                <Column head="Email" headKey="email" />
-                <Column head="First Name" headKey="firstName" />
-                <Column head="Last Name" headKey="lastName" />
-                <Column head="Is Active" bool headKey="isActive" />
-                <ActionCol edit delete 
-                    editCallback={this.editCb}/>
-            </Table> 
+            <Grid data={this.props.state.data || []} openCb={this.openCb}/>
+            // <Table data={this.props.state.data || []}>
+            //     <Column head="Login" headKey="username" />
+            //     <Column head="Email" headKey="email" />
+            //     <Column head="First Name" headKey="firstName" />
+            //     <Column head="Last Name" headKey="lastName" />
+            //     <Column head="Is Active" bool headKey="isActive" />
+            //     <ActionCol edit delete 
+            //         editCallback={this.editCb}/>
+            // </Table> 
         );
     } 
 
-    private editCb = (id: number): void => {
+    private openCb = (id: number): void => {
         UserAction.edit(this.dispatch, id);
     }
 
