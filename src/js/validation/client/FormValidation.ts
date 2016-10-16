@@ -30,13 +30,15 @@ export abstract class FormValidation<T extends { input?: any, isValid: boolean }
 
         this.state.isValid = Object.keys(input)
             .map(key => {
-                return input[key] 
-                    && this.inError((<ValidatableInput>input[key]));
+                const errd = input[key]  
+                    ? this.inError((<ValidatableInput>input[key]))
+                    : null
+                return !errd;
             })
             .reduce((prev, curr) => {
                 return prev && curr;
             });
-        
+
         return copy<T>(this.state);
     }
 

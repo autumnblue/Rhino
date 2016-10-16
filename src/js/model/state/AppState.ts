@@ -1,6 +1,6 @@
 import { MenuState } from './MenuState';
 import { ClientState } from './ClientState';
-import { UserAddState, UserEditState, UserListState } from './UserState';
+import { UserAddState, UserEditState, UserPageState } from './UserState';
 import { LoginState } from './LoginState';
 
 export interface AppState {
@@ -9,7 +9,7 @@ export interface AppState {
     user: {
         add: UserAddState;
         edit: UserEditState;
-        list: UserListState; 
+        root: UserPageState; 
     };
     login: LoginState;
 }

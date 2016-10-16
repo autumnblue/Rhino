@@ -20,7 +20,6 @@ class Component extends React.Component<Props, void> {
             <form id="login-form" className="form-inline">
                 <InputMessageWrapper msg={this.props.state.input.host.validationMsg}>
                     <input
-                        className="input-lg" 
                         type="text"
                         placeholder="Host"
                         value={this.props.state.input.host.value}
@@ -28,7 +27,6 @@ class Component extends React.Component<Props, void> {
                 </InputMessageWrapper>
                 <InputMessageWrapper msg={this.props.state.input.port.validationMsg}>
                     <input
-                        className="input-lg" 
                         type="text"
                         placeholder="Port"
                         value={this.props.state.input.port.value}
@@ -36,7 +34,6 @@ class Component extends React.Component<Props, void> {
                 </InputMessageWrapper>
                 <InputMessageWrapper msg={this.props.state.input.username.validationMsg}>
                     <input 
-                        className="input-lg"
                         type="text"
                         placeholder="Username"
                         value={this.props.state.input.username.value}
@@ -44,7 +41,6 @@ class Component extends React.Component<Props, void> {
                 </InputMessageWrapper>
                 <InputMessageWrapper msg={this.props.state.input.password.validationMsg}>
                     <input
-                        className="input-lg" 
                         type="password"
                         placeholder="Password"
                         value={this.props.state.input.password.value}
@@ -53,7 +49,6 @@ class Component extends React.Component<Props, void> {
 
                 <button
                     type="button"
-                    className="btn btn-primary btn-lg"
                     onClick={this.submit}>
                         Login
                 </button>

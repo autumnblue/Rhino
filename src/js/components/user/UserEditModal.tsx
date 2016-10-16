@@ -4,8 +4,8 @@ import { UserEditState } from '../../model/state/UserState';
 import { connect } from 'react-redux';
 import { UserAction } from '../../actions/UserAction';
 import { Modal } from '../common/Modal';
-import { UserEdit, Buttons } from './UserEdit';
-import { Controls } from '../common/Controls';
+import { UserEdit } from './UserEdit';
+import { Control } from '../common/Controls';
 
 class Container extends React.Component<Props, void> {
     private dispatch;   
@@ -17,15 +17,24 @@ class Container extends React.Component<Props, void> {
 
     public render() {
         const input = this.props.state.input;
+        const name = `${input.firstName.value} ${input.lastName.value}`;
 
         return (
             <Modal 
-                title={ `Edit user ${input.username.value}` }
-                buttons={ <Buttons onSubmit={this.onSubmit}/> }
+                title={ `Edit user ${name}` }
                 visible={ this.props.state.visible}>
-                    <Controls><button>REMOVE</button></Controls>
-                    <Controls><button><span className="glyphicon glyphicon-share-alt"></span>BACK</button></Controls>
-                    <Controls><button>SAVE</button></Controls>
+                    <Control>
+                        <button>REMOVE</button>
+                    </Control>
+                    <Control>
+                        <button onClick={this.onCancel}>
+                            <span className="glyphicon glyphicon-share-alt"></span>
+                            &nbsp;CANCEL
+                        </button>
+                    </Control>
+                    <Control>
+                        <button>SAVE</button>
+                    </Control>
                     <UserEdit 
                         input={input}
                         onUsernameChange={this.onUsernameChange} 
@@ -59,6 +68,11 @@ class Container extends React.Component<Props, void> {
     private onEmailChange = (event): void => {
         UserAction
             .changeEmail(this.dispatch, event.target.value)
+    }
+
+    private onCancel = (): void => {
+        UserAction
+            .cancelEdit(this.dispatch);
     }
 }
 

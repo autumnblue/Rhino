@@ -1,13 +1,15 @@
 import { ValidatableInput } from '../../common/validation/ValidatableInput';
+import { ListState } from './page/ListState';
 
 export interface UserState {
     add: UserAddState,
     edit: UserEditState,
-    list: UserListState
+    root: UserPageState
 }
 
 export interface UserAddState {
-    input?: Fields
+    input?: NewFields
+    visible?: boolean
     isValid?: boolean
 }
 
@@ -17,9 +19,7 @@ export interface UserEditState {
     isValid?: boolean
 }
 
-export interface UserListState {
-    data?: User[]
-}
+export type UserPageState = ListState<User>;
 
 interface User {
     id?: number,
@@ -36,3 +36,5 @@ export interface Fields {
     firstName: ValidatableInput,
     lastName: ValidatableInput,
 }
+
+export type NewFields = Fields & { password: ValidatableInput, confirm: ValidatableInput }

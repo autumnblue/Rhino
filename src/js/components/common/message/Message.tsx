@@ -13,9 +13,12 @@ export class Message extends React.Component<MessageProps, {}> {
         const cls = this.getClass();
 
         return (
-            <span className={`${cls} input-msg`}>
-                {this.props.value}
-            </span>
+            <div className="input-msg-wrapper">
+                <span className={`${cls} input-msg`}>
+                    {this.props.value}
+                </span>
+                <span className="tri"></span>
+            </div>
         )
     }
 

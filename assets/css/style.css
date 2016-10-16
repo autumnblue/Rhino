@@ -8,9 +8,10 @@ body {
     font-family: firaSans;
 
     /*http://subtlepatterns.com/3px-tile/*/
-    background-image: url('../../assets/images/u.jpg');
+    /*background-image: url('../../assets/images/u.jpg');
     background-size: cover;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat;*/
+    /*background-color: #1C1C26*/
 }
 
 #content {
@@ -23,19 +24,47 @@ body {
     vertical-align: top;
 }
 
-#context-bar {
-    vertical-align: top;
-    display:inline-block;
-    font-size: 35px;
-    color: white;
-    padding: 10px;
+.panel-heading {
+    display: table;
+    width: 100%;
 }
 
-#context-bar2 {
+#panel-title {
+    display: table-cell;
+}
+
+#panel-context {
+    display: table-cell;
+    text-align: right;
+    padding-top: 16px;
+    font-size: 24px;
+}
+
+.panel-body {
+    padding: 30px;
+    margin: 0;
+}
+
+#panel-context button {
+    vertical-align: top;
+    display:inline-block;
+    color: white;
+    padding: 0;
+    padding-left: 2px;
+    border: 0;
+    background-color: transparent;
+    outline: none;
+    margin: 0;
+}
+
+#panel-context li {
+    margin: 0;
+}
+
+#modal-context {
     margin-top: 20px;
     vertical-align: top;
     display:inline-block;
-    font-size: 35px;
     color: white;
     padding: 10px;
 }
@@ -49,24 +78,15 @@ body {
     font-family: firaSans;
 }
 
-#context-bar2 button {
+#modal-context button, .panel-body button {
     background-color: white;
     border: none;
     color: #f55e55;
     border-radius: 20px;
     font-size: 20px;
     padding: 8px 15px 8px 15px;
+    margin-bottom: 4px;
     width: 120px;
-}
-
-#context-bar li {
-    margin-bottom: 10px;
-    border-bottom: 1px solid rgb(51, 51, 61);
-}
-
-#context-bar li:last-child {
-    margin-bottom: 10px;
-    border-bottom: none;
 }
 
 #ribbon {
@@ -163,31 +183,11 @@ body {
     height: 100%;
 }
 
-.panel-heading {
-    display: flex;
-    justify-content: space-between;
-}
-
-#panel-title {
-    display: inline-block;
-    padding-right: 100%;
-}
-
-#panel-context {
-    padding-top: 16px;
-    font-size: 26px;
-    display: inline-block;
-}
-
 #content .panel-heading {
     border: 0px;
     border-radius: 0px;
     color: white;
     background-color: rgb(215,64,55);
-}
-
-.panel-body {
-    padding: 30px;
 }
 
 #login-form {
@@ -198,9 +198,45 @@ body {
     height: 75px;
 }
 
-.input-msg {
-    margin-top: 3px;
+.form-group {
+    position: relative;
+}
+
+.tri {
     display: block;
+    position: absolute;
+    width: 0; 
+    height: 0; 
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 15px solid white;
+}
+
+.input-msg {
+    display: block;
+    position: absolute;
+    right: 0px;
+    background-color: white;
+    color: #D74037;
+    min-height: 25px;
+    padding: 10px;
+    border-radius: 3px;
+    border-top-right-radius: 0;
+    min-width: 200px;
+    max-width: 300px
+}
+
+.input-msg-wrapper {
+    /*text-align: right;*/
+    font-size: 18px;
+    margin-top: 6px;
+    /*margin-top: 3px;
+    display: block;*/
+    position: absolute;
+    /*max-width: 180px;*/
+    top: 0px;
+    left: -20px;
+    /*background-color: green;*/
 }
 
 .cell {
@@ -213,7 +249,7 @@ body {
     max-height: 100px;
     min-height: 50px;
     color: white;
-    font-size: 15px;
+    font-size: 16px;
     border: 1px solid rgb(43, 43, 53);
 }
 
@@ -249,7 +285,7 @@ body {
     border-bottom: 2px solid rgb(51, 51, 61);
 }
 
-.modal input {
+.modal input, .panel input {
     color: white;
     border: none;
     background-color: rgb(51, 51, 61);
@@ -257,6 +293,46 @@ body {
 
 .modal form label {
     color: white;
+}
+
+.table {
+    color: white;
+    font-size: 16px;
+}
+
+.table tr:nth-child(even) {
+    background: #1C1C26;
+}
+
+.table tr:nth-child(odd) {
+    background: #2B2B35
+}
+
+.table>tbody>tr>th, .table>tbody>tr>td {
+    border-top: none;
+}
+
+.table>tbody>tr {
+    cursor: pointer;
+}
+
+.table>tbody>tr:hover td {
+    background: #33333D;
+}
+
+.guide {
+    color: white;
+    font-size: 16px;
+}
+
+.guide a:link {
+    color: #D74037
+}
+.guide a:visited {
+    color: #D74037;
+}
+.guide a:active {
+    color: #D74037;
 }
 
 /*https://dribbble.com/shots/1270032-SJQHUB-B-I-Dashboard/attachments/174562*/

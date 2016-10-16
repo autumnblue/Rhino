@@ -11,6 +11,14 @@ import { UserPage } from './components/user/UserPage';
 import { Dir } from './common/Constants'; 
 import { permit } from './security/RenderRules';
 
+var GeoPattern = require('geopattern');
+var pattern = GeoPattern.generate('Skiff', { color: '#402E2B', baseColor: '#402E2B' });
+
+document.body.style.backgroundImage = pattern.toDataUrl();
+document.body.style.backgroundColor = pattern.color;
+
+console.log(pattern.color);
+
 //initialState: AppState as second arg for hydration; default state handeled by each reducer
 const store = createStore(reducers);
 

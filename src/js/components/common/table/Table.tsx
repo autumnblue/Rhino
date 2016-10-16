@@ -21,8 +21,8 @@ class Component extends React.Component<{ data: Array<Dto> }, {}> {
             return <th key={ column.headKey }>{ column.head }</th>
         });
 
-        if(actionCol)
-            headers.push( <th key="action">Action</th> )
+        // if(actionCol)
+        //     headers.push( <th key="action">Action</th> )
 
         const rows = this.props.data.map(datum => {
             const row = columns.map(column => {
@@ -47,26 +47,26 @@ class Component extends React.Component<{ data: Array<Dto> }, {}> {
                 )
             });
 
-            if(actionCol) {
-                const attrib = actionCol;
-                const removeIcon = attrib.remove 
-                    && <a href="#">
-                            <span className="glyphicon glyphicon-remove"></span>
-                        </a>
-                const editIcon = attrib.edit
-                    && <a href="#" onClick={() => attrib.editCallback(datum.id)}>
-                            <span className="glyphicon glyphicon-pencil"></span>
-                        </a>
-                row.push(
-                    <td key = { `action${datum.id}` } >
-                        { editIcon }
-                        { removeIcon }
-                    </td>
-                )
-            }
+            // if(actionCol) {
+            //     const attrib = actionCol;
+            //     const removeIcon = attrib.remove 
+            //         && <a href="#">
+            //                 <span className="glyphicon glyphicon-remove"></span>
+            //             </a>
+            //     const editIcon = attrib.edit
+            //         && <a href="#" onClick={() => attrib.editCallback(datum.id)}>
+            //                 <span className="glyphicon glyphicon-pencil"></span>
+            //             </a>
+            //     row.push(
+            //         <td key = { `action${datum.id}` } >
+            //             { editIcon }
+            //             { removeIcon }
+            //         </td>
+            //     )
+            // }
                 
             return(
-                <tr key={ datum.id }>
+                <tr key={ datum.id } onClick={ () => actionCol.editCallback(datum.id) }>
                     { row }        
                 </tr>
             )

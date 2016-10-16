@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Controls } from './Controls';
+import { sift } from './Controls';
 
 interface PanelProps {
     title: string
@@ -8,15 +8,7 @@ interface PanelProps {
 export class Panel extends React.Component<PanelProps, {}> {
     
     public render() {
-        const controls = React.Children.map(this.props.children, child => {
-            if(child['type'] == Controls)
-                return <li> { child } </li>;
-        });
-
-        const children = React.Children.map(this.props.children, child => {
-            if(child['type'] !== Controls)
-                return child;
-        });
+        const sifted = sift(this.props.children);
 
         return (
             <div>
@@ -28,12 +20,12 @@ export class Panel extends React.Component<PanelProps, {}> {
                                 </div>
                                 <div id="panel-context">
                                     <ul className="list-inline">
-                                        { controls }
+                                        { sifted.controls }
                                     </ul>
                                 </div>
                         </div>
                         <div className="panel-body">
-                            { children }
+                            { sifted.others }
                         </div>
                     </div>
                 </div>

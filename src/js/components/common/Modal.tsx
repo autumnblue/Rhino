@@ -1,56 +1,53 @@
 declare const $: any;
 
 import * as React from 'react';
-import { Controls } from './Controls';
+import { sift } from './Controls';
 
 interface EditModalProps {
     title: string
-    buttons?: React.Component<{}, {}>
     visible?: boolean
 }
 
-export class Modal extends React.Component<EditModalProps, {}> {
-    
+export class Modal extends React.Component<EditModalProps, void> {
     public render() {
         let modal: React.ReactElement<EditModalProps> = null;
         if(this.props.visible) {
-            const controls = React.Children.map(this.props.children, child => {
-                if(child['type'] == Controls)
-                    return <li>{ child }</li>;
-            });
+            const sifted = sift(this.props.children);
 
-            const children = React.Children.map(this.props.children, child => {
-                if(child['type'] !== Controls)
-                    return child;
-            });
-
-            modal = (
-                <div className="modal fade" id="modal" tabIndex="-1" role="dialog">
-                    <div className="modal-dialog" role="document">
-                        <div className="modal-content">
-                            <div className="modal-header">
-                                <h3 className="modal-title" id="myModalLabel">{ this.props.title }</h3>
-                            </div>
-                            <div className="modal-body">
-                                { children }
+            return (
+                <div 
+                    className="modal fade" 
+                    id="modal" 
+                    tabIndex="-1" 
+                    role="dialog"
+                    data-keyboard="false" 
+                    data-backdrop="static">
+                        <div className="modal-dialog" role="document">
+                            <div className="modal-content">
+                                <div className="modal-header">
+                                    <h3 className="modal-title">{ this.props.title }</h3>
+                                </div>
+                                <div className="modal-body">
+                                    { sifted.others }
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div id="context-bar2">
-                        <ul className="nav nav-pills nav-stacked">
-                            { controls }                            
-                        </ul>
-                    </div>
+                        <div id="modal-context">
+                            <ul className="nav nav-pills nav-stacked">
+                                { sifted.controls }                            
+                            </ul>
+                        </div>
                 </div>
             );
         }
-
-        return modal;
+        else {
+            $('#modal').modal('hide');
+            return null;
+        }
     }
 
     public componentDidUpdate() {
-        if(this.props.visible) {
+        if(this.props.visible)
             $('#modal').modal('show');
-        }
     }
-}
+}   

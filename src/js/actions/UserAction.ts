@@ -1,3 +1,5 @@
+declare const $: any;
+
 import { Action } from './Action';
 import { ActionType } from './ActionType';
 import { IUserService } from '../service/user/IUserService';
@@ -12,7 +14,7 @@ type UserInputState = UserEditState | UserAddState;
 class ActionCreator {
     private service: IUserService;
 
-    public viewUserList(dispatch): void {
+    public initPage(dispatch): void {
         this.getService()
         .readUsers()
         .then(dtos => dispatch({
@@ -21,7 +23,13 @@ class ActionCreator {
         }));
     }
 
-    public edit(dispatch, id: number) {
+    public openAdd(dispatch): void {
+        dispatch({
+            type: ActionType.OPEN_USER_ADD
+        });
+    }
+
+    public openEdit(dispatch, id: number) {
         this.getService()
         .readSingleUser(id)
         .then(dto => {
@@ -90,6 +98,24 @@ class ActionCreator {
 
             return valid
         });
+    }
+
+    public toggleView(dispatch) {
+        dispatch({
+            type: ActionType.USER_TOGGLE_VIEW
+        });
+    }
+
+    public cancelEdit(dispatch) {
+        dispatch({
+            type: ActionType.USER_EDIT_CANCEL
+        })
+    }
+
+    public cancelAdd(dispatch) {
+        dispatch({
+            type: ActionType.USER_ADD_CANCEL
+        })
     }
 
     public changeUsername(dispatch, value: string) {
