@@ -1,13 +1,17 @@
+import { MenuState } from './MenuState';
 import { ClientState } from './ClientState';
-import { UserAddState, UserEditState, UserListState } from './UserState';
+import { UserAddState, UserEditState, UserPageState } from './UserState';
 import { LoginState } from './LoginState';
+import { ProfileState } from './ProfileState';
 
 export interface AppState {
+    navigation: MenuState;
     clients: Array<ClientState>;
     user: {
         add: UserAddState;
         edit: UserEditState;
-        list: UserListState; 
+        root: UserPageState; 
     };
     login: LoginState;
+    profile: ProfileState;
 }

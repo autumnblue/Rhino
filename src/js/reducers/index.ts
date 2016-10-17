@@ -1,16 +1,15 @@
 import { combineReducers } from 'redux'
-import * as client from './Client'
-import * as campaign from './Campaign'
-import * as user from './User'
-import * as login from './Login'
-import { AppState } from '../model/state/AppState';
-import { UserState } from '../model/state/UserState';
+import * as navigation from './navigation/Navigation'
+import user from './user'
+import * as login from './identity/Login'
+import * as profile from './identity/Profile'
+import { AppState } from '../model/state/AppState'
 
 const app = combineReducers<AppState>({
-    clients: client.reducer,
-    campaigns: campaign.reducer,
-    user: user.reducers,
-    login: login.reducer
+    navigation: navigation.reducer,    
+    user: user,
+    login: login.reducer,
+    profile: profile.reducer
 });
 
 export default app;

@@ -20,13 +20,17 @@
     "publish:major": "npm version major && npm run prepack && npm publish build",
     "publish:minor": "npm version minor && npm run prepack && npm publish build",
     "publish:patch": "npm version patch && npm run prepack && npm publish build",
-    "typings": "typings"
+    "typings": "typings",
+    "start": "php -S localhost:8000 local_dev/router.php"
   },
   "dependencies": {
+    "jwt-decode": "^2.1.0",
+    "moment": "^2.15.1",
     "popsicle": "^8.2.0",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-redux": "^4.4.5",
+    "react-router": "^2.8.1",
     "redux": "^3.6.0"
   },
   "devDependencies": {

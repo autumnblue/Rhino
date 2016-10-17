@@ -1,0 +1,336 @@
+@font-face {
+    font-family: rajdhani;
+    src: url('../../assets/fonts/Rajdhani-Regular.ttf');
+}
+
+body {
+    margin: 0;
+    font-family: rajdhani;
+}
+
+#content {
+    text-align: center;
+    margin-top: 95px;
+}
+
+#content-body {
+    display:inline-block;
+    vertical-align: top;
+}
+
+.panel-heading {
+    display: table;
+    width: 100%;
+}
+
+#panel-title {
+    display: table-cell;
+}
+
+#panel-context {
+    display: table-cell;
+    text-align: right;
+    padding-top: 16px;
+    font-size: 24px;
+}
+
+.panel-body {
+    padding: 30px;
+    margin: 0;
+}
+
+#panel-context button {
+    vertical-align: top;
+    display:inline-block;
+    color: white;
+    padding: 0;
+    padding-left: 2px;
+    border: 0;
+    background-color: transparent;
+    outline: none;
+    margin: 0;
+}
+
+#panel-context li {
+    margin: 0;
+}
+
+#modal-context {
+    margin-top: 20px;
+    vertical-align: top;
+    display:inline-block;
+    color: white;
+    padding: 10px;
+}
+
+.ic {
+    color: #f55e55;
+    text-align: right;
+}
+
+.btn {
+    font-family: rajdhani;
+}
+
+#modal-context button, .panel-body button {
+    background-color: white;
+    border: none;
+    color: #f55e55;
+    border-radius: 20px;
+    font-size: 20px;
+    padding: 8px 15px 8px 15px;
+    margin-bottom: 4px;
+    width: 120px;
+}
+
+#ribbon {
+    text-align: left;
+    color: white;
+    background-color: rgba(215,64,55, .7);
+    width: 100%;
+    font-size: 28px;
+}
+
+#ribbon a:link {
+    color: white
+}
+#ribbon a:visited {
+    color: white;
+}
+#ribbon li:hover {
+    background-color: #D74037;
+    color: white;
+}
+#ribbon a:active {
+    color: white;
+}
+
+#ribbon li {
+    padding: 2px 0px 2px 0px;
+}
+
+#ribbon li span {
+    vertical-align: middle;
+    display: inline-block;
+    padding: 0px 6px 0px 6px;
+}
+
+#ribbon li:first-child {
+    border-right: 1px solid white;
+}
+
+#ribbon li:first-child a:link {
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+#ribbon .hilite {
+    background-color: #D74037
+}
+
+.list-inline {
+    margin: 0;
+}
+
+#gutter {
+    background-color: rgb(43, 43, 53);
+}
+
+#gutter li a {
+    display: block;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    padding: 6px 20px 6px 20px;
+}
+
+#gutter li {
+    font-size: 18px;
+    padding: 0;
+    border-right: 2px solid #33333D /*#474751;*/
+}
+
+#gutter a:link {
+    color: white
+}
+#gutter a:visited {
+    color: white;
+}
+#gutter li:hover a {
+    text-decoration: none;
+}
+#gutter li:hover {
+    background-color: #33333D;
+    color: white;
+}
+#gutter a:active {
+    color: white;
+}
+
+.panel {
+    text-align: left;
+    display: inline-block;
+    background-color: rgba(28,28,38, .7);
+    border-radius: 0px;
+    border: 0px;
+    height: 100%;
+}
+
+#content .panel-heading {
+    border: 0px;
+    border-radius: 0px;
+    color: white;
+    background-color: rgb(215,64,55);
+}
+
+#login-form {
+    display: inline-block;
+}
+
+#login-form div {
+    height: 70px;
+}
+
+#profile-form label {
+    color: white;
+}
+
+#profile-form div {
+    height: 70px;
+}
+
+.form-group {
+    position: relative;
+}
+
+.tri {
+    display: block;
+    position: absolute;
+    width: 0; 
+    height: 0; 
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 15px solid black;
+}
+
+.input-msg {
+    display: block;
+    position: absolute;
+    right: 0px;
+    background-color: black;
+    color: #D74037;
+    min-height: 25px;
+    padding: 10px;
+    border-radius: 3px;
+    border-top-right-radius: 0;
+    min-width: 200px;
+    max-width: 300px
+}
+
+.input-msg-wrapper {
+    font-size: 18px;
+    margin-top: 6px;
+    position: absolute;
+    top: 0px;
+    left: -20px;
+}
+
+.cell {
+    font-family: rajdhani;
+    background-color: rgb(51, 51, 61);
+    padding: 10px;
+    float: left;
+    max-width: 100px;
+    min-width: 50px;
+    max-height: 100px;
+    min-height: 50px;
+    color: white;
+    font-size: 16px;
+    border: 1px solid rgb(43, 43, 53);
+}
+
+#footer {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    color: white;
+    background-color: rgb(28,28,38);
+    padding: 20px;
+    text-align: right;
+    width: 100%;
+}
+
+.modal {
+    border-radius: none;
+}
+
+.modal-dialog {
+    display:inline-block;
+}
+
+.modal-content {
+    background-color: rgb(43, 43, 53);
+    text-align: left;
+}
+
+.modal-title {
+    color: white;
+}
+
+.modal-header {
+    border-bottom: 2px solid rgb(51, 51, 61);
+}
+
+.modal input, .panel input {
+    color: white;
+    border: none;
+    background-color: rgb(51, 51, 61);
+}
+
+.modal form label {
+    color: white;
+}
+
+.table {
+    color: white;
+    font-size: 16px;
+}
+
+.table tr:nth-child(even) {
+    background: #1C1C26;
+}
+
+.table tr:nth-child(odd) {
+    background: #2B2B35
+}
+
+.table>tbody>tr>th, .table>tbody>tr>td {
+    border-top: none;
+}
+
+.table>tbody>tr {
+    cursor: pointer;
+}
+
+.table>tbody>tr:hover td {
+    background: #33333D;
+}
+
+.guide {
+    color: white;
+    font-size: 16px;
+}
+
+.guide a:link {
+    color: #D74037
+}
+.guide a:visited {
+    color: #D74037;
+}
+.guide a:active {
+    color: #D74037;
+}
+
+/*https://dribbble.com/shots/1270032-SJQHUB-B-I-Dashboard/attachments/174562*/
+/*https://dribbble.com/shots/1423171-Some-Analytics*/

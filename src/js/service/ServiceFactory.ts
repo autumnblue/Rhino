@@ -28,10 +28,12 @@ export const of = <T extends Service>(type: ServiceType): T => {
                 : new MockUserService());
             
         case ServiceType.IDENTITY:
-            return <T><Service>(isProd() 
-                ? new (require('./identity/IdentityService'))()
-                : new (require('./identity/MockUserService'))()
-            )
+            return new (require('./identity/IdentityService')).IdentityService();
+
+            // return <T><Service>(isProd() 
+            //     ? new (require('./identity/IdentityService'))()
+            //     : new (require('./identity/MockUserService'))()
+            // )
     }
 }
 
