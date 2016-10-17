@@ -1,17 +1,11 @@
 @font-face {
-    font-family: firaSans;
+    font-family: rajdhani;
     src: url('../../assets/fonts/Rajdhani-Regular.ttf');
 }
 
 body {
     margin: 0;
-    font-family: firaSans;
-
-    /*http://subtlepatterns.com/3px-tile/*/
-    /*background-image: url('../../assets/images/u.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;*/
-    /*background-color: #1C1C26*/
+    font-family: rajdhani;
 }
 
 #content {
@@ -75,7 +69,7 @@ body {
 }
 
 .btn {
-    font-family: firaSans;
+    font-family: rajdhani;
 }
 
 #modal-context button, .panel-body button {
@@ -217,14 +211,14 @@ body {
     height: 0; 
     border-top: 15px solid transparent;
     border-bottom: 15px solid transparent;
-    border-left: 15px solid white;
+    border-left: 15px solid black;
 }
 
 .input-msg {
     display: block;
     position: absolute;
     right: 0px;
-    background-color: white;
+    background-color: black;
     color: #D74037;
     min-height: 25px;
     padding: 10px;
@@ -235,20 +229,15 @@ body {
 }
 
 .input-msg-wrapper {
-    /*text-align: right;*/
     font-size: 18px;
     margin-top: 6px;
-    /*margin-top: 3px;
-    display: block;*/
     position: absolute;
-    /*max-width: 180px;*/
     top: 0px;
     left: -20px;
-    /*background-color: green;*/
 }
 
 .cell {
-    font-family: firaSans;
+    font-family: rajdhani;
     background-color: rgb(51, 51, 61);
     padding: 10px;
     float: left;

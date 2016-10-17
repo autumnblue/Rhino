@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { AppState } from '../../../model/state/AppState';
 import { ProfileState } from '../../../model/state/ProfileState';
 import { ProfileAction } from '../../../actions/identity/ProfileAction';
-import { InputMessageWrapper } from '../../../components/common/message/InputMessageWrapper';
-import { Panel } from '../../../components/common/Panel';
+import { InputMessageWrapper } from '../../../views/components/common/message/InputMessageWrapper';
+import { Panel } from '../../../views/components/common/Panel';
 
 class Component extends React.Component<Props, void> {
     private dispatch;

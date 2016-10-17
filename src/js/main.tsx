@@ -4,10 +4,10 @@ import { render } from 'react-dom'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducers from './reducers'
-import { App } from './components/App';
+import { App } from './views/App';
 import { Router, Route, browserHistory } from 'react-router';
-import { LoginPage } from './components/identity/LoginPage';
-import { UserPage } from './components/user/UserPage';
+import { LoginPage } from './views/containers/identity/LoginPage';
+import { UserPage } from './views/containers/user/UserPage';
 import { ProfilePage } from './views/containers/identity/ProfilePage';
 import { Dir } from './common/Constants'; 
 import { permit } from './security/RenderRules';
@@ -17,8 +17,6 @@ var pattern = GeoPattern.generate('Skiff', { color: '#333333', baseColor: '#3333
 
 document.body.style.backgroundImage = pattern.toDataUrl();
 document.body.style.backgroundColor = pattern.color;
-
-console.log(pattern.color);
 
 //initialState: AppState as second arg for hydration; default state handeled by each reducer
 const store = createStore(reducers);

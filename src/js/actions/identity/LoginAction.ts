@@ -12,7 +12,20 @@ class ActionCreator {
     private service: IIdentityService;
 
     public submit(dispatch, state: LoginState): void {
-       
+        if(this.localValidate(dispatch, state)) {
+            this.initSocket(
+                state.input.host.value, 
+                state.input.port.value);
+
+            this.remoteValidate(dispatch, state)
+            .then(valid => {
+                if(valid) {
+                    const username = state.input.username.value;
+                    const password = state.input.password.value;
+                    this.login(dispatch, username, password);
+                }    
+            })
+        }
     }
 
     private login(dispatch, username: string, password: string): void {
@@ -30,7 +43,7 @@ class ActionCreator {
         const valid = validated.isValid;
         if(!valid) 
             dispatch({
-                type: ActionType.PROFILE_INVALID_SUBMIT,
+                type: ActionType.LOGIN_INVALID_SUBMIT,
                 payload: validated
             });
         return valid;
@@ -48,7 +61,7 @@ class ActionCreator {
             const valid = validated.isValid;
             if(!valid) {
                 dispatch({
-                    type: ActionType.PROFILE_INVALID_SUBMIT,
+                    type: ActionType.LOGIN_INVALID_SUBMIT,
                     payload: validated
                 });
             }
@@ -57,16 +70,40 @@ class ActionCreator {
         });
     }
 
-    public changePasswordInput(dispatch, value: string): void {
-
+    private initSocket(host: string, port: number) {
+        const socket = {
+            host: host,
+            port: port
+        }
+        CurrentUser.Session.setSocket(socket);
     }
 
-    public changeNewPasswordInput(dispatch, value: string): void {
-
+    public changeHost(dispatch, value: string): void {
+        dispatch({
+            type: ActionType.LOGIN_CHANGE_HOST_INPUT,
+            payload: value
+        });
     }
 
-    public changeConfirmInput(dispatch, value: string): void {
+    public changePort(dispatch, value: string): void {
+        dispatch({
+            type: ActionType.LOGIN_CHANGE_PORT_INPUT,
+            payload: value
+        });
+    }
 
+    public changeUsername(dispatch, value: string): void {
+        dispatch({
+            type: ActionType.LOGIN_CHANGE_USERNAME_INPUT,
+            payload: value
+        });
+    }
+
+    public changePassword(dispatch, value: string): void {
+        dispatch({
+            type: ActionType.LOGIN_CHANGE_PASSWORD_INPUT,
+            payload: value
+        });
     }
 
     private getService(): IIdentityService {
@@ -77,4 +114,4 @@ class ActionCreator {
     }
 }
 
-export const ProfileAction: ActionCreator = new ActionCreator();
+export const LoginAction: ActionCreator = new ActionCreator();
