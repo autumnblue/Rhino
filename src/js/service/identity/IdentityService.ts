@@ -9,7 +9,7 @@ export class IdentityService implements IIdentityService {
         console.log('!!!!!!')
         return await popsicle.request({
             method: 'POST',
-            url: 'https://sandbar-dev.rhino.lan/api/v1/token',
+            url: 'https://sandbar-dev.rhino.lan/api/v1/token/',
             body: dto,
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'

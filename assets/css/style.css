@@ -195,7 +195,15 @@ body {
 }
 
 #login-form div {
-    height: 75px;
+    height: 70px;
+}
+
+#profile-form label {
+    color: white;
+}
+
+#profile-form div {
+    height: 70px;
 }
 
 .form-group {

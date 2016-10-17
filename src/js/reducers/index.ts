@@ -4,16 +4,16 @@ import * as client from './Client'
 import * as campaign from './Campaign'
 import * as user from './User'
 import * as login from './Login'
-import { AppState } from '../model/state/AppState';
-import { UserState } from '../model/state/UserState';
-import { MenuState } from '../model/state/MenuState';
+import * as profile from './identity/Profile'
+import { AppState } from '../model/state/AppState'
 
 const app = combineReducers<AppState>({
     navigation: navigation.reducer,    
     clients: client.reducer,
     campaigns: campaign.reducer,
     user: user.reducers,
-    login: login.reducer
+    login: login.reducer,
+    profile: profile.reducer
 });
 
 export default app;

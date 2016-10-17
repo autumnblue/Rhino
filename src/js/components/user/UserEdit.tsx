@@ -45,7 +45,7 @@ export class UserEdit extends React.Component<Props, void> {
                 <hr />
 
                 <Guide>
-                    You can change your password via your <a href="#">Profile</a>.
+                    You can change your password via your <a href="/profile">Profile</a>.
                 </Guide>
             </div>
         );

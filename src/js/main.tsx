@@ -8,11 +8,12 @@ import { App } from './components/App';
 import { Router, Route, browserHistory } from 'react-router';
 import { LoginPage } from './components/identity/LoginPage';
 import { UserPage } from './components/user/UserPage';
+import { ProfilePage } from './views/containers/identity/ProfilePage';
 import { Dir } from './common/Constants'; 
 import { permit } from './security/RenderRules';
 
 var GeoPattern = require('geopattern');
-var pattern = GeoPattern.generate('Skiff', { color: '#402E2B', baseColor: '#402E2B' });
+var pattern = GeoPattern.generate('Skiff', { color: '#333333', baseColor: '#333333' });
 
 document.body.style.backgroundImage = pattern.toDataUrl();
 document.body.style.backgroundColor = pattern.color;
@@ -30,6 +31,10 @@ ReactDom.render(
                 <Route 
                     path={ Dir.USERS } 
                     component={UserPage} 
+                    />
+                <Route 
+                    path={ Dir.PROFILE } 
+                    component={ProfilePage} 
                     />
             </Route>
         </Router>
