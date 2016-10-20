@@ -1,7 +1,10 @@
 {
-  "name": "sandbar",
+  "name": "skiff",
   "description": "<description>",
   "version": "0.1.0",
+  "config": {
+    "env": "local"
+  },
   "scripts": {
     "clean": "rm -rf build && rm -rf dist",
     "install:latest": "npm install --save-dev typings@* typescript@* istanbul@* jasmine@*",
@@ -10,6 +13,9 @@
     "build:tsc": "npm run compile",
     "prebuild": "npm run clean && mkdir -p dist",
     "build": "npm run build:tsc && npm run bundle",
+    "build:dev": "npm run build --skiff:env=dev",
+    "build:prod": "npm run build --skiff:env=prod",
+    "postbuild": "cp -r assets dist/ && mkdir dist/assets/js && cp build/lib/bundle.js dist/assets/js/skiff-$npm_package_version.js && cp index.html dist/",
     "setup:mock": "cd mock && npm run teardown:mock && docker-compose up -d",
     "teardown:mock": "cd mock && docker-compose down",
     "prebundle": "mkdir build/lib",
@@ -21,13 +27,15 @@
     "publish:minor": "npm version minor && npm run prepack && npm publish build",
     "publish:patch": "npm version patch && npm run prepack && npm publish build",
     "typings": "typings",
-    "start": "php -S localhost:8000 local_dev/router.php"
+    "start": "php -S localhost:8000 -t dist/ local_dev/router.php"
   },
   "dependencies": {
+    "dotenv": "^2.0.0",
     "jwt-decode": "^2.1.0",
     "moment": "^2.15.1",
     "popsicle": "^8.2.0",
     "react": "^15.3.2",
+    "react-addons-css-transition-group": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-redux": "^4.4.5",
     "react-router": "^2.8.1",

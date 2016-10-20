@@ -1,3 +1,4 @@
+//require('dotenv').config();
 import * as React from 'react'
 import * as ReactDom from 'react-dom'
 import { render } from 'react-dom'
@@ -11,9 +12,18 @@ import { UserPage } from './views/containers/user/UserPage';
 import { ProfilePage } from './views/containers/identity/ProfilePage';
 import { Dir } from './common/Constants'; 
 import { permit } from './security/RenderRules';
+import { Role } from './security/Role';
+import { CurrentUser } from './CurrentUser';
 
-var GeoPattern = require('geopattern');
-var pattern = GeoPattern.generate('Skiff', { color: '#333333', baseColor: '#333333' });
+const DEFAULT_SEED = 'Skiff';
+const socket = CurrentUser.Session.getSocket(); 
+const seed = socket ? `${socket.host}${socket.port}` : DEFAULT_SEED;
+const GeoPattern = require('geopattern');
+let pattern;
+if(seed == DEFAULT_SEED)
+    pattern = GeoPattern.generate('Skiff', { color: '#333333', baseColor: '#333333' });
+else
+    pattern = GeoPattern.generate(seed);
 
 document.body.style.backgroundImage = pattern.toDataUrl();
 document.body.style.backgroundColor = pattern.color;
@@ -28,11 +38,13 @@ ReactDom.render(
                 <Route path={ Dir.LOGIN } component={LoginPage} />
                 <Route 
                     path={ Dir.USERS } 
-                    component={UserPage} 
+                    component={UserPage}
+                    onEnter={ () => permit(Role.AUTHENTICATED) } 
                     />
                 <Route 
                     path={ Dir.PROFILE } 
-                    component={ProfilePage} 
+                    component={ProfilePage}
+                    onEnter={ () => permit(Role.AUTHENTICATED) } 
                     />
             </Route>
         </Router>

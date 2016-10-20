@@ -1,5 +1,5 @@
 {
-  "name": "sandbar",
+  "name": "skiff",
   "main": "",
   "globalDependencies": {
     "jasmine": "registry:dt/jasmine#2.2.0+20160621224255",

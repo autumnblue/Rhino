@@ -7,13 +7,15 @@ import { ValidatableInput } from '../../common/validation/ValidatableInput';
 import { Identity } from '../../security/Identity';
 
 const defaultState: MenuState = {
+    handle: Identity.getHandle(),
     identity: { selected: false }, 
     config: { selected: false }
 }
 
 const unselectAll = (state: MenuState) => {
     for(const menu in state) {
-        state[menu].selected = false;
+        if(state[menu] && state[menu].selected)
+            state[menu].selected = false;
     }
 }
 
@@ -30,7 +32,7 @@ export const reducer: Reducer<MenuState> = (state = defaultState, action: Action
             unselectAll(newState);
             newState.config.selected = true;
             return newState;
-        
+
         default: return state;
     }
 };

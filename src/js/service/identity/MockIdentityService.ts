@@ -1,10 +1,11 @@
+import { Service } from '../Service';
 import { IIdentityService } from './IIdentityService';
 import { CredentialDto } from '../../model/dto/CredentialDto';
 import { AuthzResponseDto } from '../../model/dto/AuthzResponseDto';
 import { ValidationResponseDto } from '../../model/dto/ValidationResponseDto';
 import * as popsicle from 'popsicle';
 
-export class MockIdentityService implements IIdentityService {
+export class MockIdentityService extends Service implements IIdentityService {
     public async login(dto: CredentialDto): Promise<AuthzResponseDto> {
         return;
     }

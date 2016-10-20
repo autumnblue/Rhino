@@ -5,6 +5,8 @@ import { LoginState } from '../../../model/state/LoginState';
 import { LoginAction } from '../../../actions/identity/LoginAction';
 import { InputMessageWrapper } from '../../../views/components/common/message/InputMessageWrapper';
 import { Panel } from '../../../views/components/common/Panel';
+import { Alert } from '../../../views/components/common/message/Alert';
+import { Fade } from '../../../views/components/common/effect/Fade';
 
 class Component extends React.Component<Props, void> {
     private dispatch;
@@ -15,45 +17,59 @@ class Component extends React.Component<Props, void> {
     }
 
     public render() {
-        return (
-            <Panel title="Login">
-                <form id="login-form" className="form-inline">
-                    <InputMessageWrapper msg={this.props.state.input.host.validationMsg}>
-                        <input
-                            type="text"
-                            placeholder="Host"
-                            value={this.props.state.input.host.value}
-                            onChange={this.onHostChange} />
-                    </InputMessageWrapper>
-                    <InputMessageWrapper msg={this.props.state.input.port.validationMsg}>
-                        <input
-                            type="text"
-                            placeholder="Port"
-                            value={this.props.state.input.port.value}
-                            onChange={this.onPortChange} />
-                    </InputMessageWrapper>
-                    <InputMessageWrapper msg={this.props.state.input.username.validationMsg}>
-                        <input 
-                            type="text"
-                            placeholder="Username"
-                            value={this.props.state.input.username.value}
-                            onChange={this.onUsernameChange} />
-                    </InputMessageWrapper>
-                    <InputMessageWrapper msg={this.props.state.input.password.validationMsg}>
-                        <input
-                            type="password"
-                            placeholder="Password"
-                            value={this.props.state.input.password.value}
-                            onChange={this.onPasswordChange} />
-                    </InputMessageWrapper>
+        const alert = this.props.state.alert;
+        let alertEl: React.ReactElement<{}> = null;
+        if(alert) {
+            alertEl = <Alert 
+                value={ alert.value }
+                type={ alert.type }
+                onAlertClose={ this.onAlertClose } />
+        }
 
-                    <button
-                        type="button"
-                        onClick={this.submit}>
-                            Login
-                    </button>
-                </form>
-            </Panel>
+        return (
+            <div>
+                <Fade>
+                    { alertEl }
+                </Fade>
+                <Panel title="Login">
+                    <form id="login-form" className="form-inline">
+                        <InputMessageWrapper msg={this.props.state.input.host.validationMsg}>
+                            <input
+                                type="text"
+                                placeholder="Host"
+                                value={this.props.state.input.host.value}
+                                onChange={this.onHostChange} />
+                        </InputMessageWrapper>
+                        <InputMessageWrapper msg={this.props.state.input.port.validationMsg}>
+                            <input
+                                type="text"
+                                placeholder="Port"
+                                value={this.props.state.input.port.value}
+                                onChange={this.onPortChange} />
+                        </InputMessageWrapper>
+                        <InputMessageWrapper msg={this.props.state.input.username.validationMsg}>
+                            <input 
+                                type="text"
+                                placeholder="Username"
+                                value={this.props.state.input.username.value}
+                                onChange={this.onUsernameChange} />
+                        </InputMessageWrapper>
+                        <InputMessageWrapper msg={this.props.state.input.password.validationMsg}>
+                            <input
+                                type="password"
+                                placeholder="Password"
+                                value={this.props.state.input.password.value}
+                                onChange={this.onPasswordChange} />
+                        </InputMessageWrapper>
+
+                        <button
+                            type="button"
+                            onClick={this.submit}>
+                                Login
+                        </button>
+                    </form>
+                </Panel>
+            </div>
         );
     }
 
@@ -80,6 +96,11 @@ class Component extends React.Component<Props, void> {
     private onPasswordChange = (event): void => {
         LoginAction
             .changePassword(this.dispatch, event.target.value)
+    }
+
+    private onAlertClose = (): void => {
+        LoginAction.
+            closeAlert(this.dispatch);
     }
 }
 

@@ -4,6 +4,7 @@ import { Action } from '../../actions/Action';
 import { ActionType } from '../../actions/ActionType';
 import { UserPageState } from '../../model/state/UserState';
 import { ViewType } from '../../model/state/page/ViewType';
+import { PagedDto } from '../../model/dto/PagedDto';
 import { UserDto } from '../../model/dto/UserDto';
 import { copy } from '../../common/Util';
 import { ValidatableInput } from '../../common/validation/ValidatableInput';
@@ -13,8 +14,8 @@ const defaultListState: UserPageState = {
 }
 
 //TODO: paging, etc
-const loadUsers = (dtos: UserDto[], state: UserPageState): UserPageState => {
-    state.list = dtos.map(dto => {
+const loadUsers = (dtos: PagedDto<UserDto>, state: UserPageState): UserPageState => {
+    state.list = dtos.results.map(dto => {
         return {
             id: dto.id,
             username: dto.username,

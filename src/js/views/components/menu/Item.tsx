@@ -5,7 +5,7 @@ export class Item extends React.Component<ItemProps, void> {
         return ( 
             <li>
                 <a 
-                    href={ this.props.href }
+                    href={ this.props.href || '#' }
                     onClick={ this.props.onClick }>
                     <span 
                         className={ this.props.selected ? 'hilite' : ''}>

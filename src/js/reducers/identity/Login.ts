@@ -4,7 +4,22 @@ import { ActionType } from '../../actions/ActionType';
 import { LoginState } from '../../model/state/LoginState';
 import { copy } from '../../common/Util';
 import { ValidatableInput } from '../../common/validation/ValidatableInput';
+import { MessageType } from '../../common/message/MessageType';
 import { Identity } from '../../security/Identity';
+import { AuthzResponseDto } from '../../model/dto/AuthzResponseDto';
+
+const login = (dto: AuthzResponseDto): void => {
+    Identity.login(dto.token);
+}
+
+const alert = (state: LoginState, message: string) => {
+    state.alert = {
+        value: message,
+        type: MessageType.ERROR
+    }
+
+    return state;
+}
 
 const defaultState = {
     input: {
@@ -42,8 +57,19 @@ export const reducer: Reducer<LoginState> = (state = defaultState, action: Actio
             return action.payload;
 
         case ActionType.LOGIN_SUCCESS:
-            Identity.login(action.payload);
-            return state;    
+            login(action.payload);
+            return state;
+
+        case ActionType.LOGIN_FAIL:
+            newState.alert = {
+                value: action.payload,
+                type: MessageType.ERROR
+            }
+            return newState;
+
+        case ActionType.LOGIN_CLOSE_ALERT:
+            newState.alert = null;
+            return newState;
 
         default: return state;
     }

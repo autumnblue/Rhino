@@ -3,9 +3,9 @@ import { Identity } from './Identity';
 import { Dir } from '../common/Constants'; 
 import { Role } from './Role';
 
-export const permit = (role: string): void => {
+export const permit = (role: Role): void => {
     switch(role) {
-        case Role.WILDCARD:
+        case Role.AUTHENTICATED:
             if(!Identity.isLoggedIn() 
                 && !CurrentUser.Page.isLogin()) {
                     CurrentUser.Session

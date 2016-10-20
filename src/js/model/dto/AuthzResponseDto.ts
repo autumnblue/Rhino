@@ -1,6 +1,5 @@
 import { Dto } from './Dto';
 
-export interface AuthzResponseDto extends Dto {
-    bearerToken: string,
-    refreshToken: string
+export interface AuthzResponseDto {
+    token: string,
 }

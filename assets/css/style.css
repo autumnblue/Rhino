@@ -81,6 +81,7 @@ body {
     padding: 8px 15px 8px 15px;
     margin-bottom: 4px;
     width: 120px;
+    outline: none;
 }
 
 #ribbon {
@@ -202,6 +203,49 @@ body {
 
 .form-group {
     position: relative;
+}
+
+.alert-wrapper {
+    opacity: .9;
+    padding-top: 8px;
+    text-align: center;
+}
+
+.alert-wrapper .alert.alert-danger {
+    width: 50%;
+    margin: auto;
+    text-align: left;
+    background-color: black;
+    color: #D74037;
+    border-radius: 3px;
+    border: none;
+    font-size: 18px;
+}
+
+.alert-wrapper button {
+    outline: none;
+}
+
+.alert-wrapper button span {
+    color: #D74037;
+}
+
+.skiff-fade-enter, .skiff-fade-appear {
+  opacity: 0.01;
+}
+
+.skiff-fade-enter.skiff-fade-enter-action, .skiff-fade-appear.skiff-fade-appear-active {
+  opacity: 1;
+  transition: opacity 200ms ease-in;
+}
+
+.skiff-fade-leave {
+  opacity: 1;
+}
+
+.skiff-fade-leave.skiff-fade-leave-active {
+  opacity: 0.01;
+  transition: opacity 500ms ease-in;
 }
 
 .tri {

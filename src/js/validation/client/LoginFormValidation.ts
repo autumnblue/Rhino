@@ -42,10 +42,24 @@ export class LoginFormValidation extends FormValidation<LoginState>{
     }
 
     private validateUsername() {
+        const username = this.handle(this.state.input.username);
+
+        if(isBlank(username.value()))
+            username.err('Username required');
+        else    
+            username.clear();
+        
         return this;
     }
 
     private validatePassword() {
+        const password = this.handle(this.state.input.password);
+
+        if(isBlank(password.value()))
+            password.err('Password required');
+        else    
+            password.clear();
+
         return this;
     }
 }

@@ -1,7 +1,8 @@
+import { Service } from '../Service';
 import { ICampaignService } from './ICampaignService';
 import { CampaignDto } from '../../model/dto/CampaignDto';
 
-export class MockCampaignService implements ICampaignService {
+export class MockCampaignService extends Service implements ICampaignService {
     public readCampaignList(): CampaignDto[] {
         return [
             {

@@ -26,6 +26,7 @@ Service delegations are abstracted using the factory pattern and default to usin
 ## TODO
 * Update LICENSE.md
 * Update to Typescript 2.0 
+* "postbuild": "cp build/lib/bundle.js dist/skiff-$npm_package_version.js && cp .env dist && sed -i -- 's/{env}/'\"$npm_package_config_env\"'/g' dist/.env",
 
 
 

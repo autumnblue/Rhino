@@ -7,6 +7,9 @@ import { LoginState } from '../../model/state/LoginState';
 import { LoginFormValidation } from '../../validation/client/LoginFormValidation';
 import { mapLogin } from '../../validation/server/mapper/IdentityValidationResponse';
 import { CurrentUser } from '../../CurrentUser';
+import { Identity } from '../../security/Identity';
+
+const LOGIN_FAIL_MSG = 'Login Failed';
 
 class ActionCreator {
     private service: IIdentityService;
@@ -32,10 +35,16 @@ class ActionCreator {
         this.getService()
         .login({ username: username, password: password })
         .then(authz => dispatch({
-            //check if err
-            //ActionType.LOGIN_SUCCESS w/ token payload
-            //ActionType.LOGIN_FAIL w/o payload
-        }));
+            type: ActionType.LOGIN_SUCCESS,
+            payload: authz
+        }))
+        .catch(err => {
+            Identity.reset();
+            dispatch({
+                type: ActionType.LOGIN_FAIL,
+                payload: LOGIN_FAIL_MSG
+            });
+        });
     }
 
     private localValidate(dispatch, state: LoginState): boolean {
@@ -106,9 +115,15 @@ class ActionCreator {
         });
     }
 
+    public closeAlert(dispatch): void {
+        dispatch({
+            type: ActionType.LOGIN_CLOSE_ALERT
+        })
+    }
+
     private getService(): IIdentityService {
         if(!this.service)
-            this.service = factory.of<IIdentityService>(ServiceType.IDENTITY); 
+            return factory.of<IIdentityService>(ServiceType.IDENTITY); 
         
         return this.service;
     }

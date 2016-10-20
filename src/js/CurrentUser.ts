@@ -16,18 +16,16 @@ class PageStatic {
 
 const key = SessionStorageKey;
 class SessionStatic {
-    private referer: string;
-
     public setReferer(url: string) {
-        sessionStorage.setItem(key.REFERER, url)
+        this.setItem(key.REFERER, url)
     }
 
-    public getReferer() {
+    public getReferer(): string {
         return sessionStorage.getItem(key.REFERER);
     }
 
     public setToken(token: string) {
-        sessionStorage.setItem(key.TOKEN, token);
+        this.setItem(key.TOKEN, token);
     }
 
     public getToken(): string {
@@ -35,13 +33,20 @@ class SessionStatic {
     }
 
     public setSocket(socket: Socket) {
-        sessionStorage.setItem(key.SOCKET, JSON.stringify(socket));
+        this.setItem(key.SOCKET, JSON.stringify(socket));
     }
 
-    public getSocket() {
+    public getSocket(): Socket {
         return JSON.parse(
             sessionStorage.getItem(key.SOCKET)
         )
+    }
+
+    private setItem(key: string, value: string) {
+        if(value)
+            sessionStorage.setItem(key, value);
+        else
+            sessionStorage.removeItem(key);
     }
 }
 
