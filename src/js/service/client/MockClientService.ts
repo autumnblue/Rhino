@@ -4,23 +4,23 @@ import { ClientDto } from '../../model/dto/ClientDto';
 import { PagedDto } from '../../model/dto/PagedDto';
 
 export class MockClientService extends Service implements IClientService {
-    public async createClient(dto: ClientDto): Promise<ClientDto> {
+    public async create(dto: ClientDto): Promise<ClientDto> {
         return null;
     }
 
-    public async readClients(): Promise<PagedDto<ClientDto>> {
+    public async read(): Promise<PagedDto<ClientDto>> {
         return null;
     }
     
-    public async readSingleClient(id: number): Promise<ClientDto> {
+    public async readSingle(id: number): Promise<ClientDto> {
         return null;
     }
 
-    public async updateClient(dto: ClientDto): Promise<ClientDto> {
+    public async update(dto: ClientDto): Promise<ClientDto> {
         return null;
     }
     
-    public async deleteClient(id: number): Promise<void> {
+    public async delete(id: number): Promise<void> {
         return null;
     }
 }

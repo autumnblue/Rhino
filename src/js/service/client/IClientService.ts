@@ -3,9 +3,9 @@ import { Service } from '../Service';
 import { PagedDto } from '../../model/dto/PagedDto';
 
 export interface IClientService extends Service {
-    createClient(dto: ClientDto): Promise<ClientDto>;
-    readClients(): Promise<PagedDto<ClientDto>>;
-    readSingleClient(id: number): Promise<ClientDto>;
-    updateClient(dto: ClientDto): Promise<ClientDto>;
-    deleteClient(id: number): Promise<void>;
+    create(dto: ClientDto): Promise<ClientDto>;
+    read(): Promise<PagedDto<ClientDto>>;
+    readSingle(id: number): Promise<ClientDto>;
+    update(dto: ClientDto): Promise<ClientDto>;
+    delete(id: number): Promise<void>;
 }

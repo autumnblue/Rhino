@@ -12,27 +12,27 @@ export class ClientService extends Service implements IClientService {
         this.url = `${this.baseServiceUrl()}/v1/clients/`;
     }
 
-    public async createClient(dto: ClientDto): Promise<ClientDto> {
+    public async create(dto: ClientDto): Promise<ClientDto> {
         return http.post<ClientDto>
             (this.url, dto);
     }
 
-    public async readClients(): Promise<PagedDto<ClientDto>> {
+    public async read(): Promise<PagedDto<ClientDto>> {
         return http.get<PagedDto<ClientDto>>
             (this.url);
     }
     
-    public async readSingleClient(id: number): Promise<ClientDto> {
+    public async readSingle(id: number): Promise<ClientDto> {
         return http.get<ClientDto>
             (`${this.url}${id}/`);
     }
 
-    public async updateClient(dto: ClientDto): Promise<ClientDto> {
+    public async update(dto: ClientDto): Promise<ClientDto> {
         return http.put<ClientDto>
             (`${this.url}${dto.id}/`, dto);
     }
     
-    public async deleteClient(id: number): Promise<void> {
+    public async delete(id: number): Promise<void> {
         return http.del<void>
             (`${this.url}${id}/`);
     }

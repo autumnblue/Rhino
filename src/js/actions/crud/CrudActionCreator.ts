@@ -1,35 +1,38 @@
 import { Action } from '../Action';
 import { ActionType } from '../ActionType';
-import { IUserService } from '../../service/user/IUserService';
 import * as factory from '../../service/ServiceFactory';
 import { ServiceType } from '../../service/ServiceFactory';
-import { UserEditState, UserAddState } from '../../model/state/UserState';
-import { mapUser } from '../../validation/server/mapper/UserValidationResponse';
+import { Service } from '../../service/Service';
 
-class ActionCreator {
-    private service: IUserService;
+export abstract class CrudActionCreator<T extends Service> {
+    private service: T;
+    private serviceType: ServiceType;
+
+    constructor(serviceType: ServiceType) {
+        this.serviceType = serviceType;
+    }
 
     public initPage(dispatch): void {
         this.getService()
-        .readUsers()
+        ['read']()
         .then(dtos => dispatch({
-            type: ActionType.USER_INIT,
+            type: ActionType.CRUD_INIT,
             payload: dtos
         }));
     }
 
     public openAdd(dispatch): void {
         dispatch({
-            type: ActionType.USER_OPEN_ADD
+            type: ActionType.CRUD_OPEN_ADD
         });
     }
 
     public openEdit(dispatch, id: number) {
         this.getService()
-        .readSingleUser(id)
+        ['readSingle'](id)
         .then(dto => {
             dispatch({
-                type: ActionType.USER_OPEN_EDIT,
+                type: ActionType.CRUD_OPEN_EDIT,
                 payload: dto
             });
         })
@@ -37,16 +40,14 @@ class ActionCreator {
 
     public toggleView(dispatch) {
         dispatch({
-            type: ActionType.USER_TOGGLE_VIEW
+            type: ActionType.CRUD_TOGGLE_VIEW
         });
     }
 
-    private getService(): IUserService {
+    private getService(): T {
         if(!this.service)
-            this.service = factory.of<IUserService>(ServiceType.USER); 
+            this.service = factory.of<T>(this.serviceType); 
         
         return this.service;
     }
 }
-
-export const UserAction: ActionCreator = new ActionCreator();
