@@ -10,6 +10,12 @@ class ActionCreator {
         });
     } 
 
+    public click(dispatch) {
+        dispatch({
+            type: ActionType.MENU_CLICK
+        });
+    }
+
     public clickConfig(dispatch) {
         dispatch({
             type: ActionType.MENU_CLICK_CONFIG

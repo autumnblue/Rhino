@@ -5,17 +5,15 @@ import { Column } from '../common/table/Column';
 import { ActionCol } from '../common/table/ActionCol';
 import { Grid } from '../common/grid/Grid';
 
-export class UserList extends React.Component<Props, void> {
+export class ClientList extends React.Component<Props, void> {
     public render() {
         return (
             this.props.view == ViewType.TABLE 
             ?
             <Table data={this.props.list || []}>
-                <Column head="Login" headKey="username" />
-                <Column head="Email" headKey="email" />
-                <Column head="First Name" headKey="firstName" />
-                <Column head="Last Name" headKey="lastName" />
-                <Column head="Is Active" bool headKey="isActive" />
+                <Column head="Name" headKey="name" />
+                <Column head="URL" headKey="url" />
+                <Column head="Default Timezone" headKey="timezone" />
                 <ActionCol edit delete 
                     editCallback={this.props.onOpen}/>
             </Table>
@@ -23,7 +21,7 @@ export class UserList extends React.Component<Props, void> {
             <Grid 
                 data={this.props.list || []} 
                 label={ (datum) => {
-                    return `${datum['firstName']} ${datum['lastName']}`;
+                    return `${datum['name']}`;
                 } }
                 openCb={this.props.onOpen}/> 
         );

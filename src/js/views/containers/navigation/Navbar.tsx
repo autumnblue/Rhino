@@ -24,6 +24,16 @@ class Container extends React.Component<Props, void> {
                                     Logout
                             </Item> 
                     </Menu>
+
+                    <Menu 
+                        selected={ this.props.state.top.selected }
+                        onClick={ this.onClick }>
+                            <span className="glyphicon glyphicon-screenshot"></span>
+                            <Item href="/clients">
+                                    Clients
+                            </Item>
+                    </Menu>
+
                     <Menu
                         selected={ this.props.state.config.selected } 
                         onClick={ this.onConfigClick }>
@@ -54,6 +64,11 @@ class Container extends React.Component<Props, void> {
     private onIdentityClick = () => {
         NaviAction
             .clickIdentity(this.props.dispatch);
+    }
+
+    private onClick = () => {
+        NaviAction
+            .click(this.props.dispatch);
     }
 
     private onConfigClick = () => {

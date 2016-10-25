@@ -3,6 +3,7 @@ export module Dir {
     export const LOGIN = '/login';
     export const USERS = '/users';
     export const PROFILE = '/profile';
+    export const CLIENTS = '/clients';
 }
 
 export module SessionStorageKey {

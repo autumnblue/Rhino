@@ -17,15 +17,17 @@ const isDev = (): boolean => {
 
 export const of = <T extends Service>(type: ServiceType): T => {
     switch(type) {
-        // case ServiceType.CLIENT:
-        //     return <T><Service>(isProd() 
-        //         ? new ClientService()
-        //         : new MockClientService());
-        
         // case ServiceType.CAMPAIGN:
         //     return <T><Service>(isProd() 
         //         ? new CampaignService()
         //         : new MockCampaignService());
+
+        case ServiceType.CLIENT:
+            return isProd() || isDev()
+                ? new (require('./client/ClientService'))
+                    .ClientService()
+                : new (require('./client/MockClientService'))
+                    .MockClientService();
             
         case ServiceType.USER:
             return isProd() || isDev()

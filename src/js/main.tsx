@@ -9,6 +9,7 @@ import { App } from './views/App';
 import { Router, Route, browserHistory } from 'react-router';
 import { LoginPage } from './views/containers/identity/LoginPage';
 import { UserPage } from './views/containers/user/UserPage';
+import { ClientPage } from './views/containers/client/ClientPage';
 import { ProfilePage } from './views/containers/identity/ProfilePage';
 import { Dir } from './common/Constants'; 
 import { permit } from './security/RenderRules';
@@ -33,6 +34,11 @@ ReactDom.render(
                 <Route 
                     path={ Dir.USERS } 
                     component={UserPage}
+                    onEnter={ () => permit(Role.AUTHENTICATED) } 
+                    />
+                <Route 
+                    path={ Dir.CLIENTS } 
+                    component={ClientPage}
                     onEnter={ () => permit(Role.AUTHENTICATED) } 
                     />
                 <Route 

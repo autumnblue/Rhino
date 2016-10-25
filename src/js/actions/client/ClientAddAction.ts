@@ -12,6 +12,20 @@ class ActionCreator extends AddActionCreator<IClientService> {
         super(ServiceType.CLIENT);
     }
 
+    public changeNameInput(dispatch, value: string) {
+        dispatch({
+            type: ActionType.CLIENT_CHANGE_NAME_INPUT,
+            payload: value
+        });
+    }
+
+    public changeUrlInput(dispatch, value: string) {
+        dispatch({
+        type: ActionType.CLIENT_CHANGE_URL_INPUT,
+            payload: value
+        });
+    }
+
     protected inputToDto(obj: AddFields): ClientDto {
         return {
             name: obj.name.value,

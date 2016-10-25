@@ -8,7 +8,8 @@ import { Identity } from '../../security/Identity';
 
 const defaultState: MenuState = {
     handle: Identity.getHandle(),
-    identity: { selected: false }, 
+    identity: { selected: false },
+    top: { selected: false }, 
     config: { selected: false }
 }
 
@@ -26,6 +27,11 @@ export const reducer: Reducer<MenuState> = (state = defaultState, action: Action
         case(ActionType.MENU_CLICK_ID):
             unselectAll(newState);
             newState.identity.selected = true;
+            return newState;
+
+        case(ActionType.MENU_CLICK):
+            unselectAll(newState);
+            newState.top.selected = true;
             return newState;
 
         case(ActionType.MENU_CLICK_CONFIG):
