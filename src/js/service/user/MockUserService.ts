@@ -13,6 +13,10 @@ export class MockUserService extends Service implements IUserService {
             })
     }
 
+    public async createUser(dto: UserDto): Promise<UserDto> {
+        return null;    
+    }
+
     public async readSingleUser(id: number): Promise<UserDto> {
         return await popsicle.get(`http://localhost:3000/auth_user?id=eq.${id}`)
             .then((response) => {
@@ -24,7 +28,11 @@ export class MockUserService extends Service implements IUserService {
         return;
     }
 
-    public async updateUser(dto: UserDto): Promise<number> {
+    public async updateUser(dto: UserDto): Promise<UserDto> {
+        return;
+    }
+
+    public async deleteUser(id: number): Promise<any> {
         return;
     }
 }

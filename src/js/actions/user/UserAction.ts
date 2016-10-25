@@ -3,8 +3,7 @@ import { ActionType } from '../ActionType';
 import { IUserService } from '../../service/user/IUserService';
 import * as factory from '../../service/ServiceFactory';
 import { ServiceType } from '../../service/ServiceFactory';
-import { UserEditState, UserAddState, Fields } from '../../model/state/UserState';
-import { UserFormValidation } from '../../validation/client/UserFormValidation';
+import { UserEditState, UserAddState } from '../../model/state/UserState';
 import { mapUser } from '../../validation/server/mapper/UserValidationResponse';
 
 type UserInputState = UserEditState | UserAddState;

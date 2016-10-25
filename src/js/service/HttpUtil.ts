@@ -38,3 +38,56 @@ export const get = async <T>(url: string, authz = true): Promise<T> => {
     .use(popsicle.plugins.parse('json'))
     .then(response => <T>response.body);
 }
+
+export const put = async <T>(url: string, body: any, authz = true): Promise<T> => {
+    let headers: { [name: string]: string } = {
+        'Content-Type': 'application/json'
+    }
+    if(authz) addAuthzHeader(headers);
+    
+    return await popsicle.request({
+        method: 'PUT',
+        url: url,
+        body: body,
+        headers: headers
+    })
+    .use(popsicle.plugins.parse('json'))
+    .then(response => {
+        return <T>response.body;
+    });
+}
+
+export const patch = async <T>(url: string, body: any, authz = true): Promise<T> => {
+    let headers: { [name: string]: string } = {
+        'Content-Type': 'application/json'
+    }
+    if(authz) addAuthzHeader(headers);
+    
+    return await popsicle.request({
+        method: 'PUT',
+        url: url,
+        body: body,
+        headers: headers
+    })
+    .use(popsicle.plugins.parse('json'))
+    .then(response => {
+        return <T>response.body;
+    });
+}
+
+export const del = async <T>(url: string, authz = true): Promise<T> => {
+    let headers: { [name: string]: string } = {
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+    }
+    if(authz) addAuthzHeader(headers);
+    
+    return await popsicle.request({
+        method: 'DELETE',
+        url: url,
+        headers: headers
+    })
+    .use(popsicle.plugins.parse('json'))
+    .then(response => {
+        return <T>response.body; //TODO: error handling when != 204
+    });
+}

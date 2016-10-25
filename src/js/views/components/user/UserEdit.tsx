@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Fields } from '../../../model/state/UserState';
+import { EditFields } from '../../../model/state/UserState';
 import { InputMessageWrapper } from '../common/message/InputMessageWrapper';
 import { Guide } from '../common/Guide';
 
@@ -50,7 +50,7 @@ export class UserEdit extends React.Component<Props, void> {
 }
 
 interface Props {
-    input: Fields
+    input: EditFields
     onUsernameChange(event): void
     onFirstNameChange(event): void
     onLastNameChange(event): void

@@ -40,7 +40,8 @@ class IdentityStatic {
     }
 
     public Server = {
-        getBaseUrl: () => this.getBaseUrl()
+        getBaseUrl: () => this.getBaseUrl(),
+        describe: this.visuallyIdentify
     }
 
     private getBaseUrl(): string {
@@ -55,6 +56,21 @@ class IdentityStatic {
         
         return this.baseUrl;
     };
+
+    private visuallyIdentify(): void {
+        const DEFAULT_SEED = 'Skiff';
+        const socket = CurrentUser.Session.getSocket(); 
+        const seed = socket ? `${socket.host}${socket.port}` : DEFAULT_SEED;
+        const GeoPattern = require('geopattern');
+        let pattern;
+        // if(seed == DEFAULT_SEED)
+            pattern = GeoPattern.generate('Skiff', { color: '#333333', baseColor: '#333333' });
+        // else
+        //     pattern = GeoPattern.generate(seed);
+
+        document.body.style.backgroundImage = pattern.toDataUrl();
+        document.body.style.backgroundColor = pattern.color;
+    }
 
     private hasToken(): boolean{
         return jwt.decode() ? true: false;

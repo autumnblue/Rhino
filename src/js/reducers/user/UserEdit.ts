@@ -7,7 +7,8 @@ import { copy } from '../../common/Util';
 import { ValidatableInput } from '../../common/validation/ValidatableInput';
 
 const loadSingleUser = (dto: UserDto): UserEditState => {
-    let state: UserEditState = {};
+    let state: UserEditState = { isValid: false };
+    state.id = dto.id;
     state.visible = true;
     
     state.input = {
@@ -32,6 +33,11 @@ const defaultEditState: UserEditState = {
 }
 
 export const reducer: Reducer<UserEditState> = (state: UserEditState = defaultEditState, action: Action): UserEditState => {
+    //Add and Edit listen to similar events; short circuit if not active
+    if(!state.visible 
+        && action.type !== ActionType.USER_OPEN_EDIT)
+            return state; 
+
     const newState = copy<UserEditState>(state);
 
     switch(action.type) {
@@ -55,6 +61,15 @@ export const reducer: Reducer<UserEditState> = (state: UserEditState = defaultEd
             return newState;
 
         case ActionType.USER_CANCEL_EDIT:
+            newState.visible = false;
+            return newState;
+
+        case ActionType.USER_EDIT_SUCCESS:
+            const reseted = defaultEditState;
+            reseted.visible = false;
+            return reseted;
+
+        case ActionType.USER_REMOVE_SUCCESS:
             newState.visible = false;
             return newState;
 

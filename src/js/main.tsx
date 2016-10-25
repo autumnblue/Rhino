@@ -13,20 +13,12 @@ import { ProfilePage } from './views/containers/identity/ProfilePage';
 import { Dir } from './common/Constants'; 
 import { permit } from './security/RenderRules';
 import { Role } from './security/Role';
-import { CurrentUser } from './CurrentUser';
+import { Identity } from './security/Identity';
 
-const DEFAULT_SEED = 'Skiff';
-const socket = CurrentUser.Session.getSocket(); 
-const seed = socket ? `${socket.host}${socket.port}` : DEFAULT_SEED;
-const GeoPattern = require('geopattern');
-let pattern;
-if(seed == DEFAULT_SEED)
-    pattern = GeoPattern.generate('Skiff', { color: '#333333', baseColor: '#333333' });
-else
-    pattern = GeoPattern.generate(seed);
+permit(Role.AUTHENTICATED);
 
-document.body.style.backgroundImage = pattern.toDataUrl();
-document.body.style.backgroundColor = pattern.color;
+//visually identify the current Sandbar server
+Identity.Server.describe();
 
 //initialState: AppState as second arg for hydration; default state handeled by each reducer
 const store = createStore(reducers);
@@ -34,7 +26,9 @@ const store = createStore(reducers);
 ReactDom.render(
     <Provider store={store}>
         <Router history={ browserHistory }>
-            <Route path="/" component={App}>
+            <Route 
+                path={"/"} 
+                component={App}>
                 <Route path={ Dir.LOGIN } component={LoginPage} />
                 <Route 
                     path={ Dir.USERS } 

@@ -7,5 +7,7 @@ export interface IUserService extends Service {
     readUsers(): Promise<PagedDto<UserDto>>;
     readSingleUser(id: number): Promise<UserDto>;
     validate(dto: UserDto): Promise<ValidationResponseDto>;
-    updateUser(dto: UserDto): Promise<number>;
+    updateUser(dto: UserDto): Promise<UserDto>;
+    createUser(dto: UserDto): Promise<UserDto>;
+    deleteUser(id: number): Promise<any>;
 }

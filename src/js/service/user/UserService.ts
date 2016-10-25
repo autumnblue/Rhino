@@ -11,15 +11,27 @@ export class UserService extends Service implements IUserService {
                     (`${this.baseServiceUrl()}/v1/users/`);
     }
 
+    public async createUser(dto: UserDto): Promise<UserDto> {
+        return http.post<UserDto>
+                    (`${this.baseServiceUrl()}/v1/users/`, dto);    
+    }
+
     public async readSingleUser(id: number): Promise<UserDto> {
-        return null
+        return http.get<UserDto>
+            (`${this.baseServiceUrl()}/v1/users/${id}/`);
+    }
+
+    public async updateUser(dto: UserDto): Promise<UserDto> {
+         return http.put<UserDto>
+                (`${this.baseServiceUrl()}/v1/users/${dto.id}/`, dto);
+    }
+
+    public async deleteUser(id: number): Promise<any> {
+        return http.del<UserDto>
+            (`${this.baseServiceUrl()}/v1/users/${id}/`);
     }
 
     public async validate(dto: UserDto): Promise<ValidationResponseDto> {
-        return;
-    }
-
-    public async updateUser(dto: UserDto): Promise<number> {
         return;
     }
 }

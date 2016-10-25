@@ -29,11 +29,13 @@ class Container extends React.Component<Props, void> {
                         </button>
                     </Control>
                     <Control>
-                        <button>SAVE</button>
+                        <button onClick={this.onSubmit}>SAVE</button>
                     </Control>
                     <UserAdd 
                         input={input}
-                        onUsernameChange={this.onUsernameChange} 
+                        onUsernameChange={this.onUsernameChange}
+                        onPasswordChange={this.onPasswordChange}
+                        onConfirmChange={this.onConfirmChange} 
                         onFirstNameChange={this.onFirstNameChange} 
                         onLastNameChange={this.onLastNameChange}
                         onEmailChange={this.onEmailChange} />
@@ -49,6 +51,16 @@ class Container extends React.Component<Props, void> {
     private onUsernameChange = (event): void => {
         UserAddAction
             .changeUsernameInput(this.dispatch, event.target.value)
+    }
+
+    private onPasswordChange = (event): void => {
+        UserAddAction
+            .changePasswordInput(this.dispatch, event.target.value)
+    }
+
+    private onConfirmChange = (event): void => {
+        UserAddAction
+            .changeConfirmInput(this.dispatch, event.target.value)
     }
 
     private onFirstNameChange = (event): void => {

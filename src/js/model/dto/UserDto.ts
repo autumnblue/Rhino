@@ -6,5 +6,7 @@ export interface UserDto extends Dto {
     email: string,
     first_name: string,
     last_name: string,
-    is_active?: boolean
+    password?: string,
+    is_active?: boolean,
+    commit?: boolean
 }

@@ -1,11 +1,12 @@
 import { LoginState } from '../../model/state/LoginState';
-import { isBlank } from '../ValidationUtil';
+import { isBlank, errCheck } from '../ValidationUtil';
 import { MessageType } from '../../common/message/MessageType';
+import { IMessage } from '../../common/message/IMessage';
 import { copy } from '../../common/Util';
 import { ValidatableInput } from '../../common/validation/ValidatableInput';
 import { FormValidation } from './FormValidation';
 
-export class LoginFormValidation extends FormValidation<LoginState>{
+export class LoginFormValidation extends FormValidation<LoginState> {
     constructor(state: LoginState) {
         super(state);
     }
@@ -20,46 +21,43 @@ export class LoginFormValidation extends FormValidation<LoginState>{
     }
 
     private validateHost(): LoginFormValidation {
-        const host = this.handle(this.state.input.host);
-        
-        if(isBlank(host.value()))
-            host.err('Host required.');
-        else
-            host.clear();
-
+        errCheck(
+            this.state.input.host,
+            value => 
+                isBlank(value),
+            'Host required.'
+        )
         return this;
     }
 
     private validatePort() {
-        const port = this.handle(this.state.input.port);
-        
-        if(port.value() && !Number.isInteger(parseInt(port.value())))
-            port.err('Optional port must be a number.');
-        else
-            port.clear();    
-
+        errCheck(
+            this.state.input.port,
+            value => 
+                value
+                && !Number.isInteger(parseInt(value)),
+            'Optional port must be a number.'
+        )
         return this;
     }
 
     private validateUsername() {
-        const username = this.handle(this.state.input.username);
-
-        if(isBlank(username.value()))
-            username.err('Username required');
-        else    
-            username.clear();
-        
+        errCheck(
+            this.state.input.username,
+            value => 
+                isBlank(value),
+            'Username required.'
+        )
         return this;
     }
 
     private validatePassword() {
-        const password = this.handle(this.state.input.password);
-
-        if(isBlank(password.value()))
-            password.err('Password required');
-        else    
-            password.clear();
-
+        errCheck(
+            this.state.input.password,
+            value => 
+                isBlank(value),
+            'Password required.'
+        )
         return this;
     }
 }

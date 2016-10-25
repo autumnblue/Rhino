@@ -6,6 +6,7 @@ import { UserEditAction } from '../../../../actions/user/UserEditAction';
 import { Modal } from '../../../components/common/Modal';
 import { UserEdit } from '../../../components/user/UserEdit';
 import { Control } from '../../../components/common/Controls';
+import { ConfirmableButton } from '../../../components/common/ConfirmableButton';
 
 class Container extends React.Component<Props, void> {
     private dispatch;   
@@ -24,7 +25,9 @@ class Container extends React.Component<Props, void> {
                 title={ `Edit user ${name}` }
                 visible={ this.props.state.visible}>
                     <Control>
-                        <button>REMOVE</button>
+                        <ConfirmableButton 
+                            value="REMOVE" 
+                            onConfirm={ this.onRemove }/>
                     </Control>
                     <Control>
                         <button onClick={this.onCancel}>
@@ -33,7 +36,7 @@ class Container extends React.Component<Props, void> {
                         </button>
                     </Control>
                     <Control>
-                        <button>SAVE</button>
+                        <button onClick={this.onSubmit}>SAVE</button>
                     </Control>
                     <UserEdit 
                         input={input}
@@ -68,6 +71,11 @@ class Container extends React.Component<Props, void> {
     private onEmailChange = (event): void => {
         UserEditAction
             .changeEmailInput(this.dispatch, event.target.value)
+    }
+
+    private onRemove = (): void => {
+        UserEditAction
+            .remove(this.dispatch, this.props.state.id);
     }
 
     private onCancel = (): void => {

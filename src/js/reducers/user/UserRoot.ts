@@ -29,6 +29,38 @@ const loadUsers = (dtos: PagedDto<UserDto>, state: UserPageState): UserPageState
     return state;
 }
 
+//local add for successful CREATE
+const pushUser = (dto: UserDto, state: UserPageState) => {
+    state.list.push({
+        id: dto.id,
+        username: dto.username,
+        email: dto.email,
+        firstName: dto.last_name,
+        lastName: dto.last_name,
+        isActive: dto.is_active
+    });
+
+    return state;
+}
+
+const refreshUser = (dto: UserDto, state: UserPageState) => {
+    const user = state.list.filter(user => {
+        return user.id === dto.id
+    })[0];
+    const idx = state.list.indexOf(user); 
+
+    state.list[idx] = {
+        id: dto.id,
+        username: dto.username,
+        email: dto.email,
+        firstName: dto.first_name,
+        lastName: dto.last_name,
+        isActive: dto.is_active
+    }
+
+    return state;
+}
+
 export const reducer: Reducer<UserPageState> = (state: UserPageState = defaultListState, action: Action): UserPageState => {
     switch(action.type) {
         case ActionType.USER_INIT:
@@ -40,7 +72,15 @@ export const reducer: Reducer<UserPageState> = (state: UserPageState = defaultLi
                 ? ViewType.GRID
                 : ViewType.TABLE
             return copy<UserPageState>(state);
-                
+
+        case ActionType.USER_ADD_SUCCESS:
+            return pushUser(action.payload,
+                copy<UserPageState>(state));
+
+        case ActionType.USER_EDIT_SUCCESS:
+            return refreshUser(action.payload,
+                copy<UserPageState>(state));
+
         default: return state;
     }
 };

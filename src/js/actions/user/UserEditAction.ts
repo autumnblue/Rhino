@@ -3,43 +3,44 @@ import { ActionType } from '../ActionType';
 import { IUserService } from '../../service/user/IUserService';
 import * as factory from '../../service/ServiceFactory';
 import { ServiceType } from '../../service/ServiceFactory';
-import { UserEditState, UserAddState, Fields } from '../../model/state/UserState';
-import { UserFormValidation } from '../../validation/client/UserFormValidation';
+import { UserEditState, EditFields } from '../../model/state/UserState';
+import { UserEditValidation } from '../../validation/client/user/UserEditValidation';
 import { mapUser } from '../../validation/server/mapper/UserValidationResponse';
-
-type UserInputState = UserEditState | UserAddState;
 
 class ActionCreator {
     private service: IUserService;
 
-    public submit(dispatch, state: UserInputState): void {
+    public submit(dispatch, state: UserEditState): void {
         if(this.localValidate(dispatch, state)) {
             this.remoteValidate(dispatch, state)
             .then(valid => {
                 if(valid) {
-                    this.update(dispatch, state.input);
+                    this.update(dispatch, state.id, state.input);
                 }    
             })
         }
     }
 
-    private update(dispatch, obj: Fields): void {
+    private update(dispatch, id: number, obj: EditFields): void {
         this.getService()
-        .updateUser({ 
+        .updateUser({
+            id: id,
             username: obj.username.value, 
             first_name: obj.firstName.value,
             last_name: obj.lastName.value,
-            email: obj.email.value 
+            email: obj.email.value, 
+            commit: true
         })
-        .then(updated => dispatch({
-            //check if err
-            //ActionType.USER_UPDATE_SUCESS w/ token payload
-            //ActionType.USER_UPDATE_FAIL w/o payload
-        }));
+        .then(updated => 
+            dispatch({
+                type: ActionType.USER_EDIT_SUCCESS,
+                payload: updated
+            })
+        );
     }
 
-     private localValidate(dispatch, state: UserInputState): boolean {
-        const validated = UserFormValidation.validate(state);
+     private localValidate(dispatch, state: UserEditState): boolean {
+        const validated = UserEditValidation.validate(state);
         const valid = validated.isValid;
         if(!valid) 
             dispatch({
@@ -49,27 +50,28 @@ class ActionCreator {
         return valid;
     }
 
-    private remoteValidate(dispatch, state: UserInputState): Promise<boolean> {
-        const input = state.input;            
-        return this.getService()
-        .validate({ 
-            username: input.username.value, 
-            first_name: input.firstName.value,
-            last_name: input.lastName.value,
-            email: input.email.value 
-        })
-        .then(response => mapUser(response))
-        .then(validated => {
-            const valid = validated.isValid;
-            if(!valid) {
-                dispatch({
-                    type: ActionType.USER_INVALID_SUBMIT,
-                    payload: validated
-                });
-            }
+    private remoteValidate(dispatch, state: UserEditState): Promise<boolean> {
+        return Promise.resolve(true);
+        // const input = state.input;            
+        // return this.getService()
+        // .validate({ 
+        //     username: input.username.value, 
+        //     first_name: input.firstName.value,
+        //     last_name: input.lastName.value,
+        //     email: input.email.value 
+        // })
+        // .then(response => mapUser(response))
+        // .then(validated => {
+        //     const valid = validated.isValid;
+        //     if(!valid) {
+        //         dispatch({
+        //             type: ActionType.USER_INVALID_SUBMIT,
+        //             payload: validated
+        //         });
+        //     }
 
-            return valid
-        });
+        //     return valid
+        // });
     }
 
     public cancel(dispatch) {
@@ -78,8 +80,15 @@ class ActionCreator {
         })
     }
 
-    public delete(dispatch) {
-
+    public remove(dispatch, id: number) {
+        this.getService()
+        .deleteUser(id)
+        .then(removed => 
+            dispatch({
+                type: ActionType.USER_REMOVE_SUCCESS,
+                payload: id
+            })
+        );
     }
 
     public changeUsernameInput(dispatch, value: string) {

@@ -3,16 +3,15 @@ import { ActionType } from '../ActionType';
 import { IUserService } from '../../service/user/IUserService';
 import * as factory from '../../service/ServiceFactory';
 import { ServiceType } from '../../service/ServiceFactory';
-import { UserEditState, UserAddState, Fields } from '../../model/state/UserState';
-import { UserFormValidation } from '../../validation/client/UserFormValidation';
+import { UserAddState, AddFields } from '../../model/state/UserState';
+import { UserAddValidation } from '../../validation/client/user/UserAddValidation';
 import { mapUser } from '../../validation/server/mapper/UserValidationResponse';
-
-type UserInputState = UserEditState | UserAddState;
+import { UserAction } from './UserAction';
 
 class ActionCreator {
     private service: IUserService;
 
-    public submit(dispatch, state: UserInputState): void {
+    public submit(dispatch, state: UserAddState): void {
         if(this.localValidate(dispatch, state)) {
             this.remoteValidate(dispatch, state)
             .then(valid => {
@@ -23,12 +22,25 @@ class ActionCreator {
         }
     }
 
-    private create(dispatch, obj: Fields): void {
-       
+    private create(dispatch, obj: AddFields): void {
+       this.getService().createUser({
+           username: obj.username.value,
+           password: obj.password.value,
+           first_name: obj.firstName.value,
+           last_name: obj.lastName.value,
+           email: obj.email.value,
+           commit: true
+       })
+       .then(created => {
+            dispatch({
+                type: ActionType.USER_ADD_SUCCESS,
+                payload: created
+            })
+        });
     }
 
-    private localValidate(dispatch, state: UserInputState): boolean {
-        const validated = UserFormValidation.validate(state);
+    private localValidate(dispatch, state: UserAddState): boolean {
+        const validated = UserAddValidation.validate(state);
         const valid = validated.isValid;
         if(!valid) 
             dispatch({
@@ -38,27 +50,28 @@ class ActionCreator {
         return valid;
     }
 
-    private remoteValidate(dispatch, state: UserInputState): Promise<boolean> {
-        const input = state.input;            
-        return this.getService()
-        .validate({ 
-            username: input.username.value, 
-            first_name: input.firstName.value,
-            last_name: input.lastName.value,
-            email: input.email.value 
-        })
-        .then(response => mapUser(response))
-        .then(validated => {
-            const valid = validated.isValid;
-            if(!valid) {
-                dispatch({
-                    type: ActionType.USER_INVALID_SUBMIT,
-                    payload: validated
-                });
-            }
+    private remoteValidate(dispatch, state: UserAddState): Promise<boolean> {
+        return Promise.resolve(true);
+        // const input = state.input;            
+        // return this.getService()
+        // .validate({ 
+        //     username: input.username.value, 
+        //     first_name: input.firstName.value,
+        //     last_name: input.lastName.value,
+        //     email: input.email.value 
+        // })
+        // .then(response => mapUser(response))
+        // .then(validated => {
+        //     const valid = validated.isValid;
+        //     if(!valid) {
+        //         dispatch({
+        //             type: ActionType.USER_INVALID_SUBMIT,
+        //             payload: validated
+        //         });
+        //     }
 
-            return valid
-        });
+        //     return valid
+        // });
     }
 
     public cancel(dispatch) {
@@ -70,6 +83,20 @@ class ActionCreator {
     public changeUsernameInput(dispatch, value: string) {
         dispatch({
             type: ActionType.USER_CHANGE_USERNAME_INPUT,
+            payload: value
+        });
+    }
+
+    public changePasswordInput(dispatch, value: string) {
+        dispatch({
+            type: ActionType.USER_CHANGE_PASSWORD_INPUT,
+            payload: value
+        });
+    }
+
+    public changeConfirmInput(dispatch, value: string) {
+        dispatch({
+            type: ActionType.USER_CHANGE_CONFIRM_INPUT,
             payload: value
         });
     }

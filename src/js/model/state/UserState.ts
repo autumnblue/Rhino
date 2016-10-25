@@ -1,5 +1,6 @@
 import { ValidatableInput } from '../../common/validation/ValidatableInput';
 import { ListState } from './page/ListState';
+import { IMessage } from '../../common/message/IMessage';
 
 export interface UserState {
     add: UserAddState,
@@ -8,15 +9,18 @@ export interface UserState {
 }
 
 export interface UserAddState {
-    input?: NewFields
+    alert?: IMessage
+    input?: AddFields
     visible?: boolean
-    isValid?: boolean
+    isValid: boolean
 }
 
 export interface UserEditState {
-    input?: Fields
+    id?: number
+    alert?: IMessage
+    input?: EditFields
     visible?: boolean
-    isValid?: boolean
+    isValid: boolean
 }
 
 export type UserPageState = ListState<User>;
@@ -30,11 +34,11 @@ interface User {
     isActive: boolean
 }
 
-export interface Fields {
+export interface EditFields {
     username: ValidatableInput,
     email: ValidatableInput,
     firstName: ValidatableInput,
     lastName: ValidatableInput,
 }
 
-export type NewFields = Fields & { password: ValidatableInput, confirm: ValidatableInput }
+export type AddFields = EditFields & { password: ValidatableInput, confirm: ValidatableInput }
