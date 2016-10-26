@@ -410,5 +410,67 @@ body {
     color: #D74037;
 }
 
+#context-pane {
+    /*opacity: .3;*/
+    /*background-color: rgb(28,28,38);*/
+    background: #D74037; /* For browsers that do not support gradients */
+    /*rgba(215,64,55, .9)*/
+    /*rgba(246,122,86, 1)*/
+    background: linear-gradient(to bottom right, rgba(246,122,86, 1), rgba(215,64,55, .05)); /* Standard syntax */
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    /*top: 8%;*/
+    /*top: 50%;*/
+    height: 100%;
+    /*bottom: 10%;*/
+    width: 43%;
+    z-index: 100;
+    /*margin-top: 44px;*/
+}
+
+#context-pane-content {
+    position: relative;
+    /*background-color: green;*/
+    /*width: 50%;*/
+}
+
+#context-pane-toggle {
+    position: absolute;
+    font-size: 24px;
+    color: white;
+    /*background-color: rgba(255, 255, 255, .2);*/
+    /*background-color: white;*/
+    background: transparent;
+    /*top: 48%;*/
+    right: 0px;
+    /*border-radius: 50px;*/
+    /*border: 3px solid rgb(28,28,38);*/
+    /*padding: 9px 10px 0px 10px;*/
+    height: 100%;
+    outline: none;
+    border: none;
+    border-left: 1px solid rgba(255, 255, 255, .1);
+}
+
+.skiff-slide-enter #context-pane {
+  width: 0px;
+  background-color: green;
+}
+
+.skiff-scroll-enter.skiff-scroll-enter-action {
+  width: 500px;
+  transition: width 2000ms ease-in;
+}
+
+.skiff-scroll-leave {
+  width: 500px;
+}
+
+.skiff-scroll-leave.skiff-scroll-leave-active {
+  width: 0px;
+  transition: width 2000ms ease-in;
+}
+
 /*https://dribbble.com/shots/1270032-SJQHUB-B-I-Dashboard/attachments/174562*/
 /*https://dribbble.com/shots/1423171-Some-Analytics*/
