@@ -26,11 +26,18 @@ class ActionCreator extends AddActionCreator<IClientService> {
         });
     }
 
+    public selectTimezone(dispatch, value: string) {
+        dispatch({
+        type: ActionType.CLIENT_SELECT_TIMEZONE,
+            payload: value
+        });
+    }
+
     protected inputToDto(obj: AddFields): ClientDto {
         return {
             name: obj.name.value,
             url: obj.url.value,
-            timezone: obj.timezone.value
+            default_time_zone: obj.timezone.value
         }
     }
 

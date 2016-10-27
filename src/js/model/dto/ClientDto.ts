@@ -4,6 +4,6 @@ export interface ClientDto extends Dto {
     id?: number,
     name: string,
     url: string,
-    timezone: number //unix time; TODO consider moment.js
+    default_time_zone: number //unix time; TODO consider moment.js
     commit?: boolean
 }

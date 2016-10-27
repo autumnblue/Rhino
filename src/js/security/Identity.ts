@@ -2,6 +2,9 @@ import * as jwt from './token/JwtUtil';
 import { Claims } from './token/Claims';
 import { CurrentUser } from '../CurrentUser';
 import { Dir } from '../common/Constants';
+import * as factory from '../service/ServiceFactory';
+import { ServiceType } from '../service/ServiceFactory';
+import { IIdentityService } from '../service/identity/IIdentityService';
 
 class IdentityStatic {
     private claims: Claims;
@@ -15,10 +18,35 @@ class IdentityStatic {
         return this.handle;
     }
 
+    public getToken(): Promise<string> {
+        const jwt = CurrentUser.Session.getToken(); 
+        if(jwt)
+            if(this.isExpired())
+                return factory
+                    .of<IIdentityService>(ServiceType.IDENTITY)
+                    .refresh(jwt)
+                    .then(refreshed => {
+                        const token = refreshed.token;
+                        CurrentUser.Session.setToken(token);
+                        return token
+                    });
+            else
+                return Promise.resolve(jwt);
+        else {
+            CurrentUser.Page.toLogin();
+            return Promise.resolve(null);
+        }
+    }
+
     public login(token: string) {
         CurrentUser.Session.setToken(token);
         const referer = CurrentUser.Session.getReferer();
         CurrentUser.Page.to(referer || '\\');
+    }
+
+    public isLoggedInAsync(): Promise<boolean> {
+        return this.getToken()
+        .then(token => token !== null);
     }
 
     public isLoggedIn(): boolean {

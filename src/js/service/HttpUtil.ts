@@ -1,15 +1,18 @@
 import * as popsicle from 'popsicle';
-import { CurrentUser } from '../CurrentUser';
+import { Identity } from '../security/Identity';
 
-const addAuthzHeader = (headers: { [name: string]: string }) => {
-    headers['Authorization'] = `JWT ${CurrentUser.Session.getToken()}`;
+const addAuthzHeader = (headers: { [name: string]: string }): Promise<void> => {
+    return Identity.getToken()
+    .then(token => {
+        headers['Authorization'] = `JWT ${token}`;
+    })    
 }
 
 export const post = async <T>(url: string, body: any, authz = true): Promise<T> => {
     let headers: { [name: string]: string } = {
         'Content-Type': 'application/x-www-form-urlencoded'
     }
-    if(authz) addAuthzHeader(headers);
+    if(authz) await addAuthzHeader(headers);
     
     return await popsicle.request({
         method: 'POST',
@@ -28,7 +31,7 @@ export const post = async <T>(url: string, body: any, authz = true): Promise<T> 
 
 export const get = async <T>(url: string, authz = true): Promise<T> => {
     let headers: { [name: string]: string } = {};
-    if(authz) addAuthzHeader(headers);
+    if(authz) await addAuthzHeader(headers);
 
     return await popsicle.request({
         method: 'GET',
@@ -43,7 +46,7 @@ export const put = async <T>(url: string, body: any, authz = true): Promise<T> =
     let headers: { [name: string]: string } = {
         'Content-Type': 'application/json'
     }
-    if(authz) addAuthzHeader(headers);
+    if(authz) await addAuthzHeader(headers);
     
     return await popsicle.request({
         method: 'PUT',
@@ -61,7 +64,7 @@ export const patch = async <T>(url: string, body: any, authz = true): Promise<T>
     let headers: { [name: string]: string } = {
         'Content-Type': 'application/json'
     }
-    if(authz) addAuthzHeader(headers);
+    if(authz) await addAuthzHeader(headers);
     
     return await popsicle.request({
         method: 'PUT',
@@ -79,7 +82,7 @@ export const del = async <T>(url: string, authz = true): Promise<T> => {
     let headers: { [name: string]: string } = {
         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
     }
-    if(authz) addAuthzHeader(headers);
+    if(authz) await addAuthzHeader(headers);
     
     return await popsicle.request({
         method: 'DELETE',

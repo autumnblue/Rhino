@@ -36,6 +36,18 @@ export const reducer: Reducer<ClientAddState> = (state: ClientAddState = default
             const reseted = defaultAddState;
             reseted.visible = false;
             return reseted;
+
+        case ActionType.CLIENT_CHANGE_NAME_INPUT:
+            newState.input.name.value = action.payload;
+            return newState;
+
+        case ActionType.CLIENT_CHANGE_URL_INPUT:
+            newState.input.url.value = action.payload;
+            return newState;
+
+        case ActionType.CLIENT_SELECT_TIMEZONE:
+            newState.input.timezone.value = action.payload;
+            return newState;
        
         default: return state;
     }

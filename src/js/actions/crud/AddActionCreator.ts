@@ -63,7 +63,7 @@ export abstract class AddActionCreator<T extends Service /*, U extends Dto*/> {
 
     protected getService(): T {
         if(!this.service)
-            this.service = factory.of<T>(ServiceType.USER); 
+            this.service = factory.of<T>(this.serviceType); 
         
         return this.service;
     }

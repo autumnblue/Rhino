@@ -2,10 +2,7 @@ import { Dto } from './Dto';
 
 export interface CampaignDto extends Dto {
     id: number,
-    title: string,
+    name: string,
     description: string,
-    client: {
-        id: number
-        name: string
-    }
+    client: number
 }

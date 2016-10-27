@@ -28,9 +28,67 @@ class Container extends React.Component<Props, void> {
                     <Menu 
                         selected={ this.props.state.top.selected }
                         onClick={ this.onClick }>
-                            <span className="glyphicon glyphicon-screenshot"></span>
-                            <Item href="/clients">
+                            <span className="glyphicon glyphicon-edit"></span>
+                            <Item href="/">
+                                    Engagements
+                            </Item>
+                            <Item href={ Dir.CAMPAIGN }>
+                                    Campaigns
+                            </Item>
+                            <Item href={"/clients"}>
                                     Clients
+                            </Item>
+                            <Item href="/">
+                                    Schedules
+                            </Item>
+                    </Menu>
+
+                    <Menu 
+                        selected={ this.props.state.targets.selected }
+                        href="/"
+                        onClick={ this.onTargetsClick }>
+                            <span className="glyphicon glyphicon-screenshot"></span>
+                    </Menu>
+
+                    <Menu 
+                        selected={ this.props.state.pages.selected }
+                        onClick={ this.onPagesClick }>
+                            <span className="glyphicon glyphicon-list-alt"></span>
+                            <Item href="/">
+                                    Landing Pages
+                            </Item>
+                            <Item href="/">
+                                    Redirect Pages
+                            </Item>
+                    </Menu>
+
+                    <Menu 
+                        selected={ this.props.state.email.selected }
+                        onClick={ this.onEmailClick }>
+                            <span className="glyphicon glyphicon-envelope"></span>
+                            <Item href="/">
+                                    Email Templates
+                            </Item>
+                            <Item href="/">
+                                    Email Log
+                            </Item>
+                            <Item href={ Dir.EMAIL_SERVER }>
+                                    <span className="glyphicon glyphicon-wrench"></span> Email Servers
+                            </Item>
+                    </Menu>
+
+                    <Menu 
+                        selected={ this.props.state.scrape.selected }
+                        onClick={ this.onScrapeClick }>
+                            <span className="glyphicon glyphicon-upload"></span>
+                            <Item href="/">
+                                    ShoalScrape
+                            </Item>
+                            <Item href="/">
+                                    <span className="glyphicon glyphicon-wrench"></span> Scraper User-Agents
+                            </Item>
+                            <Item href="/">
+                                    <span className="glyphicon glyphicon-wrench"></span> ShoalScrape Credentials
                             </Item>
                     </Menu>
 
@@ -69,6 +127,26 @@ class Container extends React.Component<Props, void> {
     private onClick = () => {
         NaviAction
             .click(this.props.dispatch);
+    }
+
+    private onTargetsClick = () => {
+        NaviAction
+            .clickTarget(this.props.dispatch);
+    }
+
+    private onPagesClick = () => {
+        NaviAction
+            .clickPages(this.props.dispatch);
+    }
+
+    private onEmailClick = () => {
+        NaviAction
+            .clickEmail(this.props.dispatch);
+    }
+
+    private onScrapeClick = () => {
+        NaviAction
+            .clickScrape(this.props.dispatch);
     }
 
     private onConfigClick = () => {

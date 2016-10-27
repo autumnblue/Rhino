@@ -34,7 +34,8 @@ class Container extends React.Component<Props, void> {
                     <ClientAdd 
                         input={input}
                         onNameChange={this.onNameChange}
-                        onUrlChange={this.onUrlChange} />
+                        onUrlChange={this.onUrlChange} 
+                        onTimezoneSelect={this.onTimezoneSelect}/>
             </Modal>
         );
     }
@@ -52,6 +53,11 @@ class Container extends React.Component<Props, void> {
     private onUrlChange = (event): void => {
         ClientAddAction
             .changeUrlInput(this.dispatch, event.target.value)
+    }
+
+    private onTimezoneSelect = (selection: string): void => {
+        ClientAddAction
+            .selectTimezone(this.dispatch, selection);
     }
 
     private onCancel = (): void => {

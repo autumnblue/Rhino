@@ -16,6 +16,30 @@ class ActionCreator {
         });
     }
 
+    public clickTarget(dispatch) {
+        dispatch({
+            type: ActionType.MENU_CLICK_TARGETS
+        });
+    }
+
+    public clickPages(dispatch) {
+        dispatch({
+            type: ActionType.MENU_CLICK_PAGES
+        });
+    }
+
+    public clickEmail(dispatch) {
+        dispatch({
+            type: ActionType.MENU_CLICK_EMAIL
+        });
+    }
+
+    public clickScrape(dispatch) {
+        dispatch({
+            type: ActionType.MENU_CLICK_SCRAPE
+        });
+    }
+
     public clickConfig(dispatch) {
         dispatch({
             type: ActionType.MENU_CLICK_CONFIG

@@ -1,3 +1,5 @@
+declare const $: any;
+
 import * as React from 'react';
 import { Navbar } from './containers/navigation/Navbar';
  
@@ -5,7 +7,7 @@ export class App extends React.Component<void, void> {
     public render() {
         return (
             <div>
-                <Navbar />                    
+                <Navbar />
                 <div id="content">
                     { this.props.children }
                 </div> 

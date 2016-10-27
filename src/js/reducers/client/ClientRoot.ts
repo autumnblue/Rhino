@@ -18,7 +18,7 @@ const loadClients = (dtos: PagedDto<ClientDto>, state: ClientPageState): ClientP
             id: dto.id,
             name: dto.name,
             url: dto.url,
-            timezone: dto.timezone 
+            timezone: dto.default_time_zone 
         }
     });
 
@@ -31,7 +31,7 @@ const pushUser = (dto: ClientDto, state: ClientPageState) => {
         id: dto.id,
         name: dto.name,
         url: dto.url,
-        timezone: dto.timezone 
+        timezone: dto.default_time_zone 
     });
 
     return state;
