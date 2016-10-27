@@ -1,7 +1,9 @@
 {
   "name": "skiff",
-  "description": "<description>",
+  "description": "Proprietary Front-End Application for use with Rhino Security Labs Sandbar project",
   "version": "0.1.0",
+  "author": "Michael Payne",
+  "license": "UNLICENSED - see license.md",
   "config": {
     "env": "local"
   },
@@ -50,5 +52,4 @@
     "typings": "^1.4.0"
   },
   "main": "index.js",
-  "license": "SEE LICENSE IN LICENSE.md"
 }
