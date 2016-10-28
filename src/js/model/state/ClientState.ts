@@ -3,12 +3,7 @@ import { FormState } from './FormState';
 import { CrupdateState } from './CrupdateState';
 import { ListState } from './page/ListState';
 
-export interface ClientState {
-    read: Client | Client[],
-    input: any
-}
-
-export type ClientPageState = ListState<Client>; 
+export type PageState = ListState<Client>; 
 
 interface Client {
     id?: number,
@@ -17,11 +12,13 @@ interface Client {
     timezone: any
 }
 
-export interface ClientAddState extends CrupdateState { 
-    input?: AddFields 
+export interface AddState extends CrupdateState { 
+    input?: Form
 }
 
-export interface AddFields extends FormState {
+export type EditState = AddState;
+
+export interface Form extends FormState {
     name: ValidatableInput,
     url: ValidatableInput,
     timezone: ValidatableInput

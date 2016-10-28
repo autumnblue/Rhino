@@ -1,14 +1,14 @@
 import { isBlank, isEmail, errCheck } from '../../ValidationUtil';
-import { ClientAddState } from '../../../model/state/ClientState';
+import { AddState } from '../../../model/state/ClientState';
 import { FormValidation } from '../FormValidation';
 import { InputState } from '../InputState';
 
-export class ClientFormValidation extends FormValidation<ClientAddState> {
-    constructor(state: ClientAddState) {
+export class ClientFormValidation extends FormValidation<AddState> {
+    constructor(state: AddState) {
         super(state);
     }
 
-    public static validate(state: ClientAddState): ClientAddState {
+    public static validate(state: AddState): AddState {
         const validator = new this(state);
         validator.validateName();
         validator.validateUrl();

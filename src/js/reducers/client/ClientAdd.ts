@@ -1,14 +1,14 @@
 import { Reducer } from 'redux';
 import { Action } from '../../actions/Action';
 import { ActionType } from '../../actions/ActionType';
-import { ClientAddState } from '../../model/state/ClientState';
+import { AddState } from '../../model/state/ClientState';
 import { ClientDto } from '../../model/dto/ClientDto';
 import { copy } from '../../common/Util';
 import { ValidatableInput } from '../../common/validation/ValidatableInput';
 import { CurrentUser } from '../../CurrentUser';
 import * as add from '../crud/AddReducer';
 
-const defaultAddState = (): ClientAddState => ({
+const defaultAddState = (): AddState => ({
     input: {
             name: new ValidatableInput(),
             url: new ValidatableInput(),
@@ -18,8 +18,8 @@ const defaultAddState = (): ClientAddState => ({
     isValid: false
 });
 
-export const reducer = add.reducer<ClientAddState>(defaultAddState, (state, action) => {
-    const newState = copy<ClientAddState>(state);
+export const reducer = add.reducer<AddState>(defaultAddState, (state, action) => {
+    const newState = copy<AddState>(state);
 
      switch(action.type) {
         case ActionType.CLIENT_CHANGE_NAME_INPUT:

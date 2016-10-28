@@ -1,86 +1,110 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
 import { ClientList } from '../../components/client/ClientList';
 import { ClientAddModal } from './modals/ClientAddModal';
+import { ClientEditModal } from './modals/ClientEditModal';
 import { Panel } from '../../components/common/Panel';
 import { Control } from '../../components/common/Controls';
 import { ClientAction } from'../../../actions/client/ClientAction';
-import { ClientPageState } from '../../../model/state/ClientState';
+import { PageState } from '../../../model/state/ClientState';
 import { AppState } from '../../../model/state/AppState';
 import { ViewType } from '../../../model/state/page/ViewType';
+import { CrudContainer, connect } from '../crud/CrudContainer'; 
 
-export class Container extends React.Component<Props, void> {
-    private dispatch;
-    
-    constructor(props) {
-        super(props);
-        this.dispatch = this.props.dispatch;
-        this.initPage();
-    }
+export const ClientPage =
+connect((state) => ({ state: state.client.root }),
+    class Container extends CrudContainer {
+        public getPanelTitle() { return 'Clients' }
 
-    public render() {
-        const viewIcon = this.props.state.view == ViewType.TABLE
-            ? <span className="glyphicon glyphicon-th"></span>
-            : <span className="glyphicon glyphicon-th-list"></span>
-
-        return (
-            <div>
-                <Panel title="Clients">
-                    <Control>
-                        <button onClick={this.onAddOpen}>
-                            <span className="glyphicon glyphicon-plus"></span>
-                        </button>
-                    </Control>
-                    <Control>
-                        <button onClick={this.onViewToggle}>
-                            { viewIcon }
-                        </button>
-                    </Control>
-                    <ClientList 
+        public getActionCreator() { return ClientAction }
+        
+        public jsx() {
+            return <ClientList 
                         onOpen={this.onEditOpen}
                         view={this.props.state.view}
                         list={this.props.state.list || []}/>
+        }
 
-                </Panel>
+        public modals() {
+            return <div>
                 <ClientAddModal />
-            </div>        
-        );
+                <ClientEditModal />
+            </div>
+        }
     }
+);
 
-    private initPage = () => {
-        ClientAction.
-            initPage(this.dispatch);
-    }
+// export class Container extends React.Component<Props, void> {
+//     private dispatch;
+    
+//     constructor(props) {
+//         super(props);
+//         this.dispatch = this.props.dispatch;
+//         this.initPage();
+//     }
 
-    private onEditOpen = (id: number) => {
-        // UserAction.
-        //     openEdit(this.dispatch, id);
-    }
+//     public render() {
+//         const viewIcon = this.props.state.view == ViewType.TABLE
+//             ? <span className="glyphicon glyphicon-th"></span>
+//             : <span className="glyphicon glyphicon-th-list"></span>
 
-    private onAddOpen = () => {
-        ClientAction.
-            openAdd(this.dispatch);
-    }
+//         return (
+//             <div>
+//                 <Panel title="Clients">
+//                     <Control>
+//                         <button onClick={this.onAddOpen}>
+//                             <span className="glyphicon glyphicon-plus"></span>
+//                         </button>
+//                     </Control>
+//                     <Control>
+//                         <button onClick={this.onViewToggle}>
+//                             { viewIcon }
+//                         </button>
+//                     </Control>
+//                     <ClientList 
+//                         onOpen={this.onEditOpen}
+//                         view={this.props.state.view}
+//                         list={this.props.state.list || []}/>
 
-    private onViewToggle = () => {
-        ClientAction.
-            toggleView(this.dispatch);
-    }
-}
+//                 </Panel>
+//                 <ClientAddModal />
+//             </div>        
+//         );
+//     }
 
-interface Props {
-    dispatch?
-    state?: ClientPageState
-}
+//     private initPage = () => {
+//         ClientAction.
+//             initPage(this.dispatch);
+//     }
 
-const mapStateToProps = (state: AppState): Props => {
-    return {
-        state: state.client.root
-    }
-};
+//     private onEditOpen = (id: number) => {
+//         // UserAction.
+//         //     openEdit(this.dispatch, id);
+//     }
 
-const mapDispatchToProps = (dispatch): Props => ({
-    dispatch: dispatch
-});
+//     private onAddOpen = () => {
+//         ClientAction.
+//             openAdd(this.dispatch);
+//     }
 
-export const ClientPage = connect(mapStateToProps, mapDispatchToProps)(Container);        
+//     private onViewToggle = () => {
+//         ClientAction.
+//             toggleView(this.dispatch);
+//     }
+// }
+
+// interface Props {
+//     dispatch?
+//     state?: PageState
+// }
+
+// const mapStateToProps = (state: AppState): Props => {
+//     return {
+//         state: state.client.root
+//     }
+// };
+
+// const mapDispatchToProps = (dispatch): Props => ({
+//     dispatch: dispatch
+// });
+
+// export const ClientPage = connect(mapStateToProps, mapDispatchToProps)(Container);        

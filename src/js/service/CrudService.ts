@@ -28,6 +28,8 @@ export abstract class CrudService<T extends Dto> extends Service {
     }
 
     public async update(dto: T): Promise<T> {
+        console.log(dto);
+        console.log(`${this.resource}${dto.id}/`);
         return http.put<T>
             (`${this.resource}${dto.id}/`, dto);
     }

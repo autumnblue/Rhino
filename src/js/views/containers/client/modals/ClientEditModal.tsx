@@ -1,16 +1,16 @@
 import * as React from 'react';
 import { AppState } from '../../../../model/state/AppState';
-import { ClientAddAction } from '../../../../actions/client/ClientAddAction';
+import { ClientEditAction } from '../../../../actions/client/ClientEditAction';
 import { Modal } from '../../../components/common/Modal';
 import { ClientAdd } from '../../../components/client/ClientAdd';
 import { Control } from '../../../components/common/Controls';
-import { AddModalContainer, connect } from '../../crud/AddModalContainer';
+import { EditModalContainer, connect } from '../../crud/EditModalContainer';
 
-export const ClientAddModal =
-connect((state) => ({ state: state.client.add }), 
-    class Container extends AddModalContainer {
+export const ClientEditModal =
+connect((state) => ({ state: state.client.edit }), 
+    class Container extends EditModalContainer {
         public getModalTitle() { return 'New client'};
-        public getActionCreator() { return ClientAddAction }
+        public getActionCreator() { return ClientEditAction }
 
         public jsx() {
             return <ClientAdd 
@@ -21,33 +21,18 @@ connect((state) => ({ state: state.client.add }),
         }
 
         private onNameChange = (event): void => {
-            ClientAddAction
+            ClientEditAction
                 .changeNameInput(this.props.dispatch, event.target.value)
         }
 
         private onUrlChange = (event): void => {
-            ClientAddAction
+            ClientEditAction
                 .changeUrlInput(this.props.dispatch, event.target.value)
         }
 
         private onTimezoneSelect = (selection: string): void => {
-            ClientAddAction
+            ClientEditAction
                 .selectTimezone(this.props.dispatch, selection);
         }
     }
 );
-
-// interface Props {
-//     dispatch?
-//     state?: ClientAddState
-// }
-
-// const mapStateToProps = (state: AppState): Props => ({
-//     state: state.client.add
-// })
-
-// const mapDispatchToProps = (dispatch): Props => ({
-//     dispatch: dispatch
-// })
-
-// export const ClientAddModal = connect(mapStateToProps, mapDispatchToProps)(Container);

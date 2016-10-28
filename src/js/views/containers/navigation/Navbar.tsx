@@ -38,8 +38,8 @@ class Container extends React.Component<Props, void> {
                             <Item href={"/clients"}>
                                     Clients
                             </Item>
-                            <Item href={ Dir.SCHEDULE }>
-                                    Schedules
+                            <Item href={ Dir.PHISHING_DOMAIN}>
+                                    Phishing Domains
                             </Item>
                     </Menu>
 
@@ -71,6 +71,9 @@ class Container extends React.Component<Props, void> {
                             </Item>
                             <Item href="/">
                                     Email Log
+                            </Item>
+                            <Item href={ Dir.SCHEDULE }>
+                                    Schedules
                             </Item>
                             <Item href={ Dir.EMAIL_SERVER }>
                                     <span className="glyphicon glyphicon-wrench"></span> Email Servers

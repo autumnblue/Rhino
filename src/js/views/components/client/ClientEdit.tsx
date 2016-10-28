@@ -1,16 +1,16 @@
 import * as React from 'react';
 import { Form } from '../../../model/state/ClientState';
 import { InputMessageWrapper } from '../common/message/InputMessageWrapper';
-import { SearchSelection } from '../common/dropdown/SearchSelection';
 import { DropdownMessageWrapper } from '../common/message/DropdownMessageWrapper';
+import { SearchSelection } from '../common/dropdown/SearchSelection';
 const moment = require('moment-timezone'); 
 
-export class ClientAdd extends React.Component<Props, void> {
+export class PhishingDomainEdit extends React.Component<Props, void> {
     public render() {
         const input = this.props.input
         const timezones = moment.tz.names().map(name => {
             return { text: name };
-        }); 
+        });
 
         return (
             <form>

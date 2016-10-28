@@ -1,14 +1,12 @@
-import { AddActionCreator } from '../crud/AddActionCreator'
-import { Action } from '../Action';
+import { EditActionCreator } from '../crud/EditActionCreator'
 import { ActionType } from '../ActionType';
 import { IClientService } from '../../service/client/IClientService';
 import { ServiceType } from '../../service/ServiceFactory';
-import { AddState, Form } from '../../model/state/ClientState';
+import { EditState, Form } from '../../model/state/ClientState';
 import { ClientDto } from '../../model/dto/ClientDto';
 import { ClientFormValidation } from '../../validation/client/client/ClientFormValidation';
-import { map400 } from '../../validation/ValidationUtil';
 
-class ActionCreator extends AddActionCreator<IClientService> { 
+class ActionCreator extends EditActionCreator<IClientService> {
     constructor() {
         super(ServiceType.CLIENT);
     }
@@ -34,7 +32,9 @@ class ActionCreator extends AddActionCreator<IClientService> {
         });
     }
 
-    protected inputToDto(obj: Form): ClientDto {
+    protected errorToState(error: any, obj: any) { return null };
+
+     protected inputToDto(obj: Form): ClientDto {
         return {
             name: obj.name.value,
             url: obj.url.value,
@@ -42,18 +42,9 @@ class ActionCreator extends AddActionCreator<IClientService> {
         }
     }
 
-    protected errorToState(err: ClientDto, obj: Form): Form {
-        map400(err.name, obj.name);
-        map400(err.url, obj.url);
-        map400(err.default_time_zone, obj.timezone);
-
-        return obj;
-    }
-
-    protected localValidate(state: AddState): AddState {
+    protected localValidate(state: EditState): EditState {
         return ClientFormValidation.validate(state);
     }
 }
 
-export const ClientAddAction: ActionCreator = new ActionCreator();
-
+export const ClientEditAction: ActionCreator = new ActionCreator();

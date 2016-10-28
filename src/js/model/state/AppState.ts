@@ -1,7 +1,6 @@
 import { MenuState } from './MenuState';
-import { ClientState } from './ClientState';
 import { UserAddState, UserEditState, UserPageState } from './UserState';
-import { ClientAddState, ClientPageState } from './ClientState';
+import * as client from './ClientState';
 import { CampaignPageState } from './CampaignState';
 import { 
     EmailServerAddState, 
@@ -19,8 +18,9 @@ export interface AppState {
         root: UserPageState; 
     };
     client: {
-        add: ClientAddState;
-        root: ClientPageState;
+        add: client.AddState;
+        edit: client.EditState;
+        root: client.PageState;
     };
     campaign: {
         root: CampaignPageState;
@@ -35,6 +35,7 @@ export interface AppState {
     };
     phishingDomain: {
         add: phishingDomainState.AddState;
+        edit: phishingDomainState.EditState;
         root: phishingDomainState.PageState;
     };
     login: LoginState;

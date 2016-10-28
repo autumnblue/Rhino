@@ -1,12 +1,13 @@
-import { AddActionCreator } from '../crud/AddActionCreator'
+import { EditActionCreator } from '../crud/EditActionCreator'
 import { ActionType } from '../ActionType';
 import { IPhishingDomainService } from '../../service/phishingDomain/IPhishingDomainService';
 import { ServiceType } from '../../service/ServiceFactory';
-import { AddState, Form } from '../../model/state/PhishingDomainState';
+import { EditState, Form } from '../../model/state/PhishingDomainState';
 import { PhishingDomainDto } from '../../model/dto/PhishingDomainDto';
 import { PhishingDomainFormValidation } from '../../validation/client/phishingDomain/PhishingDomainFormValidation';
 
-class ActionCreator extends AddActionCreator<IPhishingDomainService> {
+
+class ActionCreator extends EditActionCreator<IPhishingDomainService> {
     constructor() {
         super(ServiceType.PHISHING_DOMAIN);
     }
@@ -27,9 +28,9 @@ class ActionCreator extends AddActionCreator<IPhishingDomainService> {
         }
     }
 
-    protected localValidate(state: AddState): AddState {
+    protected localValidate(state: EditState): EditState {
         return PhishingDomainFormValidation.validate(state);
     }
 }
 
-export const PhishingDomainAddAction: ActionCreator = new ActionCreator();
+export const PhishingDomainEditAction: ActionCreator = new ActionCreator();

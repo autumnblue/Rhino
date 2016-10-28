@@ -55,8 +55,8 @@ export abstract class CrudContainer extends React.Component<Props, void> {
     }
 
     protected onEditOpen = (id: number) => {
-        // UserAction.
-        //     openEdit(this.dispatch, id);
+        this.getActionCreator()
+            .openEdit(this.props.dispatch, id);
     }
 
     private onAddOpen = () => {
