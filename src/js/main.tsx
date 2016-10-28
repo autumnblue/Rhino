@@ -12,6 +12,7 @@ import { UserPage } from './views/containers/user/UserPage';
 import { ClientPage } from './views/containers/client/ClientPage';
 import { ProfilePage } from './views/containers/identity/ProfilePage';
 import { CampaignPage } from './views/containers/campaign/CampaignPage';
+import { SchedulePage } from './views/containers/schedule/SchedulePage';
 import { EmailServerPage } from './views/containers/emailServer/EmailServerPage';
 import { PhishingDomainPage } from './views/containers/phishingDomain/PhishingDomainPage';
 import { Dir } from './common/Constants';  
@@ -47,6 +48,11 @@ ReactDom.render(
                 <Route 
                     path={ Dir.CAMPAIGN } 
                     component={CampaignPage}
+                    onEnter={ () => permit(Role.AUTHENTICATED) } 
+                    />
+                <Route 
+                    path={ Dir.SCHEDULE } 
+                    component={SchedulePage}
                     onEnter={ () => permit(Role.AUTHENTICATED) } 
                     />
                 <Route 

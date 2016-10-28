@@ -3,6 +3,7 @@ import * as navigation from './navigation/Navigation'
 import user from './user'
 import client from './client'
 import campaign from './campaign'
+import schedule from './schedule'
 import emailServer from './emailServer'
 import phishingDomain from './phishingDomain'
 import * as login from './identity/Login'
@@ -14,6 +15,7 @@ const app = combineReducers<AppState>({
     user: user,
     client: client,
     campaign: campaign,
+    schedule: schedule,
     emailServer: emailServer,
     phishingDomain: phishingDomain,
     login: login.reducer,

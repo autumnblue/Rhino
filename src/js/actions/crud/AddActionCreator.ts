@@ -32,7 +32,7 @@ export abstract class AddActionCreator<T extends Service /*, U extends Dto*/> {
         this.getService()['create'](this.inputToDto(obj))
         .then(created => {
             dispatch({
-                type: ActionType.USER_ADD_SUCCESS,
+                type: ActionType.CRUD_ADD_SUCCESS,
                 payload: created
             })
         });

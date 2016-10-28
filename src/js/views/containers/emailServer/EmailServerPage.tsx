@@ -7,6 +7,7 @@ import { EmailServerAction } from'../../../actions/emailServer/EmailServerAction
 import { EmailServerPageState } from '../../../model/state/EmailServerState';
 import { AppState } from '../../../model/state/AppState';
 import { ViewType } from '../../../model/state/page/ViewType';
+import { EmailServerAddModal } from './modals/EmailServerAddModal';
 
 export class Container extends React.Component<Props, void> {
     private dispatch;
@@ -41,6 +42,7 @@ export class Container extends React.Component<Props, void> {
                         list={this.props.state.list || []}/>
 
                 </Panel>
+                <EmailServerAddModal />
             </div>        
         );
     }

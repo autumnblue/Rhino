@@ -2,7 +2,6 @@ import { CampaignDto } from '../../model/dto/CampaignDto';
 import { Service } from '../Service';
 import { PagedDto } from '../../model/dto/PagedDto';
 
-
 export interface ICampaignService extends Service {
     create(dto: CampaignDto): Promise<CampaignDto>;
     read(): Promise<PagedDto<CampaignDto>>;

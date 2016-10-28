@@ -3,11 +3,11 @@ import { FormState } from './FormState';
 import { CrupdateState } from './CrupdateState';
 import { ValidatableInput } from '../../common/validation/ValidatableInput';
 
-export type PageState = ListState<PhishingDomain>; 
+export type PageState = ListState<Schedule>; 
 
-interface PhishingDomain {
+interface Schedule {
     id?: number,
-    domainName: string
+    name: string
 }
 
 export interface AddState extends CrupdateState { 
@@ -17,5 +17,11 @@ export interface AddState extends CrupdateState {
 export type EditState = AddState;
 
 export interface Form extends FormState {
-    domainName: ValidatableInput;
+    name: ValidatableInput    
+    batchSize: ValidatableInput
+    // emailSendInterval: ValidatableInput
+    batchInterval: ValidatableInput
+    sleepTime: ValidatableInput
+    startSending: ValidatableInput
+    startSendingAt?: ValidatableInput
 }

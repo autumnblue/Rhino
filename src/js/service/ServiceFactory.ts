@@ -30,6 +30,10 @@ export const of = <T extends Service>(type: ServiceType): T => {
                     .ClientService()
                 : new (require('./client/MockClientService'))
                     .MockClientService();
+
+        case ServiceType.SCHEDULE:
+            return new (require('./schedule/ScheduleService'))
+                    .ScheduleService();
             
         case ServiceType.USER:
             return isProd() || isDev()
@@ -62,5 +66,6 @@ export enum ServiceType {
     IDENTITY,
     ENGAGEMENT,
     EMAIL_SERVER,
-    PHISHING_DOMAIN
+    PHISHING_DOMAIN,
+    SCHEDULE
 }

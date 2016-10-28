@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
-import * as add from './PhishingDomainAdd';
-import * as root from './PhishingDomainRoot';
+import * as add from './ScheduleAdd';
+import * as root from './ScheduleRoot';
 
 const phishingDomain = combineReducers<any>({
     add: add.reducer,

@@ -10,6 +10,10 @@ export const isEmail = (str: string) => {
     return str.indexOf('@') > -1; 
 }
 
+export const isNumber = (str: string) => {
+    return Number.isInteger(parseInt(str));
+}
+
 const validate = (field: ValidatableInput, predicate: (value: string) => boolean, failMsg: string, type: MessageType) => {
     if(predicate(field.value)) {
         field.validationMsg = {
@@ -23,6 +27,27 @@ const validate = (field: ValidatableInput, predicate: (value: string) => boolean
 
 export const errCheck = (field: ValidatableInput, predicate: (value: string) => boolean, failMsg: string) => {
     validate(field, predicate, failMsg, MessageType.ERROR);
+}
+
+interface IRule {
+    predicate: (value: string) => boolean,
+    failMsg: string
+}
+
+export const rule = 
+    (predicate: (value: string) => boolean, failMsg: string):IRule => (
+        {
+            predicate: predicate,
+            failMsg: failMsg
+        }
+    )
+
+
+export const errChecks = (field: ValidatableInput, rules: IRule[]) => {
+    rules.forEach(rule => {
+        validate(field, rule.predicate, rule.failMsg, MessageType.ERROR);
+    });
+    // validate(field, predicate, failMsg, MessageType.ERROR);
 }
 
 const inError = (input: ValidatableInput) => {

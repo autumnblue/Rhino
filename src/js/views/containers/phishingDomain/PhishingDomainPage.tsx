@@ -4,9 +4,10 @@ import { PhishingDomainList } from '../../components/phishingDomain/PhishingDoma
 import { Panel } from '../../components/common/Panel';
 import { Control } from '../../components/common/Controls';
 import { PhishingDomainAction } from'../../../actions/phishingDomain/PhishingDomainAction';
-import { PhishingDomainPageState } from '../../../model/state/PhishingDomainState';
+import { PageState } from '../../../model/state/PhishingDomainState';
 import { AppState } from '../../../model/state/AppState';
 import { ViewType } from '../../../model/state/page/ViewType';
+import { PhishingDomainAddModal } from './modals/PhishingDomainAddModal'; 
 
 export class Container extends React.Component<Props, void> {
     private dispatch;
@@ -41,6 +42,7 @@ export class Container extends React.Component<Props, void> {
                         list={this.props.state.list || []}/>
 
                 </Panel>
+                <PhishingDomainAddModal />
             </div>        
         );
     }
@@ -68,7 +70,7 @@ export class Container extends React.Component<Props, void> {
 
 interface Props {
     dispatch?
-    state?: PhishingDomainPageState
+    state?: PageState
 }
 
 const mapStateToProps = (state: AppState): Props => {

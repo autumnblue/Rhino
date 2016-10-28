@@ -38,7 +38,7 @@ class Container extends React.Component<Props, void> {
                             <Item href={"/clients"}>
                                     Clients
                             </Item>
-                            <Item href="/">
+                            <Item href={ Dir.SCHEDULE }>
                                     Schedules
                             </Item>
                     </Menu>

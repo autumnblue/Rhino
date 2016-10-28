@@ -7,6 +7,7 @@ export module Dir {
     export const CAMPAIGN = '/campaigns';
     export const EMAIL_SERVER = '/email-servers';
     export const PHISHING_DOMAIN = '/phishing-domains';
+    export const SCHEDULE = '/schedules';
 }
 
 export module SessionStorageKey {

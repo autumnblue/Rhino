@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux'
-// import { CampaignState } from '../../model/state/CampaignState'
+import * as add from './EmailServerAdd';
 import * as root from './EmailServerRoot';
 
 const emailServer = combineReducers<any>({
+    add: add.reducer,
     root: root.reducer
 });
 

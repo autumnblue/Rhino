@@ -5,6 +5,7 @@ import { ClientAddState } from '../../model/state/ClientState';
 import { ClientDto } from '../../model/dto/ClientDto';
 import { copy } from '../../common/Util';
 import { ValidatableInput } from '../../common/validation/ValidatableInput';
+import { CurrentUser } from '../../CurrentUser';
 
 const defaultAddState: ClientAddState = {
     input: {
