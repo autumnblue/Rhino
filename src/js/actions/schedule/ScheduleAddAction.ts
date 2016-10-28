@@ -40,6 +40,8 @@ class ActionCreator extends AddActionCreator<IScheduleService> {
         });
     }
 
+    protected errorToState(error: any, obj: any) { return null };
+
     protected inputToDto(input: Form): ScheduleDto {
         return {
             name: input.name.value,

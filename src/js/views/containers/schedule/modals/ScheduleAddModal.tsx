@@ -10,6 +10,7 @@ import { AddModalContainer, connect } from '../../crud/AddModalContainer';
 export const ScheduleAddModal =
 connect((state) => ({ state: state.schedule.add }), 
     class Container extends AddModalContainer {
+        public getModalTitle() { return 'New schedule'};
         public getActionCreator() { return ScheduleAddAction }
 
         public jsx() {

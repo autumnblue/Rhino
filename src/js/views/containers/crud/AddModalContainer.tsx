@@ -8,6 +8,7 @@ import { AddActionCreator } from '../../../actions/crud/AddActionCreator'
 import { Service } from '../../../service/Service';
 
 export abstract class AddModalContainer extends React.Component<Props, void> { 
+    public abstract getModalTitle(): string;
     public abstract getActionCreator(): AddActionCreator<Service>;
     public abstract jsx(): React.ReactElement<any>;
 
@@ -16,7 +17,7 @@ export abstract class AddModalContainer extends React.Component<Props, void> {
 
         return (
             <Modal 
-                title={ 'New phishing domain' }
+                title={ this.getModalTitle() }
                 visible={ this.props.state.visible}>
                     <Control>
                         <button onClick={this.onCancel}>

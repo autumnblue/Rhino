@@ -71,3 +71,11 @@ export const finalize = <T extends { input?: any, isValid: boolean }>(state: T):
 
     return copy<T>(state);
 }
+
+export const map400 = (msg: string | number, input: ValidatableInput) => {
+    if(msg)
+        input.validationMsg = {
+            type: MessageType.ERROR,
+            value: `${msg}`
+        }
+}

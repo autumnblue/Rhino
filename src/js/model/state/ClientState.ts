@@ -1,6 +1,6 @@
 import { ValidatableInput } from '../../common/validation/ValidatableInput';
-import { FieldState } from './FieldState';
-import { AddState } from './AddState';
+import { FormState } from './FormState';
+import { CrupdateState } from './CrupdateState';
 import { ListState } from './page/ListState';
 
 export interface ClientState {
@@ -17,11 +17,11 @@ interface Client {
     timezone: any
 }
 
-export interface ClientAddState extends AddState { 
+export interface ClientAddState extends CrupdateState { 
     input?: AddFields 
 }
 
-export interface AddFields extends FieldState {
+export interface AddFields extends FormState {
     name: ValidatableInput,
     url: ValidatableInput,
     timezone: ValidatableInput

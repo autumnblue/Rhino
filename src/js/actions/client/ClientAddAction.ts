@@ -6,8 +6,9 @@ import { ServiceType } from '../../service/ServiceFactory';
 import { ClientAddState, AddFields } from '../../model/state/ClientState';
 import { ClientDto } from '../../model/dto/ClientDto';
 import { ClientFormValidation } from '../../validation/client/client/ClientFormValidation';
+import { map400 } from '../../validation/ValidationUtil';
 
-class ActionCreator extends AddActionCreator<IClientService> {
+class ActionCreator extends AddActionCreator<IClientService> { 
     constructor() {
         super(ServiceType.CLIENT);
     }
@@ -41,9 +42,18 @@ class ActionCreator extends AddActionCreator<IClientService> {
         }
     }
 
+    protected errorToState(err: ClientDto, obj: AddFields): AddFields {
+        map400(err.name, obj.name);
+        map400(err.url, obj.url);
+        map400(err.default_time_zone, obj.timezone);
+
+        return obj;
+    }
+
     protected localValidate(state: ClientAddState): ClientAddState {
         return ClientFormValidation.validate(state);
     }
 }
 
 export const ClientAddAction: ActionCreator = new ActionCreator();
+

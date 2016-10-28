@@ -23,7 +23,7 @@ export const post = async <T>(url: string, body: any, authz = true): Promise<T> 
     .use(popsicle.plugins.parse('json'))
     .then(response => {
         if(response.status >= 400)
-            throw new Error(); //TODO: wrap in ClientError?
+            return Promise.reject(response.body);
 
         return <T>response.body;
     });

@@ -1,11 +1,14 @@
 import { Action } from '../Action';
 import { ActionType } from '../ActionType';
-import { AddState } from '../../model/state/AddState';
-import { FieldState } from '../../model/state/FieldState';
+import { CrupdateState } from '../../model/state/CrupdateState';
+import { FormState } from '../../model/state/FormState';
 import { Dto } from '../../model/dto/Dto';
 import * as factory from '../../service/ServiceFactory';
 import { ServiceType } from '../../service/ServiceFactory';
 import { Service } from '../../service/Service';
+import { copy } from '../../common/Util';
+import { ValidatableInput } from '../../common/validation/ValidatableInput';
+import { MessageType } from '../../common/message/MessageType';
 
 export abstract class AddActionCreator<T extends Service /*, U extends Dto*/> {
     private service: T;
@@ -15,32 +18,41 @@ export abstract class AddActionCreator<T extends Service /*, U extends Dto*/> {
         this.serviceType = serviceType;
     }
 
-    public submit(dispatch, state: AddState): void {
+    public submit(dispatch, state: CrupdateState): void {
         if(this.doLocalValidate(dispatch, state)) {
             this.remoteValidate(dispatch, state)
             .then(valid => {
                 if(valid) {
-                    this.create(dispatch, state.input);
+                    this.create(dispatch, state);
                 }    
             })
         }
     }
 
-    protected abstract inputToDto(obj: FieldState): Dto;
+    protected abstract inputToDto(obj: FormState): Dto;
+    protected abstract errorToState(err: any, obj: FormState): FormState;
 
-    public create(dispatch, obj: FieldState): void {
-        this.getService()['create'](this.inputToDto(obj))
+    public create(dispatch, state: CrupdateState): void {
+        this.getService()['create'](this.inputToDto(state.input))
         .then(created => {
             dispatch({
                 type: ActionType.CRUD_ADD_SUCCESS,
                 payload: created
             })
+        })
+        .catch(error => {
+            const mapped = this.errorToState(error, state.input);
+            state.input = mapped;
+            dispatch({
+                type: ActionType.CRUD_INVALID_SUBMIT,
+                payload: copy<any>(state)
+            });
         });
     }
 
-    protected abstract localValidate(state: AddState): AddState;
+    protected abstract localValidate(state: CrupdateState): CrupdateState;
 
-    private doLocalValidate(dispatch, state: AddState): boolean {
+    private doLocalValidate(dispatch, state: CrupdateState): boolean {
         const validated = this.localValidate(state);
         const valid = validated.isValid;
         if(!valid) 
@@ -51,7 +63,7 @@ export abstract class AddActionCreator<T extends Service /*, U extends Dto*/> {
         return valid;
     }
 
-    private remoteValidate(dispatch, state: AddState): Promise<boolean> {
+    private remoteValidate(dispatch, state: CrupdateState): Promise<boolean> {
         return Promise.resolve(true);
     }
 
@@ -61,7 +73,7 @@ export abstract class AddActionCreator<T extends Service /*, U extends Dto*/> {
         })
     }
 
-    protected getService(): T {
+    private getService(): T {
         if(!this.service)
             this.service = factory.of<T>(this.serviceType); 
         

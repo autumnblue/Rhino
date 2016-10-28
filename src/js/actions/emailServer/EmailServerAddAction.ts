@@ -66,6 +66,8 @@ class ActionCreator extends AddActionCreator<IEmailServerService> {
         }
     }
 
+    protected errorToState(error: any, obj: any) { return null };
+
     protected localValidate(state: EmailServerAddState): EmailServerAddState {
         return EmailServerFormValidation.validate(state);
     }

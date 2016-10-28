@@ -10,6 +10,7 @@ import { AddModalContainer, connect } from '../../crud/AddModalContainer';
 export const PhishingDomainAddModal =
 connect((state) => ({ state: state.phishingDomain.add }), 
     class Container extends AddModalContainer {
+        public getModalTitle() { return 'New phishing domain'};
         public getActionCreator() { return PhishingDomainAddAction }
 
         public jsx() {

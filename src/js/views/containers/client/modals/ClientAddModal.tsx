@@ -1,82 +1,54 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
 import { AppState } from '../../../../model/state/AppState';
 import { ClientAddState } from '../../../../model/state/ClientState';
 import { ClientAddAction } from '../../../../actions/client/ClientAddAction';
 import { Modal } from '../../../components/common/Modal';
 import { ClientAdd } from '../../../components/client/ClientAdd';
 import { Control } from '../../../components/common/Controls';
+import { AddModalContainer, connect } from '../../crud/AddModalContainer';
 
-class Container extends React.Component<Props, void> {
-    private dispatch;   
+export const ClientAddModal =
+connect((state) => ({ state: state.client.add }), 
+    class Container extends AddModalContainer {
+        public getModalTitle() { return 'New client'};
+        public getActionCreator() { return ClientAddAction }
 
-    constructor(props) {
-        super(props);
-        this.dispatch = this.props.dispatch;
+        public jsx() {
+            return <ClientAdd 
+                input={this.props.state.input}
+                onNameChange={this.onNameChange}
+                onUrlChange={this.onUrlChange} 
+                onTimezoneSelect={this.onTimezoneSelect}/>
+        }
+
+        private onNameChange = (event): void => {
+            ClientAddAction
+                .changeNameInput(this.props.dispatch, event.target.value)
+        }
+
+        private onUrlChange = (event): void => {
+            ClientAddAction
+                .changeUrlInput(this.props.dispatch, event.target.value)
+        }
+
+        private onTimezoneSelect = (selection: string): void => {
+            ClientAddAction
+                .selectTimezone(this.props.dispatch, selection);
+        }
     }
+);
 
-    public render() {
-        const input = this.props.state.input;
+// interface Props {
+//     dispatch?
+//     state?: ClientAddState
+// }
 
-        return (
-            <Modal 
-                title={ 'New client' }
-                visible={ this.props.state.visible}>
-                    <Control>
-                        <button onClick={this.onCancel}>
-                            <span className="glyphicon glyphicon-share-alt"></span>
-                            CANCEL
-                        </button>
-                    </Control>
-                    <Control>
-                        <button onClick={this.onSubmit}>SAVE</button>
-                    </Control>
-                    <ClientAdd 
-                        input={input}
-                        onNameChange={this.onNameChange}
-                        onUrlChange={this.onUrlChange} 
-                        onTimezoneSelect={this.onTimezoneSelect}/>
-            </Modal>
-        );
-    }
+// const mapStateToProps = (state: AppState): Props => ({
+//     state: state.client.add
+// })
 
-    private onSubmit = ():void => {
-        ClientAddAction
-            .submit(this.dispatch, this.props.state)
-    }
+// const mapDispatchToProps = (dispatch): Props => ({
+//     dispatch: dispatch
+// })
 
-    private onNameChange = (event): void => {
-        ClientAddAction
-            .changeNameInput(this.dispatch, event.target.value)
-    }
-
-    private onUrlChange = (event): void => {
-        ClientAddAction
-            .changeUrlInput(this.dispatch, event.target.value)
-    }
-
-    private onTimezoneSelect = (selection: string): void => {
-        ClientAddAction
-            .selectTimezone(this.dispatch, selection);
-    }
-
-    private onCancel = (): void => {
-        ClientAddAction
-            .cancel(this.dispatch);
-    }
-}
-
-interface Props {
-    dispatch?
-    state?: ClientAddState
-}
-
-const mapStateToProps = (state: AppState): Props => ({
-    state: state.client.add
-})
-
-const mapDispatchToProps = (dispatch): Props => ({
-    dispatch: dispatch
-})
-
-export const ClientAddModal = connect(mapStateToProps, mapDispatchToProps)(Container);
+// export const ClientAddModal = connect(mapStateToProps, mapDispatchToProps)(Container);

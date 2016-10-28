@@ -15,12 +15,25 @@ export class SearchSelection extends React.Component<Props, {}> {
             );
         });
 
+        els.unshift(
+            <option
+                key={this.props.placeholder || ''}
+                value={null}>
+                    {this.props.placeholder || ''}
+            </option>
+        )
+
         return (
-            <select onChange={ (event) => this.props.onSelect(event.target.value) } 
+            <select onChange={ this.onSelect } 
                 className="ui search dropdown">
                     { els }
             </select>
         );
+    }
+
+    private onSelect = (event) => {
+        if(event.target.value)
+            this.props.onSelect(event.target.value)
     }
 
     public componentDidMount() {
@@ -30,6 +43,7 @@ export class SearchSelection extends React.Component<Props, {}> {
 }
 
 interface Props {
+    placeholder?: string
     data: Array<{ text: string, value?: string }>
     onSelect(selection: string): void
 }

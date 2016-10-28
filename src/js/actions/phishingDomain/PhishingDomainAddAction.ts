@@ -19,6 +19,8 @@ class ActionCreator extends AddActionCreator<IPhishingDomainService> {
         });
     }
 
+    protected errorToState(error: any, obj: any) { return null };
+
     protected inputToDto(input: Form): PhishingDomainDto {
         return {
             domain_name: input.domainName.value,

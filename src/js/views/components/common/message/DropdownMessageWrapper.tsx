@@ -23,7 +23,9 @@ export class DropdownMessageWrapper extends React.Component<{ msg: IMessage }, {
                 <div>
                     <SearchSelection 
                         {...searchSelectionAttribs} />
-                    { msgEl }
+                    <div className="dropdown-msg">
+                        { msgEl }
+                    </div>
                 </div>
             </div>
         );

@@ -32,7 +32,7 @@ export class ClientAdd extends React.Component<Props, void> {
                 
                 <label>Default Timezone</label>
                 <DropdownMessageWrapper msg={this.props.input.timezone.validationMsg}>
-                    <SearchSelection 
+                    <SearchSelection
                         data={ timezones } 
                         onSelect={ this.props.onTimezoneSelect } />
                 </DropdownMessageWrapper>

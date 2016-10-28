@@ -6,8 +6,9 @@ import { ClientDto } from '../../model/dto/ClientDto';
 import { copy } from '../../common/Util';
 import { ValidatableInput } from '../../common/validation/ValidatableInput';
 import { CurrentUser } from '../../CurrentUser';
+import * as add from '../crud/AddReducer';
 
-const defaultAddState: ClientAddState = {
+const defaultAddState = (): ClientAddState => ({
     input: {
             name: new ValidatableInput(),
             url: new ValidatableInput(),
@@ -15,29 +16,12 @@ const defaultAddState: ClientAddState = {
         },
     visible: false,
     isValid: false
-}
+});
 
-export const reducer: Reducer<ClientAddState> = (state: ClientAddState = defaultAddState, action: Action): ClientAddState => {   
-    if(!state.visible 
-        && action.type !== ActionType.CRUD_OPEN_ADD)
-            return state; 
-    
+export const reducer = add.reducer<ClientAddState>(defaultAddState, (state, action) => {
     const newState = copy<ClientAddState>(state);
-    
-    switch(action.type) {
-        case ActionType.CRUD_OPEN_ADD:
-            newState.visible = true;
-            return newState;
 
-        case ActionType.CRUD_CANCEL_ADD:
-            newState.visible = false;
-            return newState;
-
-        case ActionType.CRUD_ADD_SUCCESS:
-            const reseted = defaultAddState;
-            reseted.visible = false;
-            return reseted;
-
+     switch(action.type) {
         case ActionType.CLIENT_CHANGE_NAME_INPUT:
             newState.input.name.value = action.payload;
             return newState;
@@ -52,4 +36,5 @@ export const reducer: Reducer<ClientAddState> = (state: ClientAddState = default
        
         default: return state;
     }
-};
+}); 
+
