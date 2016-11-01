@@ -6,6 +6,7 @@ import campaign from './campaign'
 import schedule from './schedule'
 import emailServer from './emailServer'
 import phishingDomain from './phishingDomain'
+import landingPages from './landingPages'
 import * as login from './identity/Login'
 import * as profile from './identity/Profile'
 import { AppState } from '../model/state/AppState'
@@ -19,7 +20,8 @@ const app = combineReducers<AppState>({
     emailServer: emailServer,
     phishingDomain: phishingDomain,
     login: login.reducer,
-    profile: profile.reducer
+    profile: profile.reducer,
+    landingPages: landingPages
 });
 
 export default app;

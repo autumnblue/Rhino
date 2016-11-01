@@ -39,7 +39,7 @@ class Container extends React.Component<Props, void> {
                                     Clients
                             </Item>
                             <Item href={ Dir.PHISHING_DOMAIN}>
-                                    Phishing Domains
+                                    <span className="glyphicon glyphicon-wrench"></span> Phishing Domains
                             </Item>
                     </Menu>
 
@@ -54,7 +54,7 @@ class Container extends React.Component<Props, void> {
                         selected={ this.props.state.pages.selected }
                         onClick={ this.onPagesClick }>
                             <span className="glyphicon glyphicon-list-alt"></span>
-                            <Item href="/">
+                            <Item href={ Dir.LANDING_PAGES }>
                                     Landing Pages
                             </Item>
                             <Item href="/">

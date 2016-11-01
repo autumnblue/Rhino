@@ -29,6 +29,11 @@ class IdentityStatic {
                         const token = refreshed.token;
                         CurrentUser.Session.setToken(token);
                         return token
+                    })
+                    .catch(err => {
+                        CurrentUser.Session
+                            .setReferer(window.location.href);
+                        this.logout();
                     });
             else
                 return Promise.resolve(jwt);
@@ -41,6 +46,7 @@ class IdentityStatic {
     public login(token: string) {
         CurrentUser.Session.setToken(token);
         const referer = CurrentUser.Session.getReferer();
+        console.log(referer);
         CurrentUser.Page.to(referer || '\\');
     }
 

@@ -50,6 +50,10 @@ export const of = <T extends Service>(type: ServiceType): T => {
             return new (require('./phishingDomain/PhishingDomainService'))
                     .PhishingDomainService();
 
+        case ServiceType.LANDING_PAGES:
+            return new (require('./landingPages/LandingPagesService'))
+                    .LandingPagesService();
+
         case ServiceType.IDENTITY:
             return isProd() || isDev()
                 ? new (require('./identity/IdentityService'))
@@ -67,5 +71,6 @@ export enum ServiceType {
     ENGAGEMENT,
     EMAIL_SERVER,
     PHISHING_DOMAIN,
-    SCHEDULE
+    SCHEDULE,
+    LANDING_PAGES
 }

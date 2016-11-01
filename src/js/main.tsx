@@ -15,6 +15,7 @@ import { CampaignPage } from './views/containers/campaign/CampaignPage';
 import { SchedulePage } from './views/containers/schedule/SchedulePage';
 import { EmailServerPage } from './views/containers/emailServer/EmailServerPage';
 import { PhishingDomainPage } from './views/containers/phishingDomain/PhishingDomainPage';
+import { LandingPagesPage } from './views/containers/landingPages/LandingPagesPage'; 
 import { Dir } from './common/Constants';  
 import { permit } from './security/RenderRules';
 import { Role } from './security/Role';
@@ -63,6 +64,11 @@ ReactDom.render(
                 <Route 
                     path={ Dir.PHISHING_DOMAIN } 
                     component={PhishingDomainPage}
+                    onEnter={ () => permit(Role.AUTHENTICATED) } 
+                    />
+                <Route 
+                    path={ Dir.LANDING_PAGES } 
+                    component={LandingPagesPage}
                     onEnter={ () => permit(Role.AUTHENTICATED) } 
                     />
                 <Route 
