@@ -6,10 +6,11 @@ import {
     EmailServerAddState, 
     EmailServerPageState } from './EmailServerState';
 import * as phishingDomainState from './PhishingDomainState';
-import * as landingPagesState from './LandingPagesState';
+import LandingPagesState from './LandingPagesState';
 import * as scheduleState from './ScheduleState';
 import { LoginState } from './LoginState';
 import { ProfileState } from './ProfileState';
+import { ListState } from './page/ListState';
 
 export interface AppState {
     navigation: MenuState;
@@ -40,9 +41,9 @@ export interface AppState {
         root: phishingDomainState.PageState;
     };
     landingPages: {
-        add: landingPagesState.AddState;
-        edit: landingPagesState.AddState;
-        root: landingPagesState.PageState;
+        add: LandingPagesState
+        edit: LandingPagesState
+        root: ListState<LandingPagesState>;
     }
     login: LoginState;
     profile: ProfileState;

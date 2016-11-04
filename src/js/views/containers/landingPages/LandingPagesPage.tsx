@@ -1,32 +1,36 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
 import { LandingPagesList } from '../../components/landingPages/LandingPagesList';
-import { Panel } from '../../components/common/Panel';
-import { Control } from '../../components/common/Controls';
-import { LandingPagesAction } from'../../../actions/landingPages/LandingPagesAction';
 import { AppState } from '../../../model/state/AppState';
-import { ViewType } from '../../../model/state/page/ViewType';
-// import { LandingPagesAddModal } from './modals/LandingPagesAddModal';
-// import { LandingPagesEditModal } from './modals/LandingPagesEditModal';
-import { CrudContainer, connect } from '../crud/CrudContainer'; 
+import { ListState } from '../../../model/state/page/ListState';
+import LandingPagesState from '../../../model/state/LandingPagesState';
+import LandingPagesAddModal from './modals/LandingPagesAddModal2';
+import LandingPagesEditModal from './modals/LandingPagesEditModal';
+import { CrudContainer, Props } from '../crud/CrudContainer3';
+import LandingPagesAction from '../../../actions/landingPages/LandingPagesAction'
 
-export const LandingPagesPage =
-connect((state) => ({ state: state.landingPages.root }),
-    class Container extends CrudContainer {
-        public getPanelTitle() { return 'Landing Pages' }
+const LandingPagesPageContainer = (props: Props) =>
+    <CrudContainer
+        title={ "Landing Pages" }
+        action={ LandingPagesAction }
+        {...props}>
+            <LandingPagesList 
+                view={props.state.view}
+                list={props.state.list || []}/>
 
-        public getActionCreator() { return LandingPagesAction }
-        
-        public jsx() {
-            return <LandingPagesList 
-                        onOpen={this.onEditOpen}
-                        view={this.props.state.view}
-                        list={this.props.state.list || []}/>
-        }
+        <LandingPagesAddModal />
+        <LandingPagesEditModal />
+    </CrudContainer>
 
-        public modals() {
-            return <div>
+const mapStateToProps = (state: AppState): Props => ({
+    state: state.landingPages.root
+})
 
-            </div>
-        }
-    }
-);   
+const LandingPagesPage = connect(
+    mapStateToProps, 
+    (dispatch): Props => ({
+        dispatch: dispatch
+    })
+)(LandingPagesPageContainer);
+
+export default LandingPagesPage;     

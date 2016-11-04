@@ -46,8 +46,30 @@ class IdentityStatic {
     public login(token: string) {
         CurrentUser.Session.setToken(token);
         const referer = CurrentUser.Session.getReferer();
-        console.log(referer);
         CurrentUser.Page.to(referer || '\\');
+
+        setInterval(() => {
+            console.log('Refreshing token...') 
+            const jwt = CurrentUser.Session.getToken(); 
+            if(jwt)
+                if(this.isExpired())
+                    factory
+                        .of<IIdentityService>(ServiceType.IDENTITY)
+                        .refresh(jwt)
+                        .then(refreshed => {
+                            const token = refreshed.token;
+                            CurrentUser.Session.setToken(token);
+                            console.log(`Refreshed with ${token}!`)
+                        })
+                        .catch(err => {
+                            CurrentUser.Session
+                                .setReferer(window.location.href);
+                            this.logout();
+                        });
+            else {
+                CurrentUser.Page.toLogin();
+            }
+        }, 60000);
     }
 
     public isLoggedInAsync(): Promise<boolean> {

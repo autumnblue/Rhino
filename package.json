@@ -10,6 +10,7 @@
     "install:latest": "npm install --save-dev typings@* typescript@* istanbul@* jasmine@*",
     "init": "rm -rf .git && npm run install:latest && npm init && git init",
     "compile": "tsc",
+    "dist": "typings install && npm run build",
     "build:tsc": "npm run compile",
     "prebuild": "npm run clean && mkdir -p dist",
     "build": "npm run build:tsc && npm run bundle",

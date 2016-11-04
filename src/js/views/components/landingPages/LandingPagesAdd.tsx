@@ -3,7 +3,7 @@ import * as React from 'react';
 const reduxForm = require('redux-form');
 const Field = reduxForm.Field;
 
-export default reduxForm({
+export default reduxForm.reduxForm({
     form: 'RedirectPagesPageAdd'
 })(
 class Container extends React.Component<Props, void> {
