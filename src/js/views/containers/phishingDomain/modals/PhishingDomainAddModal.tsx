@@ -1,27 +1,28 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
+import { AddModalContainer, Props } from '../../crud/AddModalContainer';
+import PhishingDomainForm from '../../../components/phishingDomain/PhishingDomainAdd';
+import PhishingDomainAction from '../../../../actions/phishingDomain/PhishingDomainAction'
+import PhishingDomainState from '../../../../model/state/PhishingDomainState';
 import { AppState } from '../../../../model/state/AppState';
-import { AddState} from '../../../../model/state/PhishingDomainState';
-import { PhishingDomainAddAction } from '../../../../actions/phishingDomain/PhishingDomainAddAction';
-import { Modal } from '../../../components/common/Modal';
-import { PhishingDomainAdd } from '../../../components/phishingDomain/PhishingDomainAdd';
-import { Control } from '../../../components/common/Controls';
-import { AddModalContainer, connect } from '../../crud/AddModalContainer';
 
-export const PhishingDomainAddModal =
-connect((state) => ({ state: state.phishingDomain.add }), 
-    class Container extends AddModalContainer {
-        public getModalTitle() { return 'New phishing domain'};
-        public getActionCreator() { return PhishingDomainAddAction }
+const PhishingDomainAddModalContainer = (props: Props) => 
+    <AddModalContainer
+        title="New Landing Page"
+        action={ PhishingDomainAction }
+        {...props}>
+            <PhishingDomainForm />
+    </AddModalContainer>
 
-        public jsx() {
-            return <PhishingDomainAdd 
-                inputs={this.props.state.input}
-                onDomainNameChange={this.onDomainNameChange} />
-        }
+const mapStateToProps = (state: AppState): Props => ({
+    state: state.phishingDomain.add
+})
 
-        private onDomainNameChange = (event): void => {
-            PhishingDomainAddAction
-                .changeDomainNameInput(this.props.dispatch, event.target.value)
-        }
-    }
-);
+const PhishingDomainAddModal = connect(
+    mapStateToProps, 
+    (dispatch): Props => ({
+        dispatch: dispatch
+    })
+)(PhishingDomainAddModalContainer);
+
+export default PhishingDomainAddModal;

@@ -1,10 +1,10 @@
-import { CrudActionCreator2 } from '../crud/CrudActionCreator2'
+import CrudActionCreator from '../crud/CrudActionCreator'
 import { ILandingPagesService } from '../../service/landingPages/ILandingPagesService';
 import { ServiceType } from '../../service/ServiceFactory';
 import State from '../../model/state/LandingPagesState';
 import { LandingPagesDto } from '../../model/dto/LandingPagesDto';
 
-class ActionCreator extends CrudActionCreator2<ILandingPagesService> {
+class ActionCreator extends CrudActionCreator<ILandingPagesService> {
     constructor() {
         super(ServiceType.LANDING_PAGES);
     }

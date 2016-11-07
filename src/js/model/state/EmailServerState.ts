@@ -1,27 +1,13 @@
-import { ListState } from './page/ListState';
-import { FormState } from './FormState';
-import { CrupdateState } from './CrupdateState';
-import { ValidatableInput } from '../../common/validation/ValidatableInput';
+import CrudState from './CrudState';
 
-export type EmailServerPageState = ListState<EmailServer>; 
-
-interface EmailServer {
-    id?: number,
-    login: string,
-    host: string
+class EmailServerState implements CrudState {
+    id = null
+    useTls = false;
+    testRecipient = null
+    host = null
+    port = null
+    login = null
+    password = null
 }
 
-export interface EmailServerAddState extends CrupdateState { 
-    input?: EmailServerForm 
-}
-
-export type EmailServerEditState = EmailServerAddState;
-
-export interface EmailServerForm extends FormState {
-    useTls: ValidatableInput
-    testRecipient: ValidatableInput
-    host: ValidatableInput
-    port: ValidatableInput
-    login: ValidatableInput
-    password: ValidatableInput
-}
+export default EmailServerState ;

@@ -1,28 +1,34 @@
 import * as React from 'react';
-import { ScheduleAction } from '../../../actions/schedule/ScheduleAction';
-import { ScheduleAdd } from '../../components/schedule/ScheduleAdd';
-import { CrudContainer, connect } from '../crud/CrudContainer';
+import { connect } from 'react-redux';
 import { ScheduleList } from '../../components/schedule/ScheduleList';
-import { ScheduleAddModal } from './modals/ScheduleAddModal';
+import { AppState } from '../../../model/state/AppState';
+import { ListState } from '../../../model/state/page/ListState';
+import ScheduleState from '../../../model/state/ScheduleState';
+import ScheduleAddModal from './modals/ScheduleAddModal';
+import { CrudContainer, Props } from '../crud/CrudContainer';
+import ScheduleAction from '../../../actions/schedule/ScheduleAction'
 
-export const SchedulePage =
-connect((state) => ({ state: state.schedule.root }),
-    class Container extends CrudContainer {
-        public getPanelTitle() { return 'Schedules' }
+const SchedulePageContainer = (props: Props) =>
+    <CrudContainer
+        title={ "Landing Pages" }
+        action={ ScheduleAction }
+        {...props}>
+            <ScheduleList 
+                view={props.state.view}
+                list={props.state.list || []}/>
 
-        public getActionCreator() { return ScheduleAction }
-        
-        public jsx() {
-            return <ScheduleList 
-                        onOpen={this.onEditOpen}
-                        view={this.props.state.view}
-                        list={this.props.state.list || []}/>
-        }
+        <ScheduleAddModal />
+    </CrudContainer>
 
-        public modals() {
-            return <div>
-                <ScheduleAddModal />
-            </div>
-        }
-    }
-);
+const mapStateToProps = (state: AppState): Props => ({
+    state: state.schedule.root
+})
+
+const SchedulePage = connect(
+    mapStateToProps, 
+    (dispatch): Props => ({
+        dispatch: dispatch
+    })
+)(SchedulePageContainer);
+
+export default SchedulePage;     

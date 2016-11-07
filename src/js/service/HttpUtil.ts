@@ -1,5 +1,6 @@
 import * as popsicle from 'popsicle';
 import { Identity } from '../security/Identity';
+import handleErr from '../validation/submit/landingPages/LandingPagesFormSubmitValidator'; 
 
 const addAuthzHeader = (headers: { [name: string]: string }): Promise<void> => {
     return Identity.getToken()
@@ -23,10 +24,11 @@ export const post = async <T>(url: string, body: any, authz = true): Promise<T> 
     .use(popsicle.plugins.parse('json'))
     .then(response => {
         if(response.status >= 400)
-            return Promise.reject(response.body);
+            //return handleErr(response.body);
+            return Promise.reject(response);  //return raw response
 
         return <T>response.body;
-    });
+    })
 }
 
 export const get = async <T>(url: string, authz = true): Promise<T> => {

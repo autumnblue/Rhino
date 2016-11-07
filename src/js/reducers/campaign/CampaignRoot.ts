@@ -1,11 +1,13 @@
 import { combineReducers } from 'redux'
-import { CampaignPageState } from '../../model/state/CampaignState'
+import CampaignState from '../../model/state/CampaignState'
 import { PagedDto } from '../../model/dto/PagedDto';
 import { CampaignDto } from '../../model/dto/CampaignDto';
 import { ViewType } from '../../model/state/page/ViewType';
-import * as root from '../RootReducer';
+import reduce from '../crud/RootReducer';
+import { ListState } from '../../model/state/page/ListState';
+import { Dir } from '../../common/Constants';
 
-const load = (dtos: PagedDto<CampaignDto>, state: CampaignPageState) => {
+const load = (dtos: PagedDto<CampaignDto>, state: ListState<CampaignState>) => {
     state.list = dtos.results.map(dto => {
         return {
             id: dto.id,
@@ -21,4 +23,5 @@ const defaultState = () => {
     return  { view: ViewType.GRID }
 }
 
-export const reducer = root.reducer<CampaignPageState>(load, defaultState);
+const reducer = reduce<ListState<CampaignState>>(load, { view: ViewType.GRID }, 'campaign');
+export default reducer;

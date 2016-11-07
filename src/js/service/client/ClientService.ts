@@ -3,6 +3,7 @@ import { IClientService } from './IClientService';
 import { ClientDto } from '../../model/dto/ClientDto';
 import { PagedDto } from '../../model/dto/PagedDto';
 import * as http from '../HttpUtil';
+import handleErr from '../../validation/submit/landingPages/LandingPagesFormSubmitValidator'; 
 
 export class ClientService extends Service implements IClientService {
     private url: string;
@@ -13,8 +14,7 @@ export class ClientService extends Service implements IClientService {
     }
 
     public async create(dto: ClientDto): Promise<ClientDto> {
-        return http.post<ClientDto>
-            (this.url, dto);
+        return http.post<ClientDto>(this.url, dto);
     }
 
     public async read(): Promise<PagedDto<ClientDto>> {

@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux'
-import * as add from './PhishingDomainAdd';
-import * as edit from './PhishingDomainEdit';
-import * as root from './PhishingDomainRoot';
+import add from './PhishingDomainAdd';
+import edit from './PhishingDomainEdit';
+import root from './PhishingDomainRoot';
 
 const phishingDomain = combineReducers<any>({
-    add: add.reducer,
-    edit: edit.reducer,
-    root: root.reducer
+    add: add,
+    edit: edit,
+    root: root
 });
 
 export default phishingDomain;

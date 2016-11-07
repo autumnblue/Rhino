@@ -1,25 +1,14 @@
-import { ValidatableInput } from '../../common/validation/ValidatableInput';
-import { FormState } from './FormState';
-import { CrupdateState } from './CrupdateState';
-import { ListState } from './page/ListState';
+import CrudState from './CrudState';
 
-export type PageState = ListState<Client>; 
+class ClientState extends CrudState {
+    constructor(context?) {
+        super(context);
+    }
 
-interface Client {
-    id?: number,
-    name: string,
-    url: string,
-    timezone: any
+    id = null
+    name = ''
+    url = ''
+    timezone = ''
 }
 
-export interface AddState extends CrupdateState { 
-    input?: Form
-}
-
-export type EditState = AddState;
-
-export interface Form extends FormState {
-    name: ValidatableInput,
-    url: ValidatableInput,
-    timezone: ValidatableInput
-}
+export default ClientState ;

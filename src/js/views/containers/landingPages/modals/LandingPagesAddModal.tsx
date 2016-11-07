@@ -1,19 +1,28 @@
 import * as React from 'react';
-import { AddModalContainer2, connect } from '../../crud/AddModalContainer2';
-import LandingPagesForm from '../form/LandingPagesForm';
+import { connect } from 'react-redux';
+import { AddModalContainer, Props } from '../../crud/AddModalContainer';
+import LandingPagesForm from '../../../components/landingPages/LandingPagesAdd';
 import LandingPagesAction from '../../../../actions/landingPages/LandingPagesAction'
 import LandingPagesState from '../../../../model/state/LandingPagesState';
+import { AppState } from '../../../../model/state/AppState';
 
-export const LandingPagesAddModal = 
-    connect(state => ({ state: state.landingPages.add }),
-        (state: LandingPagesState) => {
-            console.log(state);
+const LandingPagesAddModalContainer = (props: Props) => 
+    <AddModalContainer
+        title="New Landing Page"
+        action={ LandingPagesAction }
+        {...props}>
+            <LandingPagesForm />
+    </AddModalContainer>
 
-            return <AddModalContainer2
-                dispatch={ state['dispatch']}
-                state={ state }
-                title="New Landing Page"
-                actions={ LandingPagesAction }>
-                    <LandingPagesForm />
-            </AddModalContainer2>
-        });
+const mapStateToProps = (state: AppState): Props => ({
+    state: state.landingPages.add
+})
+
+const LandingPagesAddModal = connect(
+    mapStateToProps, 
+    (dispatch): Props => ({
+        dispatch: dispatch
+    })
+)(LandingPagesAddModalContainer);
+
+export default LandingPagesAddModal;

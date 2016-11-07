@@ -2,60 +2,48 @@ import * as React from 'react';
 import * as react_redux from 'react-redux';
 import { Modal } from '../../components/common/Modal';
 import { Control } from '../../components/common/Controls';
-import { CrupdateState} from '../../../model/state/CrupdateState';
+import CrudState from '../../../model/state/CrudState';
 import { AppState } from '../../../model/state/AppState';
-import { AddActionCreator } from '../../../actions/crud/AddActionCreator'
+import CrudActionCreator from '../../../actions/crud/CrudActionCreator'
 import { Service } from '../../../service/Service';
 
-export abstract class AddModalContainer extends React.Component<Props, void> { 
-    public abstract getModalTitle(): string;
-    public abstract getActionCreator(): AddActionCreator<Service>;
-    public abstract jsx(): React.ReactElement<any>;
-
-    public render() {
-        const input = this.props.state.input;
-
-        return (
-            <Modal 
-                title={ this.getModalTitle() }
-                visible={ this.props.state.visible}>
-                    <Control>
-                        <button onClick={this.onCancel}>
-                            <span className="glyphicon glyphicon-share-alt"></span>
-                            CANCEL
-                        </button>
-                    </Control>
-                    <Control>
-                        <button onClick={this.onSubmit}>SAVE</button>
-                    </Control>
-
-                    { this.jsx() }
-            </Modal>
-        );
+export const AddModalContainer = (props: Props) => {
+    const onSubmit = (values):Promise<any> => {
+        return props.action
+            .create(props.dispatch, values, props.state.context);
     }
 
-    private onSubmit = ():void => {
-        this.getActionCreator()
-            .submit(this.props.dispatch, this.props.state)
+    const onCancel = (): void => {
+        props.action
+            .cancel(props.dispatch, props.state.context);
     }
 
-    private onCancel = (): void => {
-        this.getActionCreator()
-            .cancel(this.props.dispatch);
-    }
+    const children = React.Children.map(props.children, child => {
+        return React.cloneElement(child as React.ReactElement<any>,
+            { submit: onSubmit });
+    });
+
+    return <Modal 
+        title={ props.title }
+        visible={ props.state.visible}>
+            <Control>
+                <button onClick={onCancel}>
+                    <span className="glyphicon glyphicon-share-alt"></span>
+                    CANCEL
+                </button>
+            </Control>
+            <Control>
+                <button onClick={onSubmit}>SAVE</button>
+            </Control>
+
+            { children }
+    </Modal>   
 }
 
-interface Props {
+export interface Props {
     dispatch?
-    state?: CrupdateState
-}
-
-const mapDispatchToProps = (dispatch): Props => ({
-    dispatch: dispatch
-})
-
-export const connect = (
-    mapStateToProps: (state: AppState) => Props, 
-    containerCls: React.ComponentClass<Props>) => {
-        return react_redux.connect(mapStateToProps, mapDispatchToProps)(containerCls)
+    state?: CrudState
+    title?: string
+    action?: CrudActionCreator<Service>
+    children?: any
 }

@@ -1,22 +1,16 @@
-import { combineReducers } from 'redux'
-import { PageState } from '../../model/state/ScheduleState'
+import ScheduleState from '../../model/state/ScheduleState'
 import { PagedDto } from '../../model/dto/PagedDto';
-import { ScheduleDto } from '../../model/dto/ScheduleDto';
 import { ViewType } from '../../model/state/page/ViewType';
-import * as root from '../RootReducer';
+import reduce from '../crud/RootReducer';
+import { ListState } from '../../model/state/page/ListState';
+import map from './ScheduleMapper';
+import { Dir } from '../../common/Constants';
 
-const load = (dtos: PagedDto<ScheduleDto>, state: PageState) => {
-    state.list = dtos.results.map(dto => {
-        return {
-            id: dto.id,
-            name: dto.name
-        }
-    });
+const load = (dtos, state) => {
+    state.list = dtos.results
+        .map(dto => map(dto, new ScheduleState()))
     return state;
 }
 
-const defaultState = () => {
-    return  { view: ViewType.GRID }
-}
-
-export const reducer = root.reducer<PageState>(load, defaultState);
+export const reducer = reduce<ListState<ScheduleState>>(load, { view: ViewType.GRID }, 'schedule');
+export default reducer;

@@ -1,13 +1,12 @@
 import * as React from 'react';
-import FormProps from '../../form/FormProps';
-import validate from '../../../../validation/client/landingPages/LandingPagesFormClientValidator'
-import warn from '../../../../validation/client/landingPages/LandingPagesFormClientWarner'
+import FormProps from '../common/FormProps';
+import validate from '../../../validation/client/landingPages/LandingPagesFormClientValidator'
+import warn from '../../../validation/client/landingPages/LandingPagesFormClientWarner'
 const reduxForm = require('redux-form');
 const Field = reduxForm.Field;
 
-const landingPagesForm = 
-reduxForm.reduxForm({
-    form: 'LandingPagesForm',
+export default reduxForm.reduxForm({
+    form: 'LandingPagesEdit',
     validate,
     warn
 })(
@@ -42,4 +41,5 @@ reduxForm.reduxForm({
     </form>
 );
 
-export default landingPagesForm;
+
+

@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux'
-import * as add from './EmailServerAdd';
-import * as root from './EmailServerRoot';
+import add from './EmailServerAdd';
+import root from './EmailServerRoot';
 
 const emailServer = combineReducers<any>({
-    add: add.reducer,
-    root: root.reducer
+    add: add,
+    root: root
 });
 
 export default emailServer;

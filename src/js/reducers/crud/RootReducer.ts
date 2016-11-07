@@ -10,18 +10,26 @@ import { ViewType } from '../../model/state/page/ViewType';
 
 const reducer = <T extends ListState<CrudState>>(
         loadFn: (dtos: PagedDto<Dto>, state: T) => T, 
-        defaultState: T
+        defaultState: T,
+        context?
     ): Reducer<T> => {
         return (state: T = defaultState, action: Action): T => {
+            if(action.context !== context) return state;
+
             switch(action.type) {
                 case ActionType.CRUD_INIT:
-                    return loadFn(action.payload, 
-                        copy<T>(state));
+                    const newState = copy<T>(state);
+                    newState.list = action.payload;
+                    return newState;
 
                 case ActionType.CRUD_TOGGLE_VIEW:
                     state.view = state.view == ViewType.TABLE
                         ? ViewType.GRID
                         : ViewType.TABLE
+                    return copy<T>(state);
+
+                case ActionType.CRUD_ADD_SUCCESS:
+                    state.list.push(action.payload);
                     return copy<T>(state);
 
                 default: return state;

@@ -43,33 +43,55 @@ class IdentityStatic {
         }
     }
 
+    private doCall() {
+        console.log('Refreshing token...') 
+        const jwt = CurrentUser.Session.getToken(); 
+        if(jwt) {
+            console.log('Got JWT');
+            if(!this.isExpired()) {
+                console.log('Not expired, continuing...');
+                factory
+                    .of<IIdentityService>(ServiceType.IDENTITY)
+                    .refresh(jwt)
+                    .then(refreshed => {
+                        const token = refreshed.token;
+                        CurrentUser.Session.setToken(token);
+                        console.log(`Refreshed with ${token}!`)
+                        console.log(CurrentUser.Session.getToken());
+                    })
+                    .catch(err => {
+                        CurrentUser.Session
+                            .setReferer(window.location.href);
+                        this.logout();
+                    });
+            } else {
+                console.log(CurrentUser.Session.getToken())
+                console.log('Expired, logging out...')
+                if(CurrentUser.Page.isLogin())
+                    this.reset();
+                else
+                    this.logout();
+            }
+        } else {
+            console.log('JWT missing.');
+            if(CurrentUser.Page.isLogin())
+                this.reset();
+            else
+                this.logout();
+        }
+    }
+
+    public heartBeat() {
+        this.doCall();
+        setInterval(() => {
+            this.doCall();
+        }, 60000);
+    }
+
     public login(token: string) {
         CurrentUser.Session.setToken(token);
         const referer = CurrentUser.Session.getReferer();
         CurrentUser.Page.to(referer || '\\');
-
-        setInterval(() => {
-            console.log('Refreshing token...') 
-            const jwt = CurrentUser.Session.getToken(); 
-            if(jwt)
-                if(this.isExpired())
-                    factory
-                        .of<IIdentityService>(ServiceType.IDENTITY)
-                        .refresh(jwt)
-                        .then(refreshed => {
-                            const token = refreshed.token;
-                            CurrentUser.Session.setToken(token);
-                            console.log(`Refreshed with ${token}!`)
-                        })
-                        .catch(err => {
-                            CurrentUser.Session
-                                .setReferer(window.location.href);
-                            this.logout();
-                        });
-            else {
-                CurrentUser.Page.toLogin();
-            }
-        }, 60000);
     }
 
     public isLoggedInAsync(): Promise<boolean> {
@@ -103,6 +125,7 @@ class IdentityStatic {
     private getBaseUrl(): string {
         if(!this.baseUrl) {
             const socket = CurrentUser.Session.getSocket();
+            if(!socket) this.logout();
             const host = socket.host;
             const port = socket.port 
                 ? `:${socket.port}` 

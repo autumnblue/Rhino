@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { EditModalContainer, Props} from '../../crud/EditModalContainer3';
-import LandingPagesForm from '../form/LandingPagesForm';
+import { EditModalContainer, Props} from '../../crud/EditModalContainer';
+import LandingPagesForm from '../../../components/landingPages/LandingPagesEdit';
 import LandingPagesAction from '../../../../actions/landingPages/LandingPagesAction'
 import LandingPagesState from '../../../../model/state/LandingPagesState';
 import { AppState } from '../../../../model/state/AppState';

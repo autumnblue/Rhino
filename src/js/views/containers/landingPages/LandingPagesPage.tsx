@@ -4,9 +4,9 @@ import { LandingPagesList } from '../../components/landingPages/LandingPagesList
 import { AppState } from '../../../model/state/AppState';
 import { ListState } from '../../../model/state/page/ListState';
 import LandingPagesState from '../../../model/state/LandingPagesState';
-import LandingPagesAddModal from './modals/LandingPagesAddModal2';
+import LandingPagesAddModal from './modals/LandingPagesAddModal';
 import LandingPagesEditModal from './modals/LandingPagesEditModal';
-import { CrudContainer, Props } from '../crud/CrudContainer3';
+import { CrudContainer, Props } from '../crud/CrudContainer';
 import LandingPagesAction from '../../../actions/landingPages/LandingPagesAction'
 
 const LandingPagesPageContainer = (props: Props) =>

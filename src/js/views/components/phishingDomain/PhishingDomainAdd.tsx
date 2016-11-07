@@ -1,26 +1,30 @@
 import * as React from 'react';
-import { Form } from '../../../model/state/PhishingDomainState';
-import { InputMessageWrapper } from '../common/message/InputMessageWrapper';
+import Button from '../common/Button';
+import Input from '../common/Input';
+import FormProps from '../common/FormProps';
+const reduxForm = require('redux-form');
+const Field = reduxForm.Field;
+const moment = require('moment-timezone'); 
 
-export class PhishingDomainAdd extends React.Component<Props, void> {
-    public render() {
-        const inputs = this.props.inputs
+const timezones = moment.tz.names().map(name => {
+    return { text: name };
+});
 
-        return (
-            <form>
-                <label>Domain Name</label>
-                <InputMessageWrapper msg={inputs.domainName.validationMsg}>
-                    <input 
-                        type="text"
-                        value={inputs.domainName.value} 
-                        onChange={this.props.onDomainNameChange} />
-                </InputMessageWrapper>
-            </form>
-        );
-    }
-}
-
-interface Props {
-    inputs: Form
-    onDomainNameChange(event): void
-}
+export default reduxForm.reduxForm({
+    form: 'PhishingDomainAdd'
+})(
+(props: FormProps) =>
+    <form 
+        onSubmit={ this.props.handleSubmit(this.props.onSubmit) }>
+            <div>
+                <Field
+                    name="domainName"
+                      component={
+                        <Input
+                            label="Domain Name" />
+                    } />
+            </div>
+           
+            <Button type="submit">Submit</Button>
+    </form>
+);

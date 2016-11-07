@@ -1,53 +1,55 @@
 import * as React from 'react';
-import { EmailServerForm } from '../../../model/state/EmailServerState';
-import { InputMessageWrapper } from '../common/message/InputMessageWrapper';
+import Button from '../common/Button';
+import Input from '../common/Input';
+import FormProps from '../common/FormProps';
+const reduxForm = require('redux-form');
+const Field = reduxForm.Field;
+const moment = require('moment-timezone'); 
 
-export class EmailServerAdd extends React.Component<Props, void> {
-    public render() {
-        const inputs = this.props.inputs
+const timezones = moment.tz.names().map(name => {
+    return { text: name };
+});
 
-        return (
-            <form>
-                <label>Host</label>
-                <InputMessageWrapper msg={inputs.host.validationMsg}>
-                    <input 
-                        type="text"
-                        value={inputs.host.value} 
-                        onChange={this.props.onHostChange} />
-                </InputMessageWrapper>
-                
-                <label>Port</label>
-                <InputMessageWrapper msg={inputs.port.validationMsg}>
-                    <input 
-                        type="text"
-                        value={inputs.port.value} 
-                        onChange={this.props.onPortChange} />
-                </InputMessageWrapper>
+export default reduxForm.reduxForm({
+    form: 'EmailServerAdd'
+})(
+(props: FormProps) =>
+    <form 
+        onSubmit={ this.props.handleSubmit(this.props.onSubmit) }>
+            <div>
+                <Field
+                    name="host"
+                      component={
+                        <Input
+                            label="Host" />
+                    } />
+            </div>
+            <div>
+                <Field
+                    name="port"
+                    component={
+                        <Input
+                            label="Port" />
+                    } />
+            </div>
+            <div>
+                <Field
+                    name="login"
+                    component={
+                        <Input
+                            label="login" />
+                    } />
+            </div>
+            <div>
+                <Field
+                    name="password"
+                    component={
+                        <Input
+                            label="password" />
+                    } />
+            </div>
+            <Button type="submit">Submit</Button>
+    </form>
+);
 
-                <label>Login</label>
-                <InputMessageWrapper msg={inputs.login.validationMsg}>
-                    <input 
-                        type="text"
-                        value={inputs.login.value} 
-                        onChange={this.props.onLoginChange} />
-                </InputMessageWrapper>
 
-                <label>Account Password</label>
-                <InputMessageWrapper msg={inputs.password.validationMsg}>
-                    <input 
-                        type="text"
-                        value={inputs.password.value} 
-                        onChange={this.props.onPasswordChange} />
-                </InputMessageWrapper>
-            </form>
-        );
-    }
-}
-
-interface Props {
-    inputs: EmailServerForm
-    onHostChange(event): void
-    onPortChange(event): void
-    onLoginChange(event): void
-    onPasswordChange(event): void
-}

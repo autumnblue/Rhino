@@ -7,6 +7,8 @@ import { Grid } from '../common/grid/Grid';
 
 export class ClientList extends React.Component<Props, void> {
     public render() {
+
+        
         return (
             this.props.view == ViewType.TABLE 
             ?

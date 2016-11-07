@@ -1,27 +1,14 @@
-import { ListState } from './page/ListState';
-import { FormState } from './FormState';
-import { CrupdateState } from './CrupdateState';
-import { ValidatableInput } from '../../common/validation/ValidatableInput';
+import CrudState from './CrudState';
 
-export type PageState = ListState<Schedule>; 
-
-interface Schedule {
-    id?: number,
-    name: string
-}
-
-export interface AddState extends CrupdateState { 
-    input?: Form
-}
-
-export type EditState = AddState;
-
-export interface Form extends FormState {
-    name: ValidatableInput    
-    batchSize: ValidatableInput
+class ScheduleState implements CrudState {
+    id = null
+    name = ''   
+    batchSize = ''
     // emailSendInterval: ValidatableInput
-    batchInterval: ValidatableInput
-    sleepTime: ValidatableInput
-    startSending: ValidatableInput
-    startSendingAt?: ValidatableInput
+    batchInterval = ''
+    sleepTime = 0
+    startSending = ''
+    startSendingAt? = ''
 }
+
+export default ScheduleState;

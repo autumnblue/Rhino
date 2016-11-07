@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux'
-import * as root from './ClientRoot'
-import * as add from './ClientAdd'
-import * as edit from './ClientEdit'
+import root from './ClientRoot'
+import add from './ClientAdd'
+import edit from './ClientEdit'
 
 const user = combineReducers<any>({
-    add: add.reducer,
-    edit: edit.reducer,
-    root: root.reducer
+    add: add,
+    edit: edit,
+    root: root
 });
 
 export default user;

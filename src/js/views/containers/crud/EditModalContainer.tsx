@@ -2,71 +2,63 @@ import * as React from 'react';
 import * as react_redux from 'react-redux';
 import { Modal } from '../../components/common/Modal';
 import { Control } from '../../components/common/Controls';
-import { CrupdateState} from '../../../model/state/CrupdateState';
+import CrudState from '../../../model/state/CrudState';
 import { AppState } from '../../../model/state/AppState';
-import { EditActionCreator } from '../../../actions/crud/EditActionCreator'
-import { Service } from '../../../service/Service';
 import { ConfirmableButton } from '../../components/common/ConfirmableButton';
+import CrudActionCreator from '../../../actions/crud/CrudActionCreator'
+import { Service } from '../../../service/Service';
 
-export abstract class EditModalContainer extends React.Component<Props, void> { 
-    public abstract getModalTitle(): string;
-    public abstract getActionCreator(): EditActionCreator<Service>;
-    public abstract jsx(): React.ReactElement<any>;
-
-    public render() {
-        const input = this.props.state.input;
-
-        return (
-            <Modal 
-                title={ this.getModalTitle() }
-                visible={ this.props.state.visible}>
-                    <Control>
-                        <ConfirmableButton 
-                            value="REMOVE" 
-                            onConfirm={ this.onRemove }/>
-                    </Control>
-                    <Control>
-                        <button onClick={this.onCancel}>
-                            <span className="glyphicon glyphicon-share-alt"></span>
-                            CANCEL
-                        </button>
-                    </Control>
-                    <Control>
-                        <button onClick={this.onSubmit}>SAVE</button>
-                    </Control>
-
-                    { this.jsx() }
-            </Modal>
-        );
+export const EditModalContainer = (props: Props) => {
+    const onSubmit = ():void => {
+        props.action
+        .update(props.dispatch, props.state, props.state.context)
     }
 
-    private onSubmit = ():void => {
-        this.getActionCreator()
-            .submit(this.props.dispatch, this.props.state)
+    const onCancel = (): void => {
+        props.action
+            .cancel(props.dispatch, props.state.context);
     }
 
-    private onCancel = (): void => {
-        this.getActionCreator()
-            .cancel(this.props.dispatch);
+    const onRemove = (): void => {
+        props.action
+            .remove(props.dispatch, props.state.id, props.state.context);
     }
 
-    private onRemove = (): void => {
-        this.getActionCreator()
-            .remove(this.props.dispatch, this.props.state.id);
-    }
-}
+    const children = React.Children.map(props.children, child => {
+        return React.cloneElement(child as React.ReactElement<any>,
+            { submit: onSubmit, values: props.state });
+    });
 
-interface Props {
+    return (
+        <Modal 
+            title={ props.title }
+            visible={ props.state.visible}>
+                <Control>
+                    <ConfirmableButton 
+                        value="REMOVE" 
+                        onConfirm={ onRemove }/>
+                </Control>
+                <Control>
+                    <button onClick={onCancel}>
+                        <span className="glyphicon glyphicon-share-alt"></span>
+                        CANCEL
+                    </button>
+                </Control>
+                <Control>
+                    <button onClick={onSubmit}>SAVE</button>
+                </Control>
+
+                { children }
+        </Modal>
+    );
+} 
+ 
+export interface Props {
     dispatch?
-    state?: CrupdateState
+    state?: CrudState
+    title?: string
+    action?: CrudActionCreator<Service>
+    children?: React.ReactNode
 }
 
-const mapDispatchToProps = (dispatch): Props => ({
-    dispatch: dispatch
-})
 
-export const connect = (
-    mapStateToProps: (state: AppState) => Props, 
-    containerCls: React.ComponentClass<Props>) => {
-        return react_redux.connect(mapStateToProps, mapDispatchToProps)(containerCls)
-}

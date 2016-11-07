@@ -1,53 +1,53 @@
 import * as React from 'react';
-import { Form } from '../../../model/state/ScheduleState';
-import { InputMessageWrapper } from '../common/message/InputMessageWrapper';
+import Button from '../common/Button';
+import Input from '../common/Input';
+import FormProps from '../common/FormProps';
+const reduxForm = require('redux-form');
+const Field = reduxForm.Field;
+const moment = require('moment-timezone'); 
 
-export class ScheduleAdd extends React.Component<Props, void> {
-    public render() {
-        const inputs = this.props.inputs
+const timezones = moment.tz.names().map(name => {
+    return { text: name };
+});
 
-        return (
-            <form>
-                <label>Name</label>
-                <InputMessageWrapper msg={inputs.name.validationMsg}>
-                    <input 
-                        type="text"
-                        value={inputs.name.value} 
-                        onChange={this.props.onNameChange} />
-                </InputMessageWrapper>
-
-                <label>Batch size</label>
-                <InputMessageWrapper msg={inputs.batchSize.validationMsg}>
-                    <input 
-                        type="text"
-                        value={inputs.batchSize.value} 
-                        onChange={this.props.onBatchSizeChange} />
-                </InputMessageWrapper>
-
-                <label>Batch interval</label>
-                <InputMessageWrapper msg={inputs.batchInterval.validationMsg}>
-                    <input 
-                        type="text"
-                        value={inputs.batchInterval.value} 
-                        onChange={this.props.onBatchIntervalChange} />
-                </InputMessageWrapper>
-
-                <label>Sleep time</label>
-                <InputMessageWrapper msg={inputs.sleepTime.validationMsg}>
-                    <input 
-                        type="text"
-                        value={inputs.sleepTime.value} 
-                        onChange={this.props.onSleepTimeChange} />
-                </InputMessageWrapper>
-            </form>
-        );
-    }
-}
-
-interface Props {
-    inputs: Form
-    onNameChange(event): void
-    onBatchSizeChange(event): void
-    onBatchIntervalChange(event): void
-    onSleepTimeChange(event): void
-}
+export default reduxForm.reduxForm({
+    form: 'EmailServerAdd'
+})(
+(props: FormProps) =>
+    <form 
+        onSubmit={ this.props.handleSubmit(this.props.onSubmit) }>
+            <div>
+                <Field
+                    name="name"
+                      component={
+                        <Input
+                            label="Name" />
+                    } />
+            </div>
+            <div>
+                <Field
+                    name="batchSize"
+                    component={
+                        <Input
+                            label="Batch Size" />
+                    } />
+            </div>
+            <div>
+                <Field
+                    name="batchInterval"
+                    component={
+                        <Input
+                            label="Batch Interval" />
+                    } />
+            </div>
+            <div>
+                <Field
+                    name="sleepTime"
+                    component={
+                        <Input
+                            label="Sleep Time" />
+                    } />
+            </div>
+            <Button type="submit">Submit</Button>
+    </form>
+);

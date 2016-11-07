@@ -1,4 +1,9 @@
-//require('dotenv').config();
+const injectTapEventPlugin = require('react-tap-event-plugin');
+
+// Needed for onTouchTap
+// http://stackoverflow.com/a/34015469/988941
+injectTapEventPlugin();
+
 import * as React from 'react'
 import * as ReactDom from 'react-dom'
 import { render } from 'react-dom'
@@ -9,27 +14,31 @@ import { App } from './views/App';
 import { Router, Route, browserHistory } from 'react-router';
 import { LoginPage } from './views/containers/identity/LoginPage';
 import { UserPage } from './views/containers/user/UserPage';
-import { ClientPage } from './views/containers/client/ClientPage';
+import ClientPage from './views/containers/client/ClientPage';
 import { ProfilePage } from './views/containers/identity/ProfilePage';
-import { CampaignPage } from './views/containers/campaign/CampaignPage';
-import { SchedulePage } from './views/containers/schedule/SchedulePage';
-import { EmailServerPage } from './views/containers/emailServer/EmailServerPage';
-import { PhishingDomainPage } from './views/containers/phishingDomain/PhishingDomainPage';
+import CampaignPage from './views/containers/campaign/CampaignPage';
+import SchedulePage from './views/containers/schedule/SchedulePage';
+import EmailServerPage from './views/containers/emailServer/EmailServerPage';
+import PhishingDomainPage from './views/containers/phishingDomain/PhishingDomainPage';
 import LandingPagesPage from './views/containers/landingPages/LandingPagesPage'; 
 import { Dir } from './common/Constants';  
 import { permit } from './security/RenderRules';
 import { Role } from './security/Role';
 import { Identity } from './security/Identity';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
 
 permit(Role.AUTHENTICATED);
 
 //visually identify the current Sandbar server
 Identity.Server.describe();
+Identity.heartBeat();
 
 //initialState: AppState as second arg for hydration; default state handeled by each reducer
 const store = createStore(reducers);
 
 ReactDom.render(
+    <MuiThemeProvider>
     <Provider store={store}>
         <Router history={ browserHistory }>
             <Route 
@@ -78,7 +87,8 @@ ReactDom.render(
                     />
             </Route>
         </Router>
-    </Provider>, document.getElementById('mount')
+    </Provider>
+    </MuiThemeProvider>, document.getElementById('mount')
 )
 
 

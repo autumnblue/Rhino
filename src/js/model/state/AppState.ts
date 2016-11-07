@@ -1,49 +1,47 @@
 import { MenuState } from './MenuState';
 import { UserAddState, UserEditState, UserPageState } from './UserState';
-import * as client from './ClientState';
-import { CampaignPageState } from './CampaignState';
-import { 
-    EmailServerAddState, 
-    EmailServerPageState } from './EmailServerState';
-import * as phishingDomainState from './PhishingDomainState';
+import ClientState from './ClientState';
+import CampaignState from './CampaignState';
+import EmailServerState from './EmailServerState';
+import PhishingDomainState from './PhishingDomainState';
 import LandingPagesState from './LandingPagesState';
-import * as scheduleState from './ScheduleState';
+import ScheduleState from './ScheduleState';
 import { LoginState } from './LoginState';
 import { ProfileState } from './ProfileState';
 import { ListState } from './page/ListState';
 
 export interface AppState {
-    navigation: MenuState;
+    navigation: MenuState
     user: {
-        add: UserAddState;
-        edit: UserEditState;
-        root: UserPageState; 
-    };
+        add: UserAddState
+        edit: UserEditState
+        root: UserPageState;
+    }
     client: {
-        add: client.AddState;
-        edit: client.EditState;
-        root: client.PageState;
-    };
+        add: ClientState
+        edit: ClientState
+        root: ListState<ClientState>
+    }
     campaign: {
-        root: CampaignPageState;
-    };
+        root: ListState<CampaignState>
+    }
     schedule: {
-        add: scheduleState.AddState;
-        root: scheduleState.PageState;
+        add: ScheduleState;
+        root: ListState<ScheduleState>
     }
     emailServer: {
-        add: EmailServerAddState;
-        root: EmailServerPageState;
-    };
+        add: EmailServerState
+        root: ListState<EmailServerState>
+    }
     phishingDomain: {
-        add: phishingDomainState.AddState;
-        edit: phishingDomainState.EditState;
-        root: phishingDomainState.PageState;
-    };
+        add: PhishingDomainState
+        edit: PhishingDomainState
+        root: ListState<PhishingDomainState>
+    }
     landingPages: {
         add: LandingPagesState
         edit: LandingPagesState
-        root: ListState<LandingPagesState>;
+        root: ListState<LandingPagesState>
     }
     login: LoginState;
     profile: ProfileState;

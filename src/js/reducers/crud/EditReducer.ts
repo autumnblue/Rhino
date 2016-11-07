@@ -1,38 +1,35 @@
 import { Reducer } from 'redux';
-import { CrupdateState } from '../../model/state/CrupdateState';
+import CrudState from '../../model/state/CrudState';
 import { Action } from '../../actions/Action';
 import { ActionType } from '../../actions/ActionType';
 import { copy } from '../../common/Util';
 import { Dto } from '../../model/dto/Dto';
 
-const shortCurcuit = (state: CrupdateState, action: Action) => {
-     return !state.visible 
-        && action.type !== ActionType.CRUD_OPEN_EDIT
-}
-
-export const reducer = <T extends CrupdateState>(
-        defaultStateFn: () => T,
+const reducer = <T extends CrudState>(
+        defaultState: T,
         loadFn: (dto: Dto) => T,
-        reduce?: (state: T, action: Action) => T
+        context?,
+        reduce?: (state: T, action: Action) => T,
     ): Reducer<T> => {   
-        return (state: T = defaultStateFn(), action: Action): T => {
-            if(shortCurcuit(state, action)) return state;
+        return (state: T = defaultState, action: Action): T => {
+            if(action.context !== context) return state;
             const newState = copy<T>(state);    
 
             switch(action.type) {
                 case ActionType.CRUD_OPEN_EDIT:
-                    const dto: Dto = action.payload;
-                    const copied = copy<T>(loadFn(dto));
-                    copied.id = dto.id; // ensure for DELETE
-                    copied.visible = true;
-                    return copied;
+                    const data = action.payload;
+                    Object.keys(data).forEach(key => {
+                        return state[key] = data[key]
+                    })
+                    state.visible = true;              
+                    return copy<T>(state);
 
-                case ActionType.CRUD_CANCEL_EDIT:
+                case ActionType.CRUD_CANCEL:
                     newState.visible = false;
                     return newState;
 
                 case ActionType.CRUD_EDIT_SUCCESS:
-                    const reseted = defaultStateFn();
+                    const reseted = defaultState;
                     reseted.visible = false;
                     return reseted;
 
@@ -45,3 +42,5 @@ export const reducer = <T extends CrupdateState>(
             return state;
         }
 }
+
+export default reducer;

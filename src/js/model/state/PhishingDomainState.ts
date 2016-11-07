@@ -1,21 +1,8 @@
-import { ListState } from './page/ListState';
-import { FormState } from './FormState';
-import { CrupdateState } from './CrupdateState';
-import { ValidatableInput } from '../../common/validation/ValidatableInput';
+import CrudState from './CrudState';
 
-export type PageState = ListState<PhishingDomain>; 
-
-interface PhishingDomain {
-    id?: number,
-    domainName: string
+class PhishingDomainState implements CrudState {
+    id = null
+    domainName = ''
 }
 
-export interface AddState extends CrupdateState { 
-    input?: Form
-}
-
-export type EditState = AddState;
-
-export interface Form extends FormState {
-    domainName: ValidatableInput;
-}
+export default PhishingDomainState;

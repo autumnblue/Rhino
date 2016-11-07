@@ -1,20 +1,16 @@
 import { Reducer } from 'redux';
-import { CrupdateState } from '../../model/state/CrupdateState';
+import CrudState from '../../model/state/CrudState';
 import { Action } from '../../actions/Action';
 import { ActionType } from '../../actions/ActionType';
 import { copy } from '../../common/Util';
 
-const shortCurcuit = (state: CrupdateState, action: Action) => {
-     return !state.visible 
-        && action.type !== ActionType.CRUD_OPEN_ADD
-}
-
-export const reducer = <T extends CrupdateState>(
-        defaultStateFn: () => T,
-        reduce?: (state: T, action: Action) => T
+const reducer = <T extends CrudState>(
+        defaultState: T,
+        context?,
+        reduce?: (state: T, action: Action) => T,
     ): Reducer<T> => {   
-        return (state: T = defaultStateFn(), action: Action): T => {
-            if(shortCurcuit(state, action)) return state;
+        return (state: T = defaultState, action: Action): T => {
+            if(action.context !== context) return state;
             const newState = copy<T>(state);    
 
             switch(action.type) {
@@ -22,14 +18,14 @@ export const reducer = <T extends CrupdateState>(
                     newState.visible = true;
                     return newState;
 
-                case ActionType.CRUD_CANCEL_ADD:
+                case ActionType.CRUD_CANCEL:
                     newState.visible = false;
                     return newState;
 
                 case ActionType.CRUD_ADD_SUCCESS:
-                    const reseted = defaultStateFn();
-                    reseted.visible = false;
-                    return reseted;
+                    const reset = copy<T>(defaultState);
+                    reset.visible = false;
+                    return reset;
 
                 case ActionType.CRUD_INVALID_SUBMIT:
                     return action.payload;
@@ -40,3 +36,5 @@ export const reducer = <T extends CrupdateState>(
             return state;
         }
 }
+
+export default reducer;

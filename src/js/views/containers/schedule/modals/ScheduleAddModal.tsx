@@ -1,45 +1,28 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
+import { AddModalContainer, Props } from '../../crud/AddModalContainer';
+import ScheduleForm from '../../../components/schedule/ScheduleAdd';
+import ScheduleAction from '../../../../actions/schedule/ScheduleAction'
+import ScheduleState from '../../../../model/state/ScheduleState';
 import { AppState } from '../../../../model/state/AppState';
-import { AddState} from '../../../../model/state/ScheduleState';
-import { ScheduleAddAction } from '../../../../actions/schedule/ScheduleAddAction';
-import { Modal } from '../../../components/common/Modal';
-import { ScheduleAdd } from '../../../components/schedule/ScheduleAdd';
-import { Control } from '../../../components/common/Controls';
-import { AddModalContainer, connect } from '../../crud/AddModalContainer';
 
-export const ScheduleAddModal =
-connect((state) => ({ state: state.schedule.add }), 
-    class Container extends AddModalContainer {
-        public getModalTitle() { return 'New schedule'};
-        public getActionCreator() { return ScheduleAddAction }
+const ScheduleAddModalContainer = (props: Props) => 
+    <AddModalContainer
+        title="New Landing Page"
+        action={ ScheduleAction }
+        {...props}>
+            <ScheduleForm />
+    </AddModalContainer>
 
-        public jsx() {
-            return <ScheduleAdd 
-                inputs={this.props.state.input}
-                onNameChange={this.onNameChange} 
-                onBatchSizeChange={this.onBatchSizeChange}
-                onBatchIntervalChange={this.onBatchIntervalChange}
-                onSleepTimeChange={this.onSleepTimeChange} />
-        }
+const mapStateToProps = (state: AppState): Props => ({
+    state: state.schedule.add
+})
 
-        private onNameChange = (event): void => {
-            ScheduleAddAction
-                .changeNameInput(this.props.dispatch, event.target.value)
-        }
+const ScheduleAddModal = connect(
+    mapStateToProps, 
+    (dispatch): Props => ({
+        dispatch: dispatch
+    })
+)(ScheduleAddModalContainer);
 
-        private onBatchSizeChange = (event): void => {
-            ScheduleAddAction
-                .changeBatchSizeInput(this.props.dispatch, event.target.value)
-        }
-
-        private onBatchIntervalChange = (event): void => {
-            ScheduleAddAction
-                .changeBatchIntervalInput(this.props.dispatch, event.target.value)
-        }
-
-        private onSleepTimeChange = (event): void => {
-            ScheduleAddAction
-                .changeSleepTimeInput(this.props.dispatch, event.target.value)
-        }
-    }
-);
+export default ScheduleAddModal;

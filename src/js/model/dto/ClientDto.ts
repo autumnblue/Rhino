@@ -1,9 +1,7 @@
-import { Dto } from './Dto';
+import { CommitableDto } from './CommitableDto';
 
-export interface ClientDto extends Dto {
-    id?: number,
+export interface ClientDto extends CommitableDto {
     name: string,
     url: string,
-    default_time_zone: number //unix time; TODO consider moment.js
-    commit?: boolean
+    default_time_zone: string
 }

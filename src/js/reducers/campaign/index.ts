@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux'
-import { CampaignState } from '../../model/state/CampaignState'
-import * as root from './CampaignRoot';
+import CampaignState from '../../model/state/CampaignState'
+import rootReducer from './CampaignRoot';
 
 const campaign = combineReducers<CampaignState>({
-    root: root.reducer
+    root: rootReducer
 });
 
 export default campaign;

@@ -1,18 +1,10 @@
-import { ListState } from './page/ListState';
+import CrudState from './CrudState';
 
-export interface CampaignState {
-    id: number,
-    name: string,
-    description: string,
-    client: string,
-    link: string
-}   
-
-export type CampaignPageState = ListState<Campaign>; 
-
-interface Campaign {
-    id?: number,
-    name: string
-    description: string,
-    client: string,
+class CampaignPagesState implements CrudState {
+    id = null
+    name = ''
+    description = ''
+    client = ''
 }
+
+export default CampaignPagesState ;

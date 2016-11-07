@@ -1,23 +1,16 @@
-import { combineReducers } from 'redux'
-import { EmailServerPageState } from '../../model/state/EmailServerState'
+import EmailServerState from '../../model/state/EmailServerState'
 import { PagedDto } from '../../model/dto/PagedDto';
-import { EmailServerDto } from '../../model/dto/EmailServerDto';
 import { ViewType } from '../../model/state/page/ViewType';
-import * as root from '../RootReducer';
+import reduce from '../crud/RootReducer';
+import { ListState } from '../../model/state/page/ListState';
+import map from './EmailServerMapper';
+import { Dir } from '../../common/Constants';
 
-const load = (dtos: PagedDto<EmailServerDto>, state: EmailServerPageState) => {
-    state.list = dtos.results.map(dto => {
-        return {
-            id: dto.id,
-            login: dto.login,
-            host: dto.host,
-        }
-    });
+const load = (dtos, state) => {
+    state.list = dtos.results
+        .map(dto => map(dto, new EmailServerState()))
     return state;
 }
 
-const defaultState = () => {
-    return  { view: ViewType.GRID }
-}
-
-export const reducer = root.reducer<EmailServerPageState>(load, defaultState);
+export const reducer = reduce<ListState<EmailServerState>>(load, { view: ViewType.GRID }, 'emailServer');
+export default reducer;
