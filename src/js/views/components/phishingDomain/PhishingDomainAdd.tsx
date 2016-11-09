@@ -15,14 +15,12 @@ export default reduxForm.reduxForm({
 })(
 (props: FormProps) =>
     <form 
-        onSubmit={ this.props.handleSubmit(this.props.onSubmit) }>
+        onSubmit={ props.handleSubmit(props.submit) }>
             <div>
                 <Field
+                    label="Domain Name"
                     name="domainName"
-                      component={
-                        <Input
-                            label="Domain Name" />
-                    } />
+                      component={ Input } />
             </div>
            
             <Button type="submit">Submit</Button>

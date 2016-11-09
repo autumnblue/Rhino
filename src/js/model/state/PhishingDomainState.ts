@@ -1,7 +1,11 @@
 import CrudState from './CrudState';
 
-class PhishingDomainState implements CrudState {
-    id = null
+class PhishingDomainState extends CrudState {
+    constructor(context?) {
+        super(context);
+    }
+
+    id: number = null
     domainName = ''
 }
 

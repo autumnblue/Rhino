@@ -6,16 +6,18 @@ import PhishingDomainAction from '../../../../actions/phishingDomain/PhishingDom
 import PhishingDomainState from '../../../../model/state/PhishingDomainState';
 import { AppState } from '../../../../model/state/AppState';
 
-const PhishingDomainEditModalContainer = (props: Props) => 
-    <EditModalContainer
-        title="Edit Landing Page"
-        actions={ PhishingDomainAction }
+const PhishingDomainEditModalContainer = (props: Props) => {
+
+    return <EditModalContainer
+        title="Edit Phishing Domain"
+        action={ PhishingDomainAction }
         {...props}>
-            <PhishingDomainForm />
+            <PhishingDomainForm {...props.state} />
     </EditModalContainer>
+}
 
 const mapStateToProps = (state: AppState): Props => ({
-    state: state.phishingDomain.add
+    state: state.phishingDomain.edit
 })
 
 const PhishingDomainEditModal = connect(

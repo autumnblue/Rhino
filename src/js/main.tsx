@@ -15,12 +15,14 @@ import { Router, Route, browserHistory } from 'react-router';
 import { LoginPage } from './views/containers/identity/LoginPage';
 import { UserPage } from './views/containers/user/UserPage';
 import ClientPage from './views/containers/client/ClientPage';
+import EngagementRoot from './views/containers/engagement/EngagementRoot';
 import { ProfilePage } from './views/containers/identity/ProfilePage';
 import CampaignPage from './views/containers/campaign/CampaignPage';
 import SchedulePage from './views/containers/schedule/SchedulePage';
 import EmailServerPage from './views/containers/emailServer/EmailServerPage';
 import PhishingDomainPage from './views/containers/phishingDomain/PhishingDomainPage';
-import LandingPagesPage from './views/containers/landingPages/LandingPagesPage'; 
+import LandingPagesPage from './views/containers/landingPages/LandingPagesRoot'; 
+import RedirectPagesPage from './views/containers/redirectPages/RedirectPagesRoot';
 import { Dir } from './common/Constants';  
 import { permit } from './security/RenderRules';
 import { Role } from './security/Role';
@@ -45,6 +47,11 @@ ReactDom.render(
                 path={"/"} 
                 component={App}>
                 <Route path={ Dir.LOGIN } component={LoginPage} />
+                 <Route 
+                    path={ Dir.ENGAGEMENTS } 
+                    component={EngagementRoot}
+                    onEnter={ () => permit(Role.AUTHENTICATED) } 
+                    />
                 <Route 
                     path={ Dir.USERS } 
                     component={UserPage}
@@ -78,6 +85,11 @@ ReactDom.render(
                 <Route 
                     path={ Dir.LANDING_PAGES } 
                     component={LandingPagesPage}
+                    onEnter={ () => permit(Role.AUTHENTICATED) }
+                    />
+                <Route 
+                    path={ Dir.REDIRECT_PAGES } 
+                    component={RedirectPagesPage}
                     onEnter={ () => permit(Role.AUTHENTICATED) }
                     />
                 <Route 

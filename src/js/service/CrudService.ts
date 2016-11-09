@@ -28,8 +28,6 @@ export abstract class CrudService<T extends Dto> extends Service {
     }
 
     public async update(dto: T): Promise<T> {
-        console.log(dto);
-        console.log(`${this.resource}${dto.id}/`);
         return http.put<T>
             (`${this.resource}${dto.id}/`, dto);
     }
@@ -37,5 +35,9 @@ export abstract class CrudService<T extends Dto> extends Service {
     public async delete(id: number): Promise<void> {
         return http.del<void>
             (`${this.resource}${id}/`);
+    }
+
+    public async doCall(params: string): Promise<any> {
+        return http.get<any>(`${this.resource}${params}`)
     }
 }

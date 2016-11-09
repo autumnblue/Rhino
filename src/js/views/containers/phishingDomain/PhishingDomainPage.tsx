@@ -10,17 +10,18 @@ import { CrudContainer, Props } from '../crud/CrudContainer';
 import PhishingDomainAction from '../../../actions/phishingDomain/PhishingDomainAction'
 
 const PhishingDomainPageContainer = (props: Props) =>
+<div>
     <CrudContainer
-        title={ "Landing Pages" }
+        title={ "Phishing Domains" }
         action={ PhishingDomainAction }
         {...props}>
             <PhishingDomainList 
                 view={props.state.view}
                 list={props.state.list || []}/>
-
-        <PhishingDomainAddModal />
-        <PhishingDomainEditModal />
     </CrudContainer>
+        <PhishingDomainAddModal />
+    <PhishingDomainEditModal />
+    </div>
 
 const mapStateToProps = (state: AppState): Props => ({
     state: state.phishingDomain.root

@@ -9,6 +9,8 @@ export module Dir {
     export const PHISHING_DOMAIN = '/phishing-domains';
     export const SCHEDULE = '/schedules';
     export const LANDING_PAGES= '/landing-pages';
+    export const REDIRECT_PAGES= '/redirect-pages';
+    export const ENGAGEMENTS = '/engagements';
 }
 
 export module SessionStorageKey {

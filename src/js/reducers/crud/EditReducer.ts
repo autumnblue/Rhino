@@ -29,9 +29,9 @@ const reducer = <T extends CrudState>(
                     return newState;
 
                 case ActionType.CRUD_EDIT_SUCCESS:
-                    const reseted = defaultState;
-                    reseted.visible = false;
-                    return reseted;
+                    const reset = copy<T>(defaultState);
+                    reset.visible = false;
+                    return reset;
 
                 case ActionType.CRUD_INVALID_SUBMIT:
                     return action.payload;

@@ -9,9 +9,10 @@ import CrudActionCreator from '../../../actions/crud/CrudActionCreator'
 import { Service } from '../../../service/Service';
 
 export const EditModalContainer = (props: Props) => {
-    const onSubmit = ():void => {
-        props.action
-        .update(props.dispatch, props.state, props.state.context)
+    const onSubmit = (values):Promise<any> => {
+        values.id = props.state['selected']
+        return props.action
+            .update(props.dispatch, values, props.state.context);
     }
 
     const onCancel = (): void => {
@@ -32,7 +33,7 @@ export const EditModalContainer = (props: Props) => {
     return (
         <Modal 
             title={ props.title }
-            visible={ props.state.visible}>
+            visible={ props.state.visible || props.state['mode'] == 'EDIT'}>
                 <Control>
                     <ConfirmableButton 
                         value="REMOVE" 

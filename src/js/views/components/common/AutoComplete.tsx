@@ -4,10 +4,11 @@ import FieldProps from './FieldProps';
 const reduxForm = require('redux-form');
 const Field = reduxForm.Field;
 
-const field = (props: Props & FieldProps & { initValue }) =>    
-    <AutoComplete
+const field = (props: Props & FieldProps & { initValue }) => {    
+    return <AutoComplete
         hintText={ props.label }
-        dataSource={ props.data }
+        dataSource={ props.data || [] }
+        dataSourceConfig={ { text: 'label', value: 'id'} }
         filter={AutoComplete.fuzzyFilter}
         floatingLabelText={ props.label }
         maxSearchResults={ 5 } 
@@ -16,8 +17,9 @@ const field = (props: Props & FieldProps & { initValue }) =>
         onNewRequest={
             (chosen) => props.input.onChange(chosen) }
         {...props.input}
-        searchText={props.initValue}
+        searchText={props.initValue && props.initValue.label}
     />  
+}
 
 interface Props {
     label: string

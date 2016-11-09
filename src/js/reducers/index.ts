@@ -7,9 +7,11 @@ import schedule from './schedule'
 import emailServer from './emailServer'
 import phishingDomain from './phishingDomain'
 import landingPages from './landingPages'
+import redirectPages from './redirectPages'
 import * as login from './identity/Login'
 import * as profile from './identity/Profile'
 import { AppState } from '../model/state/AppState'
+import engagement from './engagement';
 const reduxForm = require('redux-form');
 
 const app = combineReducers<AppState>({
@@ -23,6 +25,8 @@ const app = combineReducers<AppState>({
     login: login.reducer,
     profile: profile.reducer,
     landingPages: landingPages,
+    redirectPages: redirectPages,
+    engagement: engagement,
     form: reduxForm.reducer
 });
 

@@ -6,7 +6,7 @@ import { ActionType } from '../../actions/ActionType';
 import { PagedDto } from '../../model/dto/PagedDto';
 import { Dto } from '../../model/dto/Dto';
 import { copy } from '../../common/Util';
-import { ViewType } from '../../model/state/page/ViewType';
+import { ViewType } from '../../model/state/page/ViewType'; 
 
 const reducer = <T extends ListState<CrudState>>(
         loadFn: (dtos: PagedDto<Dto>, state: T) => T, 
@@ -17,6 +17,9 @@ const reducer = <T extends ListState<CrudState>>(
             if(action.context !== context) return state;
 
             switch(action.type) {
+                // case ActionType.CRUD_OPEN_EDIT: //2
+                    
+
                 case ActionType.CRUD_INIT:
                     const newState = copy<T>(state);
                     newState.list = action.payload;

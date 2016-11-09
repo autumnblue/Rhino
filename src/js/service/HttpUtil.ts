@@ -58,6 +58,9 @@ export const put = async <T>(url: string, body: any, authz = true): Promise<T> =
     })
     .use(popsicle.plugins.parse('json'))
     .then(response => {
+        if(response.status >= 400)
+            return Promise.reject(response);
+
         return <T>response.body;
     });
 }
@@ -94,5 +97,56 @@ export const del = async <T>(url: string, authz = true): Promise<T> => {
     .use(popsicle.plugins.parse('json'))
     .then(response => {
         return <T>response.body; //TODO: error handling when != 204
+    });
+}
+
+export const dynamicGet = async (rsrc: string, identifier: string, authz = true): Promise<any[]> => {
+    let headers: { [name: string]: string } = {
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+    }
+    if(authz) await addAuthzHeader(headers);
+    
+    return await popsicle.request({
+        method: 'GET',
+        url: `https://sandbar-dev.rhino.lan/api/v1/${rsrc}/?exclude[]=*&include[]=${identifier}&include[]=id`,
+        headers: headers
+    })
+    .use(popsicle.plugins.parse('json'))
+    .then(response => {
+        return response.body[rsrc];
+    });
+}
+
+// export const dynamicGetX = async (url: string, authz = true): Promise<any[]> => {
+//     let headers: { [name: string]: string } = {
+//         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+//     }
+//     if(authz) await addAuthzHeader(headers);
+    
+//     return await popsicle.request({
+//         method: 'GET',
+//         url: url,
+//         headers: headers
+//     })
+//     .use(popsicle.plugins.parse('json'))
+//     .then(response => {
+//         return response.body;
+//     });
+// }
+
+export const dynamicGetX = async <T>(url, authz = true): Promise<T> => {
+    let headers: { [name: string]: string } = {
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+    }
+    if(authz) await addAuthzHeader(headers);
+    
+    return await popsicle.request({
+        method: 'GET',
+        url: url,
+        headers: headers
+    })
+    .use(popsicle.plugins.parse('json'))
+    .then(response => {
+        return response.body;
     });
 }

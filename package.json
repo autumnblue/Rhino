@@ -31,6 +31,7 @@
     "start": "php -S localhost:8000 -t dist/ local_dev/router.php"
   },
   "dependencies": {
+    "ckeditor": "^4.5.11",
     "dotenv": "^2.0.0",
     "jwt-decode": "^2.1.0",
     "moment": "^2.15.1",

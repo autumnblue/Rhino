@@ -8,10 +8,10 @@ import { AppState } from '../../../../model/state/AppState';
 
 const PhishingDomainAddModalContainer = (props: Props) => 
     <AddModalContainer
-        title="New Landing Page"
+        title="New Phishing Domain"
         action={ PhishingDomainAction }
         {...props}>
-            <PhishingDomainForm />
+            <PhishingDomainForm {...props.state} />
     </AddModalContainer>
 
 const mapStateToProps = (state: AppState): Props => ({

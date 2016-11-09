@@ -79,10 +79,12 @@ abstract class CrudActionCreator<T extends Service> {
         })
     }
 
-    public update(dispatch, state: CrudState, context?): void {
-        const dto = this.mapToDto(state);
+    public update(dispatch, state: CrudState, context?): Promise<any> {
+        const map = this.getMapper();
+        const dto = map.toDto(state)
+        dto.commit = true;
         dto.id = state.id;
-        this.getService()['update'](dto)
+        return this.getService()['update'](dto)
         .then(created => {
             dispatch({
                 type: ActionType.CRUD_EDIT_SUCCESS,
@@ -110,8 +112,6 @@ abstract class CrudActionCreator<T extends Service> {
             context
         })
     }
-
-    protected abstract mapToDto(obj: CrudState): Dto;
 
     private getService(): T {
         if(!this.service)

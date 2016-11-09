@@ -29,13 +29,13 @@ class Container extends React.Component<Props, void> {
                         selected={ this.props.state.top.selected }
                         onClick={ this.onClick }>
                             <span className="glyphicon glyphicon-edit"></span>
-                            <Item href="/">
+                            <Item href={ Dir.ENGAGEMENTS }>
                                     Engagements
                             </Item>
                             <Item href={ Dir.CAMPAIGN }>
                                     Campaigns
                             </Item>
-                            <Item href={"/clients"}>
+                            <Item href={ Dir.CLIENTS }>
                                     Clients
                             </Item>
                             <Item href={ Dir.PHISHING_DOMAIN}>
@@ -57,7 +57,7 @@ class Container extends React.Component<Props, void> {
                             <Item href={ Dir.LANDING_PAGES }>
                                     Landing Pages
                             </Item>
-                            <Item href="/">
+                            <Item href={ Dir.REDIRECT_PAGES }>
                                     Redirect Pages
                             </Item>
                     </Menu>

@@ -8,4 +8,5 @@ export interface ICampaignService extends Service {
     readSingle(id: number): Promise<CampaignDto>;
     update(dto: CampaignDto): Promise<CampaignDto>;
     delete(id: number): Promise<void>;
+    doCall(params: string): Promise<any>;
 }
