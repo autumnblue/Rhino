@@ -10,7 +10,6 @@ const input = (props: Props & FieldProps & { initValue }) => {
             props.meta.touched && props.meta.error
         }
         {...props.input}
-        value={ props.initValue }
     />
 }
 

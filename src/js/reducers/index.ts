@@ -8,6 +8,7 @@ import emailServer from './emailServer'
 import phishingDomain from './phishingDomain'
 import landingPages from './landingPages'
 import redirectPages from './redirectPages'
+import emailTemplate from './emailTemplate';
 import * as login from './identity/Login'
 import * as profile from './identity/Profile'
 import { AppState } from '../model/state/AppState'
@@ -27,6 +28,7 @@ const app = combineReducers<AppState>({
     landingPages: landingPages,
     redirectPages: redirectPages,
     engagement: engagement,
+    emailTemplate: emailTemplate,
     form: reduxForm.reducer
 });
 

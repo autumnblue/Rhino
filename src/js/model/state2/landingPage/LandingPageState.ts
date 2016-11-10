@@ -2,7 +2,7 @@ import LandingPageForm from './LandingPageForm';
 import Dependee from '../Dependee';
 import { ViewType } from '../../state/page/ViewType'; 
 
-class EngagementState {
+class CampaignState {
     forms: Array<LandingPageForm>;
 
     mode = "ROOT" //TODO enum EDIT, ADD, ROOT
@@ -15,4 +15,4 @@ class EngagementState {
     selected: number = null;
 }
 
-export default EngagementState;
+export default CampaignState;

@@ -2,7 +2,7 @@ import { UserService } from './user/UserService';
 import { MockUserService } from './user/MockUserService';
 import { ClientService } from './client/ClientService';
 import { MockClientService } from './client/MockClientService';
-import { CampaignService } from './campaign/CampaignService';
+// import { CampaignService } from './campaign/CampaignService';
 import { Service } from './Service';
 
 const isProd = (): boolean => {

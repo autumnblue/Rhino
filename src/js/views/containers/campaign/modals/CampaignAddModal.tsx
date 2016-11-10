@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { AddModalContainer, Props } from '../../crud/AddModalContainer';
 import CampaignForm from '../../../components/campaign/CampaignAdd';
-import CampaignAction from '../../../../actions/campaign/CampaignAction'
+import CampaignAction from '../../../../actions/CampaignAction'
 import CampaignState from '../../../../model/state/CampaignState';
 import { AppState } from '../../../../model/state/AppState';
 
@@ -14,8 +14,8 @@ const CampaignAddModalContainer = (props: Props) =>
             <CampaignForm {...props.state} />
     </AddModalContainer>
 
-const mapStateToProps = (state: AppState): Props => ({
-    state: state.campaign.add
+const mapStateToProps = (app: AppState): Props => ({
+    state: app.campaign
 })
 
 const CampaignAddModal = connect(

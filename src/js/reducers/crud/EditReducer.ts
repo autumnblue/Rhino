@@ -35,6 +35,11 @@ const reducer = <T extends CrudState>(
 
                 case ActionType.CRUD_INVALID_SUBMIT:
                     return action.payload;
+
+                case ActionType.CRUD_REMOVE_SUCCESS:                  
+                    const r = copy<T>(defaultState);
+                    r.visible = false;
+                    return r;
             }
             
             if(reduce) return reduce(state, action);

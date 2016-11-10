@@ -3,25 +3,29 @@ import { connect } from 'react-redux';
 import { ScheduleList } from '../../components/schedule/ScheduleList';
 import { AppState } from '../../../model/state/AppState';
 import { ListState } from '../../../model/state/page/ListState';
-import ScheduleState from '../../../model/state/ScheduleState';
-import ScheduleAddModal from './modals/ScheduleAddModal';
+import ScheduleState from '../../../model/state2/schedule/ScheduleState';
 import { CrudContainer, Props } from '../crud/CrudContainer';
-import ScheduleAction from '../../../actions/schedule/ScheduleAction'
+import ScheduleAction from '../../../actions/ScheduleAction'
+import ScheduleAddModal from './modals/ScheduleAddModal';
+import ScheduleEditModal from './modals/ScheduleEditModal';
 
-const SchedulePageContainer = (props: Props) =>
-    <CrudContainer
-        title={ "Landing Pages" }
-        action={ ScheduleAction }
-        {...props}>
-            <ScheduleList 
-                view={props.state.view}
-                list={props.state.list || []}/>
-
+const SchedulePageContainer = (props: Props2) => {
+   return  <div>
+        <CrudContainer
+            title={ "Schedules" }
+            action={ ScheduleAction }
+            {...props}>
+                <ScheduleList 
+                    view={props.state.view}
+                    data={props.state || []}/>
+        </CrudContainer>
         <ScheduleAddModal />
-    </CrudContainer>
+        <ScheduleEditModal />
+    </div>
+}
 
-const mapStateToProps = (state: AppState): Props => ({
-    state: state.schedule.root
+const mapStateToProps = (app: AppState): Props2 => ({
+    state: app.schedule
 })
 
 const SchedulePage = connect(
@@ -30,5 +34,13 @@ const SchedulePage = connect(
         dispatch: dispatch
     })
 )(SchedulePageContainer);
+
+interface Props2 {
+    dispatch?
+    state?: ScheduleState
+    title?: string
+    action?: any
+    children?: any
+}
 
 export default SchedulePage;     

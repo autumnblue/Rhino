@@ -3,9 +3,9 @@ import { Service } from '../Service';
 import { PagedDto } from '../../model/dto/PagedDto';
 
 export interface IScheduleService extends Service {
-    create(dto: ScheduleDto): Promise<ScheduleDto>;
-    read(): Promise<PagedDto<ScheduleDto>>;
-    readSingle(id: number): Promise<ScheduleDto>;
-    update(dto: ScheduleDto): Promise<ScheduleDto>;
+    create(dto: any): Promise<any>;
+    read(): Promise<any>;
+    readSingle(id: number): Promise<any>;
+    update(dto: any): Promise<any>;
     delete(id: number): Promise<void>;
 }

@@ -3,9 +3,9 @@ import { Service } from '../Service';
 import { PagedDto } from '../../model/dto/PagedDto';
 
 export interface IEmailServerService extends Service {
-    create(dto: EmailServerDto): Promise<EmailServerDto>;
-    read(): Promise<PagedDto<EmailServerDto>>;
-    readSingle(id: number): Promise<EmailServerDto>;
-    update(dto: EmailServerDto): Promise<EmailServerDto>;
+    create(dto: any): Promise<any>;
+    read(): Promise<any>;
+    readSingle(id: number): Promise<any>;
+    update(dto: any): Promise<any>;
     delete(id: number): Promise<void>;
 }

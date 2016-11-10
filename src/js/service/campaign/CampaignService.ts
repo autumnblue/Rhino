@@ -5,25 +5,31 @@ import { PagedDto } from '../../model/dto/PagedDto';
 import * as factory from '../ServiceFactory';
 import { ServiceType } from '../ServiceFactory';
 import * as http from '../HttpUtil';
+import CampaignXDto from '../../model/dto2/campaign/CampaignXDto';
 
-export class CampaignService extends CrudService<CampaignDto> implements ICampaignService {
+class CampaignService extends CrudService<CampaignDto> implements ICampaignService {
     constructor() {
         super('campaigns');
     }
 
-    public async read(): Promise<any> {
-        return http.get<PagedDto<CampaignDto>>
-            (this.resource)
-        .then(dtos => {
-             return http.dynamicGet('clients', 'name')
-             .then(results => {  
-                return (<any[]>dtos['campaigns']).map(campaign => {
-                    const id = campaign.client;
-                    campaign.client = results.filter(result => result['id'] == id)[0];
-                    return campaign;
-                })
-             });
-        });
+    // public async read(): Promise<any> {
+    //     return http.get<PagedDto<CampaignDto>>
+    //         (this.resource)
+    //     .then(dtos => {
+    //          return http.dynamicGet('clients', 'name')
+    //          .then(results => {  
+    //             return (<any[]>dtos['campaigns']).map(campaign => {
+    //                 const id = campaign.client;
+    //                 campaign.client = results.filter(result => result['id'] == id)[0];
+    //                 return campaign;
+    //             })
+    //          });
+    //     });
+    // }
+
+    public async read(): Promise<CampaignXDto> {
+        const url = 'https://sandbar-dev.rhino.lan/api/v1/campaigns/?include[]=client.*';
+        return http.dynamicGetX<CampaignXDto>(url);
     }
 
     public async readSingle(id: number): Promise<any> {
@@ -68,4 +74,5 @@ const needs = (resource: string, identifier: string): Dependee => {
     return { resource: resource, identifier: identifier }
 }
 
+export default CampaignService;
 //clients, names to be put in pla

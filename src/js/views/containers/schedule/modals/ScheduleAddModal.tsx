@@ -2,20 +2,19 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { AddModalContainer, Props } from '../../crud/AddModalContainer';
 import ScheduleForm from '../../../components/schedule/ScheduleAdd';
-import ScheduleAction from '../../../../actions/schedule/ScheduleAction'
-import ScheduleState from '../../../../model/state/ScheduleState';
+import ScheduleAction from '../../../../actions/ScheduleAction'
 import { AppState } from '../../../../model/state/AppState';
 
 const ScheduleAddModalContainer = (props: Props) => 
     <AddModalContainer
-        title="New Landing Page"
+        title="New Schedule"
         action={ ScheduleAction }
         {...props}>
-            <ScheduleForm />
+            <ScheduleForm {...props.state} />
     </AddModalContainer>
 
-const mapStateToProps = (state: AppState): Props => ({
-    state: state.schedule.add
+const mapStateToProps = (app: AppState): Props => ({
+    state: app.schedule
 })
 
 const ScheduleAddModal = connect(

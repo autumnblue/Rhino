@@ -39,6 +39,24 @@ class EngagementActionCreator {
         })
     }
 
+    public openAdd(dispatch, context?): void {
+        dispatch({
+            type: ActionType.CRUD_OPEN_ADD,
+            context
+        });
+    }
+
+    public remove(dispatch, id: number, context?) {
+        new EngagementService().delete(id)
+        .then(removed => 
+            dispatch({
+                type: ActionType.CRUD_REMOVE_SUCCESS,
+                payload: id,
+                context
+            })
+        );
+    }
+
     public toggleView(dispatch, context?) {
         dispatch({
             type: ActionType.CRUD_TOGGLE_VIEW,

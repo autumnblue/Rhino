@@ -66,7 +66,7 @@ class Container extends React.Component<Props, void> {
                         selected={ this.props.state.email.selected }
                         onClick={ this.onEmailClick }>
                             <span className="glyphicon glyphicon-envelope"></span>
-                            <Item href="/">
+                            <Item href={ Dir.EMAIL_TEMPLATES }>
                                     Email Templates
                             </Item>
                             <Item href="/">

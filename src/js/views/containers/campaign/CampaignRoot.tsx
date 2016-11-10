@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 import { CampaignList } from '../../components/campaign/CampaignList';
 import { AppState } from '../../../model/state/AppState';
 import { ListState } from '../../../model/state/page/ListState';
-import CampaignState from '../../../model/state/CampaignState';
+import CampaignState from '../../../model/state2/campaign/CampaignState';
 import { CrudContainer, Props } from '../crud/CrudContainer';
-import CampaignAction from '../../../actions/campaign/CampaignAction'
+import CampaignAction from '../../../actions/CampaignAction'
 import CampaignAddModal from './modals/CampaignAddModal';
 import CampaignEditModal from './modals/CampaignEditModal';
 
-const CampaignPageContainer = (props: Props) => {
+const CampaignPageContainer = (props: Props2) => {
    return  <div>
         <CrudContainer
             title={ "Campaigns" }
@@ -17,15 +17,15 @@ const CampaignPageContainer = (props: Props) => {
             {...props}>
                 <CampaignList 
                     view={props.state.view}
-                    list={props.state.list || []}/>
+                    data={props.state || []}/>
         </CrudContainer>
         <CampaignAddModal />
         <CampaignEditModal />
     </div>
 }
 
-const mapStateToProps = (state: AppState): Props => ({
-    state: state.campaign.root
+const mapStateToProps = (app: AppState): Props2 => ({
+    state: app.campaign
 })
 
 const CampaignPage = connect(
@@ -34,5 +34,13 @@ const CampaignPage = connect(
         dispatch: dispatch
     })
 )(CampaignPageContainer);
+
+interface Props2 {
+    dispatch?
+    state?: CampaignState
+    title?: string
+    action?: any
+    children?: any
+}
 
 export default CampaignPage;     

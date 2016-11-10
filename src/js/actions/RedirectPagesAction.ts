@@ -27,6 +27,24 @@ class RedirectPageActionCreator {
         });
     }
 
+    public remove(dispatch, id: number, context?) {
+        new RedirectPagesService().delete(id)
+        .then(removed => 
+            dispatch({
+                type: ActionType.CRUD_REMOVE_SUCCESS,
+                payload: id,
+                context
+            })
+        );
+    }
+
+    public openAdd(dispatch, context?): void {
+        dispatch({
+            type: ActionType.CRUD_OPEN_ADD,
+            context
+        });
+    }
+
     public update(dispatch, values: RedirectPageForm, context?): Promise<any> {
         const dto = RedirectPageMapper.toDto(values)
         dto['commit'] = true;

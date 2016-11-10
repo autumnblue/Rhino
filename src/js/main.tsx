@@ -16,8 +16,9 @@ import { LoginPage } from './views/containers/identity/LoginPage';
 import { UserPage } from './views/containers/user/UserPage';
 import ClientPage from './views/containers/client/ClientPage';
 import EngagementRoot from './views/containers/engagement/EngagementRoot';
+import EmailTemplateRoot from './views/containers/emailTemplate/EmailTemplateRoot';
 import { ProfilePage } from './views/containers/identity/ProfilePage';
-import CampaignPage from './views/containers/campaign/CampaignPage';
+import CampaignPage from './views/containers/campaign/CampaignRoot';
 import SchedulePage from './views/containers/schedule/SchedulePage';
 import EmailServerPage from './views/containers/emailServer/EmailServerPage';
 import PhishingDomainPage from './views/containers/phishingDomain/PhishingDomainPage';
@@ -47,6 +48,11 @@ ReactDom.render(
                 path={"/"} 
                 component={App}>
                 <Route path={ Dir.LOGIN } component={LoginPage} />
+                <Route 
+                    path={ Dir.EMAIL_TEMPLATES } 
+                    component={EmailTemplateRoot}
+                    onEnter={ () => permit(Role.AUTHENTICATED) } 
+                    />
                  <Route 
                     path={ Dir.ENGAGEMENTS } 
                     component={EngagementRoot}

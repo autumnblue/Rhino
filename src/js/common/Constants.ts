@@ -11,6 +11,7 @@ export module Dir {
     export const LANDING_PAGES= '/landing-pages';
     export const REDIRECT_PAGES= '/redirect-pages';
     export const ENGAGEMENTS = '/engagements';
+    export const EMAIL_TEMPLATES = '/email-templates';
 }
 
 export module SessionStorageKey {

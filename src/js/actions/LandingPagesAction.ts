@@ -45,6 +45,24 @@ class LandingPageActionCreator {
         });
     }
 
+    public remove(dispatch, id: number, context?) {
+        new LandingPageService().delete(id)
+        .then(removed => 
+            dispatch({
+                type: ActionType.CRUD_REMOVE_SUCCESS,
+                payload: id,
+                context
+            })
+        );
+    }
+
+    public openAdd(dispatch, context?): void {
+        dispatch({
+            type: ActionType.CRUD_OPEN_ADD,
+            context
+        });
+    }
+
     public cancel(dispatch, context?) {
         dispatch({
             type: ActionType.CRUD_CANCEL,

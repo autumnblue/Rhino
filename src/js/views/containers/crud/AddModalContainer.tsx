@@ -9,6 +9,7 @@ import { Service } from '../../../service/Service';
 
 export const AddModalContainer = (props: Props) => {
     const onSubmit = (values):Promise<any> => {
+        values.id = props.state['selected']
         return props.action
             .create(props.dispatch, values, props.state.context);
     }
@@ -25,7 +26,7 @@ export const AddModalContainer = (props: Props) => {
 
     return <Modal 
         title={ props.title }
-        visible={ props.state.visible}>
+        visible={ props.state.visible || props.state['mode'] == 'ADD'}>
             <Control>
                 <button onClick={onCancel}>
                     <span className="glyphicon glyphicon-share-alt"></span>

@@ -22,7 +22,7 @@ export const EditModalContainer = (props: Props) => {
 
     const onRemove = (): void => {
         props.action
-            .remove(props.dispatch, props.state.id, props.state.context);
+            .remove(props.dispatch, props.state['selected'], props.state.context);
     }
 
     const children = React.Children.map(props.children, child => {

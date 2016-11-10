@@ -1,5 +1,5 @@
 interface EmailServerDto {
-    "use_tls": true,
+    "use_tls": boolean,
     "host": string,
     "login": string,
     "test_recipient": string,

@@ -35,6 +35,9 @@ const reducer = <T extends ListState<CrudState>>(
                     state.list.push(action.payload);
                     return copy<T>(state);
 
+                case ActionType.CRUD_REMOVE_SUCCESS:
+                    
+
                 default: return state;
             }
         }

@@ -47,6 +47,10 @@ export const reducer: Reducer<State> = (state = nstate, action: Action): State =
             state.mode = 'ROOT'
             return copy<State>(state);
 
+        case ActionType.CRUD_REMOVE_SUCCESS:
+            state.mode = 'ROOT'
+            state.forms = state.forms.filter(form => form.id !== action.payload)
+            return copy<State>(state);
         //case ActionType.CRUD_INVALID_SUBMIT:
                 
         default: return state;
