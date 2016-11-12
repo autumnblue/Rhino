@@ -53,8 +53,9 @@ let Form = reduxForm.reduxForm({
 
             <div>
             
-            <Field name="startSend" defaultSelected={props.startSendValue} component={startSend =>
-                <RadioButtonGroup {...startSend}>
+            <Field name="startSend" defaultSelected={props.startSendValue} component={startSend => {
+                console.log(startSend);
+                return <RadioButtonGroup {...startSend}>
                     <RadioButton
                         value="now"
                         label="Now"
@@ -68,6 +69,7 @@ let Form = reduxForm.reduxForm({
                         label="Specific Time"
                     />
                 </RadioButtonGroup>
+            }
             }/>
             
             </div>

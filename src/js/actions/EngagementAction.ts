@@ -32,11 +32,26 @@ class EngagementActionCreator {
         dto['commit'] = true;
         return new EngagementService().update(dto)
         .then(updated => {
-            console.log('********')
-            console.log(updated);
-            console.log('********')
+            dispatch({
+                type: ActionType.CRUD_EDIT_SUCCESS,
+                payload: null,
+                context
+            })
 
         })
+    }
+
+     public create(dispatch, values: EngagementForm, context?): Promise<any> {
+        const dto = EngagementMapper.toDto(values);
+        dto['commit'] = true;
+        return new EngagementService().create(dto)
+        .then(created => {
+            dispatch({
+                type: ActionType.CRUD_ADD_SUCCESS,
+                payload: null,
+                context
+            })
+        });
     }
 
     public openAdd(dispatch, context?): void {

@@ -10,6 +10,8 @@ type State = LandingPageState;
 const nstate = new LandingPageState();
 
 export const reducer: Reducer<State> = (state = nstate, action: Action): State => {
+    if(state.context != 'landingPage') return state;
+
     switch(action.type) {
         case ActionType.CRUD_INIT:
             return copy<State>(action.payload);

@@ -10,6 +10,7 @@ class LandingPageForm {
     scraperUserAgent: Dependee
     dateCreated: string
     id: number
+    source: string
 }
 
 export default LandingPageForm;

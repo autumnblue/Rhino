@@ -32,9 +32,11 @@ class LandingPageActionCreator {
         dto['commit'] = true;
         return new LandingPageService().update(dto)
         .then(updated => {
-            console.log('********')
-            console.log(updated);
-            console.log('********')
+            dispatch({
+                type: ActionType.CRUD_EDIT_SUCCESS,
+                payload: null,
+                context
+            })
         })
     }
 
@@ -60,6 +62,19 @@ class LandingPageActionCreator {
         dispatch({
             type: ActionType.CRUD_OPEN_ADD,
             context
+        });
+    }
+
+     public create(dispatch, values: LandingPageForm, context?): Promise<any> {
+        const dto = LandingPageMapper.toDto(values);
+        dto['commit'] = true;
+        return new LandingPageService().create(dto)
+        .then(created => {
+            dispatch({
+                type: ActionType.CRUD_ADD_SUCCESS,
+                payload: null,
+                context
+            })
         });
     }
 

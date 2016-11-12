@@ -10,6 +10,7 @@ class EmailTemplateState {
     dependencies: { }
 
     selected: number = null;
+    context: string = 'emailTemplate';
 }
 
 export default EmailTemplateState;

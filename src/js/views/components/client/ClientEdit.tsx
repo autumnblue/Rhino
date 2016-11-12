@@ -30,6 +30,7 @@ export default reduxForm.reduxForm({
                     label="URL"
                     component={ Input } />
             </div>
+            
             <div>
                 <Field
                     initValue={ props.timezone }

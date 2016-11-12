@@ -47,9 +47,11 @@ class EmailServerActionCreator {
         dto['commit'] = true;
         return new EmailServerService().update(dto)
         .then(updated => {
-            console.log('********')
-            console.log(updated);
-            console.log('********')
+            dispatch({
+                type: ActionType.CRUD_EDIT_SUCCESS,
+                payload: null,
+                context
+            })
         })
     }
 
@@ -72,18 +74,11 @@ class EmailServerActionCreator {
         dto['commit'] = true;
         return new EmailServerService().create(dto)
         .then(created => {
-            console.log('********')
-            console.log(created);
-            console.log('********')
-
-            // dispatch({
-            //     type: ActionType.CRUD_ADD_SUCCESS,
-            //     payload: state,
-            //     context
-            // })
-        })
-        .catch(response => {
-            // return handleErr(response, map);
+            dispatch({
+                type: ActionType.CRUD_ADD_SUCCESS,
+                payload: null,
+                context
+            })
         })
     }
 }

@@ -39,7 +39,7 @@ export default reduxForm.reduxForm({
             </div>
             <div className="text-area">
                 <Field
-                    initValue={ null }
+                    data={ form.template }
                     name="template"
                     label="Template"
                     component={ TextEditor } />
@@ -48,3 +48,4 @@ export default reduxForm.reduxForm({
     </form>
 }
 );
+

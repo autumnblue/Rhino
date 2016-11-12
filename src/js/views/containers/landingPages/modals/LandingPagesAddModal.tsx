@@ -6,13 +6,14 @@ import LandingPagesAction from '../../../../actions/LandingPagesAction'
 import LandingPagesState from '../../../../model/state/LandingPagesState';
 import { AppState } from '../../../../model/state/AppState';
 
-const LandingPagesAddModalContainer = (props: Props) => 
-    <AddModalContainer
+const LandingPagesAddModalContainer = (props: Props) => {
+    return <AddModalContainer
         title="New Landing Page"
         action={ LandingPagesAction }
         {...props}>
-            <LandingPagesForm />
+            <LandingPagesForm {...props.state} />
     </AddModalContainer>
+}
 
 const mapStateToProps = (app: AppState): Props => ({
     state: app.landingPages

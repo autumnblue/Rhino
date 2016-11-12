@@ -13,6 +13,7 @@ class RedirectPageState {
     }
 
     selected: number = null;
+    context: string = 'redirectPage';
 }
 
 export default RedirectPageState;

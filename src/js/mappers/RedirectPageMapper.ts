@@ -23,6 +23,7 @@ class RedirectPageMapperStatic {
                 scraperUserAgent: scraperUserAgent && { id: scraperUserAgent.id, label: scraperUserAgent.name },
                 dateCreated:page.date_created,
                 id: page.id,
+                source: page.source
         }});
 
         state.dependencies = {
@@ -47,7 +48,8 @@ class RedirectPageMapperStatic {
             "path": form.path,
             "scraper_user_agent": form.scraperUserAgent && form.scraperUserAgent.id,
             "date_created": form.dateCreated,
-            "id": form.id
+            "id": form.id,
+            source: form.source
         }
     }
 }

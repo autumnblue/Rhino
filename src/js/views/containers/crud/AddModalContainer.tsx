@@ -1,3 +1,5 @@
+declare const CKEDITOR: any;
+
 import * as React from 'react';
 import * as react_redux from 'react-redux';
 import { Modal } from '../../components/common/Modal';
@@ -9,6 +11,10 @@ import { Service } from '../../../service/Service';
 
 export const AddModalContainer = (props: Props) => {
     const onSubmit = (values):Promise<any> => {
+        const data = CKEDITOR.instances.editor1 && CKEDITOR.instances.editor1.getData();
+
+        if(data) values.source = data;
+
         values.id = props.state['selected']
         return props.action
             .create(props.dispatch, values, props.state.context);
@@ -26,7 +32,7 @@ export const AddModalContainer = (props: Props) => {
 
     return <Modal 
         title={ props.title }
-        visible={ props.state.visible || props.state['mode'] == 'ADD'}>
+        visible={ (props.state.visible && props.state.visible != undefined && props.state.visible != null) || props.state['mode'] == 'ADD'}>
             <Control>
                 <button onClick={onCancel}>
                     <span className="glyphicon glyphicon-share-alt"></span>

@@ -8,14 +8,14 @@ import { ValidatableInput } from '../../common/validation/ValidatableInput';
 
 const loadSingleUser = (dto: UserDto): UserEditState => {
     let state: UserEditState = { isValid: false };
-    state.id = dto.id;
+    state.id = dto['user'].id;
     state.visible = true;
     
     state.input = {
-        username: new ValidatableInput(dto.username),
-        email: new ValidatableInput(dto.email),
-        firstName: new ValidatableInput(dto.first_name),
-        lastName: new ValidatableInput(dto.last_name)
+        username: new ValidatableInput(dto['user'].username),
+        email: new ValidatableInput(dto['user'].email),
+        firstName: new ValidatableInput(dto['user'].first_name),
+        lastName: new ValidatableInput(dto['user'].last_name)
     }
 
     return state;

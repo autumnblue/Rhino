@@ -27,6 +27,19 @@ class RedirectPageActionCreator {
         });
     }
 
+     public create(dispatch, values: RedirectPageForm, context?): Promise<any> {
+        const dto = RedirectPageMapper.toDto(values);
+        dto['commit'] = true;
+        return new RedirectPagesService().create(dto)
+        .then(created => {
+            dispatch({
+                type: ActionType.CRUD_ADD_SUCCESS,
+                payload: null,
+                context
+            })
+        });
+    }
+
     public remove(dispatch, id: number, context?) {
         new RedirectPagesService().delete(id)
         .then(removed => 
@@ -50,7 +63,11 @@ class RedirectPageActionCreator {
         dto['commit'] = true;
         return new RedirectPagesService().update(dto)
         .then(updated => {
-
+            dispatch({
+                type: ActionType.CRUD_EDIT_SUCCESS,
+                payload: null,
+                context
+            })
         })
     }
 

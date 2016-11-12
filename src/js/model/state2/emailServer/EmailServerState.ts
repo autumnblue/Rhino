@@ -10,7 +10,7 @@ class EmailServerState {
     dependencies: { }
 
     selected: number = null;
-
+    context: string = 'emailServer';
 }
 
 export default EmailServerState;

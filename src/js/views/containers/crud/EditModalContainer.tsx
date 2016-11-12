@@ -1,3 +1,5 @@
+declare const CKEDITOR: any;
+
 import * as React from 'react';
 import * as react_redux from 'react-redux';
 import { Modal } from '../../components/common/Modal';
@@ -10,6 +12,10 @@ import { Service } from '../../../service/Service';
 
 export const EditModalContainer = (props: Props) => {
     const onSubmit = (values):Promise<any> => {
+        const data = CKEDITOR.instances.editor1 && CKEDITOR.instances.editor1.getData();
+
+        if(data) values.source = data;
+
         values.id = props.state['selected']
         return props.action
             .update(props.dispatch, values, props.state.context);
@@ -22,7 +28,7 @@ export const EditModalContainer = (props: Props) => {
 
     const onRemove = (): void => {
         props.action
-            .remove(props.dispatch, props.state['selected'], props.state.context);
+            .remove(props.dispatch, props.state.id || props.state['selected'], props.state.context);
     }
 
     const children = React.Children.map(props.children, child => {

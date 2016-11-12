@@ -10,6 +10,8 @@ type State = EmailServerState;
 const nstate = new EmailServerState();
 
 export const reducer: Reducer<State> = (state = nstate, action: Action): State => {
+    if(state.context != 'emailServer') return state;
+
     switch(action.type) {
         case ActionType.CRUD_INIT:
             return copy<State>(action.payload);

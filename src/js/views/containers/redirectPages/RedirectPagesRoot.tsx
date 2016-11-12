@@ -4,7 +4,7 @@ import { RedirectPagesList } from '../../components/redirectPages/RedirectPagesL
 import { AppState } from '../../../model/state/AppState';
 import { ListState } from '../../../model/state/page/ListState';
 import RedirectPageState from '../../../model/state2/redirectPage/RedirectPageState';
-// import RedirectPagesAddModal from './modals/RedirectPagesAddModal';
+import RedirectPagesAddModal from './modals/RedirectPagesAddModal';
 import RedirectPagesEditModal from './modals/RedirectPagesEditModal';
 import { CrudContainer, Props } from '../crud/CrudContainer';
 import RedirectPagesAction from '../../../actions/RedirectPagesAction'
@@ -21,6 +21,7 @@ return <div>
 
     </CrudContainer>
     <RedirectPagesEditModal />
+    <RedirectPagesAddModal />
     </ div>
 }
 

@@ -10,6 +10,8 @@ type State = RedirectPageState;
 const nstate = new RedirectPageState();
 
 export const reducer: Reducer<State> = (state = nstate, action: Action): State => {
+    if(state.context != 'redirectPage') return state;
+
     switch(action.type) {
         case ActionType.CRUD_INIT:
             return copy<State>(action.payload);

@@ -20,6 +20,7 @@ return <div>
                 data={props.state || []}/>
 
     </CrudContainer>
+    <LandingPagesAddModal />
     <LandingPagesEditModal />
     </ div>
 }

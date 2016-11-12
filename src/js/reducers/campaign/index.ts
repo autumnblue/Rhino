@@ -10,6 +10,8 @@ type State = CampaignState;
 const nstate = new CampaignState();
 
 export const reducer: Reducer<State> = (state = nstate, action: Action): State => {
+    if(state.context != 'campaign') return state;
+
     switch(action.type) {
         case ActionType.CRUD_INIT:
             return copy<State>(action.payload);
@@ -49,7 +51,7 @@ export const reducer: Reducer<State> = (state = nstate, action: Action): State =
 
         case ActionType.CRUD_REMOVE_SUCCESS:
             state.mode = 'ROOT'
-            state.forms = state.forms.filter(form => form.id !== action.payload)
+            state.forms = state.forms && state.forms.filter(form => form.id !== action.payload)
             return copy<State>(state);
 
         //case ActionType.CRUD_INVALID_SUBMIT:

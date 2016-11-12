@@ -15,14 +15,14 @@ import Input from '../common/Input';
 import Button from '../common/Button';
 
 let Form = reduxForm.reduxForm({
-    form: 'LandingPagesEdit',
+    form: 'LandingPagesAdd',
     validate,
     warn
 })(
-(props: FormProps & LandingPageState & { pageTypeValue: 'URL' | 'Manual' | 'Scraped Page'} ) => {
+(props: FormProps & LandingPageState & { pageTypeValue: 'url' | 'manual' | 'page'} ) => {
 
     const form = props.forms.filter(form => form.id)[0];
-    const isScrapedPage = props.pageTypeValue && props.pageTypeValue == 'Scraped Page';
+    const isScrapedPage = props.pageTypeValue && props.pageTypeValue == 'page';
 
     return <form 
         onSubmit={ props.handleSubmit(props.submit) }>
@@ -32,9 +32,9 @@ let Form = reduxForm.reduxForm({
                 name="pageType"
                 label="Type"
                 component={ Select }>
-                    <MenuItem value={'Manual'} primaryText="Manual" />
-                    <MenuItem value={'Scraped Page'} primaryText="Scraped Page" />
-                    { form.isRedirectPage &&  <MenuItem value={'Scraped Page'} primaryText="Scraped Page" /> }
+                    <MenuItem value={'manual'} primaryText="Manual" />
+                    <MenuItem value={'page'} primaryText="Scraped Page" />
+                    { form.isRedirectPage && <MenuItem value={'url'} primaryText="URL" /> }
             </Field>
             </div>
             
@@ -70,7 +70,7 @@ let Form = reduxForm.reduxForm({
             &&
             <div className="text-area">
                 <Field
-                    initValue={ null }
+                    data={ form.source }
                     name="time"
                     label="Template"
                     component={ TextEditor } />
@@ -81,7 +81,7 @@ let Form = reduxForm.reduxForm({
 }
 );
 
-const selector = reduxForm.formValueSelector('LandingPagesEdit')
+const selector = reduxForm.formValueSelector('LandingPagesAdd')
 
 //http://redux-form.com/6.0.0-alpha.11/examples/selectingFormValues/
 Form = connect(

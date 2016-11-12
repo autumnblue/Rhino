@@ -39,9 +39,11 @@ class CampaignActionCreator {
         dto['commit'] = true;
         return new CampaignService().update(<any>dto)
         .then(updated => {
-            console.log('********')
-            console.log(updated);
-            console.log('********')
+            dispatch({
+                type: ActionType.CRUD_EDIT_SUCCESS,
+                payload: null,
+                context
+            })
         })
     }
 
@@ -75,19 +77,12 @@ class CampaignActionCreator {
         dto['commit'] = true;
         return new CampaignService().create(<any>dto)
         .then(created => {
-            console.log('********')
-            console.log(created);
-            console.log('********')
-
-            // dispatch({
-            //     type: ActionType.CRUD_ADD_SUCCESS,
-            //     payload: state,
-            //     context
-            // })
-        })
-        .catch(response => {
-            // return handleErr(response, map);
-        })
+            dispatch({
+                type: ActionType.CRUD_ADD_SUCCESS,
+                payload: null,
+                context
+            })
+        });
     }
 }
 

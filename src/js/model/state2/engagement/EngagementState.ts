@@ -19,6 +19,7 @@ class EngagementState {
     }
 
     selected: number = null;
+    context: string = 'engagement';
 }
 
 export default EngagementState;

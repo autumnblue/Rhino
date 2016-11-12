@@ -10,6 +10,8 @@ type State = EmailTemplateState;
 const nstate = new EmailTemplateState();
 
 export const reducer: Reducer<State> = (state = nstate, action: Action): State => {
+    if(state.context != 'emailTemplate') return state;
+
     switch(action.type) {
         case ActionType.CRUD_INIT:
             return copy<State>(action.payload);

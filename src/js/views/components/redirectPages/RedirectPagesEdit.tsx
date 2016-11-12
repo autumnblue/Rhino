@@ -70,7 +70,7 @@ let Form = reduxForm.reduxForm({
             &&
             <div className="text-area">
                 <Field
-                    initValue={ null }
+                    initValue={ form.source }
                     name="time"
                     label="Template"
                     component={ TextEditor } />

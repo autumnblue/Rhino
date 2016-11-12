@@ -7,7 +7,8 @@ interface LandingPageDto {
     "path": string,
     "scraper_user_agent": number,
     "date_created": string,
-    "id": number
+    "id": number,
+    source: string
 }
 
 export default LandingPageDto;

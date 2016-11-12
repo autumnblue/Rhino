@@ -13,6 +13,7 @@ class CampaignState {
     }
 
     selected: number = null;
+    context: string = 'landingPage';
 }
 
 export default CampaignState;

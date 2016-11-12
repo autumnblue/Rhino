@@ -10,6 +10,7 @@ class ScheduleState {
     dependencies: { }
 
     selected: number = null;
+    context: string = 'schedule';
 
     //startSend: 'now' | 'after_amount' | 'specific_time'  
 }

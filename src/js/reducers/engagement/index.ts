@@ -10,6 +10,8 @@ type State = EngagementState;
 const nstate = new EngagementState();
 
 export const reducer: Reducer<State> = (state = nstate, action: Action): State => {
+    if(state.context != 'engagement') return state;
+
     switch(action.type) {
         case ActionType.CRUD_INIT:
             return copy<State>(action.payload);

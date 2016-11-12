@@ -5,6 +5,13 @@ import { ProfileState } from '../../../model/state/ProfileState';
 import { ProfileAction } from '../../../actions/identity/ProfileAction';
 import { InputMessageWrapper } from '../../../views/components/common/message/InputMessageWrapper';
 import { Panel } from '../../../views/components/common/Panel';
+const moment = require('moment-timezone'); 
+const timezones = moment.tz.names();
+const reduxForm = require('redux-form');
+const Field = reduxForm.Field;
+import AutoComplete from 'material-ui/AutoComplete';
+//import FieldProps from './FieldProps';
+//const reduxForm = require('redux-form');
 
 class Component extends React.Component<Props, void> {
     private dispatch;
@@ -41,6 +48,19 @@ class Component extends React.Component<Props, void> {
                             value={this.props.state.input.confirm.value}
                             onChange={this.onConfirmInputChange} />
                     </InputMessageWrapper>
+
+                    <hr />
+
+                    <div>
+                        <AutoComplete
+                            hintText="Default Timezone"
+                            dataSource={ timezones || [] }
+                            dataSourceConfig={ { text: 'label', value: 'id'} }
+                            filter={AutoComplete.fuzzyFilter}
+                            floatingLabelText="Default Timezone"
+                            maxSearchResults={ 5 }
+                        />
+                    </div>  
 
                     <button
                         type="button"
