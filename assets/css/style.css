@@ -56,7 +56,7 @@ body {
     margin: 0;
 }
 
-#modal-context {
+#modal-context button {
     margin-top: 20px;
     vertical-align: top;
     display:inline-block;
@@ -458,3 +458,68 @@ body {
 
 /*https://dribbble.com/shots/1270032-SJQHUB-B-I-Dashboard/attachments/174562*/
 /*https://dribbble.com/shots/1423171-Some-Analytics*/
+
+.dialog-body {
+    position: relative;
+}
+
+ul.dialog-context {
+    position: absolute;
+    right: -130px;
+    top: 0px;
+    list-style-type: none;
+}
+
+.dialog-context button {
+    background-color: white;
+    border: none;
+    color: #f55e55;
+    border-radius: 20px;
+    font-size: 20px;
+    padding: 8px 15px 8px 15px;
+    margin-bottom: 6px;
+    width: 120px;
+    outline: none;
+}
+
+/*proxy form submit 'button''*/
+.dialog-context label {
+    background-color: white;
+    border: none;
+    color: #f55e55;
+    border-radius: 20px;
+    font-size: 20px;
+    padding: 8px 15px 8px 15px;
+    margin-bottom: 6px;
+    width: 120px;
+    cursor: pointer;
+    font-weight: normal;
+    text-align: center;
+}
+
+.dialog-context .btn-confirm-prompt span {
+    display: inline-block;
+    background-color: #f55e55;
+    color: white;
+    font-size: 20px;
+    padding: 8px 15px 8px 15px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.dialog-context .btn-confirm-prompt button {
+    border-radius: 0px;
+    width: 60px;
+    border: 0px;
+}
+
+.dialog-context .btn-confirm-prompt button:first-child {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    width: 70px;
+    border-right: 1px solid #f55e55; 
+}
+
+.dialog-context button:hover, .dialog-context label:hover {
+    background-color: #E9E9F1
+}

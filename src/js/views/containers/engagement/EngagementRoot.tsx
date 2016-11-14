@@ -26,18 +26,18 @@ const EngagementRootContainer = (props: Props2) => {
 }
 
 
-const mapStateToProps = (app: AppState): Props2 => ({
-    state: app.engagement
-})
+// const mapStateToProps = (app: AppState): Props2 => ({
+//     state: app.engagement
+// })
 
 const EngagementRoot = connect(
-    mapStateToProps, 
+    null, 
     (dispatch): Props => ({
         dispatch: dispatch
     })
 )(EngagementRootContainer);
 
-export default EngagementRoot;     
+export default EngagementRootContainer;     
 
 interface Props2 {
     dispatch?

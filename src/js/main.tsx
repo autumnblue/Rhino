@@ -15,7 +15,7 @@ import { Router, Route, browserHistory } from 'react-router';
 import { LoginPage } from './views/containers/identity/LoginPage';
 import { UserPage } from './views/containers/user/UserPage';
 import ClientPage from './views/containers/client/ClientPage';
-import EngagementRoot from './views/containers/engagement/EngagementRoot';
+import EngagementRoot from './views/engagement/EngagementRoot';
 import EmailTemplateRoot from './views/containers/emailTemplate/EmailTemplateRoot';
 import { ProfilePage } from './views/containers/identity/ProfilePage';
 import CampaignPage from './views/containers/campaign/CampaignRoot';
@@ -29,7 +29,12 @@ import { permit } from './security/RenderRules';
 import { Role } from './security/Role';
 import { Identity } from './security/Identity';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+// import { darkBaseTheme } from 'material-ui/styles/MuiTheme';
+const darkBaseTheme = require('material-ui/styles/baseThemes/darkBaseTheme').default;
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
+console.log(JSON.stringify(darkBaseTheme, null, 2));
+darkBaseTheme.fontFamily = 'rajdhani';
 
 permit(Role.AUTHENTICATED);
 
@@ -41,7 +46,7 @@ Identity.heartBeat();
 const store = createStore(reducers);
 
 ReactDom.render(
-    <MuiThemeProvider>
+    <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
     <Provider store={store}>
         <Router history={ browserHistory }>
             <Route 

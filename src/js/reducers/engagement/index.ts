@@ -1,63 +1,75 @@
-import { Reducer } from 'redux';
+import reduce from '../common';
+import EngagementState from '../../model/stateZ/engagement/EngagementState'
+import EngagementRecord from '../../model/stateZ/engagement/EngagementRecord'
 import { Action } from '../../actions/Action';
 import { ActionType } from '../../actions/ActionType';
-import EngagementState from '../../model/state2/engagement/EngagementState';
 import { copy } from '../../common/Util';
-import { ViewType } from '../../model/state/page/ViewType'; 
 
-type State = EngagementState;
-
-const nstate = new EngagementState();
-
-export const reducer: Reducer<State> = (state = nstate, action: Action): State => {
-    if(state.context != 'engagement') return state;
-
+export default reduce(new EngagementState(), new EngagementRecord(), (state: EngagementState, action: Action) => {
     switch(action.type) {
-        case ActionType.CRUD_INIT:
-            return copy<State>(action.payload);
+        case ActionType.CAMPAIGN_SUGGESTIONS_POPULATED:
+            state.selectedRecord.campaign.loading = false;
+            state.selectedRecord.campaign.suggestions = action.payload;
+            return copy<EngagementState>(state);
 
-        case ActionType.CRUD_TOGGLE_VIEW:
-            state.view = state.view == ViewType.TABLE
-                ? ViewType.GRID
-                : ViewType.TABLE
-            return copy<State>(state);
+        case ActionType.CAMPAIGN_SUGGESTIONS_LOADING:
+            state.selectedRecord.campaign.loading = true;
+            return copy<EngagementState>(state);
 
-        case ActionType.CRUD_OPEN_ADD:
-            state.mode = 'ADD'
-            return copy<State>(state);
-                   
-        case ActionType.CRUD_CANCEL:
-            state.mode = 'ROOT'
-            return copy<State>(state);
-                  
-        case ActionType.CRUD_ADD_SUCCESS:
-            state.mode = 'ROOT'
-            return copy<State>(state);        
+        case ActionType.PHISHING_DOMAIN_SUGGESTIONS_POPULATED:
+            state.selectedRecord.phishingDomain.loading = false;
+            state.selectedRecord.phishingDomain.suggestions = action.payload;
+            return copy<EngagementState>(state);
 
-        // case ActionType.CRUD_INVALID_SUBMIT:
+        case ActionType.PHISHING_DOMAIN_SUGGESTIONS_LOADING:
+            state.selectedRecord.phishingDomain.loading = true;
+            return copy<EngagementState>(state);
 
-        case ActionType.CRUD_OPEN_EDIT:
-            state.mode = 'EDIT'
-            state.selected = action.payload;
-            return copy<State>(state);
-                   
-        case ActionType.CRUD_CANCEL:
-            state.mode = 'ROOT'
-            return copy<State>(state);
+        case ActionType.SCHEDULE_SUGGESTIONS_POPULATED:
+            state.selectedRecord.schedule.loading = false;
+            state.selectedRecord.schedule.suggestions = action.payload;
+            return copy<EngagementState>(state);
 
-        case ActionType.CRUD_EDIT_SUCCESS:
-            state.mode = 'ROOT'
-            return copy<State>(state);
+        case ActionType.SCHEDULE_SUGGESTIONS_LOADING:
+            state.selectedRecord.schedule.loading = true;
+            return copy<EngagementState>(state);
 
-        case ActionType.CRUD_REMOVE_SUCCESS:
-            state.mode = 'ROOT'
-            state.forms = state.forms.filter(form => form.id !== action.payload)
-            return copy<State>(state);
+        case ActionType.EMAIL_SERVER_SUGGESTIONS_POPULATED:
+            state.selectedRecord.emailServer.loading = false;
+            state.selectedRecord.emailServer.suggestions = action.payload;
+            return copy<EngagementState>(state);
 
-        //case ActionType.CRUD_INVALID_SUBMIT:
-                
+        case ActionType.EMAIL_SERVER_SUGGESTIONS_LOADING:
+            state.selectedRecord.emailServer.loading = true;
+            return copy<EngagementState>(state);
+
+        case ActionType.EMAIL_TEMPLATE_SUGGESTIONS_POPULATED:
+            state.selectedRecord.emailTemplate.loading = false;
+            state.selectedRecord.emailTemplate.suggestions = action.payload;
+            return copy<EngagementState>(state);
+
+        case ActionType.EMAIL_TEMPLATE_SUGGESTIONS_LOADING:
+            state.selectedRecord.emailTemplate.loading = true;
+            return copy<EngagementState>(state);
+        
+        case ActionType.LANDING_PAGE_SUGGESTIONS_POPULATED:
+            state.selectedRecord.landingPage.loading = false;
+            state.selectedRecord.landingPage.suggestions = action.payload;
+            return copy<EngagementState>(state);
+
+        case ActionType.LANDING_PAGE_SUGGESTIONS_LOADING:
+            state.selectedRecord.landingPage.loading = true;
+            return copy<EngagementState>(state);
+
+        case ActionType.REDIRECT_PAGE_SUGGESTIONS_POPULATED:
+            state.selectedRecord.redirectPage.loading = false;
+            state.selectedRecord.redirectPage.suggestions = action.payload;
+            return copy<EngagementState>(state);
+
+        case ActionType.REDIRECT_PAGE_SUGGESTIONS_LOADING:
+            state.selectedRecord.redirectPage.loading = true;
+            return copy<EngagementState>(state);
+        
         default: return state;
     }
-};
-
-export default reducer;
+});
