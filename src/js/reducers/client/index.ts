@@ -1,12 +1,5 @@
-import { combineReducers } from 'redux'
-import root from './ClientRoot'
-import add from './ClientAdd'
-import edit from './ClientEdit'
+import reduce from '../common';
+import ClientState from '../../model/stateZ/client/ClientState'
+import ClientRecord from '../../model/stateZ/client/ClientRecord'
 
-const user = combineReducers<any>({
-    add: add,
-    edit: edit,
-    root: root
-});
-
-export default user;
+export default reduce(new ClientState(), new ClientRecord());

@@ -14,12 +14,12 @@ const PhishingDomainAddModalContainer = (props: Props) =>
             <PhishingDomainForm {...props.state} />
     </AddModalContainer>
 
-const mapStateToProps = (state: AppState): Props => ({
-    state: state.phishingDomain.add
-})
+// const mapStateToProps = (state: AppState): Props => ({
+//     state: state.phishingDomain.add
+// })
 
 const PhishingDomainAddModal = connect(
-    mapStateToProps, 
+    null, 
     (dispatch): Props => ({
         dispatch: dispatch
     })

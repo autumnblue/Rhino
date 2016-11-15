@@ -14,12 +14,12 @@ const ClientAddModalContainer = (props: Props) =>
             <ClientForm />
     </AddModalContainer>
 
-const mapStateToProps = (state: AppState): Props => ({
-    state: state.client.add
-})
+// const mapStateToProps = (state: AppState): Props => ({
+//     state: state.client.add
+// })
 
 const ClientAddModal = connect(
-    mapStateToProps, 
+    null, 
     (dispatch): Props => ({
         dispatch: dispatch
     })

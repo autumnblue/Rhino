@@ -25,8 +25,8 @@ const app = combineReducers<AppState>({
     phishingDomain: phishingDomain,
     login: login.reducer,
     profile: profile.reducer,
-    landingPages: landingPages,
-    redirectPages: redirectPages,
+    landingPage: landingPages,
+    redirectPage: redirectPages,
     engagement: engagement,
     emailTemplate: emailTemplate,
     form: reduxForm.reducer

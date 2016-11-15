@@ -14,12 +14,12 @@ const ClientEditModalContainer = (props: Props) =>
             <ClientForm {...props.state} />
     </EditModalContainer>
 
-const mapStateToProps = (state: AppState): Props => ({
-    state: state.client.edit
-})
+// const mapStateToProps = (state: AppState): Props => ({
+//     state: state.client.edit
+// })
 
 const ClientEditModal = connect(
-    mapStateToProps, 
+    null, 
     (dispatch): Props => ({
         dispatch: dispatch
     })

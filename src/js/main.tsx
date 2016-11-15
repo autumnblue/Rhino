@@ -1,3 +1,6 @@
+//declare const CKEDITOR: any;
+//CKEDITOR.basePath="assets/vendors/ckeditor/"
+
 const injectTapEventPlugin = require('react-tap-event-plugin');
 
 // Needed for onTouchTap
@@ -14,26 +17,24 @@ import { App } from './views/App';
 import { Router, Route, browserHistory } from 'react-router';
 import { LoginPage } from './views/containers/identity/LoginPage';
 import { UserPage } from './views/containers/user/UserPage';
-import ClientPage from './views/containers/client/ClientPage';
+import ClientRoot from './views/client/ClientRoot';;
 import EngagementRoot from './views/engagement/EngagementRoot';
 import EmailTemplateRoot from './views/containers/emailTemplate/EmailTemplateRoot';
 import { ProfilePage } from './views/containers/identity/ProfilePage';
-import CampaignPage from './views/containers/campaign/CampaignRoot';
+import CampaignRoot from './views/campaign/CampaignRoot'; 
 import SchedulePage from './views/containers/schedule/SchedulePage';
 import EmailServerPage from './views/containers/emailServer/EmailServerPage';
-import PhishingDomainPage from './views/containers/phishingDomain/PhishingDomainPage';
-import LandingPagesPage from './views/containers/landingPages/LandingPagesRoot'; 
-import RedirectPagesPage from './views/containers/redirectPages/RedirectPagesRoot';
+import PhishingDomainRoot from './views/phishingDomain/PhishingDomainRoot';
+import LandingPageRoot from './views/landingPage/LandingPageRoot'; 
+import RedirectPageRoot from './views/redirectPage/RedirectPageRoot';
 import { Dir } from './common/Constants';  
 import { permit } from './security/RenderRules';
 import { Role } from './security/Role';
 import { Identity } from './security/Identity';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-// import { darkBaseTheme } from 'material-ui/styles/MuiTheme';
 const darkBaseTheme = require('material-ui/styles/baseThemes/darkBaseTheme').default;
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
-console.log(JSON.stringify(darkBaseTheme, null, 2));
 darkBaseTheme.fontFamily = 'rajdhani';
 
 permit(Role.AUTHENTICATED);
@@ -70,12 +71,12 @@ ReactDom.render(
                     />
                 <Route 
                     path={ Dir.CLIENTS } 
-                    component={ClientPage}
+                    component={ClientRoot}
                     onEnter={ () => permit(Role.AUTHENTICATED) } 
                     />
                 <Route 
                     path={ Dir.CAMPAIGN } 
-                    component={CampaignPage}
+                    component={CampaignRoot}
                     onEnter={ () => permit(Role.AUTHENTICATED) } 
                     />
                 <Route 
@@ -90,17 +91,17 @@ ReactDom.render(
                     />
                 <Route 
                     path={ Dir.PHISHING_DOMAIN } 
-                    component={PhishingDomainPage}
+                    component={PhishingDomainRoot}
                     onEnter={ () => permit(Role.AUTHENTICATED) } 
                     />
                 <Route 
                     path={ Dir.LANDING_PAGES } 
-                    component={LandingPagesPage}
+                    component={LandingPageRoot}
                     onEnter={ () => permit(Role.AUTHENTICATED) }
                     />
                 <Route 
                     path={ Dir.REDIRECT_PAGES } 
-                    component={RedirectPagesPage}
+                    component={RedirectPageRoot}
                     onEnter={ () => permit(Role.AUTHENTICATED) }
                     />
                 <Route 

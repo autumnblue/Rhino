@@ -11,7 +11,7 @@ const EngagementEditModal = (props: Props) => {
         title="Edit Engagement"
         action={ EngagementAction }
         {...props}>
-            <EngagementForm {...props.state.selectedRecord} />
+            <EngagementForm />
     </EditModalContainer>
 }
 

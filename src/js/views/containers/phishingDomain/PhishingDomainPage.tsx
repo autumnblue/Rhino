@@ -23,12 +23,12 @@ const PhishingDomainPageContainer = (props: Props) =>
     <PhishingDomainEditModal />
     </div>
 
-const mapStateToProps = (state: AppState): Props => ({
-    state: state.phishingDomain.root
-})
+// const mapStateToProps = (state: AppState): Props => ({
+//     state: state.phishingDomain.root
+// })
 
 const PhishingDomainPage = connect(
-    mapStateToProps, 
+    null, 
     (dispatch): Props => ({
         dispatch: dispatch
     })

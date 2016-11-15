@@ -8,10 +8,11 @@ export abstract class CrudState {
     records: Array<Record>;
     selectedRecord: Record;
 
-    mode: ModeType = 'root'
+    mode: ModeType = 'root';
     view: ViewType = 'grid';
+    widgetState = {};
 
-    selectedRecordId: number
+    // selectedRecordId: number
     qualifier: string;
     page: number
     totalPages: number

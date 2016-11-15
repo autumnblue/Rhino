@@ -7,13 +7,14 @@ const handle = (object: popsicle.Response, map: Mapper) => {
 
     if(object.status == 400) {
         const errors = object.body;
-        let errObj = { _error: 'Submission failed' };
+        let errObj = { };
         Object.keys(errors).forEach(key => {
             if(errors[key])
                 errObj[key] = errors[key][0]
         })
 
-        const mapped = map.toForm(errObj);
+        let mapped = map.toForm(errObj);
+        mapped._error = 'Submission failed.  Please correct the errors indicated.' 
         throw new reduxForm.SubmissionError(mapped);
     }
 

@@ -24,12 +24,12 @@ const CampaignPageContainer = (props: Props2) => {
     </div>
 }
 
-const mapStateToProps = (app: AppState): Props2 => ({
-    state: app.campaign
-})
+// const mapStateToProps = (app: AppState): Props2 => ({
+//     state: app.campaign
+// })
 
 const CampaignPage = connect(
-    mapStateToProps, 
+    null, 
     (dispatch): Props => ({
         dispatch: dispatch
     })

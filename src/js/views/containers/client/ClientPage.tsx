@@ -24,12 +24,12 @@ const ClientPageContainer = (props: Props) =>
     </div>
 
 
-const mapStateToProps = (state: AppState): Props => ({
-    state: state.client.root
-})
+// const mapStateToProps = (state: AppState): Props => ({
+//     state: state.client.root
+// })
 
 const ClientPage = connect(
-    mapStateToProps, 
+    null, 
     (dispatch): Props => ({
         dispatch: dispatch
     })

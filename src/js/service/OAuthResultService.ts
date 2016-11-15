@@ -1,0 +1,22 @@
+import CrudService from './CrudServiceZ';
+import OAuthResultDto from '../model/dtoZ/oAuthResult/OAuthResultDto';
+import OAuthResultXDto from '../model/dtoZ/oAuthResult/OAuthResultXDto';
+import * as http from './HttpUtil';
+
+class OAuthResultService extends CrudService<OAuthResultDto, any> {
+    constructor() {
+        super('oauth-results');
+    }
+
+    public async read(): Promise<OAuthResultXDto> {
+        return http.get<OAuthResultXDto>
+            (`${this.resource}?include[]=oauth_engagement.*`);
+    }
+
+    public async getSuggestions(): Promise<{ o_auth_results: OAuthResultDto[] }> {
+        return http.get<{ o_auth_results: OAuthResultDto[] }>
+            (`${this.resource}?exclude[]=*&include[]=name&include[]=id`);
+    }
+}
+
+export default OAuthResultService;

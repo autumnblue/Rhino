@@ -25,12 +25,12 @@ return <div>
     </ div>
 }
 
-const mapStateToProps = (app: AppState): Props2 => ({
-    state: app.redirectPages
-})
+// const mapStateToProps = (app: AppState): Props2 => ({
+//     state: app.redirectPages
+// })
 
 const RedirectPagesPage = connect(
-    mapStateToProps, 
+    null, 
     (dispatch): Props => ({
         dispatch: dispatch
     })

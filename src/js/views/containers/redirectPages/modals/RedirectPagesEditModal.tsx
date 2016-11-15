@@ -14,12 +14,12 @@ const RedirectPagesEditModalContainer = (props: Props) =>
             <RedirectPagesForm {...props.state} />
     </EditModalContainer>
 
-const mapStateToProps = (app: AppState): Props => ({
-    state: app.redirectPages
-})
+// const mapStateToProps = (app: AppState): Props => ({
+//     state: app.redirectPages
+// })
 
 const RedirectPagesEditModal = connect(
-    mapStateToProps, 
+    null, 
     (dispatch): Props => ({
         dispatch: dispatch
     })

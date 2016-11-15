@@ -9,6 +9,7 @@ import TextField from 'material-ui/TextField'
 import EngagementAction from '../../actions/EngagementAction2'
 import { AppState } from '../../model/state/AppState';
 import RefreshIndicator from 'material-ui/RefreshIndicator';
+import ErrAlert from '../common/ErrorAlert';
 
 const renderAutoComplete = (props: Props & FieldProps) => {  
     return <span>    
@@ -108,6 +109,8 @@ const engagementForm = reduxForm.reduxForm({
 (props: FormProps & {record: EngagementRecord }) => { 
     return <form 
         onSubmit={ props.handleSubmit(props.submit) }>
+            <ErrAlert errorMsg={ props.error } />
+
             <div>
                 <Field
                     name="campaign"

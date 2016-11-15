@@ -1,12 +1,5 @@
-import { combineReducers } from 'redux'
-import add from './PhishingDomainAdd';
-import edit from './PhishingDomainEdit';
-import root from './PhishingDomainRoot';
+import reduce from '../common';
+import PhishingDomainState from '../../model/stateZ/phishingDomain/PhishingDomainState'
+import PhishingDomainRecord from '../../model/stateZ/phishingDomain/PhishingDomainRecord'
 
-const phishingDomain = combineReducers<any>({
-    add: add,
-    edit: edit,
-    root: root
-});
-
-export default phishingDomain;
+export default reduce(new PhishingDomainState(), new PhishingDomainRecord());

@@ -14,12 +14,12 @@ const LandingPagesEditModalContainer = (props: Props) =>
             <LandingPagesForm {...props.state} />
     </EditModalContainer>
 
-const mapStateToProps = (app: AppState): Props => ({
-    state: app.landingPages
-})
+// const mapStateToProps = (app: AppState): Props => ({
+//     state: app.landingPages
+// })
 
 const LandingPagesEditModal = connect(
-    mapStateToProps, 
+    null, 
     (dispatch): Props => ({
         dispatch: dispatch
     })

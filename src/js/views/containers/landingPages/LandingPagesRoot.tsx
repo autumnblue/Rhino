@@ -25,12 +25,12 @@ return <div>
     </ div>
 }
 
-const mapStateToProps = (app: AppState): Props2 => ({
-    state: app.landingPages
-})
+// const mapStateToProps = (app: AppState): Props2 => ({
+//     state: app.landingPages
+// })
 
 const LandingPagesPage = connect(
-    mapStateToProps, 
+    null, 
     (dispatch): Props => ({
         dispatch: dispatch
     })

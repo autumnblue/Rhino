@@ -3,6 +3,8 @@ import PagedDto from '../../model/dtoZ/PagedDto';
 import Ref from '../../model/stateZ/Ref';
 
 const tie = (owner: Dto, ownerKey: string, targets: Dto[], targetKey: string): Ref => {
+    if(!targets) return null;
+
     const ref = targets.filter(target => owner[ownerKey] == target.id)[0];
     return ref && {
         id: ref.id,
@@ -38,4 +40,11 @@ export const refEmailServer = (owner: Dto, targets: Dto[]): Ref => {
     return tie(owner, 'email_server', targets, 'host');
 }
 
+export const refScraperUserAgent = (owner: Dto, targets: Dto[]): Ref => {
+    return tie(owner, 'scraper_user_agent', targets, 'name');
+}
+
+export const refClient = (owner: Dto, targets: Dto[]): Ref => {
+    return tie(owner, 'client', targets, 'name');
+}
 

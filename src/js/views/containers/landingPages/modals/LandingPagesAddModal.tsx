@@ -15,12 +15,12 @@ const LandingPagesAddModalContainer = (props: Props) => {
     </AddModalContainer>
 }
 
-const mapStateToProps = (app: AppState): Props => ({
-    state: app.landingPages
-})
+// const mapStateToProps = (app: AppState): Props => ({
+//     state: app.landingPages
+// })
 
 const LandingPagesAddModal = connect(
-    mapStateToProps, 
+    null, 
     (dispatch): Props => ({
         dispatch: dispatch
     })

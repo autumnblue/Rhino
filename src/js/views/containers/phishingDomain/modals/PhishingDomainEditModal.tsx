@@ -16,12 +16,12 @@ const PhishingDomainEditModalContainer = (props: Props) => {
     </EditModalContainer>
 }
 
-const mapStateToProps = (state: AppState): Props => ({
-    state: state.phishingDomain.edit
-})
+// const mapStateToProps = (state: AppState): Props => ({
+//     state: state.phishingDomain.edit
+// })
 
 const PhishingDomainEditModal = connect(
-    mapStateToProps, 
+    null, 
     (dispatch): Props => ({
         dispatch: dispatch
     })

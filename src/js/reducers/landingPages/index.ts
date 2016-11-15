@@ -1,63 +1,25 @@
-import { Reducer } from 'redux';
+import reduce from '../common';
+import LandingPageState from '../../model/stateZ/landingPage/LandingPageState'
+import LandingPageRecord from '../../model/stateZ/landingPage/LandingPageRecord'
 import { Action } from '../../actions/Action';
 import { ActionType } from '../../actions/ActionType';
-import LandingPageState from '../../model/state2/landingPage/LandingPageState';
 import { copy } from '../../common/Util';
-import { ViewType } from '../../model/state/page/ViewType'; 
 
-type State = LandingPageState;
-
-const nstate = new LandingPageState();
-
-export const reducer: Reducer<State> = (state = nstate, action: Action): State => {
-    if(state.context != 'landingPage') return state;
-
+export default reduce(new LandingPageState(), new LandingPageRecord(), (state: LandingPageState, action: Action) => {
     switch(action.type) {
-        case ActionType.CRUD_INIT:
-            return copy<State>(action.payload);
+        case ActionType.SCRAPER_USER_AGENT_SUGGESTIONS_POPULATED:
+            state.selectedRecord.scraperUserAgent.loading = false;
+            state.selectedRecord.scraperUserAgent.suggestions = action.payload;
+            return copy<LandingPageState>(state);
 
-        case ActionType.CRUD_TOGGLE_VIEW:
-            state.view = state.view == ViewType.TABLE
-                ? ViewType.GRID
-                : ViewType.TABLE
-            return copy<State>(state);
+        case ActionType.SCRAPER_USER_AGENT_SUGGESTIONS_LOADING:
+            state.selectedRecord.scraperUserAgent.loading = true;
+            return copy<LandingPageState>(state);
 
-        case ActionType.CRUD_OPEN_ADD:
-            state.mode = 'ADD'
-            return copy<State>(state);
-                   
-        case ActionType.CRUD_CANCEL:
-            state.mode = 'ROOT'
-            return copy<State>(state);
-                  
-        case ActionType.CRUD_ADD_SUCCESS:
-            state.mode = 'ROOT'
-            return copy<State>(state);        
+        case ActionType.OPEN_EDITOR:
+            state.widgetState.editorOn = true;
+            return copy<LandingPageState>(state);
 
-        // case ActionType.CRUD_INVALID_SUBMIT:
-
-        case ActionType.CRUD_OPEN_EDIT:
-            state.mode = 'EDIT'
-            state.selected = action.payload;
-            return copy<State>(state);
-                   
-        case ActionType.CRUD_CANCEL:
-            state.mode = 'ROOT'
-            return copy<State>(state);
-
-        case ActionType.CRUD_EDIT_SUCCESS:
-            state.mode = 'ROOT'
-            return copy<State>(state);
-
-        case ActionType.CRUD_REMOVE_SUCCESS:
-            state.mode = 'ROOT'
-            state.forms = state.forms.filter(form => form.id !== action.payload)
-            return copy<State>(state);
-
-        //case ActionType.CRUD_INVALID_SUBMIT:
-                
         default: return state;
     }
-};
-
-export default reducer;
+});

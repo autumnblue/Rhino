@@ -1,7 +1,6 @@
 declare const CKEDITOR: any;
 
 import * as React from 'react';
-//const ck = require('ckeditr');
 
 class TextEditor extends React.Component<{ data: any }, {}> {
     public render() {
