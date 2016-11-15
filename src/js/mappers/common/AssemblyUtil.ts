@@ -48,3 +48,7 @@ export const refClient = (owner: Dto, targets: Dto[]): Ref => {
     return tie(owner, 'client', targets, 'name');
 }
 
+export const refShoalScrapeCreds = (owner: Dto, targets: Dto[]): Ref => {
+    return tie(owner, 'shoalscrape_creds', targets, 'name');
+}
+

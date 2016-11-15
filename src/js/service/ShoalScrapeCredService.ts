@@ -13,8 +13,8 @@ class ShoalScrapeCredService extends CrudService<ShoalScrapeCredDto, any> {
             (`${this.resource}?include[]=scraper_user_agent.*`);
     }
 
-    public async getSuggestions(): Promise<{ shoalscrape_creds: ShoalScrapeCredDto[] }> {
-        return http.get<{ shoalscrape_creds: ShoalScrapeCredDto[] }>
+    public async getSuggestions(): Promise<{ shoal_scrape_creds: ShoalScrapeCredDto[] }> {
+        return http.get<{ shoal_scrape_creds: ShoalScrapeCredDto[] }>
             (`${this.resource}?exclude[]=*&include[]=name&include[]=id`);
     }
 }

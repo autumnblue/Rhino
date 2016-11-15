@@ -12,6 +12,9 @@ export module Dir {
     export const REDIRECT_PAGES= '/redirect-pages';
     export const ENGAGEMENTS = '/engagements';
     export const EMAIL_TEMPLATES = '/email-templates';
+    export const SCRAPER_USER_AGENTS = '/scraper-user-agents';
+    export const SHOAL_SCRAPE_CREDS = '/shoal-scrape-creds';
+    export const SHOAL_SCRAPE_TASKS = '/shoal-scrape-tasks';
 }
 
 export module SessionStorageKey {

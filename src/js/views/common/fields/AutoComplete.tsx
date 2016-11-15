@@ -28,7 +28,11 @@ const renderAutoComplete = (props: Props & FieldProps) => {
                     && props.asyncSrc(props.meta.dispatch)
                 }
             }
-            searchText={props.input.value || props.input.value['text']}
+            searchText={
+                typeof props.input.value == 'string'
+                ? props.input.value
+                : props.input.value['text'] 
+            }
         />
         <RefreshIndicator
             size={25}

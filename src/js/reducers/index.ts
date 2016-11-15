@@ -13,6 +13,9 @@ import * as login from './identity/Login'
 import * as profile from './identity/Profile'
 import { AppState } from '../model/state/AppState'
 import engagement from './engagement';
+import scraperUserAgent from './scraperUserAgent';
+import shoalScrapeCred from './shoalScrapeCred';
+import shoalScrapeTask from './shoalScrapeTask';
 const reduxForm = require('redux-form');
 
 const app = combineReducers<AppState>({
@@ -29,6 +32,9 @@ const app = combineReducers<AppState>({
     redirectPage: redirectPages,
     engagement: engagement,
     emailTemplate: emailTemplate,
+    scraperUserAgent: scraperUserAgent,
+    shoalScrapeCred: shoalScrapeCred,
+    shoalScrapeTask: shoalScrapeTask,
     form: reduxForm.reducer
 });
 

@@ -84,13 +84,13 @@ class Container extends React.Component<Props, void> {
                         selected={ this.props.state.scrape.selected }
                         onClick={ this.onScrapeClick }>
                             <span className="glyphicon glyphicon-upload"></span>
-                            <Item href="/">
+                            <Item href={ Dir.SHOAL_SCRAPE_TASKS }>
                                     ShoalScrape
                             </Item>
-                            <Item href="/">
+                            <Item href={ Dir.SCRAPER_USER_AGENTS }>
                                     <span className="glyphicon glyphicon-wrench"></span> Scraper User-Agents
                             </Item>
-                            <Item href="/">
+                            <Item href={ Dir.SHOAL_SCRAPE_CREDS }>
                                     <span className="glyphicon glyphicon-wrench"></span> ShoalScrape Credentials
                             </Item>
                     </Menu>

@@ -13,6 +13,9 @@ import EngagementState from '../stateZ/engagement/EngagementState';
 import RedirectPageState from '../stateZ/redirectPage/RedirectPageState';
 import EmailTemplateState from '../state2/emailTemplate/EmailTemplateState';
 import Schedule from '../state2/schedule/ScheduleState';
+import ScraperUserAgentState from '../stateZ/scraperUserAgent/ScraperUserAgentState';
+import ShoalScrapeCredState from '../stateZ/shoalScrapeCred/ShoalScrapeCredState';
+import ShoalScrapeTaskState from '../stateZ/shoalScrapeTask/ShoalScrapeTaskState';
 
 export interface AppState {
     navigation: MenuState
@@ -30,6 +33,9 @@ export interface AppState {
     redirectPage: RedirectPageState
     emailTemplate: EmailTemplateState
     schedule: ScheduleState
-    login: LoginState;
-    profile: ProfileState;
+    login: LoginState
+    profile: ProfileState
+    scraperUserAgent: ScraperUserAgentState
+    shoalScrapeCred: ShoalScrapeCredState
+    shoalScrapeTask: ShoalScrapeTaskState
 }

@@ -25,6 +25,9 @@ import CampaignRoot from './views/campaign/CampaignRoot';
 import SchedulePage from './views/containers/schedule/SchedulePage';
 import EmailServerPage from './views/containers/emailServer/EmailServerPage';
 import PhishingDomainRoot from './views/phishingDomain/PhishingDomainRoot';
+import ScraperUserAgentRoot from './views/scraperUserAgent/ScraperUserAgentRoot';
+import ShoalScrapeCredRoot from './views/shoalScrapeCred/ShoalScrapeCredRoot';
+import ShoalScrapeTaskRoot from './views/shoalScrapeTask/ShoalScrapeTaskRoot';
 import LandingPageRoot from './views/landingPage/LandingPageRoot'; 
 import RedirectPageRoot from './views/redirectPage/RedirectPageRoot';
 import { Dir } from './common/Constants';  
@@ -107,6 +110,21 @@ ReactDom.render(
                 <Route 
                     path={ Dir.PROFILE } 
                     component={ProfilePage}
+                    onEnter={ () => permit(Role.AUTHENTICATED) } 
+                    />
+                 <Route 
+                    path={ Dir.SCRAPER_USER_AGENTS } 
+                    component={ScraperUserAgentRoot}
+                    onEnter={ () => permit(Role.AUTHENTICATED) } 
+                    />
+                 <Route 
+                    path={ Dir.SHOAL_SCRAPE_TASKS } 
+                    component={ShoalScrapeTaskRoot}
+                    onEnter={ () => permit(Role.AUTHENTICATED) } 
+                    />
+                 <Route 
+                    path={ Dir.SHOAL_SCRAPE_CREDS } 
+                    component={ShoalScrapeCredRoot}
                     onEnter={ () => permit(Role.AUTHENTICATED) } 
                     />
             </Route>
