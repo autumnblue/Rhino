@@ -16,6 +16,10 @@ import Schedule from '../state2/schedule/ScheduleState';
 import ScraperUserAgentState from '../stateZ/scraperUserAgent/ScraperUserAgentState';
 import ShoalScrapeCredState from '../stateZ/shoalScrapeCred/ShoalScrapeCredState';
 import ShoalScrapeTaskState from '../stateZ/shoalScrapeTask/ShoalScrapeTaskState';
+import OAuthConsumerState from '../stateZ/oAuthConsumer/OAuthConsumerState';
+import OAuthEngagementState from '../stateZ/oAuthEngagement/OAuthEngagementState';
+import OAuthResultState from '../stateZ/oAuthResult/OAuthResultState';
+import PlunderState from '../stateZ/plunder/PlunderState'
 
 export interface AppState {
     navigation: MenuState
@@ -38,4 +42,8 @@ export interface AppState {
     scraperUserAgent: ScraperUserAgentState
     shoalScrapeCred: ShoalScrapeCredState
     shoalScrapeTask: ShoalScrapeTaskState
+    oAuthConsumer: OAuthConsumerState
+    oAuthEngagement: OAuthEngagementState
+    oAuthResult: OAuthResultState
+    plunder: PlunderState
 }

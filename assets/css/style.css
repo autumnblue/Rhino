@@ -452,10 +452,6 @@ body {
     color: #D74037;
 }
 
-.text-area {
-    margin: 20px;
-}
-
 /*https://dribbble.com/shots/1270032-SJQHUB-B-I-Dashboard/attachments/174562*/
 /*https://dribbble.com/shots/1423171-Some-Analytics*/
 
@@ -522,4 +518,40 @@ ul.dialog-context {
 
 .dialog-context button:hover, .dialog-context label:hover {
     background-color: #E9E9F1
+}
+
+/*https://medium.com/@jamesfuthey/simulating-the-creation-of-website-thumbnail-screenshots-using-iframes-7145269891db#.x09peg56b*/
+/*consider polyfill to support: http://stackoverflow.com/a/30273995*/
+.thumbnail iframe {
+  width: 1440px;
+  height: 900px;
+}
+
+.thumbnail {
+  position: relative;
+  -ms-zoom: 0.25;
+  -moz-transform: scale(0.25);
+  -moz-transform-origin: 0 0;
+  -o-transform: scale(0.25);
+  -o-transform-origin: 0 0;
+  -webkit-transform: scale(0.25);
+  -webkit-transform-origin: 0 0;
+}
+
+.thumbnail:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.thumbnail-container {
+  width: calc(1440px * 0.25);
+  height: calc(900px * 0.25);
+  display: inline-block;
+  overflow: hidden;
+  position: relative;
 }

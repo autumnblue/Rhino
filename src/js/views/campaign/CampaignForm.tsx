@@ -34,8 +34,7 @@ let campaignForm = reduxForm.reduxForm({
                     <Field
                         name="client"
                         label="Clients"
-                        data={ props.record.client }
-                        asyncSrc={ CampaignAction.getClientSuggestions }
+                        fetch={ CampaignAction.getClientSuggestions }
                         component={ autoComplete } /> 
                 </div>
                 <div>

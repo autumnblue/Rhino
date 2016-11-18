@@ -20,6 +20,15 @@ export default reduce(new LandingPageState(), new LandingPageRecord(), (state: L
             state.widgetState.editorOn = true;
             return copy<LandingPageState>(state);
 
+        case ActionType.EDITOR_OK:
+            state.widgetState.editorOn = false;
+            state.selectedRecord.source = action.payload;
+            return copy<LandingPageState>(state);
+
+        case ActionType.EDITOR_CANCEL:
+            state.widgetState.editorOn = false;
+            return copy<LandingPageState>(state);
+
         default: return state;
     }
 });

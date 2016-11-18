@@ -16,6 +16,10 @@ import engagement from './engagement';
 import scraperUserAgent from './scraperUserAgent';
 import shoalScrapeCred from './shoalScrapeCred';
 import shoalScrapeTask from './shoalScrapeTask';
+import oAuthConsumer from './oAuthConsumer';
+import oAuthEngagement from './oAuthEngagement';
+import oAuthResult from './oAuthResult';
+import plunder from './plunder';
 const reduxForm = require('redux-form');
 
 const app = combineReducers<AppState>({
@@ -35,6 +39,10 @@ const app = combineReducers<AppState>({
     scraperUserAgent: scraperUserAgent,
     shoalScrapeCred: shoalScrapeCred,
     shoalScrapeTask: shoalScrapeTask,
+    oAuthConsumer: oAuthConsumer,
+    oAuthEngagement: oAuthEngagement,
+    oAuthResult: oAuthResult,
+    plunder: plunder,
     form: reduxForm.reducer
 });
 

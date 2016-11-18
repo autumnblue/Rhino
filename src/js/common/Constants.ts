@@ -15,6 +15,10 @@ export module Dir {
     export const SCRAPER_USER_AGENTS = '/scraper-user-agents';
     export const SHOAL_SCRAPE_CREDS = '/shoal-scrape-creds';
     export const SHOAL_SCRAPE_TASKS = '/shoal-scrape-tasks';
+    export const O_AUTH_ENGAGEMENTS = '/oauth-engagements';
+    export const PLUNDER = '/plunder';
+    export const O_AUTH_RESULTS = '/oauth-results';
+    export const O_AUTH_CONSUMERS = '/oauth-creds';
 }
 
 export module SessionStorageKey {

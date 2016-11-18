@@ -4,42 +4,72 @@ import AutoComplete from 'material-ui/AutoComplete';
 import RefreshIndicator from 'material-ui/RefreshIndicator';
 import Props from './CustomProps';
 import FieldProps from './FieldProps';
+import CircularProgress from 'material-ui/CircularProgress';
 
-const renderAutoComplete = (props: Props & FieldProps) => {  
-    return <span>    
-        <AutoComplete
-            hintText={ props.label }
-            dataSource={ props.data && props.data.suggestions || [] }
-            dataSourceConfig={ { text: 'text', value: 'id'} }
-            filter={AutoComplete.fuzzyFilter}
-            floatingLabelText={ props.label }
-            maxSearchResults={ 10 } 
-            errorText={
-                props.meta.touched && props.meta.error }
-            onNewRequest={
-                (chosen: Ref) => {
-                    props.input.onChange(`${chosen.id}`)
+class LazyAutoComplete extends React.Component<{ 
+    fetch(): Promise<any> }
+    & Props 
+    & FieldProps, 
+    { fetching?: boolean, data?: string }> {
+
+    constructor() {
+        super();
+        this.state = {
+            fetching: false
+        };
+    }
+
+    render() {
+        return ( 
+            <span>    
+                <AutoComplete
+                    hintText={ this.props.label }
+                    dataSource={ this.state.data || [] }
+                    dataSourceConfig={ { text: 'text', value: 'id'} }
+                    filter={AutoComplete.fuzzyFilter}
+                    floatingLabelText={ this.props.label }
+                    maxSearchResults={ 10 } 
+                    errorText={
+                        this.props.meta.touched && this.props.meta.error }
+                    onNewRequest={
+                        (chosen: Ref) => {
+                            this.props.input.onChange(`${chosen.id}`)
+                        }
+                    }
+                    onUpdateInput={
+                        (searchText: string, dataSource: Ref[]) => {
+                            !dataSource.length
+                            && this.doFetch();
+                        }
+                    }
+                    searchText={
+                        typeof this.props.input.value == 'string'
+                        ? this.props.input.value
+                        : this.props.input.value['text'] 
+                    }
+                />
+                {
+                    this.state.fetching 
+                    &&
+                    <CircularProgress size={20} thickness={5} />
                 }
-            }
-            onUpdateInput={
-                (searchText: string, dataSource: Ref[]) => {
-                    !dataSource.length
-                    && props.asyncSrc
-                    && props.asyncSrc(props.meta.dispatch)
-                }
-            }
-            searchText={
-                typeof props.input.value == 'string'
-                ? props.input.value
-                : props.input.value['text'] 
-            }
-        />
-        <RefreshIndicator
-            size={25}
-            left={70}
-            top={0}
-            status={ props.data && props.data.loading ? 'loading' : 'hide'}/>
-    </span>  
+            </span>
+        )
+    }
+
+    private doFetch() {
+        this.setState({
+            fetching: true
+        })
+
+        this.props.fetch()
+        .then(data => {
+            this.setState({
+                fetching: false,
+                data: data
+            })
+        })
+    }
 }
 
-export default renderAutoComplete
+export default LazyAutoComplete;

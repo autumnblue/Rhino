@@ -14,7 +14,8 @@ const defaultState: MenuState = {
     pages: { selected: false },
     email: { selected: false },
     scrape: { selected: false }, 
-    config: { selected: false }
+    config: { selected: false },
+    oauth: { selected: false }
 }
 
 const unselectAll = (state: MenuState) => {
@@ -61,6 +62,11 @@ export const reducer: Reducer<MenuState> = (state = defaultState, action: Action
         case(ActionType.MENU_CLICK_CONFIG):
             unselectAll(newState);
             newState.config.selected = true;
+            return newState;
+
+        case(ActionType.MENU_CLICK_OAUTH):
+            unselectAll(newState);
+            newState.oauth.selected = true;
             return newState;
 
         default: return state;

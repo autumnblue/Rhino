@@ -30,6 +30,10 @@ import ShoalScrapeCredRoot from './views/shoalScrapeCred/ShoalScrapeCredRoot';
 import ShoalScrapeTaskRoot from './views/shoalScrapeTask/ShoalScrapeTaskRoot';
 import LandingPageRoot from './views/landingPage/LandingPageRoot'; 
 import RedirectPageRoot from './views/redirectPage/RedirectPageRoot';
+import OAuthConsumerRoot from './views/oAuthConsumer/OAuthConsumerRoot';
+import OAuthResultRoot from './views/oAuthResult/OAuthResultRoot';
+import OAuthEngagementRoot from './views/oAuthEngagement/OAuthEngagementRoot';
+import PlunderRoot from './views/plunder/PlunderRoot';
 import { Dir } from './common/Constants';  
 import { permit } from './security/RenderRules';
 import { Role } from './security/Role';
@@ -125,6 +129,26 @@ ReactDom.render(
                  <Route 
                     path={ Dir.SHOAL_SCRAPE_CREDS } 
                     component={ShoalScrapeCredRoot}
+                    onEnter={ () => permit(Role.AUTHENTICATED) } 
+                    />
+                <Route 
+                    path={ Dir.O_AUTH_RESULTS } 
+                    component={OAuthResultRoot}
+                    onEnter={ () => permit(Role.AUTHENTICATED) } 
+                    />
+                 <Route 
+                    path={ Dir.O_AUTH_ENGAGEMENTS } 
+                    component={OAuthEngagementRoot}
+                    onEnter={ () => permit(Role.AUTHENTICATED) } 
+                    />
+                 <Route 
+                    path={ Dir.O_AUTH_CONSUMERS } 
+                    component={OAuthConsumerRoot}
+                    onEnter={ () => permit(Role.AUTHENTICATED) } 
+                    />
+                <Route 
+                    path={ Dir.PLUNDER } 
+                    component={PlunderRoot}
                     onEnter={ () => permit(Role.AUTHENTICATED) } 
                     />
             </Route>

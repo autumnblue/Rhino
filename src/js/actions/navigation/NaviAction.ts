@@ -52,6 +52,12 @@ class ActionCreator {
         dispatch({
             type: ActionType.LOGOUT
         });
+    }
+
+    public clickOAuth(dispatch) {
+        dispatch({
+            type: ActionType.MENU_CLICK_OAUTH
+        });
     }   
 }
 

@@ -11,6 +11,7 @@ const renderInput = (props: Props & FieldProps) => {
             props.meta.touched && props.meta.error
         }
         {...props.input}
+        {...props['disabled']}
     />
 }
 

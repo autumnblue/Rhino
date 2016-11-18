@@ -9,7 +9,7 @@ import LandingPageAction from '../../actions/LandingPageAction2'
 import select from '../common/fields/Select';
 import autoComplete from '../common/fields/AutoComplete';
 import input from '../common/fields/Input';
-import editor from '../common/fields/TextEditor';
+import editor from '../common/fields/TextEditor2';
 import Submit from '../common/SubmitButton';
 import MenuItem from 'material-ui/MenuItem';
 import FormProps from '../common/FormProps';
@@ -74,13 +74,9 @@ let landingPageForm = reduxForm.reduxForm({
                 { !isScrapedPage
                     &&
                     <div className="text-area">
-                        <IconButton onTouchTap={ () => LandingPageAction.openEditor(props.dispatch) }>
-                            <ModeEdit />
-                        </IconButton>
-
                         <Field
-                            open={ true }
-                            data={ props.record.source }
+                            fetch={ () => LandingPageAction.getTemplate(props.record.path) }
+                            onOk={ raw => LandingPageAction.okEditor(props.dispatch, raw) }
                             name="template"
                             label="Template"
                             component={ editor } />
@@ -90,6 +86,8 @@ let landingPageForm = reduxForm.reduxForm({
                 <Submit />
         </form>
 });
+
+//fetch={ LandingPageAction.get }
 
 const selector = reduxForm.formValueSelector(FORM)
 //http://redux-form.com/6.0.0-alpha.11/examples/selectingFormValues/

@@ -7,6 +7,8 @@ import { AppState } from '../../../model/state/AppState';
 import { MenuState } from '../../../model/state/MenuState';
 import { NaviAction } from '../../../actions/navigation/NaviAction';
 import { Dir } from '../../../common/Constants';
+import IconButton from 'material-ui/IconButton';
+import PermIdentity from 'material-ui/svg-icons/action/perm-identity';
 
 class Container extends React.Component<Props, void> {
     public render() {
@@ -95,6 +97,26 @@ class Container extends React.Component<Props, void> {
                             </Item>
                     </Menu>
 
+                    <Menu 
+                        selected={ this.props.state.oauth.selected }
+                        onClick={ this.onOAuthClick }>
+                            <IconButton tooltip="OAuth">
+                                <PermIdentity />
+                            </IconButton>
+                            <Item href={ Dir.O_AUTH_ENGAGEMENTS }>
+                                    OAuth Engagements
+                            </Item>
+                            <Item href={ Dir.PLUNDER }>
+                                    Plunder
+                            </Item>
+                            <Item href={ Dir.O_AUTH_RESULTS }>
+                                    OAuth Results
+                            </Item>
+                            <Item href={ Dir.O_AUTH_CONSUMERS }>
+                                    <span className="glyphicon glyphicon-wrench"></span> OAuth Consumers
+                            </Item>
+                    </Menu>
+
                     <Menu
                         selected={ this.props.state.config.selected } 
                         onClick={ this.onConfigClick }>
@@ -160,6 +182,11 @@ class Container extends React.Component<Props, void> {
     private onLogoutClick = () => {
         NaviAction
             .logout(this.props.dispatch);
+    }
+
+    private onOAuthClick = () => {
+        NaviAction
+            .clickOAuth(this.props.dispatch);
     }
 }
 

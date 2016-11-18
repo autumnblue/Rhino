@@ -34,12 +34,31 @@ class LandingPageAction extends ActionCreator<LandingPageService> {
         })
     }
 
-    public openEditor(dispatch): void {
-        dispatch({
-            type: ActionType.OPEN_EDITOR,
-            context: LandingPageAction.QUALIFIER
-        });
+    public getTemplate(path: string): Promise<any> {
+        return new LandingPageService().getTemplate(path);
     }
+
+    // public openEditor(dispatch): void {
+    //     dispatch({
+    //         type: ActionType.OPEN_EDITOR,
+    //         context: LandingPageAction.QUALIFIER
+    //     });
+    // }
+
+    public okEditor(dispatch, raw: string): void {
+        dispatch({
+            type: ActionType.EDITOR_OK,
+            payload: raw,
+            context: LandingPageAction.QUALIFIER
+        }); 
+    }
+
+    // public cancelEditor(dispatch): void {
+    //     dispatch({
+    //         type: ActionType.EDITOR_CANCEL,
+    //         context: LandingPageAction.QUALIFIER
+    //     }); 
+    // }
 }
 
 export default new LandingPageAction();

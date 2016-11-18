@@ -7,4 +7,5 @@ export interface MenuState {
     email: { selected: boolean }
     scrape: { selected: boolean }
     config: { selected: boolean }
+    oauth: { selected: boolean }
 }

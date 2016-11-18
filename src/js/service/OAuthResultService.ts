@@ -10,7 +10,7 @@ class OAuthResultService extends CrudService<OAuthResultDto, any> {
 
     public async read(): Promise<OAuthResultXDto> {
         return http.get<OAuthResultXDto>
-            (`${this.resource}?include[]=oauth_engagement.*`);
+            (`${this.resource}?include[]=oauth_engagement.*&include[]=consumer.*&include[]=target.*`);
     }
 
     public async getSuggestions(): Promise<{ o_auth_results: OAuthResultDto[] }> {

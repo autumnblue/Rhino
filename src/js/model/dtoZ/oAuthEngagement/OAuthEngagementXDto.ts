@@ -6,6 +6,8 @@ import CampaignDto from '../campaign/CampaignDto';
 import EmailTemplateDto from '../emailTemplate/EmailTemplateDto';
 import ScheduleDto from '../schedule/ScheduleDto';
 import EmailServerDto from '../emailServer/EmailServerDto';
+import OAuthConsumerDto from '../oAuthConsumer/OAuthConsumerDto';
+import TargetListDto from '../targetList/TargetListDto';
 
 
 interface OAuthEngagementXDto extends PagedDto {
@@ -14,6 +16,8 @@ interface OAuthEngagementXDto extends PagedDto {
     email_templates: EmailTemplateDto[];
     schedule_intervals: ScheduleDto[];
     email_servers: EmailServerDto[];
+    o_auth_consumers: OAuthConsumerDto[];
+    target_lists: TargetListDto[];
 }
 
 export default OAuthEngagementXDto;
