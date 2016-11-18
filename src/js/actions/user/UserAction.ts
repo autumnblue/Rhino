@@ -6,8 +6,6 @@ import { ServiceType } from '../../service/ServiceFactory';
 import { UserEditState, UserAddState } from '../../model/state/UserState';
 import { mapUser } from '../../validation/server/mapper/UserValidationResponse';
 
-type UserInputState = UserEditState | UserAddState;
-
 class ActionCreator {
     private service: IUserService;
 

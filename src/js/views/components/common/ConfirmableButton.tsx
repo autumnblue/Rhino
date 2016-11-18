@@ -12,9 +12,9 @@ export class ConfirmableButton extends React.Component<Props, State> {
         if(this.state.prompt) {
             return (
                 <div className="btn-confirm-prompt">
-                    <span>{this.props.value}?</span>
-                    <button onClick={this.onNoClick}>NO</button>
                     <button onClick={this.props.onConfirm}>YES</button>
+                    <button onClick={this.onNoClick}>NO</button>
+                    <span>{this.props.value}?</span>
                 </div>
             );
         } else {

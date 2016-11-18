@@ -7,6 +7,8 @@ import { AppState } from '../../../model/state/AppState';
 import { MenuState } from '../../../model/state/MenuState';
 import { NaviAction } from '../../../actions/navigation/NaviAction';
 import { Dir } from '../../../common/Constants';
+import IconButton from 'material-ui/IconButton';
+import PermIdentity from 'material-ui/svg-icons/action/perm-identity';
 
 class Container extends React.Component<Props, void> {
     public render() {
@@ -24,6 +26,97 @@ class Container extends React.Component<Props, void> {
                                     Logout
                             </Item> 
                     </Menu>
+
+                    <Menu 
+                        selected={ this.props.state.top.selected }
+                        onClick={ this.onClick }>
+                            <span className="glyphicon glyphicon-edit"></span>
+                            <Item href={ Dir.ENGAGEMENTS }>
+                                    Engagements
+                            </Item>
+                            <Item href={ Dir.CAMPAIGN }>
+                                    Campaigns
+                            </Item>
+                            <Item href={ Dir.CLIENTS }>
+                                    Clients
+                            </Item>
+                            <Item href={ Dir.PHISHING_DOMAIN}>
+                                    <span className="glyphicon glyphicon-wrench"></span> Phishing Domains
+                            </Item>
+                    </Menu>
+
+                    <Menu 
+                        selected={ this.props.state.targets.selected }
+                        href="/"
+                        onClick={ this.onTargetsClick }>
+                            <span className="glyphicon glyphicon-screenshot"></span>
+                    </Menu>
+
+                    <Menu 
+                        selected={ this.props.state.pages.selected }
+                        onClick={ this.onPagesClick }>
+                            <span className="glyphicon glyphicon-list-alt"></span>
+                            <Item href={ Dir.LANDING_PAGES }>
+                                    Landing Pages
+                            </Item>
+                            <Item href={ Dir.REDIRECT_PAGES }>
+                                    Redirect Pages
+                            </Item>
+                    </Menu>
+
+                    <Menu 
+                        selected={ this.props.state.email.selected }
+                        onClick={ this.onEmailClick }>
+                            <span className="glyphicon glyphicon-envelope"></span>
+                            <Item href={ Dir.EMAIL_TEMPLATES }>
+                                    Email Templates
+                            </Item>
+                            <Item href="/">
+                                    Email Log
+                            </Item>
+                            <Item href={ Dir.SCHEDULE }>
+                                    Schedules
+                            </Item>
+                            <Item href={ Dir.EMAIL_SERVER }>
+                                    <span className="glyphicon glyphicon-wrench"></span> Email Servers
+                            </Item>
+                    </Menu>
+
+                    <Menu 
+                        selected={ this.props.state.scrape.selected }
+                        onClick={ this.onScrapeClick }>
+                            <span className="glyphicon glyphicon-upload"></span>
+                            <Item href={ Dir.SHOAL_SCRAPE_TASKS }>
+                                    ShoalScrape
+                            </Item>
+                            <Item href={ Dir.SCRAPER_USER_AGENTS }>
+                                    <span className="glyphicon glyphicon-wrench"></span> Scraper User-Agents
+                            </Item>
+                            <Item href={ Dir.SHOAL_SCRAPE_CREDS }>
+                                    <span className="glyphicon glyphicon-wrench"></span> ShoalScrape Credentials
+                            </Item>
+                    </Menu>
+
+                    <Menu 
+                        selected={ this.props.state.oauth.selected }
+                        onClick={ this.onOAuthClick }>
+                            <IconButton tooltip="OAuth">
+                                <PermIdentity />
+                            </IconButton>
+                            <Item href={ Dir.O_AUTH_ENGAGEMENTS }>
+                                    OAuth Engagements
+                            </Item>
+                            <Item href={ Dir.PLUNDER }>
+                                    Plunder
+                            </Item>
+                            <Item href={ Dir.O_AUTH_RESULTS }>
+                                    OAuth Results
+                            </Item>
+                            <Item href={ Dir.O_AUTH_CONSUMERS }>
+                                    <span className="glyphicon glyphicon-wrench"></span> OAuth Consumers
+                            </Item>
+                    </Menu>
+
                     <Menu
                         selected={ this.props.state.config.selected } 
                         onClick={ this.onConfigClick }>
@@ -56,6 +149,31 @@ class Container extends React.Component<Props, void> {
             .clickIdentity(this.props.dispatch);
     }
 
+    private onClick = () => {
+        NaviAction
+            .click(this.props.dispatch);
+    }
+
+    private onTargetsClick = () => {
+        NaviAction
+            .clickTarget(this.props.dispatch);
+    }
+
+    private onPagesClick = () => {
+        NaviAction
+            .clickPages(this.props.dispatch);
+    }
+
+    private onEmailClick = () => {
+        NaviAction
+            .clickEmail(this.props.dispatch);
+    }
+
+    private onScrapeClick = () => {
+        NaviAction
+            .clickScrape(this.props.dispatch);
+    }
+
     private onConfigClick = () => {
         NaviAction
             .clickConfig(this.props.dispatch);
@@ -64,6 +182,11 @@ class Container extends React.Component<Props, void> {
     private onLogoutClick = () => {
         NaviAction
             .logout(this.props.dispatch);
+    }
+
+    private onOAuthClick = () => {
+        NaviAction
+            .clickOAuth(this.props.dispatch);
     }
 }
 

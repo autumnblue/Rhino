@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { ClientState } from '../../../../model/state/ClientState';
 import { connect } from 'react-redux';
 import { Column, ColumnProps } from './Column';
 import { ActionCol, ActionProps } from './ActionCol';
@@ -23,7 +22,8 @@ class Component extends React.Component<{ data: Array<Dto> }, {}> {
 
         const rows = this.props.data.map(datum => {
             const row = columns.map(column => {
-                const value = datum[column.headKey]
+                let value = column.dependee ? datum[column.headKey].text: datum[column.headKey]
+                if(value && value.length > 50) value = `${value.slice(0, 50)}...`
                 
                 let a: React.ReactElement<{}>;                
                 if(column.linkKey)

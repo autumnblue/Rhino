@@ -1,11 +1,11 @@
-import { Dto } from './Dto';
+import { CommitableDto } from './CommitableDto';
 
-export interface CampaignDto extends Dto {
-    id: number,
-    title: string,
+export interface CampaignDto extends CommitableDto {
+    name: string,
     description: string,
     client: {
-        id: number
+        id: number,
         name: string
-    }
+    },
+    campaign_clients?: any[]
 }

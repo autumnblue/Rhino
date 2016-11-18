@@ -5,5 +5,6 @@ import { Service } from '../Service';
 
 export interface IIdentityService extends Service {
     login(dto: CredentialDto): Promise<AuthzResponseDto>;
+    refresh(token: string): Promise<AuthzResponseDto>;
     validate(dto: CredentialDto): Promise<ValidationResponseDto>;
 }

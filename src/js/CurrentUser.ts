@@ -9,6 +9,14 @@ class PageStatic {
         window.location.href = href;
     }
 
+    public toLogin(): void {
+        if(!CurrentUser.Page.isLogin()) {
+            CurrentUser.Session
+                .setReferer(window.location.href);
+            CurrentUser.Page.to(Dir.LOGIN);
+        }
+    }
+
     private currentPage(): string {
         return window.location.href;
     }

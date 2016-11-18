@@ -1,12 +1,14 @@
-export interface ClientState {
-    read: Client | Client[],
-    input: any
+import CrudState from './CrudState';
+
+class ClientState extends CrudState {
+    constructor(context?) {
+        super(context);
+    }
+
+    id = null
+    name = ''
+    url = ''
+    timezone = ''
 }
 
-interface Client {
-    id: number,
-    name: string,
-    url: string,
-    timezone: any
-}
-
+export default ClientState ;

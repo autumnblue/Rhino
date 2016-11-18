@@ -20,7 +20,12 @@ export class UserList extends React.Component<Props, void> {
                     editCallback={this.props.onOpen}/>
             </Table>
             :
-            <Grid data={this.props.list || []} openCb={this.props.onOpen}/> 
+            <Grid 
+                data={this.props.list || []} 
+                label={ (datum) => {
+                    return `${datum['firstName']} ${datum['lastName']}`;
+                } }
+                openCb={this.props.onOpen}/> 
         );
     } 
 }

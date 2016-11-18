@@ -15,7 +15,7 @@ const defaultListState: UserPageState = {
 
 //TODO: paging, etc
 const loadUsers = (dtos: PagedDto<UserDto>, state: UserPageState): UserPageState => {
-    state.list = dtos.results.map(dto => {
+    state.list = dtos['users'].map(dto => {
         return {
             id: dto.id,
             username: dto.username,
@@ -73,9 +73,9 @@ export const reducer: Reducer<UserPageState> = (state: UserPageState = defaultLi
                 : ViewType.TABLE
             return copy<UserPageState>(state);
 
-        case ActionType.USER_ADD_SUCCESS:
-            return pushUser(action.payload,
-                copy<UserPageState>(state));
+        // case ActionType.USER_ADD_SUCCESS:
+        //     return pushUser(action.payload,
+        //         copy<UserPageState>(state));
 
         case ActionType.USER_EDIT_SUCCESS:
             return refreshUser(action.payload,

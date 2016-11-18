@@ -10,6 +10,10 @@ export class MockIdentityService extends Service implements IIdentityService {
         return;
     }
 
+    public async refresh(token: string): Promise<AuthzResponseDto> {
+        return;
+    }
+
     public async validate(dto: CredentialDto): Promise<ValidationResponseDto> {
         return;
     }

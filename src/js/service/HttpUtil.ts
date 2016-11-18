@@ -1,15 +1,19 @@
 import * as popsicle from 'popsicle';
-import { CurrentUser } from '../CurrentUser';
+import { Identity } from '../security/Identity';
+import handleErr from '../validation/submit/landingPages/LandingPagesFormSubmitValidator'; 
 
-const addAuthzHeader = (headers: { [name: string]: string }) => {
-    headers['Authorization'] = `JWT ${CurrentUser.Session.getToken()}`;
+const addAuthzHeader = (headers: { [name: string]: string }): Promise<void> => {
+    return Identity.getToken()
+    .then(token => {
+        headers['Authorization'] = `JWT ${token}`;
+    })    
 }
 
 export const post = async <T>(url: string, body: any, authz = true): Promise<T> => {
     let headers: { [name: string]: string } = {
         'Content-Type': 'application/x-www-form-urlencoded'
     }
-    if(authz) addAuthzHeader(headers);
+    if(authz) await addAuthzHeader(headers);
     
     return await popsicle.request({
         method: 'POST',
@@ -20,15 +24,16 @@ export const post = async <T>(url: string, body: any, authz = true): Promise<T> 
     .use(popsicle.plugins.parse('json'))
     .then(response => {
         if(response.status >= 400)
-            throw new Error(); //TODO: wrap in ClientError?
+            //return handleErr(response.body);
+            return Promise.reject(response);  //return raw response
 
         return <T>response.body;
-    });
+    })
 }
 
 export const get = async <T>(url: string, authz = true): Promise<T> => {
     let headers: { [name: string]: string } = {};
-    if(authz) addAuthzHeader(headers);
+    if(authz) await addAuthzHeader(headers);
 
     return await popsicle.request({
         method: 'GET',
@@ -43,7 +48,7 @@ export const put = async <T>(url: string, body: any, authz = true): Promise<T> =
     let headers: { [name: string]: string } = {
         'Content-Type': 'application/json'
     }
-    if(authz) addAuthzHeader(headers);
+    if(authz) await addAuthzHeader(headers);
     
     return await popsicle.request({
         method: 'PUT',
@@ -53,6 +58,9 @@ export const put = async <T>(url: string, body: any, authz = true): Promise<T> =
     })
     .use(popsicle.plugins.parse('json'))
     .then(response => {
+        if(response.status >= 400)
+            return Promise.reject(response);
+
         return <T>response.body;
     });
 }
@@ -61,7 +69,7 @@ export const patch = async <T>(url: string, body: any, authz = true): Promise<T>
     let headers: { [name: string]: string } = {
         'Content-Type': 'application/json'
     }
-    if(authz) addAuthzHeader(headers);
+    if(authz) await addAuthzHeader(headers);
     
     return await popsicle.request({
         method: 'PUT',
@@ -79,7 +87,7 @@ export const del = async <T>(url: string, authz = true): Promise<T> => {
     let headers: { [name: string]: string } = {
         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
     }
-    if(authz) addAuthzHeader(headers);
+    if(authz) await addAuthzHeader(headers);
     
     return await popsicle.request({
         method: 'DELETE',
@@ -89,5 +97,56 @@ export const del = async <T>(url: string, authz = true): Promise<T> => {
     .use(popsicle.plugins.parse('json'))
     .then(response => {
         return <T>response.body; //TODO: error handling when != 204
+    });
+}
+
+export const dynamicGet = async (rsrc: string, identifier: string, authz = true): Promise<any[]> => {
+    let headers: { [name: string]: string } = {
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+    }
+    if(authz) await addAuthzHeader(headers);
+    
+    return await popsicle.request({
+        method: 'GET',
+        url: `https://sandbar-dev.rhino.lan/api/v1/${rsrc}/?exclude[]=*&include[]=${identifier}&include[]=id`,
+        headers: headers
+    })
+    .use(popsicle.plugins.parse('json'))
+    .then(response => {
+        return response.body[rsrc];
+    });
+}
+
+// export const dynamicGetX = async (url: string, authz = true): Promise<any[]> => {
+//     let headers: { [name: string]: string } = {
+//         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+//     }
+//     if(authz) await addAuthzHeader(headers);
+    
+//     return await popsicle.request({
+//         method: 'GET',
+//         url: url,
+//         headers: headers
+//     })
+//     .use(popsicle.plugins.parse('json'))
+//     .then(response => {
+//         return response.body;
+//     });
+// }
+
+export const dynamicGetX = async <T>(url, authz = true): Promise<T> => {
+    let headers: { [name: string]: string } = {
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+    }
+    if(authz) await addAuthzHeader(headers);
+    
+    return await popsicle.request({
+        method: 'GET',
+        url: url,
+        headers: headers
+    })
+    .use(popsicle.plugins.parse('json'))
+    .then(response => {
+        return response.body;
     });
 }

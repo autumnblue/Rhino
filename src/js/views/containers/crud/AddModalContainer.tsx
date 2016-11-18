@@ -1,0 +1,56 @@
+declare const CKEDITOR: any;
+
+import * as React from 'react';
+import * as react_redux from 'react-redux';
+import { Modal } from '../../components/common/Modal';
+import { Control } from '../../components/common/Controls';
+import CrudState from '../../../model/state/CrudState';
+import { AppState } from '../../../model/state/AppState';
+import CrudActionCreator from '../../../actions/crud/CrudActionCreator'
+import { Service } from '../../../service/Service';
+
+export const AddModalContainer = (props: Props) => {
+    const onSubmit = (values):Promise<any> => {
+        const data = CKEDITOR.instances.editor1 && CKEDITOR.instances.editor1.getData();
+
+        if(data) values.source = data;
+
+        values.id = props.state['selected']
+        return props.action
+            .create(props.dispatch, values, props.state.context);
+    }
+
+    const onCancel = (): void => {
+        props.action
+            .cancel(props.dispatch, props.state.context);
+    }
+
+    const children = React.Children.map(props.children, child => {
+        return React.cloneElement(child as React.ReactElement<any>,
+            { submit: onSubmit });
+    });
+
+    return <Modal 
+        title={ props.title }
+        visible={ (props.state.visible && props.state.visible != undefined && props.state.visible != null) || props.state['mode'] == 'ADD'}>
+            <Control>
+                <button onClick={onCancel}>
+                    <span className="glyphicon glyphicon-share-alt"></span>
+                    CANCEL
+                </button>
+            </Control>
+            <Control>
+                <button onClick={onSubmit}>SAVE</button>
+            </Control>
+
+            { children }
+    </Modal>   
+}
+
+export interface Props {
+    dispatch?
+    state?: CrudState
+    title?: string
+    action?: CrudActionCreator<Service>
+    children?: any
+}

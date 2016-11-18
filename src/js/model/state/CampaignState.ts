@@ -1,7 +1,20 @@
-export interface CampaignState {
-    id: number,
-    title: string,
-    description: string,
-    client: string,
-    link: string
-}   
+import CrudState from './CrudState';
+
+class CampaignPagesState extends CrudState {
+    constructor(context?) {
+        super(context);
+    }
+
+    id: number = null
+    name = ''
+    description = ''
+    client: Campaign_client
+    campaign_clients?: Campaign_client[]
+}
+
+interface Campaign_client {
+    id:number;
+    name: string;
+}
+
+export default CampaignPagesState ;

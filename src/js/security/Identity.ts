@@ -2,6 +2,9 @@ import * as jwt from './token/JwtUtil';
 import { Claims } from './token/Claims';
 import { CurrentUser } from '../CurrentUser';
 import { Dir } from '../common/Constants';
+import * as factory from '../service/ServiceFactory';
+import { ServiceType } from '../service/ServiceFactory';
+import { IIdentityService } from '../service/identity/IIdentityService';
 
 class IdentityStatic {
     private claims: Claims;
@@ -15,10 +18,85 @@ class IdentityStatic {
         return this.handle;
     }
 
+    public getToken(): Promise<string> {
+        const jwt = CurrentUser.Session.getToken(); 
+        if(jwt)
+            if(this.isExpired())
+                return factory
+                    .of<IIdentityService>(ServiceType.IDENTITY)
+                    .refresh(jwt)
+                    .then(refreshed => {
+                        const token = refreshed.token;
+                        CurrentUser.Session.setToken(token);
+                        return token
+                    })
+                    .catch(err => {
+                        CurrentUser.Session
+                            .setReferer(window.location.href);
+                        this.logout();
+                    });
+            else
+                return Promise.resolve(jwt);
+        else {
+            CurrentUser.Page.toLogin();
+            return Promise.resolve(null);
+        }
+    }
+
+    private doCall() {
+        console.log('Refreshing token...') 
+        const jwt = CurrentUser.Session.getToken(); 
+        if(jwt) {
+            console.log('Got JWT');
+            if(!this.isExpired()) {
+                console.log('Not expired, continuing...');
+                factory
+                    .of<IIdentityService>(ServiceType.IDENTITY)
+                    .refresh(jwt)
+                    .then(refreshed => {
+                        const token = refreshed.token;
+                        CurrentUser.Session.setToken(token);
+                        console.log(`Refreshed with ${token}!`)
+                        console.log(CurrentUser.Session.getToken());
+                    })
+                    .catch(err => {
+                        CurrentUser.Session
+                            .setReferer(window.location.href);
+                        this.logout();
+                    });
+            } else {
+                console.log(CurrentUser.Session.getToken())
+                console.log('Expired, logging out...')
+                if(CurrentUser.Page.isLogin())
+                    this.reset();
+                else
+                    this.logout();
+            }
+        } else {
+            console.log('JWT missing.');
+            if(CurrentUser.Page.isLogin())
+                this.reset();
+            else
+                this.logout();
+        }
+    }
+
+    public heartBeat() {
+        this.doCall();
+        setInterval(() => {
+            this.doCall();
+        }, 60000);
+    }
+
     public login(token: string) {
         CurrentUser.Session.setToken(token);
         const referer = CurrentUser.Session.getReferer();
         CurrentUser.Page.to(referer || '\\');
+    }
+
+    public isLoggedInAsync(): Promise<boolean> {
+        return this.getToken()
+        .then(token => token !== null);
     }
 
     public isLoggedIn(): boolean {
@@ -47,6 +125,7 @@ class IdentityStatic {
     private getBaseUrl(): string {
         if(!this.baseUrl) {
             const socket = CurrentUser.Session.getSocket();
+            if(!socket) this.logout();
             const host = socket.host;
             const port = socket.port 
                 ? `:${socket.port}` 

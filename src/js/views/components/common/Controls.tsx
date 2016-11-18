@@ -19,10 +19,12 @@ export const sift = (node: React.ReactNode): Couple => {
     let others = new Array<React.ReactNode>();
 
     React.Children.forEach(node, (child, idx) => {
-        if(child['type'] == Control)
-            controls.push(<li key={idx}>{ child }</li>);
-        else
-            others.push(child)
+        if(child) {
+            if(child['type'] == Control)
+                controls.push(<li key={idx}>{ child }</li>);
+            else
+                others.push(child)
+        }
     });
         
     return { controls: controls, others: others }

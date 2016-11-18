@@ -1,28 +1,26 @@
 import { Service } from '../Service';
 import { IClientService } from './IClientService';
 import { ClientDto } from '../../model/dto/ClientDto';
+import { PagedDto } from '../../model/dto/PagedDto';
 
 export class MockClientService extends Service implements IClientService {
-    public readClientList(): ClientDto[] {
-        return [
-            {
-                id: 1,
-                name: 'Acme Corp',
-                url: 'http://acme.com',
-                timezone: 1000
-            },
-            {
-                id: 2,
-                name: 'Vakarian Arms',
-                url: 'http://www.vakarian.com',
-                timezone: 2000
-            },
-            {
-                id: 3,
-                name: 'Autofill',
-                url: 'http://www.dau.com',
-                timezone: 3000
-            }
-        ]
+    public async create(dto: ClientDto): Promise<ClientDto> {
+        return null;
+    }
+
+    public async read(): Promise<PagedDto<ClientDto>> {
+        return null;
+    }
+    
+    public async readSingle(id: number): Promise<ClientDto> {
+        return null;
+    }
+
+    public async update(dto: ClientDto): Promise<ClientDto> {
+        return null;
+    }
+    
+    public async delete(id: number): Promise<void> {
+        return null;
     }
 }

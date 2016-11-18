@@ -14,6 +14,7 @@
     "install:latest": "npm install --save-dev typings@* typescript@* istanbul@* jasmine@*",
     "init": "rm -rf .git && npm run install:latest && npm init && git init",
     "compile": "tsc",
+    "dist": "typings install && npm run build",
     "build:tsc": "npm run compile",
     "prebuild": "npm run clean && mkdir -p dist",
     "build": "npm run build:tsc && npm run bundle",
@@ -23,26 +24,30 @@
     "setup:mock": "cd mock && npm run teardown:mock && docker-compose up -d",
     "teardown:mock": "cd mock && docker-compose down",
     "prebundle": "mkdir build/lib",
-    "bundle": "browserify --im build/js/main.js > build/lib/bundle.js",
+    "bundle": "browserify --im --fast build/js/main.js > build/lib/bundle.js",
+    "bundle:app": "browserify --im --fast -x jwt-decode -x moment -x moment-timezone -x popsicle -x react -x react-addons-css-transition-group -x react-dom -x react-redux -x react-router -x react-tap-event-plugin -x redux build/js/main.js > build/lib/bundle.js",
+    "bundle:static": "browserify -r jwt-decode -r moment -r moment-timezone -r popsicle -r react -r react-addons-css-transition-group -r react-dom -r react-redux -r react-router -r react-tap-event-plugin -r redux > build/lib/vendor.js",
     "prepack": "",
     "test": "rm -rf build && npm run build:tsc && istanbul cover jasmine",
     "posttest": "istanbul check-coverage --statements 80 --functions 80 --branches 80 --lines 80",
     "publish:major": "npm version major && npm run prepack && npm publish build",
     "publish:minor": "npm version minor && npm run prepack && npm publish build",
     "publish:patch": "npm version patch && npm run prepack && npm publish build",
+    "setup": "npm install && typings install",
     "typings": "typings",
     "start": "php -S localhost:8000 -t dist/ local_dev/router.php"
   },
   "dependencies": {
-    "dotenv": "^2.0.0",
     "jwt-decode": "^2.1.0",
     "moment": "^2.15.1",
+    "moment-timezone": "^0.5.7",
     "popsicle": "^8.2.0",
     "react": "^15.3.2",
     "react-addons-css-transition-group": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-redux": "^4.4.5",
     "react-router": "^2.8.1",
+    "react-tap-event-plugin": "^1.0.0",
     "redux": "^3.6.0"
   },
   "devDependencies": {
@@ -53,5 +58,5 @@
     "typescript": "^2.0.3",
     "typings": "^1.4.0"
   },
-  "main": "index.js",
+  "main": "index.js"
 }
