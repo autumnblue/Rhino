@@ -6,11 +6,14 @@ import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
 import ModeEdit from 'material-ui/svg-icons/editor/mode-edit';
 import CircularProgress from 'material-ui/CircularProgress';
+import Props from './CustomProps';
+import FieldProps from './FieldProps';
 
-class TextEditor extends React.Component<{ 
+class TextEditor extends React.Component<
+Props & FieldProps & { 
     fetch(): Promise<any>,  
-    onOk(raw: string): void
-}, { open: boolean, fetching?: boolean, data?: string }> {
+    // onOk(dispatch, data: string): void
+}, { open?: boolean, fetching?: boolean, data?: string }> {
     constructor() {
         super();
         this.state = {
@@ -29,7 +32,7 @@ class TextEditor extends React.Component<{
                     <CircularProgress size={80} thickness={7} />
                     :
                     <div className="thumbnail">
-                        <iframe srcDoc="http://www.bing.com" frameBorder="0"></iframe>
+                        <iframe srcDoc={this.state.data} frameBorder="0"></iframe>
                     </div>
                 }
             </div>
@@ -49,7 +52,7 @@ class TextEditor extends React.Component<{
                     <FlatButton
                         label="OK"
                         primary={true}
-                        onTouchTap={ () => { this.props.onOk(CKEDITOR.instances.editor1.getData()) } }/>,
+                        onTouchTap={ () => this.props.input.onChange(CKEDITOR.instances.editor1.getData()) } />,
                 ]}
                 style={ { paddingTop: 0} }
                 repositionOnUpdate={false}
@@ -69,10 +72,10 @@ class TextEditor extends React.Component<{
     public componentDidMount() {
         this.props.fetch()
         .then(data => {
-            const newState = this.state;
-            newState.data = data
-            newState.fetching = false
-            this.setState(newState)
+            this.setState({
+                data: data,
+                fetching: false    
+            })
         })
     }
 

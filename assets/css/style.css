@@ -528,6 +528,8 @@ ul.dialog-context {
 }
 
 .thumbnail {
+  width: 1440px;
+  height: 900px;
   position: relative;
   -ms-zoom: 0.25;
   -moz-transform: scale(0.25);

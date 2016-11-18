@@ -12,33 +12,8 @@ class RedirectPageAction extends ActionCreator<RedirectPageService> {
         super(RedirectPageService, RedirectPageMapper, RedirectPageAction.QUALIFIER)
     }
 
-    public getScraperUserAgentSuggestions(dispatch): void {
-        dispatch({
-            type: ActionType.SCRAPER_USER_AGENT_SUGGESTIONS_LOADING,
-            context: RedirectPageAction.QUALIFIER
-        });
-
-        new ScraperUserAgentService()
-        .getSuggestions()
-        .then(suggestions => {
-            const mapped: Ref[] = suggestions.scraper_user_agents.map(suggestion => ({
-                id: suggestion.id,
-                text: suggestion.name
-            }))
-
-            dispatch({
-                type: ActionType.SCRAPER_USER_AGENT_SUGGESTIONS_POPULATED,
-                payload: mapped,
-                context: RedirectPageAction.QUALIFIER
-            });
-        })
-    }
-
-    public openEditor(dispatch): void {
-        dispatch({
-            type: ActionType.OPEN_EDITOR,
-            context: RedirectPageAction.QUALIFIER
-        });
+    public getTemplate(path: string): Promise<any> {
+        return new RedirectPageService().getTemplate(path);
     }
 }
 

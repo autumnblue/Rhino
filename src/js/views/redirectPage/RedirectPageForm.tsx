@@ -6,6 +6,7 @@ import Ref from '../../model/stateZ/Ref';
 const reduxForm = require('redux-form');
 const Field = reduxForm.Field;
 import RedirectPageAction from '../../actions/RedirectPageAction2'
+import FetchAction from '../../actions/FetchAction'
 import select from '../common/fields/Select';
 import autoComplete from '../common/fields/AutoComplete';
 import input from '../common/fields/Input';
@@ -53,7 +54,7 @@ let redirectPageForm = reduxForm.reduxForm({
                             name="scraperUserAgent"
                             label="Scraper User Agent"
                             data={ props.record.scraperUserAgent }
-                            asyncSrc={ RedirectPageAction.getScraperUserAgentSuggestions }
+                            asyncSrc={ FetchAction.getScraperUserAgentSuggestions }
                             component={ autoComplete } /> 
                     </div> 
                 }
@@ -75,13 +76,8 @@ let redirectPageForm = reduxForm.reduxForm({
                 { !isScrapedPage || !isUrl
                     &&
                     <div className="text-area">
-                        <IconButton onTouchTap={ () => RedirectPageAction.openEditor(props.dispatch) }>
-                            <ModeEdit />
-                        </IconButton>
-
                         <Field
-                            open={ true }
-                            data={ props.record.source }
+                            fetch={ () => RedirectPageAction.getTemplate(props.record.path) }
                             name="template"
                             label="Template"
                             component={ editor } />

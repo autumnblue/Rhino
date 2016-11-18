@@ -19,10 +19,10 @@ import { LoginPage } from './views/containers/identity/LoginPage';
 import { UserPage } from './views/containers/user/UserPage';
 import ClientRoot from './views/client/ClientRoot';;
 import EngagementRoot from './views/engagement/EngagementRoot';
-import EmailTemplateRoot from './views/containers/emailTemplate/EmailTemplateRoot';
+import EmailTemplateRoot from './views/emailTemplate/EmailTemplateRoot';
 import { ProfilePage } from './views/containers/identity/ProfilePage';
 import CampaignRoot from './views/campaign/CampaignRoot'; 
-import SchedulePage from './views/containers/schedule/SchedulePage';
+import ScheduleRoot from './views/schedule/ScheduleRoot';
 import EmailServerPage from './views/containers/emailServer/EmailServerPage';
 import PhishingDomainRoot from './views/phishingDomain/PhishingDomainRoot';
 import ScraperUserAgentRoot from './views/scraperUserAgent/ScraperUserAgentRoot';
@@ -88,7 +88,7 @@ ReactDom.render(
                     />
                 <Route 
                     path={ Dir.SCHEDULE } 
-                    component={SchedulePage}
+                    component={ScheduleRoot}
                     onEnter={ () => permit(Role.AUTHENTICATED) } 
                     />
                 <Route 

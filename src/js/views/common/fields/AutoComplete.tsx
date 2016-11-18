@@ -10,7 +10,7 @@ class LazyAutoComplete extends React.Component<{
     fetch(): Promise<any> }
     & Props 
     & FieldProps, 
-    { fetching?: boolean, data?: string }> {
+    { fetching?: boolean, data?: Ref[] }> {
 
     constructor() {
         super();
@@ -32,8 +32,8 @@ class LazyAutoComplete extends React.Component<{
                     errorText={
                         this.props.meta.touched && this.props.meta.error }
                     onNewRequest={
-                        (chosen: Ref) => {
-                            this.props.input.onChange(`${chosen.id}`)
+                        (chosen: any) => {
+                            this.props.input.onChange(chosen)
                         }
                     }
                     onUpdateInput={
@@ -45,7 +45,7 @@ class LazyAutoComplete extends React.Component<{
                     searchText={
                         typeof this.props.input.value == 'string'
                         ? this.props.input.value
-                        : this.props.input.value['text'] 
+                        : this.props.input.value['text']     
                     }
                 />
                 {
@@ -73,3 +73,26 @@ class LazyAutoComplete extends React.Component<{
 }
 
 export default LazyAutoComplete;
+
+// typeof this.props.input.value == 'string'
+// ? this.props.input.value
+// : this.props.input.value['text'] 
+
+// searchText={ (() => {
+//                             const text = this.props.input.value['text'];
+//                             if(text)
+//                                 return text
+//                             else {
+//                                 const data = this.state.data;
+//                                 if(data) {
+//                                     const ref = data.filter(
+//                                         datum => `${datum.id}` === this.props.input.value
+//                                     )[0];
+
+//                                     if(ref) return ref.text;
+//                                 } 
+//                             }
+
+//                             return '';
+//                         })()
+//                     }

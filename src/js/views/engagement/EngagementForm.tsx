@@ -4,44 +4,45 @@ import EngagementRecord from '../../model/stateZ/engagement/EngagementRecord';
 import Ref from '../../model/stateZ/Ref';
 const reduxForm = require('redux-form');
 const Field = reduxForm.Field;
-import AutoComplete from 'material-ui/AutoComplete';
+import autoComplete from '../common/fields/AutoComplete'
 import TextField from 'material-ui/TextField'
 import EngagementAction from '../../actions/EngagementAction2'
+import FetchAction from '../../actions/FetchAction'; 
 import { AppState } from '../../model/state/AppState';
 import RefreshIndicator from 'material-ui/RefreshIndicator';
 import ErrAlert from '../common/ErrorAlert';
 
-const renderAutoComplete = (props: Props & FieldProps) => {  
-    return <span>    
-        <AutoComplete
-            hintText={ props.label }
-            dataSource={ props.data && props.data.suggestions || [] }
-            dataSourceConfig={ { text: 'text', value: 'id'} }
-            filter={AutoComplete.fuzzyFilter}
-            floatingLabelText={ props.label }
-            maxSearchResults={ 10 } 
-            errorText={
-                props.meta.touched && props.meta.error }
-            onNewRequest={
-                (chosen: Ref) => {
-                    props.input.onChange(`${chosen.id}`)
-                }
-            }
-            onUpdateInput={
-                (searchText: string, dataSource: Ref[]) => {
-                    !dataSource.length
-                    && props.asyncSrc(props.meta.dispatch)
-                }
-            }
-            searchText={props.input.value['text']}
-        />
-        <RefreshIndicator
-            size={25}
-            left={70}
-            top={0}
-            status={ props.data && props.data.loading ? 'loading' : 'hide'}/>
-    </span>  
-}
+// const renderAutoComplete = (props: Props & FieldProps) => {  
+//     return <span>    
+//         <AutoComplete
+//             hintText={ props.label }
+//             dataSource={ props.data && props.data.suggestions || [] }
+//             dataSourceConfig={ { text: 'text', value: 'id'} }
+//             filter={AutoComplete.fuzzyFilter}
+//             floatingLabelText={ props.label }
+//             maxSearchResults={ 10 } 
+//             errorText={
+//                 props.meta.touched && props.meta.error }
+//             onNewRequest={
+//                 (chosen: Ref) => {
+//                     props.input.onChange(`${chosen.id}`)
+//                 }
+//             }
+//             onUpdateInput={
+//                 (searchText: string, dataSource: Ref[]) => {
+//                     !dataSource.length
+//                     && props.asyncSrc(props.meta.dispatch)
+//                 }
+//             }
+//             searchText={props.input.value['text']}
+//         />
+//         <RefreshIndicator
+//             size={25}
+//             left={70}
+//             top={0}
+//             status={ props.data && props.data.loading ? 'loading' : 'hide'}/>
+//     </span>  
+// }
 
 //searchText={ props.initTxt }
 
@@ -115,9 +116,8 @@ const engagementForm = reduxForm.reduxForm({
                 <Field
                     name="campaign"
                     label="Campaign"
-                    data={props.record.campaign}
-                    asyncSrc={ EngagementAction.getCampaignSuggestions }
-                    component={ renderAutoComplete } />
+                    fetch={ FetchAction.getCampaignSuggestions }
+                    component={ autoComplete } />
             </div>
             <div>
                 <Field
@@ -136,9 +136,8 @@ const engagementForm = reduxForm.reduxForm({
                 <Field
                     name="phishingDomain"
                     label="Phishing Domain"
-                    data={props.record.phishingDomain}
-                    asyncSrc={ EngagementAction.getPhishingDomainSuggestions }
-                    component={ renderAutoComplete } />
+                    fetch={ FetchAction.getPhishingDomainSuggestions }
+                    component={ autoComplete } />
                 /
                 <Field
                     name="path"
@@ -149,41 +148,36 @@ const engagementForm = reduxForm.reduxForm({
                 <Field
                     name="schedule"
                     label="Schedule"
-                    data={props.record.schedule}
-                    asyncSrc={ EngagementAction.getScheduleSuggestions }
-                    component={ renderAutoComplete } />
+                    fetch={ FetchAction.getScheduleSuggestions }
+                    component={ autoComplete } />
             </div>
             <div>
                 <Field
                     name="emailServer"
                     label="Send Using"
-                    data={props.record.emailServer}
-                    asyncSrc={ EngagementAction.getEmailServerSuggestions }
-                    component={ renderAutoComplete } />
+                    fetch={ FetchAction.getEmailServerSuggestions }
+                    component={ autoComplete } />
             </div>
             <div>
                 <Field
                     name="emailTemplate"
                     label="Email template"
-                    data={props.record.emailTemplate}
-                    asyncSrc={ EngagementAction.getEmailTemplateSuggestions }
-                    component={ renderAutoComplete } />
+                    fetch={ FetchAction.getEmailTemplateSuggestions }
+                    component={ autoComplete } />
             </div>
             <div>
                 <Field
                     name="landingPage"
                     label="Landing page"
-                    data={props.record.landingPage}
-                    asyncSrc={ EngagementAction.getLandingPageSuggestions }
-                    component={ renderAutoComplete } />
+                    fetch={ FetchAction.getLandingPageSuggestions }
+                    component={ autoComplete } />
             </div>
             <div>
                 <Field
                     name="redirectPage"
                     label="Redirect page"
-                    data={props.record.redirectPage}
-                    asyncSrc={ EngagementAction.getRedirectPageSuggestions }
-                    component={ renderAutoComplete } />
+                    fetch={ FetchAction.getRedirectPageSuggestions }
+                    component={ autoComplete } />
             </div>
 
             <button type="submit" style={ { display: 'none' } } id="submit-form" />
