@@ -6,6 +6,7 @@ import Ref from '../../model/stateZ/Ref';
 const reduxForm = require('redux-form');
 const Field = reduxForm.Field;
 import CampaignAction from '../../actions/CampaignAction2'
+import FetchAction from '../../actions/FetchAction'
 import select from '../common/fields/Select';
 import autoComplete from '../common/fields/AutoComplete';
 import input from '../common/fields/Input';
@@ -34,7 +35,7 @@ let campaignForm = reduxForm.reduxForm({
                     <Field
                         name="client"
                         label="Clients"
-                        fetch={ CampaignAction.getClientSuggestions }
+                        fetch={ FetchAction.getClientSuggestions }
                         component={ autoComplete } /> 
                 </div>
                 <div>

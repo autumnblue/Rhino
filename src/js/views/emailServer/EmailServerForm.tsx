@@ -1,11 +1,10 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import ClientRecord from '../../model/stateZ/client/ClientRecord';
-import ClientWidget from '../../model/stateZ/client/ClientWidget';
+import EmailServerRecord from '../../model/stateZ/emailServer/EmailServerRecord';
 import Ref from '../../model/stateZ/Ref';
 const reduxForm = require('redux-form');
 const Field = reduxForm.Field;
-import ClientAction from '../../actions/ClientAction2'
+import EmailServerAction from '../../actions/EmailServerAction2'
 import select from '../common/fields/Select';
 import autoComplete from '../common/fields/AutoComplete';
 import input from '../common/fields/Input';
@@ -16,43 +15,50 @@ import MenuItem from 'material-ui/MenuItem';
 import FormProps from '../common/FormProps';
 import { AppState } from '../../model/state/AppState';
 import ErrAlert from '../common/ErrorAlert';
-const moment = require('moment-timezone'); 
+import Toggle from 'material-ui/Toggle';
+import Props from '../common/fields/CustomProps';
+import FieldProps from '../common/fields/FieldProps';
 
-//normalize
-const timezones = {
-    suggestions: moment.tz.names().map(name => ({ text: name, id: name }))
-}
+const FORM = 'EmailServerForm'
 
-const FORM = 'ClientForm'
-
-let clientForm = reduxForm.reduxForm({
+let emailServerForm = reduxForm.reduxForm({
     form: FORM
 })(
 (props: FormProps 
-    & { widget: ClientWidget }
-    & { record: ClientRecord } ) => {         
+    & { record: EmailServerRecord } ) => {         
         return <form 
             onSubmit={ props.handleSubmit(props.submit) }>
                 <ErrAlert errorMsg={ props.error } />
 
                 <div>
                     <Field
-                        name="name"
-                        label="Name"
+                        name="host"
+                        label="Host"
                         component={ input } />
                 </div>
                 <div>
                     <Field
-                        name="url"
-                        label="URL"
+                        name="port"
+                        label="Port"
                         component={ input } />
                 </div>
                 <div>
                     <Field
-                        name="timezone"
-                        label="Default Timezone"
-                        fetch={ Promise.resolve(timezones) }
-                        component={ autoComplete } /> 
+                        name="useTls"
+                        label="Use TLS?"
+                        component={ Toggle } />
+                </div>              
+                <div>
+                    <Field
+                        name="login"
+                        label="Login"
+                        component={ input } />
+                </div>
+                <div>
+                    <Field
+                        name="password"
+                        label="Account Password"
+                        component={ input } />
                 </div>
 
                 <Submit />
@@ -62,9 +68,9 @@ let clientForm = reduxForm.reduxForm({
 export default connect(
     (state: AppState) => {    
         return {
-            initialValues: state.client.selectedRecord,
-            record: state.client.selectedRecord    
+            initialValues: state.emailServer.selectedRecord,
+            record: state.emailServer.selectedRecord    
         }
     }
-)(clientForm);
+)(emailServerForm);
 

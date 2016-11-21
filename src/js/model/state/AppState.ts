@@ -2,7 +2,7 @@ import { MenuState } from './MenuState';
 import { UserAddState, UserEditState, UserPageState } from './UserState';
 import ClientState from '../stateZ/client/ClientState';
 import CampaignState from '../stateZ/campaign/CampaignState';
-import EmailServerState from '../state2/emailServer/EmailServerState';
+import EmailServerState from '../stateZ/emailServer/EmailServerState';
 import PhishingDomainState from '../stateZ/phishingDomain/PhishingDomainState';
 import LandingPageState from '../stateZ/landingPage/LandingPageState';
 import ScheduleState from '../stateZ/schedule/ScheduleState';
@@ -20,6 +20,7 @@ import OAuthConsumerState from '../stateZ/oAuthConsumer/OAuthConsumerState';
 import OAuthEngagementState from '../stateZ/oAuthEngagement/OAuthEngagementState';
 import OAuthResultState from '../stateZ/oAuthResult/OAuthResultState';
 import PlunderState from '../stateZ/plunder/PlunderState'
+// import ProfileState from '../stateZ/profile/ProfileState'
 
 export interface AppState {
     navigation: MenuState

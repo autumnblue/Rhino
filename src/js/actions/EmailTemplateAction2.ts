@@ -10,14 +10,6 @@ class EmailTemplateAction extends ActionCreator<EmailTemplateService> {
     constructor() {
         super(EmailTemplateService, EmailTemplateMapper, EmailTemplateAction.QUALIFIER)
     }
-
-    public okEditor(dispatch, data: string): void {
-        dispatch({
-            type: ActionType.EDITOR_OK,
-            payload: data,
-            context: EmailTemplateAction.QUALIFIER
-        }); 
-    }
 }
 
 export default new EmailTemplateAction();

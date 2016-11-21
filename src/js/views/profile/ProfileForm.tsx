@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import ClientRecord from '../../model/stateZ/client/ClientRecord';
-import ClientWidget from '../../model/stateZ/client/ClientWidget';
+import ProfileRecord from '../../model/stateZ/profile/ProfileRecord';
+import ProfileWidget from '../../model/stateZ/profile/ProfileWidget';
 import Ref from '../../model/stateZ/Ref';
 const reduxForm = require('redux-form');
 const Field = reduxForm.Field;
-import ClientAction from '../../actions/ClientAction2'
+import ProfileAction from '../../actions/ProfileAction2'
+import FetchAction from '../../actions/FetchAction'
 import select from '../common/fields/Select';
 import autoComplete from '../common/fields/AutoComplete';
 import input from '../common/fields/Input';
@@ -15,6 +16,7 @@ import Submit from '../common/SubmitButton';
 import MenuItem from 'material-ui/MenuItem';
 import FormProps from '../common/FormProps';
 import { AppState } from '../../model/state/AppState';
+import IconButton from 'material-ui/IconButton';
 import ErrAlert from '../common/ErrorAlert';
 const moment = require('moment-timezone'); 
 
@@ -22,30 +24,24 @@ const moment = require('moment-timezone');
 const timezones = {
     suggestions: moment.tz.names().map(name => ({ text: name, id: name }))
 }
+const FORM = 'ProfileForm'
 
-const FORM = 'ClientForm'
-
-let clientForm = reduxForm.reduxForm({
+let profileForm = reduxForm.reduxForm({
     form: FORM
 })(
 (props: FormProps 
-    & { widget: ClientWidget }
-    & { record: ClientRecord } ) => {         
+    & { widget: ProfileWidget }
+    & { record: ProfileRecord } ) => {         
         return <form 
             onSubmit={ props.handleSubmit(props.submit) }>
                 <ErrAlert errorMsg={ props.error } />
 
                 <div>
                     <Field
-                        name="name"
-                        label="Name"
-                        component={ input } />
-                </div>
-                <div>
-                    <Field
-                        name="url"
-                        label="URL"
-                        component={ input } />
+                        name="user"
+                        label="User"
+                        fetch={ FetchAction.getUserSuggestions }
+                        component={ autoComplete } /> 
                 </div>
                 <div>
                     <Field
@@ -62,9 +58,9 @@ let clientForm = reduxForm.reduxForm({
 export default connect(
     (state: AppState) => {    
         return {
-            initialValues: state.client.selectedRecord,
-            record: state.client.selectedRecord    
+            // initialValues: state.profile.selectedRecord,
+            // record: state.profile.selectedRecord    
         }
     }
-)(clientForm);
+)(profileForm);
 

@@ -5,7 +5,7 @@ import OAuthEngagementWidget from '../../model/stateZ/oAuthEngagement/OAuthEngag
 import Ref from '../../model/stateZ/Ref';
 const reduxForm = require('redux-form');
 const Field = reduxForm.Field;
-import OAuthEngagementAction from '../../actions/OAuthEngagementAction2'
+import FetchAction from '../../actions/FetchAction';
 import select from '../common/fields/Select';
 import autoComplete from '../common/fields/AutoComplete';
 import input from '../common/fields/Input';
@@ -30,7 +30,7 @@ const oAuthEngagementForm = reduxForm.reduxForm({
                     name="campaign"
                     label="Campaign"
                     data={props.record.campaign}
-                    asyncSrc={ OAuthEngagementAction.getCampaignSuggestions }
+                    asyncSrc={ FetchAction.getCampaignSuggestions }
                     component={ autoComplete } />
             </div>
             <div>
@@ -50,7 +50,7 @@ const oAuthEngagementForm = reduxForm.reduxForm({
                     name="oAuthConsumer"
                     label="OAuth consumer"
                     data={props.record.oAuthConsumer}
-                    asyncSrc={ OAuthEngagementAction.getOAuthConsumerSuggestions }
+                    asyncSrc={ FetchAction.getOAuthConsumerSuggestions }
                     component={ autoComplete } />
             </div>
             <div>
@@ -58,7 +58,7 @@ const oAuthEngagementForm = reduxForm.reduxForm({
                     name="schedule"
                     label="Schedule"
                     data={props.record.schedule}
-                    asyncSrc={ OAuthEngagementAction.getScheduleSuggestions }
+                    asyncSrc={ FetchAction.getScheduleSuggestions }
                     component={ autoComplete } />
             </div>
             <div>
@@ -66,7 +66,7 @@ const oAuthEngagementForm = reduxForm.reduxForm({
                     name="emailServer"
                     label="Send Using"
                     data={props.record.emailServer}
-                    asyncSrc={ OAuthEngagementAction.getEmailServerSuggestions }
+                    asyncSrc={ FetchAction.getEmailServerSuggestions }
                     component={ autoComplete } />
             </div>
             <div>
@@ -74,7 +74,7 @@ const oAuthEngagementForm = reduxForm.reduxForm({
                     name="emailTemplate"
                     label="Email template"
                     data={props.record.emailTemplate}
-                    asyncSrc={ OAuthEngagementAction.getEmailTemplateSuggestions }
+                    asyncSrc={ FetchAction.getEmailTemplateSuggestions }
                     component={ autoComplete } />
             </div>
 

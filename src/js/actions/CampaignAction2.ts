@@ -11,17 +11,6 @@ class CampaignAction extends ActionCreator<CampaignService> {
     constructor() {
         super(CampaignService, CampaignMapper, CampaignAction.QUALIFIER)
     }
-
-    public getClientSuggestions(): Promise<any> {
-        return new ClientService()
-        .getSuggestions()
-        .then(suggestions => {
-            return suggestions.clients.map(suggestion => ({
-                id: suggestion.id,
-                text: suggestion.name
-            }))
-        })
-    }
 }
 
 export default new CampaignAction();

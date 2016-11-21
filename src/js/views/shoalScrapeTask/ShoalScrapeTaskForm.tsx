@@ -16,6 +16,7 @@ import MenuItem from 'material-ui/MenuItem';
 import FormProps from '../common/FormProps';
 import { AppState } from '../../model/state/AppState';
 import IconButton from 'material-ui/IconButton';
+import FetchAction from '../../actions/FetchAction'
 import ErrAlert from '../common/ErrorAlert';
 
 const FORM = 'ShoalScrapeTaskForm'
@@ -34,8 +35,7 @@ let shoalScrapeTaskForm = reduxForm.reduxForm({
                     <Field
                         name="shoalScrapeCreds"
                         label="Credentials"
-                        data={ props.record.shoalScrapeCreds }
-                        asyncSrc={ ShoalScrapeTaskAction.getShoalScrapeCredSuggestions }
+                        asyncSrc={ FetchAction.getShoalScrapeCredSuggestions }
                         component={ autoComplete } /> 
                 </div>
                 <div>

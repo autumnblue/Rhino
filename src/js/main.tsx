@@ -23,7 +23,7 @@ import EmailTemplateRoot from './views/emailTemplate/EmailTemplateRoot';
 import { ProfilePage } from './views/containers/identity/ProfilePage';
 import CampaignRoot from './views/campaign/CampaignRoot'; 
 import ScheduleRoot from './views/schedule/ScheduleRoot';
-import EmailServerPage from './views/containers/emailServer/EmailServerPage';
+import EmailServerRoot from './views/emailServer/EmailServerRoot';
 import PhishingDomainRoot from './views/phishingDomain/PhishingDomainRoot';
 import ScraperUserAgentRoot from './views/scraperUserAgent/ScraperUserAgentRoot';
 import ShoalScrapeCredRoot from './views/shoalScrapeCred/ShoalScrapeCredRoot';
@@ -93,7 +93,7 @@ ReactDom.render(
                     />
                 <Route 
                     path={ Dir.EMAIL_SERVER } 
-                    component={EmailServerPage}
+                    component={EmailServerRoot}
                     onEnter={ () => permit(Role.AUTHENTICATED) } 
                     />
                 <Route 
