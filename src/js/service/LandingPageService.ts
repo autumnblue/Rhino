@@ -20,7 +20,7 @@ class LandingPageService extends CrudService<LandingPageDto, any> {
     }
 
     public async getTemplate(path): Promise<any> {
-        return http.get<any>
+        return http.get2<any>
             (`${Identity.Server.getBaseUrl()}/${path}`);
     }
 }

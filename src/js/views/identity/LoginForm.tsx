@@ -4,7 +4,7 @@ import EmailTemplateRecord from '../../model/stateZ/emailTemplate/EmailTemplateR
 import Ref from '../../model/stateZ/Ref';
 const reduxForm = require('redux-form');
 const Field = reduxForm.Field;
-import EmailTemplateAction from '../../actions/EmailTemplateAction2'
+import LoginAction from '../../actions/LoginAction2'
 import select from '../common/fields/Select';
 import autoComplete from '../common/fields/AutoComplete';
 import input from '../common/fields/Input';
@@ -16,64 +16,51 @@ import { AppState } from '../../model/state/AppState';
 import IconButton from 'material-ui/IconButton';
 import ModeEdit from 'material-ui/svg-icons/editor/mode-edit';
 import ErrAlert from '../common/ErrorAlert';
+import validate from '../../validation/client/LoginFormClientValidator';
 
-const FORM = 'EmailTemplateFormAdd'
+const FORM = 'LoginForm'
 
-let emailTemplateForm = reduxForm.reduxForm({
-    form: FORM
+const loginForm = reduxForm.reduxForm({
+    form: FORM,
+    validate: validate
 })(
-(props: FormProps 
-    & { record: EmailTemplateRecord } ) => {       
+(props: FormProps) => {       
         return <form 
-            onSubmit={ props.handleSubmit(props.submit) }>
+            onSubmit={ props.handleSubmit(values => LoginAction.submit(props.dispatch, values)) }>
                 <ErrAlert errorMsg={ props.error } />
 
                 <div> 
                     <Field
-                        name="name"
-                        label="Template Name"
+                        name="host"
+                        label="Host"
                         component={ input }  />
                 </div>
 
                 <div> 
                     <Field
-                        name="fromHeader"
-                        label="From Header"
+                        name="port"
+                        label="Port"
                         component={ input }  />
                 </div>
 
                 <div> 
                     <Field
-                        name="subjectHeader"
-                        label="Subject Header"
+                        name="username"
+                        label="Username"
                         component={ input }  />
                 </div>
 
-                <div className="text-area">
+                <div> 
                     <Field
-                        fetch={ () => Promise.resolve(props.record.template) }
-                        name="template"
-                        label="Template"
-                        component={ editor } />
+                        name="password"
+                        label="Password"
+                        type="password"
+                        component={ input }  />
                 </div>
 
-                <Submit />
+                <Submit submitId="login-submit-form" />
         </form>
 });
 
-//fetch={ EmailTemplateAction.get }
-
-const selector = reduxForm.formValueSelector(FORM)
-//http://redux-form.com/6.0.0-alpha.11/examples/selectingFormValues/
-export default connect(
-  (state: AppState) => {
-    const pageTypeValue = selector(state, 'pageType')
-    return {
-      pageTypeValue,
-      initialValues: state.emailTemplate.selectedRecord,
-      record: state.emailTemplate.selectedRecord,
-      widget: state.emailTemplate.widgetState
-    }
-  }
-)(emailTemplateForm)
+export default loginForm;
 

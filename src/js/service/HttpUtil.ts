@@ -31,6 +31,18 @@ export const post = async <T>(url: string, body: any, authz = true): Promise<T> 
     })
 }
 
+export const get2 = async <T>(url: string, authz = true): Promise<T> => {
+    let headers: { [name: string]: string } = {};
+    if(authz) await addAuthzHeader(headers);
+
+    return await popsicle.request({
+        method: 'GET',
+        url: url,
+        headers: headers
+    })
+    .then(response => <T>response.body);
+}
+
 export const get = async <T>(url: string, authz = true): Promise<T> => {
     let headers: { [name: string]: string } = {};
     if(authz) await addAuthzHeader(headers);

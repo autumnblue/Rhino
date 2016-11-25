@@ -4,16 +4,19 @@ import { CurrentUser } from '../CurrentUser';
 import { Dir } from '../common/Constants';
 import * as factory from '../service/ServiceFactory';
 import { ServiceType } from '../service/ServiceFactory';
-import { IIdentityService } from '../service/identity/IIdentityService';
+import IdentityService from '../service/IdentityService';
+import store from '../main';
+import LoginAction from '../actions/LoginAction2';
+import * as moment from 'moment';
 
 class IdentityStatic {
-    private claims: Claims;
+    // private claims: Claims;
     private baseUrl: string;
     private handle: string;
 
     public getHandle() {
         if(!this.handle) {
-            this.handle = jwt.getUser(this.getClaims());
+            this.handle = jwt.getUser();
         }
         return this.handle;
     }
@@ -22,8 +25,7 @@ class IdentityStatic {
         const jwt = CurrentUser.Session.getToken(); 
         if(jwt)
             if(this.isExpired())
-                return factory
-                    .of<IIdentityService>(ServiceType.IDENTITY)
+                return new IdentityService()
                     .refresh(jwt)
                     .then(refreshed => {
                         const token = refreshed.token;
@@ -43,21 +45,15 @@ class IdentityStatic {
         }
     }
 
-    private doCall() {
-        console.log('Refreshing token...') 
-        const jwt = CurrentUser.Session.getToken(); 
-        if(jwt) {
-            console.log('Got JWT');
+    private doCall() { 
+        const token = CurrentUser.Session.getToken(); 
+        if(token) {
             if(!this.isExpired()) {
-                console.log('Not expired, continuing...');
-                factory
-                    .of<IIdentityService>(ServiceType.IDENTITY)
-                    .refresh(jwt)
+                new IdentityService()
+                    .refresh(token)
                     .then(refreshed => {
                         const token = refreshed.token;
                         CurrentUser.Session.setToken(token);
-                        console.log(`Refreshed with ${token}!`)
-                        console.log(CurrentUser.Session.getToken());
                     })
                     .catch(err => {
                         CurrentUser.Session
@@ -65,15 +61,12 @@ class IdentityStatic {
                         this.logout();
                     });
             } else {
-                console.log(CurrentUser.Session.getToken())
-                console.log('Expired, logging out...')
                 if(CurrentUser.Page.isLogin())
                     this.reset();
                 else
                     this.logout();
             }
         } else {
-            console.log('JWT missing.');
             if(CurrentUser.Page.isLogin())
                 this.reset();
             else
@@ -85,7 +78,7 @@ class IdentityStatic {
         this.doCall();
         setInterval(() => {
             this.doCall();
-        }, 60000);
+        }, 180000);
     }
 
     public login(token: string) {
@@ -106,14 +99,15 @@ class IdentityStatic {
 
     public logout(): void {
         this.reset();
-        CurrentUser.Page.to(Dir.LANDING);
+        //CurrentUser.Page.to(Dir.LANDING);
+        LoginAction.logout(store.dispatch);
     }
 
     public reset(): void {
         CurrentUser.Session.setToken(null);
         CurrentUser.Session.setSocket(null);
         this.baseUrl = null;
-        this.claims = null;
+        // this.claims = null;
         this.handle = null;
     }
 
@@ -156,16 +150,17 @@ class IdentityStatic {
     }
 
     private isExpired(): boolean {
-        return jwt.isExpired(this.getClaims());
+        //return jwt.isExpired(this.getClaims());
+        return jwt.isExpired();
     }
 
-    private getClaims(): Claims {
-        if(!this.claims) {
-            this.claims = jwt.decode();
-        }
+    // private getClaims(): Claims {
+    //     if(!this.claims) {
+    //         this.claims = jwt.decode();
+    //     }
 
-        return this.claims;
-    }
+    //     return this.claims;
+    // }
 }
 
 export const Identity = new IdentityStatic();

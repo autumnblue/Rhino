@@ -50,6 +50,8 @@ abstract class ActionCreator<S extends CrudService<Dto, PagedDto>> {
         const dto = map.toDto(values)
         return new this.ServiceCls().update(dto)
         .then(() => {
+            this.initPage(dispatch);
+
             dispatch({
                 type: ActionType.CRUD_EDIT_SUCCESS,
                 context: this.qualifier
@@ -65,6 +67,8 @@ abstract class ActionCreator<S extends CrudService<Dto, PagedDto>> {
         const dto = map.toDto(values)
         return new this.ServiceCls().create(dto)
         .then(created => {
+            this.initPage(dispatch);
+
             dispatch({
                 type: ActionType.CRUD_ADD_SUCCESS,
                 context: this.qualifier
@@ -77,13 +81,15 @@ abstract class ActionCreator<S extends CrudService<Dto, PagedDto>> {
 
     public remove(dispatch, id: number) {
         new this.ServiceCls().delete(id)
-        .then(removed => 
+        .then(removed => {
+            this.initPage(dispatch);
+
             dispatch({
                 type: ActionType.CRUD_REMOVE_SUCCESS,
                 payload: id,
                 context: this.qualifier
             })
-        );
+        });
     }
 
     public toggleView(dispatch) {

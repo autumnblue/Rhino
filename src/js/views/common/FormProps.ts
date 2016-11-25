@@ -1,7 +1,7 @@
 interface FormProps {
     error: string;
-    handleSubmit(fn: () => void): void
-    submit(): void
+    handleSubmit(fn: (values) => void): void
+    submit(values): void
     dispatch: Function;
 }
 

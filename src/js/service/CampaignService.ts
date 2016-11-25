@@ -17,6 +17,11 @@ class CampaignService extends CrudService<CampaignDto, any> {
         return http.get<{ campaigns: CampaignDto[] }>
             (`${this.resource}?exclude[]=*&include[]=name&include[]=id`);
     }
+
+    public async filterByClient(id: number): Promise<CampaignXDto> {
+        return http.get<CampaignXDto>
+            (`${this.resource}?filter{client}=${id}&?include[]=client.*`);
+    }
 }
 
 export default CampaignService;

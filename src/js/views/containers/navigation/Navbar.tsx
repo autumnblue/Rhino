@@ -31,14 +31,14 @@ class Container extends React.Component<Props, void> {
                         selected={ this.props.state.top.selected }
                         onClick={ this.onClick }>
                             <span className="glyphicon glyphicon-edit"></span>
-                            <Item href={ Dir.ENGAGEMENTS }>
-                                    Engagements
+                            <Item href={ Dir.CLIENTS }>
+                                    Clients
                             </Item>
                             <Item href={ Dir.CAMPAIGN }>
                                     Campaigns
                             </Item>
-                            <Item href={ Dir.CLIENTS }>
-                                    Clients
+                            <Item href={ Dir.ENGAGEMENTS }>
+                                    Engagements
                             </Item>
                             <Item href={ Dir.PHISHING_DOMAIN}>
                                     <span className="glyphicon glyphicon-wrench"></span> Phishing Domains

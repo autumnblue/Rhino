@@ -10,11 +10,13 @@ export const decode = (): Claims => {
     return null;
 }
 
-export const isExpired = (claims: Claims): boolean => {
+export const isExpired = (): boolean => {
     const now = moment().utc().valueOf() / 1000
-    return moment(now).isSameOrAfter(claims.exp);
+    // return moment(now).isSameOrAfter(claims.exp);
+    return now > this.decode().exp;
 }
 
-export const getUser = (claims: Claims): string => {
+export const getUser = (): string => {
+    const claims = this.decode();
     return claims ? claims.username : null;
 }

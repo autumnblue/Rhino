@@ -1,4 +1,6 @@
 import { SessionStorageKey, Dir } from './common/Constants';
+import store from './main';
+import LoginAction from './actions/LoginAction2';
 
 class PageStatic {
     public isLogin(): boolean {
@@ -13,7 +15,7 @@ class PageStatic {
         if(!CurrentUser.Page.isLogin()) {
             CurrentUser.Session
                 .setReferer(window.location.href);
-            CurrentUser.Page.to(Dir.LOGIN);
+            LoginAction.logout(store.dispatch);
         }
     }
 

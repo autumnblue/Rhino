@@ -24,6 +24,11 @@ export class Modal extends React.Component<EditModalProps, void> {
                         contentClassName="dialog-content"
                         bodyClassName="dialog-body"
                         actionsContainerClassName="dialog-actions"
+                        contentStyle={ 
+                            { 
+                                marginLeft: '70px' 
+                            } 
+                        }
                         autoScrollBodyContent={ true }>
                             { sifted.others }
                     </Dialog>

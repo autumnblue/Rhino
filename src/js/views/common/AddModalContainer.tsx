@@ -35,6 +35,7 @@ export const AddModalContainer = (props: Props) => {
             <Control>
                 <label htmlFor="submit-form">SAVE</label>
             </Control>
+            {props.controls}
 
             { children }
     </Modal>   
@@ -46,4 +47,6 @@ export interface Props {
     title?: string
     action?: ActionCreator<any>
     children?: React.ReactNode
+    controls?: Control[]
+    submitId?: string
 }

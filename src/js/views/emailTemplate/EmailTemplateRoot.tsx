@@ -11,7 +11,7 @@ import EmailTemplateEditModal from './modals/EmailTemplateEditModal';
 const EmailTemplateRoot = (props: Props) => {
     return <div>
         <CrudContainer
-            title="EmailTemplates"
+            title="Email Templates"
             action={ EmailTemplateAction }
             {...props}>
                 <EmailTemplateList

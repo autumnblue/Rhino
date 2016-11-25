@@ -10,7 +10,7 @@ injectTapEventPlugin();
 import * as React from 'react'
 import * as ReactDom from 'react-dom'
 import { render } from 'react-dom'
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import reducers from './reducers'
 import { App } from './views/App';
@@ -41,17 +41,20 @@ import { Identity } from './security/Identity';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 const darkBaseTheme = require('material-ui/styles/baseThemes/darkBaseTheme').default;
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import Engagement from './views/engagement/Engagement';
+import thunk from 'redux-thunk';
 
 darkBaseTheme.fontFamily = 'rajdhani';
 
+const store = createStore(reducers, applyMiddleware(thunk));
+export default store;
+
 permit(Role.AUTHENTICATED);
+//initialState: AppState as second arg for hydration; default state handeled by each reducer
 
 //visually identify the current Sandbar server
 Identity.Server.describe();
 Identity.heartBeat();
-
-//initialState: AppState as second arg for hydration; default state handeled by each reducer
-const store = createStore(reducers);
 
 ReactDom.render(
     <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
@@ -68,7 +71,7 @@ ReactDom.render(
                     />
                  <Route 
                     path={ Dir.ENGAGEMENTS } 
-                    component={EngagementRoot}
+                    component={Engagement}
                     onEnter={ () => permit(Role.AUTHENTICATED) } 
                     />
                 <Route 
