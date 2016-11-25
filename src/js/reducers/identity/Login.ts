@@ -56,9 +56,9 @@ export const reducer: Reducer<LoginState> = (state = defaultState, action: Actio
         case ActionType.LOGIN_INVALID_SUBMIT:            
             return action.payload;
 
-        case ActionType.LOGIN_SUCCESS:
-            login(action.payload);
-            return state;
+        // case ActionType.LOGIN_SUCCESS:
+        //     login(action.payload);
+        //     return state;
 
         case ActionType.LOGIN_FAIL:
             newState.alert = {

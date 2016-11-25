@@ -7,6 +7,11 @@ import EngagementState from '../../model/stateZ/engagement/EngagementState';
 import EngagementAddModal from './modals/EngagementAddModal';
 import EngagementList from './EngagementList';
 import EngagementEditModal from './modals/EngagementEditModal';
+import ScheduleAddModal from '../schedule/modals/ScheduleAddModal';
+import EmailTemplateAddModal from '../emailTemplate/modals/EmailTemplateAddModal';
+import EmailServerAddModal from '../emailServer/modals/EmailServerAddModal';
+import LandingPageAddModal from '../landingPage/modals/LandingPageAddModal';
+import RedirectPageAddModal from '../redirectPage/modals/RedirectPageAddModal';
 
 const EngagementRootContainer = (props: Props) => {
     return <div>
@@ -19,6 +24,11 @@ const EngagementRootContainer = (props: Props) => {
                     data={props.state.records} />
         </CrudContainer>
         <EngagementAddModal />
+        <ScheduleAddModal />
+        <EmailServerAddModal />
+        <EmailTemplateAddModal />
+        <LandingPageAddModal />
+        <RedirectPageAddModal />
         <EngagementEditModal />
     </div>
 }

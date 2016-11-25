@@ -6,6 +6,8 @@ import { AppState } from '../../model/state/AppState';
 import { CrudState } from '../../model/stateZ/CrudState';
 import ActionCreator from '../../actions/ActionCreator';
 import { Panel } from '../components/common/Panel';
+import IconButton from 'material-ui/IconButton';
+import Paginator from './Paginator';
 
 export class CrudContainer extends React.Component<Props, void> {
     constructor(props) {
@@ -43,8 +45,25 @@ export class CrudContainer extends React.Component<Props, void> {
                             { viewIcon }
                         </button>
                     </Control>
+                    <div>
+                        <Paginator 
+                            currPage={this.props.state.page}
+                            pageCount={this.props.state.totalPages}
+                            onPageClick={ page=> console.log(page)} 
+                            onPrevClick={ ()=> console.log('<')}
+                            onNextClick={ ()=> console.log('>')} />
+                    </div>
 
                     { this.renderChildren() }
+
+                    <div>
+                        <Paginator 
+                            currPage={this.props.state.page}
+                            pageCount={this.props.state.totalPages}
+                            onPageClick={ page=> console.log(page)} 
+                            onPrevClick={ ()=> console.log('<')}
+                            onNextClick={ ()=> console.log('>')} />
+                    </div>
 
                 </Panel>
             </div>        

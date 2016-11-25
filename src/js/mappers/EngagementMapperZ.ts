@@ -35,7 +35,10 @@ class EngagementMapperStatic implements Mapper {
                 id: dto.id
             }
             
-        });        
+        });
+
+        state.page = result.meta.page;
+        state.totalPages = result.meta.total_pages;
 
         return state;
     }

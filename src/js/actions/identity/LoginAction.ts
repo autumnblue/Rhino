@@ -35,8 +35,8 @@ class ActionCreator {
         this.getService()
         .login({ username: username, password: password })
         .then(authz => dispatch({
-            type: ActionType.LOGIN_SUCCESS,
-            payload: authz
+            // type: ActionType.LOGIN_SUCCESS,
+            // payload: authz
         }))
         .catch(err => {
             Identity.reset();

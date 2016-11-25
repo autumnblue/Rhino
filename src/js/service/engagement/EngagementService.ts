@@ -10,7 +10,7 @@ class EngagementService extends CrudService<EngagementDto> implements IEngagemen
     }
 
     public async read(): Promise<EngagementXDto> {
-        const url = 'https://sandbar-dev.rhino.lan/api/v1/engagements/?include[]=landing_page.*&include[]=domain.*&include[]=campaign.*&include[]=email_template.*&include=interval.*&include[]=redirect_page.*&';
+        const url = 'https://sandbar-dev.rhino.lan/api/v1/engagements/?per_page=1&include[]=landing_page.*&include[]=domain.*&include[]=campaign.*&include[]=email_template.*&include=interval.*&include[]=redirect_page.*&';
         return http.dynamicGetX<EngagementXDto>(url);
     }
 }

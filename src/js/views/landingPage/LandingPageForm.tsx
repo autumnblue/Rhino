@@ -16,6 +16,7 @@ import FormProps from '../common/FormProps';
 import { AppState } from '../../model/state/AppState';
 import IconButton from 'material-ui/IconButton';
 import ModeEdit from 'material-ui/svg-icons/editor/mode-edit';
+import FetchAction from '../../actions/FetchAction'
 import ErrAlert from '../common/ErrorAlert';
 
 const FORM = 'LandingPageFormAdd'
@@ -51,8 +52,7 @@ let landingPageForm = reduxForm.reduxForm({
                         <Field
                             name="scraperUserAgent"
                             label="Scraper User Agent"
-                            data={ props.record.scraperUserAgent }
-                            asyncSrc={ LandingPageAction.getScraperUserAgentSuggestions }
+                            fetch={ FetchAction.getScraperUserAgentSuggestions }
                             component={ autoComplete } /> 
                     </div> 
                 }
@@ -76,7 +76,6 @@ let landingPageForm = reduxForm.reduxForm({
                     <div className="text-area">
                         <Field
                             fetch={ () => LandingPageAction.getTemplate(props.record.path) }
-                            onOk={ raw => LandingPageAction.okEditor(props.dispatch, raw) }
                             name="template"
                             label="Template"
                             component={ editor } />

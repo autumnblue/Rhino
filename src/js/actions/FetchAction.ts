@@ -6,6 +6,10 @@ import LandingPageService from '../service/LandingPageService';
 import RedirectPageService from '../service/RedirectPageService';
 import PhishingDomainService from '../service/PhishingDomainService';
 import ScraperUserAgentService from '../service/ScraperUserAgentService';
+import ClientService from '../service/ClientService';
+import ShoalScrapeCredService from '../service/ShoalScrapeCredService';
+import OAuthConsumerService from '../service/OAuthConsumerService';
+import UserService from '../service/UserService';
 import Ref from '../model/stateZ/Ref';
 
 class FetchAction {
@@ -95,6 +99,50 @@ class FetchAction {
                 text: suggestion.name
             }))
         });
+    }
+
+    public getClientSuggestions(): Promise<Ref[]> {
+        return new ClientService()
+        .getSuggestions()
+        .then(suggestions => {
+            return suggestions.clients.map(suggestion => ({
+                id: suggestion.id,
+                text: suggestion.name
+            }))
+        })
+    }
+
+    public getShoalScrapeCredSuggestions(dispatch): Promise<Ref[]> {
+        return new ShoalScrapeCredService()
+        .getSuggestions()
+        .then(suggestions => {
+            return suggestions.shoal_scrape_creds.map(suggestion => ({
+                id: suggestion.id,
+                text: suggestion.name
+            }))
+        })
+    }
+
+    public getOAuthConsumerSuggestions(dispatch): Promise<Ref[]> {
+        return new OAuthConsumerService()
+        .getSuggestions()
+        .then(suggestions => {
+            return suggestions.o_auth_consumers.map(suggestion => ({
+                id: suggestion.id,
+                text: suggestion.name
+            }))
+        })
+    }
+
+    public getUserSuggestions(dispatch): Promise<Ref[]> {
+        return new UserService()
+        .getSuggestions()
+        .then(suggestions => {
+            return suggestions.users.map(suggestion => ({
+                id: suggestion.id,
+                text: suggestion.username
+            }))
+        })
     }
 }
 

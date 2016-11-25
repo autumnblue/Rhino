@@ -11,8 +11,7 @@ import FieldProps from './FieldProps';
 
 class TextEditor extends React.Component<
 Props & FieldProps & { 
-    fetch(): Promise<any>,  
-    // onOk(dispatch, data: string): void
+    fetch(): Promise<any>
 }, { open?: boolean, fetching?: boolean, data?: string }> {
     constructor() {
         super();
@@ -48,11 +47,11 @@ Props & FieldProps & {
                     <FlatButton
                         label="Cancel"
                         primary={true}
-                        onTouchTap={() => this.setState({open: false}) }/>,
+                        onTouchTap={() => { CKEDITOR.instances.editor1.destroy(); this.setState({open: false}) } }/>,
                     <FlatButton
                         label="OK"
                         primary={true}
-                        onTouchTap={ () => this.props.input.onChange(CKEDITOR.instances.editor1.getData()) } />,
+                        onTouchTap={ () => { this.props.input.onChange(CKEDITOR.instances.editor1.getData()); CKEDITOR.instances.editor1.destroy() } } />,
                 ]}
                 style={ { paddingTop: 0} }
                 repositionOnUpdate={false}
@@ -87,7 +86,9 @@ Props & FieldProps & {
     }
 
     private replace() {
-        CKEDITOR.replace( 'editor1' );
+        CKEDITOR.replace( 'editor1', {
+            allowedContent: true
+        } );
         if(this.state.data) {
             CKEDITOR.instances.editor1.setData( this.state.data, function(){
                 this.checkDirty();  // true

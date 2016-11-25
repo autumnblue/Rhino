@@ -45,8 +45,9 @@ export const EditModalContainer = (props: Props) => {
                     </button>
                 </Control>
                 <Control>
-                    <label htmlFor="submit-form">SAVE</label>
+                    <label htmlFor={ props.submitId || 'submit-form'}>SAVE</label>
                 </Control>
+                {props.controls}
 
                 { children }
         </Modal>
@@ -59,6 +60,8 @@ export interface Props {
     title?: string
     action?: ActionCreator<any>
     children?: React.ReactNode
+    controls?: Control[]
+    submitId?: string
 }
 
 

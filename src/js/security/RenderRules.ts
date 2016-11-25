@@ -1,4 +1,5 @@
-import { CurrentUser } from '../CurrentUser';
+import store from '../main';
+import LoginAction from '../actions/LoginAction2';
 import { Identity } from './Identity';
 import { Dir } from '../common/Constants'; 
 import { Role } from './Role';
@@ -17,7 +18,7 @@ export const permit = (role: Role): void => {
             Identity.isLoggedInAsync()
             .then(loggedIn => {
                 if(!loggedIn)
-                    CurrentUser.Page.toLogin();
+                    LoginAction.logout(store.dispatch);
             })
             break;        
     }

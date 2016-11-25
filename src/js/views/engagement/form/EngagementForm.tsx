@@ -1,50 +1,17 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import EngagementRecord from '../../model/stateZ/engagement/EngagementRecord';
-import Ref from '../../model/stateZ/Ref';
+import EngagementRecord from '../../../model/stateZ/engagement/EngagementRecord';
+import Ref from '../../../model/stateZ/Ref';
 const reduxForm = require('redux-form');
 const Field = reduxForm.Field;
-import autoComplete from '../common/fields/AutoComplete'
+import autoComplete from '../../common/fields/AutoComplete'
 import TextField from 'material-ui/TextField'
-import EngagementAction from '../../actions/EngagementAction2'
-import FetchAction from '../../actions/FetchAction'; 
-import { AppState } from '../../model/state/AppState';
+import EngagementAction from '../../../actions/EngagementAction2'
+import FetchAction from '../../../actions/FetchAction'; 
+import { AppState } from '../../../model/state/AppState';
 import RefreshIndicator from 'material-ui/RefreshIndicator';
-import ErrAlert from '../common/ErrorAlert';
-
-// const renderAutoComplete = (props: Props & FieldProps) => {  
-//     return <span>    
-//         <AutoComplete
-//             hintText={ props.label }
-//             dataSource={ props.data && props.data.suggestions || [] }
-//             dataSourceConfig={ { text: 'text', value: 'id'} }
-//             filter={AutoComplete.fuzzyFilter}
-//             floatingLabelText={ props.label }
-//             maxSearchResults={ 10 } 
-//             errorText={
-//                 props.meta.touched && props.meta.error }
-//             onNewRequest={
-//                 (chosen: Ref) => {
-//                     props.input.onChange(`${chosen.id}`)
-//                 }
-//             }
-//             onUpdateInput={
-//                 (searchText: string, dataSource: Ref[]) => {
-//                     !dataSource.length
-//                     && props.asyncSrc(props.meta.dispatch)
-//                 }
-//             }
-//             searchText={props.input.value['text']}
-//         />
-//         <RefreshIndicator
-//             size={25}
-//             left={70}
-//             top={0}
-//             status={ props.data && props.data.loading ? 'loading' : 'hide'}/>
-//     </span>  
-// }
-
-//searchText={ props.initTxt }
+import ErrAlert from '../../common/ErrorAlert';
+import SubmitButton from '../../common/SubmitButton';
 
 interface Props {
     data: Ref
@@ -180,7 +147,7 @@ const engagementForm = reduxForm.reduxForm({
                     component={ autoComplete } />
             </div>
 
-            <button type="submit" style={ { display: 'none' } } id="submit-form" />
+            <SubmitButton submitId="engagement-submit-form" />
     </form>
 });
 
