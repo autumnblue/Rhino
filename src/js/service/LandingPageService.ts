@@ -11,12 +11,12 @@ class LandingPageService extends CrudService<LandingPageDto, any> {
 
     public async read(): Promise<LandingPageXDto> {
         return http.get<LandingPageXDto>
-            (`${this.resource}?include[]=scraper_user_agent.*`);
+            (`${this.resource}?include[]=scraper_user_agent.*&per_page=30`);
     }
 
     public async getSuggestions(): Promise<{ landing_pages: LandingPageDto[] }> {
         return http.get<{ landing_pages: LandingPageDto[] }>
-            (`${this.resource}?exclude[]=*&include[]=name&include[]=id`);
+            (`${this.resource}?exclude[]=*&include[]=name&include[]=id&per_page=30`);
     }
 
     public async getTemplate(path): Promise<any> {

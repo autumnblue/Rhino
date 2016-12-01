@@ -41,6 +41,7 @@ class UserMapperStatic implements Mapper {
             "last_name": state.lastName,
             "is_active": state.isActive,
             "email": state.email,
+            "password": state.password,
             commit: true,
             id: state.id            
         }

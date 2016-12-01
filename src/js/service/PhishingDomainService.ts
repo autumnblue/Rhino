@@ -9,7 +9,7 @@ class PhishingDomainService extends CrudService<PhishingDomainDto, any> {
 
     public async getSuggestions(): Promise<{ phishing_domains: PhishingDomainDto[] }> {
         return http.get<{ phishing_domains: PhishingDomainDto[] }>
-            (`${this.resource}?exclude[]=*&include[]=domain_name&include[]=id`);
+            (`${this.resource}?exclude[]=*&include[]=domain_name&include[]=id&per_page=30`);
     }
 }
 

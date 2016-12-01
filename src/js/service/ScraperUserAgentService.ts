@@ -9,7 +9,7 @@ class ScraperUserAgentService extends CrudService<ScraperUserAgentDto, any> {
 
     public async getSuggestions(): Promise<{ scraper_user_agents: ScraperUserAgentDto[] }> {
         return http.get<{ scraper_user_agents: ScraperUserAgentDto[] }>
-            (`${this.resource}?exclude[]=*&include[]=name&include[]=id`);
+            (`${this.resource}?exclude[]=*&include[]=name&include[]=id&per_page=30`);
     }
 }
 

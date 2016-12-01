@@ -51,7 +51,7 @@ let scheduleForm = reduxForm.reduxForm({
 
             <div>
                 <Field
-                    name="startSend"
+                    name="startType"
                     label="Start sending"
                     component={ select }>
                         <MenuItem value={'now'} primaryText="Now" />
@@ -64,7 +64,7 @@ let scheduleForm = reduxForm.reduxForm({
             && 
             <div>
                 <Field
-                    name="name"
+                    name="startAt"
                     label="After amount..."
                     component={ input } />
             </div>
@@ -89,7 +89,7 @@ const selector = reduxForm.formValueSelector('ScheduleEdit')
 //http://redux-form.com/6.0.0-alpha.11/examples/selectingFormValues/
 export default connect(
   (state: AppState) => {
-    const startSendValue = selector(state, 'startSend')
+    const startSendValue = selector(state, 'startType')
     return {
       startSendValue,
       initialValues: state.schedule.selectedRecord,

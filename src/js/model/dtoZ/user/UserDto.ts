@@ -6,6 +6,7 @@ interface UserDto extends CommitableDto {
     "last_name": string,
     "is_active": boolean,
     "email": string,
+    password?: string
 }
 
 export default UserDto;

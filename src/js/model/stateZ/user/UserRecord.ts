@@ -8,6 +8,7 @@ class UserRecord implements Record {
     isActive: boolean
     email: string
     username: string
+    password?: string
 }
 
 export default UserRecord

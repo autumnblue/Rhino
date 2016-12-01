@@ -10,7 +10,7 @@ import FetchAction from '../../actions/FetchAction'
 import select from '../common/fields/Select';
 import autoComplete from '../common/fields/AutoComplete';
 import input from '../common/fields/Input';
-import editor from '../common/fields/TextEditor';
+import editor from '../common/fields/TextEditor2';
 import Submit from '../common/SubmitButton';
 import MenuItem from 'material-ui/MenuItem';
 import FormProps from '../common/FormProps';
@@ -30,6 +30,7 @@ let redirectPageForm = reduxForm.reduxForm({
     & { pageTypeValue: 'url' | 'manual' | 'page'}) => { 
         const isScrapedPage = props.pageTypeValue && props.pageTypeValue == 'page';
         const isUrl = props.pageTypeValue && props.pageTypeValue == 'url';
+        const isManual = props.pageTypeValue && props.pageTypeValue == 'manual';
         
         return <form 
             onSubmit={ props.handleSubmit(props.submit) }>
@@ -73,11 +74,18 @@ let redirectPageForm = reduxForm.reduxForm({
                             component={ input }  />
                     </div>
                 }
-                { !isScrapedPage || !isUrl
+                { isManual
                     &&
                     <div className="text-area">
                         <Field
-                            fetch={ () => RedirectPageAction.getTemplate(props.record.path) }
+                            fetch={ () => {
+                                
+                                return props.record.path
+                                ?
+                                RedirectPageAction.getTemplate(props.record.path)
+                                :
+                                Promise.resolve("");
+                            } }
                             name="template"
                             label="Template"
                             component={ editor } />

@@ -7,6 +7,7 @@ class EmailTemplateRecord implements Record {
     template: string
     name: string
     id: number
+    shortcodeErrors?: string
 }
 
 export default EmailTemplateRecord

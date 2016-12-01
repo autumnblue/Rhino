@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import EngagementRecord from '../../../model/stateZ/engagement/EngagementRecord';
+import TargetListRecord from '../../../model/stateZ/targetList/TargetListRecord';
 import Ref from '../../../model/stateZ/Ref';
 const reduxForm = require('redux-form');
 const Field = reduxForm.Field;
+const FieldArray = reduxForm.FieldArray;
 import autoComplete from '../../common/fields/AutoComplete'
 import TextField from 'material-ui/TextField'
 import EngagementAction from '../../../actions/EngagementAction2'
@@ -12,6 +14,10 @@ import { AppState } from '../../../model/state/AppState';
 import RefreshIndicator from 'material-ui/RefreshIndicator';
 import ErrAlert from '../../common/ErrorAlert';
 import SubmitButton from '../../common/SubmitButton';
+import FlatButton from 'material-ui/FlatButton';
+import Play from 'material-ui/svg-icons/av/play-arrow';
+import Stop from 'material-ui/svg-icons/av/stop';
+import Checkbox from 'material-ui/Checkbox'
 
 interface Props {
     data: Ref
@@ -41,6 +47,14 @@ const renderTextArea = (props: Props & FieldProps) => {
         {...props.input}
         multiLine={true}
         rows={6}
+    />
+}
+
+const renderCheckbox = (props: Props & FieldProps) => {
+    return <Checkbox 
+        label={props.label}
+        checked={props.input.value ? true: false }
+        onCheck={props.input.onChange}
     />
 }
 
@@ -75,9 +89,33 @@ const engagementForm = reduxForm.reduxForm({
     form: FORM
 })(
 (props: FormProps & {record: EngagementRecord }) => { 
+    const start = () => {
+        props['dispatch'](EngagementAction.togglePreview(props.record));
+    //    props['dispatch'](EngagementAction.start(props.record.id));
+    }
+
+    const stop = () => {
+       props['dispatch'](EngagementAction.stop(props.record.id));
+    }
+
     return <form 
         onSubmit={ props.handleSubmit(props.submit) }>
             <ErrAlert errorMsg={ props.error } />
+
+            <div>
+                <FlatButton
+                    label="Start Engagement"
+                    onClick={start}
+                    disabled={props.record.state === 4}
+                    icon={<Play color="green"/>}
+                    />
+                <FlatButton
+                    label="Stop Engagement"
+                    onClick={stop}
+                    disabled={props.record.state === 0}
+                    icon={<Stop color="red"/>}
+                    />
+            </div>
 
             <div>
                 <Field
@@ -146,15 +184,38 @@ const engagementForm = reduxForm.reduxForm({
                     fetch={ FetchAction.getRedirectPageSuggestions }
                     component={ autoComplete } />
             </div>
-
+            
+            <label>Target Lists</label>
+            <FieldArray name="targetLists" component={lists =>
+                (
+                    <div>
+                    {
+                        lists.fields.map((list: TargetListRecord, listIdx) => {
+                            return <Field
+                                name={ list }
+                                label={ props.record.targetLists[listIdx].text } 
+                                component={ renderCheckbox } />
+                        })
+                    }
+                    </div>
+                )
+            } />
+            
             <SubmitButton submitId="engagement-submit-form" />
     </form>
 });
 
-//const selector = reduxForm.formValueSelector(FORM);
+
+
+// const selector = reduxForm.formValueSelector(FORM);
 
 export default connect(
-    (state: AppState) => {    
+    (state: AppState) => {
+        // const targetListsValue = state.engagement.selectedRecord.targetLists.map(list => {
+
+        // })
+
+        // const targetListsValue = selector(state, 'configuration')    
         return {
             initialValues: state.engagement.selectedRecord,
             record: state.engagement.selectedRecord    

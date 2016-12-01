@@ -10,6 +10,7 @@ import ClientService from '../service/ClientService';
 import ShoalScrapeCredService from '../service/ShoalScrapeCredService';
 import OAuthConsumerService from '../service/OAuthConsumerService';
 import UserService from '../service/UserService';
+import TargetListService from '../service/TargetListService';
 import Ref from '../model/stateZ/Ref';
 
 class FetchAction {
@@ -141,6 +142,17 @@ class FetchAction {
             return suggestions.users.map(suggestion => ({
                 id: suggestion.id,
                 text: suggestion.username
+            }))
+        })
+    }
+
+    public getTargetListSuggestions(dispatch): Promise<Ref[]> {
+        return new TargetListService()
+        .getSuggestions()
+        .then(suggestions => {
+            return suggestions.target_lists.map(suggestion => ({
+                id: suggestion.id,
+                text: suggestion.nickname
             }))
         })
     }

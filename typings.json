@@ -18,5 +18,6 @@
   "devDependencies": {
     "material-ui": "registry:npm/material-ui#0.15.1+20160817172421",
     "redux-thunk": "registry:npm/redux-thunk#2.0.0+20160525185520"
-  }
+  },
+  "globalDevDependencies": {}
 }

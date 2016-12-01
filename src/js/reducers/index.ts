@@ -10,7 +10,7 @@ import landingPages from './landingPages'
 import redirectPages from './redirectPages'
 import emailTemplate from './emailTemplate';
 import login from './identity';
-import * as profile from './identity/Profile'
+import profile from './profile';
 import { AppState } from '../model/state/AppState'
 import engagement from './engagement';
 import scraperUserAgent from './scraperUserAgent';
@@ -21,6 +21,7 @@ import oAuthEngagement from './oAuthEngagement';
 import oAuthResult from './oAuthResult';
 import plunder from './plunder';
 import preview from './preview';
+import targetList from './targetList';
 const reduxForm = require('redux-form');
 
 const app = combineReducers<AppState>({
@@ -32,7 +33,7 @@ const app = combineReducers<AppState>({
     emailServer: emailServer,
     phishingDomain: phishingDomain,
     login: login,
-    profile: profile.reducer,
+    profile: profile,
     landingPage: landingPages,
     redirectPage: redirectPages,
     engagement: engagement,
@@ -45,7 +46,8 @@ const app = combineReducers<AppState>({
     oAuthResult: oAuthResult,
     plunder: plunder,
     form: reduxForm.reducer,
-    preview: preview
+    preview: preview,
+    targetList: targetList
 });
 
 export default app;

@@ -9,13 +9,13 @@ import { Identity } from '../../security/Identity';
 const defaultState: MenuState = {
     handle: Identity.getHandle(),
     identity: { selected: false },
-    top: { selected: false },
-    targets: { selected: false },
-    pages: { selected: false },
-    email: { selected: false },
-    scrape: { selected: false }, 
+    projects: { selected: false },
+    engagements: { selected: false },
+    logs: { selected: false },
+    assets: { selected: false },
+    tools: { selected: false }, 
     config: { selected: false },
-    oauth: { selected: false }
+    mail: { selected: false }
 }
 
 const unselectAll = (state: MenuState) => {
@@ -34,29 +34,29 @@ export const reducer: Reducer<MenuState> = (state = defaultState, action: Action
             newState.identity.selected = true;
             return newState;
 
-        case(ActionType.MENU_CLICK):
+        case(ActionType.MENU_CLICK_PROJECTS):
             unselectAll(newState);
-            newState.top.selected = true;
+            newState.projects.selected = true;
             return newState;
 
-        case(ActionType.MENU_CLICK_TARGETS):
+        case(ActionType.MENU_CLICK_ENGAGEMENTS):
             unselectAll(newState);
-            newState.targets.selected = true;
+            newState.engagements.selected = true;
             return newState;
 
-        case(ActionType.MENU_CLICK_PAGES):
+        case(ActionType.MENU_CLICK_LOGS):
             unselectAll(newState);
-            newState.pages.selected = true;
+            newState.logs.selected = true;
             return newState;
 
-        case(ActionType.MENU_CLICK_EMAIL):
+        case(ActionType.MENU_CLICK_ASSETS):
             unselectAll(newState);
-            newState.email.selected = true;
+            newState.assets.selected = true;
             return newState;
 
-        case(ActionType.MENU_CLICK_SCRAPE):
+        case(ActionType.MENU_CLICK_TOOLS):
             unselectAll(newState);
-            newState.scrape.selected = true;
+            newState.tools.selected = true;
             return newState;
 
         case(ActionType.MENU_CLICK_CONFIG):
@@ -64,9 +64,9 @@ export const reducer: Reducer<MenuState> = (state = defaultState, action: Action
             newState.config.selected = true;
             return newState;
 
-        case(ActionType.MENU_CLICK_OAUTH):
+        case(ActionType.MENU_CLICK_MAIL):
             unselectAll(newState);
-            newState.oauth.selected = true;
+            newState.mail.selected = true;
             return newState;
 
         default: return state;

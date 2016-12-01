@@ -1,11 +1,11 @@
 export interface MenuState {
     handle: string,
     identity: { selected: boolean }
-    top: { selected: boolean }
-    targets: { selected: boolean }
-    pages: { selected: boolean }
-    email: { selected: boolean }
-    scrape: { selected: boolean }
+    projects: { selected: boolean }
+    engagements: { selected: boolean }
+    logs: { selected: boolean }
+    assets: { selected: boolean }
+    tools: { selected: boolean }
     config: { selected: boolean }
-    oauth: { selected: boolean }
+    mail: { selected: boolean }
 }

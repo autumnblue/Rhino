@@ -9,7 +9,7 @@ class ClientService extends CrudService<ClientDto, any> {
 
     public async getSuggestions(): Promise<{ clients: ClientDto[] }> {
         return http.get<{ clients: ClientDto[] }>
-            (`${this.resource}?exclude[]=*&include[]=name&include[]=id`);
+            (`${this.resource}?exclude[]=*&include[]=name&include[]=id&per_page=30`);
     }
 }
 

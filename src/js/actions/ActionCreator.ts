@@ -104,6 +104,8 @@ abstract class ActionCreator<S extends CrudService<Dto, PagedDto>> {
             type: ActionType.CRUD_CANCEL,
             context: this.qualifier
         })
+
+        this.initPage(dispatch);
     }
 }
 

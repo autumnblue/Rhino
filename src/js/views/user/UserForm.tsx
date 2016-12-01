@@ -18,8 +18,17 @@ import ErrAlert from '../common/ErrorAlert';
 
 const FORM = 'UserForm'
 
+const validate = (values: UserRecord) => {
+    const errors = {}
+    if(values.password != values['confirm'])
+        errors['confirm'] = 'Passwords do not match.'
+
+    return errors;
+}
+
 let userForm = reduxForm.reduxForm({
-    form: FORM
+    form: FORM,
+    validate: validate
 })(
 (props: FormProps 
     & { record: UserRecord } ) => {         
@@ -51,19 +60,31 @@ let userForm = reduxForm.reduxForm({
                         label="Email"
                         component={ input } />
                 </div>
+                <div>
+                    <Field
+                        name="password"
+                        label="Password"
+                        type="password"
+                        component={ input } />
+                </div>
+                <div>
+                    <Field
+                        name="confirm"
+                        label="Confirm"
+                        type="password"
+                        component={ input } />
+                </div>
 
                 <Submit />
         </form>
 });
 
-// export default connect(
-//     (state: AppState) => {    
-//         return {
-//             initialValues: state.user.selectedRecord,
-//             record: state.user.selectedRecord    
-//         }
-//     }
-// )(userForm);
-
-export default userForm;
+export default connect(
+    (state: AppState) => {    
+        return {
+            initialValues: state.user.selectedRecord,
+            record: state.user.selectedRecord    
+        }
+    }
+)(userForm);
 

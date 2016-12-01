@@ -9,7 +9,7 @@ class ScheduleService extends CrudService<ScheduleDto, any> {
 
     public async getSuggestions(): Promise<{ schedule_intervals: ScheduleDto[] }> {
         return http.get<{ schedule_intervals: ScheduleDto[] }>
-            (`${this.resource}?exclude[]=*&include[]=name&include[]=id`);
+            (`${this.resource}?exclude[]=*&include[]=name&include[]=id&per_page=30`);
     }
 }
 

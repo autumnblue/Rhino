@@ -13,6 +13,7 @@ const renderTextArea = (props: Props & FieldProps) => {
         {...props.input}
         multiLine={true}
         rows={6}
+        disabled={ props['disabled'] }
     />
 }
 

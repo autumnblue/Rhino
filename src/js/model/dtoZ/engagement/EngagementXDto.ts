@@ -6,6 +6,7 @@ import CampaignDto from '../campaign/CampaignDto';
 import EmailTemplateDto from '../emailTemplate/EmailTemplateDto';
 import ScheduleDto from '../schedule/ScheduleDto';
 import EmailServerDto from '../emailServer/EmailServerDto';
+import TargetListDto from '../targetList/TargetListDto';
 
 
 interface EngagementXDto extends PagedDto {
@@ -16,6 +17,7 @@ interface EngagementXDto extends PagedDto {
     email_templates: EmailTemplateDto[];
     schedule_intervals: ScheduleDto[];
     email_servers: EmailServerDto[];
+    target_lists: TargetListDto[];
 }
 
 export default EngagementXDto;

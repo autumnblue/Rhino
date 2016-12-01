@@ -16,13 +16,13 @@ const EngagementEditModal = (props: Props) => {
         controls={ 
             [ 
                 controls(props),     
-                <Control>
+                <Control key="preview">
                     <button onClick={ () => {
                         props.dispatch(EngagementAction.togglePreview(props.state.selectedRecord as EngagementRecord))
                     } }>
                         PREVIEW
                     </button>
-                </Control> 
+                </Control>
             ]
         }
         submitId="engagement-submit-form"

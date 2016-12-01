@@ -98,16 +98,16 @@ interface Props {
     state?: ProfileState
 }
 
-const mapStateToProps = (state: AppState): Props => {
-    return {
-        state: state.profile
-    }
-}
+// const mapStateToProps = (state: AppState): Props => {
+//     return {
+//         state: state.profile
+//     }
+// }
 
-const mapDispatchToProps = (dispatch): Props => {
-    return { 
-        dispatch: dispatch
-    }
-}
+// const mapDispatchToProps = (dispatch): Props => {
+//     return { 
+//         dispatch: dispatch
+//     }
+// }
 
-export const ProfilePage = connect(mapStateToProps, mapDispatchToProps)(Component);
+// export const ProfilePage = connect(mapStateToProps, mapDispatchToProps)(Component);

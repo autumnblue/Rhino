@@ -74,10 +74,10 @@ let plunderForm = reduxForm.reduxForm({
                 </div>
                 <div>
                     <Field
-                        name="data"
+                        name="data" 
                         label="Data"
                         disabled={ true }
-                        component={ input } />
+                        component={ textArea } />
                 </div>
 
                 <Submit />

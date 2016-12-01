@@ -51,7 +51,7 @@ let clientForm = reduxForm.reduxForm({
                     <Field
                         name="timezone"
                         label="Default Timezone"
-                        fetch={ Promise.resolve(timezones) }
+                        fetch={ () => Promise.resolve(timezones.suggestions) }
                         component={ autoComplete } /> 
                 </div>
 

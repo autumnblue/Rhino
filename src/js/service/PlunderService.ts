@@ -10,7 +10,7 @@ class PlunderService extends CrudService<PlunderDto, any> {
 
     public async read(): Promise<PlunderXDto> {
         return http.get<PlunderXDto>
-            (`${this.resource}?include[]=oauth_result.*`);
+            (`${this.resource}?include[]=oauth_result.*&per_page=30`);
     }
 
     // public async getSuggestions(): Promise<{ plunders: PlunderDto[] }> {

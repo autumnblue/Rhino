@@ -1,10 +1,13 @@
 import CommitableDto from '../CommitableDto';
 
-interface ClientDto extends CommitableDto {
-    "description": string,
-    "client": number,
-    "nickname": string,
-    "target": number[]
+interface TargetDto extends CommitableDto {
+    description: string,
+    client: {
+        id: number,
+        name: string
+    },
+    nickname: string,
+    target: { id: number, email: string }[]
 }
 
-export default ClientDto;
+export default TargetDto;

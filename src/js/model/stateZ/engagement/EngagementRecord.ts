@@ -11,6 +11,7 @@ class EngagementRecord implements Record {
     schedule: Ref = new Ref();
     redirectPage: Ref = new Ref();
     emailServer: Ref = new Ref();
+    targetLists = new Array<Ref>();
     state: number;
     path: string;
     id: number;

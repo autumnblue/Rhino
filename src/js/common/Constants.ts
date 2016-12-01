@@ -19,6 +19,7 @@ export module Dir {
     export const PLUNDER = '/plunder';
     export const O_AUTH_RESULTS = '/oauth-results';
     export const O_AUTH_CONSUMERS = '/oauth-creds';
+    export const TARGET_LISTS = '/target-lists';
 }
 
 export module SessionStorageKey {

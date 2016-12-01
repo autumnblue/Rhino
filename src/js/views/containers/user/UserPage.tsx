@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { UserList } from '../../components/user/UserList';
-import { UserEditModal } from './modals/UserEditModal';
-import { UserAddModal } from './modals/UserAddModal';
+// import { UserEditModal } from './modals/UserEditModal';
+// import { UserAddModal } from './modals/UserAddModal';
 import { Panel } from '../../components/common/Panel';
 import { Control } from '../../components/common/Controls';
 import { UserAction } from'../../../actions/user/UserAction';
@@ -43,8 +43,7 @@ export class Container extends React.Component<Props, void> {
                         list={this.props.state.list || []}/>
 
                 </Panel>
-                <UserEditModal />
-                <UserAddModal />
+
             </div>        
         );
     }
@@ -75,14 +74,14 @@ interface Props {
     state?: UserPageState
 }
 
-const mapStateToProps = (state: AppState): Props => {
-    return {
-        state: state.user.root
-    }
-};
+// const mapStateToProps = (state: AppState): Props => {
+//     return {
+//         state: state.user.root
+//     }
+// };
 
-const mapDispatchToProps = (dispatch): Props => ({
-    dispatch: dispatch
-});
+// const mapDispatchToProps = (dispatch): Props => ({
+//     dispatch: dispatch
+// });
 
-export const UserPage = connect(mapStateToProps, mapDispatchToProps)(Container);        
+// export const UserPage = connect(mapStateToProps, mapDispatchToProps)(Container);        

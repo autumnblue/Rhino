@@ -5,7 +5,7 @@ import CustomProps from './CustomProps';
 
 const select = (props: CustomProps & FieldProps) => {
     return <SelectField
-        value={ props.input.value['text'] }
+        value={ props.input.value }
         floatingLabelText={props.label}
         hintText={props.label}
         children={ props.children }

@@ -8,9 +8,14 @@ class TargetListsService extends CrudService<TargetListDto, any> {
         super('target-lists');
     }
 
-    public async read(): Promise<TargetListXDto> {
-        return http.get<TargetListXDto>
-            (`${this.resource}?include[]=target.*`);
+    public async read(): Promise<{ target_lists: TargetListDto[] }> {
+        return http.get<any>
+            (`${this.resource}?exclude[]=client.*&include[]=client.name&include[]=client.id&exclude[]=target.*&include[]=target.id&include[]=target.email`);
+    }
+
+    public async uploadCsv(file): Promise<any> {
+        return http.upload<any>
+            (`${this.resource}csv-file`, file);
     }
 
     public async getSuggestions(): Promise<{ target_lists: TargetListDto[] }> {

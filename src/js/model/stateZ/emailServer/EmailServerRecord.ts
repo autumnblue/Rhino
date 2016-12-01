@@ -9,6 +9,7 @@ class EmailServerRecord implements Record {
     password: string
     port: number
     id: number
+    checkEmailMessage?: string
 }
 
 export default EmailServerRecord

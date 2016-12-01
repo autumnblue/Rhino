@@ -1,12 +1,37 @@
 import * as popsicle from 'popsicle';
 import { Identity } from '../security/Identity';
-import handleErr from '../validation/submit/landingPages/LandingPagesFormSubmitValidator'; 
+import handleErr from '../validation/submit/landingPages/LandingPagesFormSubmitValidator';
+
 
 const addAuthzHeader = (headers: { [name: string]: string }): Promise<void> => {
     return Identity.getToken()
     .then(token => {
         headers['Authorization'] = `JWT ${token}`;
     })    
+}
+
+export const upload = async <T>(url: string, body: any, authz = true): Promise<T> => {
+    let headers: { [name: string]: string } = {
+        'Content-Type': 'multipart/form-data; boundary=----------------------------4d7f70627994'
+    }
+    if(authz) await addAuthzHeader(headers);
+    
+    
+
+    return await popsicle.request({
+        method: 'POST',
+        url: url,
+        body: body,
+        headers: headers
+    })
+    .use(popsicle.plugins.parse('json'))
+    .then(response => {
+        if(response.status >= 400)
+            //return handleErr(response.body);
+            return Promise.reject(response);  //return raw response
+
+        return <T>response.body;
+    })
 }
 
 export const post = async <T>(url: string, body: any, authz = true): Promise<T> => {

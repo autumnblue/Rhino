@@ -89,12 +89,12 @@ interface Props {
     state?: UserEditState
 }
 
-const mapStateToProps = (state: AppState): Props => ({
-    state: state.user.edit
-})
+// const mapStateToProps = (state: AppState): Props => ({
+//     state: state.user.edit
+// })
 
-const mapDispatchToProps = (dispatch): Props => ({
-    dispatch: dispatch
-})
+// const mapDispatchToProps = (dispatch): Props => ({
+//     dispatch: dispatch
+// })
 
-export const UserEditModal = connect(mapStateToProps, mapDispatchToProps)(Container);
+// export const UserEditModal = connect(mapStateToProps, mapDispatchToProps)(Container);

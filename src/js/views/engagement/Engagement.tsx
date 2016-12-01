@@ -27,13 +27,6 @@ import {
     ToolbarTitle } from 'material-ui/Toolbar';
 import AutoCompleteFilter from '../common/fields/AutoCompleteFilter'
 import FlatButton from 'material-ui/FlatButton';
-// import {
-//     Table, 
-//     TableBody, 
-//     TableHeader, 
-//     TableHeaderColumn, 
-//     TableRow, 
-//     TableRowColumn} from 'material-ui/Table';   
 import { Table } from '../components/common/table/Table';
 import { Column } from '../components/common/table/Column';
 import { ActionCol } from '../components/common/table/ActionCol';
@@ -46,6 +39,8 @@ import LandingPageAddModal from '../landingPage/modals/LandingPageAddModal';
 import RedirectPageAddModal from '../redirectPage/modals/RedirectPageAddModal';
 import Preview from './Preview';
 import FetchAction from '../../actions/FetchAction';
+import CheckBox from 'material-ui/svg-icons/toggle/check-box';
+import Indeterminate from 'material-ui/svg-icons/toggle/indeterminate-check-box';
 
 const cardHeaderStyle = {
     titleStyle: {
@@ -160,9 +155,23 @@ class EngagementRoot extends React.Component<Props, { view: 'grid' | 'table', ex
                                                         title={ record.name }
                                                         style={ { backgroundColor: 'rgba(51, 51, 61, .7)' } }
                                                         titlePosition="bottom">
-                                                            <IconButton>
+                                                            <IconButton
+                                                                onTouchTap={ () => this.onEditOpen(record.id) }>
                                                                 <OpenInNew color="white" />
                                                             </IconButton>
+                                                            {
+                                                                record.state == 4 
+                                                                ?
+                                                                <IconButton
+                                                                    onTouchTap={ () => this.onEditOpen(record.id) }>
+                                                                    <CheckBox color="green" />
+                                                                </IconButton>
+                                                                :
+                                                                <IconButton
+                                                                    onTouchTap={ () => this.onEditOpen(record.id) }>
+                                                                    <Indeterminate color="blue" />
+                                                                </IconButton>
+                                                            }
                                                     </GridTile>
                                                 );
                                             })
@@ -176,13 +185,17 @@ class EngagementRoot extends React.Component<Props, { view: 'grid' | 'table', ex
                                     <Column head="Campaign" headKey="campaign" dependee />
                                     <Column head="Landing Page" headKey="landingPage" dependee />
                                     <ActionCol edit delete 
-                                        editCallback={(id) => this.props.dispatch(EngagementAction.openEdit(id))}/>
+                                        editCallback={this.onEditOpen}/>
                                 </Table>
                             }
                     </CardMedia>
                 </Card>
             </div>
         );
+    }
+
+    private onEditOpen = (id: number) => {
+        this.props.dispatch(EngagementAction.openEdit(id));
     }
 
     private onToggleView = () => {

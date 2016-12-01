@@ -9,7 +9,7 @@ class UserService extends CrudService<UserDto, any> {
 
     public async getSuggestions(): Promise<{ users: UserDto[] }> {
         return http.get<{ users: UserDto[] }>
-            (`${this.resource}?exclude[]=*&include[]=username&include[]=id`);
+            (`${this.resource}?exclude[]=*&include[]=username&include[]=id&per_page=30`);
     }
 }
 

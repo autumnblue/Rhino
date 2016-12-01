@@ -10,7 +10,7 @@ class ProfileService extends CrudService<ProfileDto, any> {
 
     public async read(): Promise<ProfileXDto> {
         return http.get<ProfileXDto>
-            (`${this.resource}?include[]=user.*`);
+            (`${this.resource}?include[]=user.*&per_page=30`);
     }
 }
 

@@ -12,7 +12,7 @@ const renderInput = (props: Props & FieldProps) => {
         }
         type={props.type}
         {...props.input}
-        {...props['disabled']}
+        disabled={ props['disabled'] }
     />
 }
 

@@ -10,7 +10,7 @@ class ShoalScrapeTaskService extends CrudService<ShoalScrapeTaskDto, any> {
 
     public async read(): Promise<ShoalScrapeTaskXDto> {
         return http.get<ShoalScrapeTaskXDto>
-            (`${this.resource}?include[]=shoalscrape_creds.*`);
+            (`${this.resource}?include[]=shoalscrape_creds.*&per_page=30`);
     }
 }
 

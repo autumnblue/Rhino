@@ -16,11 +16,11 @@ import reducers from './reducers'
 import { App } from './views/App';
 import { Router, Route, browserHistory } from 'react-router';
 import { LoginPage } from './views/containers/identity/LoginPage';
-import { UserPage } from './views/containers/user/UserPage';
+import UserRoot from './views/user/UserRoot';
 import ClientRoot from './views/client/ClientRoot';;
 import EngagementRoot from './views/engagement/EngagementRoot';
 import EmailTemplateRoot from './views/emailTemplate/EmailTemplateRoot';
-import { ProfilePage } from './views/containers/identity/ProfilePage';
+import ProfileRoot from './views/profile/ProfileRoot';
 import CampaignRoot from './views/campaign/CampaignRoot'; 
 import ScheduleRoot from './views/schedule/ScheduleRoot';
 import EmailServerRoot from './views/emailServer/EmailServerRoot';
@@ -34,6 +34,7 @@ import OAuthConsumerRoot from './views/oAuthConsumer/OAuthConsumerRoot';
 import OAuthResultRoot from './views/oAuthResult/OAuthResultRoot';
 import OAuthEngagementRoot from './views/oAuthEngagement/OAuthEngagementRoot';
 import PlunderRoot from './views/plunder/PlunderRoot';
+import TargetListRoot from './views/targetList/TargetListRoot';
 import { Dir } from './common/Constants';  
 import { permit } from './security/RenderRules';
 import { Role } from './security/Role';
@@ -76,7 +77,7 @@ ReactDom.render(
                     />
                 <Route 
                     path={ Dir.USERS } 
-                    component={UserPage}
+                    component={UserRoot}
                     onEnter={ () => permit(Role.AUTHENTICATED) } 
                     />
                 <Route 
@@ -116,7 +117,7 @@ ReactDom.render(
                     />
                 <Route 
                     path={ Dir.PROFILE } 
-                    component={ProfilePage}
+                    component={ProfileRoot}
                     onEnter={ () => permit(Role.AUTHENTICATED) } 
                     />
                  <Route 
@@ -152,6 +153,11 @@ ReactDom.render(
                 <Route 
                     path={ Dir.PLUNDER } 
                     component={PlunderRoot}
+                    onEnter={ () => permit(Role.AUTHENTICATED) } 
+                    />
+                <Route 
+                    path={ Dir.TARGET_LISTS } 
+                    component={TargetListRoot}
                     onEnter={ () => permit(Role.AUTHENTICATED) } 
                     />
             </Route>

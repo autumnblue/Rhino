@@ -8,7 +8,8 @@ import { MenuState } from '../../../model/state/MenuState';
 import { NaviAction } from '../../../actions/navigation/NaviAction';
 import { Dir } from '../../../common/Constants';
 import IconButton from 'material-ui/IconButton';
-import PermIdentity from 'material-ui/svg-icons/action/perm-identity';
+import MailOutline from 'material-ui/svg-icons/communication/mail-outline';
+import Settings from 'material-ui/svg-icons/action/settings';
 
 class Container extends React.Component<Props, void> {
     public render() {
@@ -16,21 +17,9 @@ class Container extends React.Component<Props, void> {
             return (
                 <MenuBar>
                     <Menu 
-                        selected={ this.props.state.identity.selected }
-                        onClick={ this.onIdentityClick }>
-                            <span>{ this.props.state.handle }</span>
-                            <Item href="/profile">
-                                    Profile
-                            </Item>
-                            <Item onClick={ this.onLogoutClick }>
-                                    Logout
-                            </Item> 
-                    </Menu>
-
-                    <Menu 
-                        selected={ this.props.state.top.selected }
-                        onClick={ this.onClick }>
-                            <span className="glyphicon glyphicon-edit"></span>
+                        selected={ this.props.state.projects.selected }
+                        onClick={ this.onProjectsClick }>
+                            <span>Projects</span>
                             <Item href={ Dir.CLIENTS }>
                                     Clients
                             </Item>
@@ -40,92 +29,116 @@ class Container extends React.Component<Props, void> {
                             <Item href={ Dir.ENGAGEMENTS }>
                                     Engagements
                             </Item>
-                            <Item href={ Dir.PHISHING_DOMAIN}>
-                                    <span className="glyphicon glyphicon-wrench"></span> Phishing Domains
+                            <Item href={ Dir.TARGET_LISTS }>
+                                    Target Lists
+                            </Item>
+                            <Item href="/">
+                                    Reports
                             </Item>
                     </Menu>
 
                     <Menu 
-                        selected={ this.props.state.targets.selected }
-                        href="/"
-                        onClick={ this.onTargetsClick }>
-                            <span className="glyphicon glyphicon-screenshot"></span>
+                        selected={ this.props.state.engagements.selected }
+                        onClick={ this.onEngagementsClick }>
+                            <span>Engagements</span>
+                            <Item href={ Dir.ENGAGEMENTS }>
+                                    Engagements
+                            </Item>
+                            <Item href="">
+                                    Phishing Results
+                            </Item>
+                            <Item href={ Dir.O_AUTH_RESULTS }>
+                                    OAuth Results
+                            </Item>
+                            <Item href={ Dir.PLUNDER }>
+                                    OAuth Plunder
+                            </Item>
                     </Menu>
 
                     <Menu 
-                        selected={ this.props.state.pages.selected }
-                        onClick={ this.onPagesClick }>
-                            <span className="glyphicon glyphicon-list-alt"></span>
+                        selected={ this.props.state.logs.selected }
+                        onClick={ this.onLogsClick }>
+                            <span>Logs</span>
+                            <Item href="">
+                                    Email Log
+                            </Item>
+                            <Item href="">
+                                    HTTP logs
+                            </Item>
+                    </Menu>
+
+                    <Menu 
+                        selected={ this.props.state.assets.selected }
+                        onClick={ this.onAssetsClick }>
+                            <span>Assets</span>
+                            <Item href={ Dir.PHISHING_DOMAIN }>
+                                    Domains
+                            </Item>
                             <Item href={ Dir.LANDING_PAGES }>
                                     Landing Pages
                             </Item>
                             <Item href={ Dir.REDIRECT_PAGES }>
                                     Redirect Pages
                             </Item>
-                    </Menu>
-
-                    <Menu 
-                        selected={ this.props.state.email.selected }
-                        onClick={ this.onEmailClick }>
-                            <span className="glyphicon glyphicon-envelope"></span>
-                            <Item href={ Dir.EMAIL_TEMPLATES }>
-                                    Email Templates
-                            </Item>
-                            <Item href="/">
-                                    Email Log
-                            </Item>
                             <Item href={ Dir.SCHEDULE }>
                                     Schedules
                             </Item>
                             <Item href={ Dir.EMAIL_SERVER }>
-                                    <span className="glyphicon glyphicon-wrench"></span> Email Servers
+                                    Mail Servers
                             </Item>
-                    </Menu>
-
-                    <Menu 
-                        selected={ this.props.state.scrape.selected }
-                        onClick={ this.onScrapeClick }>
-                            <span className="glyphicon glyphicon-upload"></span>
-                            <Item href={ Dir.SHOAL_SCRAPE_TASKS }>
-                                    ShoalScrape
-                            </Item>
-                            <Item href={ Dir.SCRAPER_USER_AGENTS }>
-                                    <span className="glyphicon glyphicon-wrench"></span> Scraper User-Agents
-                            </Item>
-                            <Item href={ Dir.SHOAL_SCRAPE_CREDS }>
-                                    <span className="glyphicon glyphicon-wrench"></span> ShoalScrape Credentials
-                            </Item>
-                    </Menu>
-
-                    <Menu 
-                        selected={ this.props.state.oauth.selected }
-                        onClick={ this.onOAuthClick }>
-                            <IconButton tooltip="OAuth">
-                                <PermIdentity />
-                            </IconButton>
-                            <Item href={ Dir.O_AUTH_ENGAGEMENTS }>
-                                    OAuth Engagements
-                            </Item>
-                            <Item href={ Dir.PLUNDER }>
-                                    Plunder
-                            </Item>
-                            <Item href={ Dir.O_AUTH_RESULTS }>
-                                    OAuth Results
+                            <Item href={ Dir.EMAIL_TEMPLATES }>
+                                    Email Templates
                             </Item>
                             <Item href={ Dir.O_AUTH_CONSUMERS }>
-                                    <span className="glyphicon glyphicon-wrench"></span> OAuth Consumers
+                                    OAuth Accounts
                             </Item>
                     </Menu>
 
-                    <Menu
-                        selected={ this.props.state.config.selected } 
+                    <Menu 
+                        selected={ this.props.state.tools.selected }
+                        onClick={ this.onToolsClick }>
+                            <span>Tools</span>
+                            <Item href={ Dir.SHOAL_SCRAPE_TASKS }>
+                                    Shoalscrape Results
+                            </Item>
+                            <Item href={ Dir.SHOAL_SCRAPE_CREDS }>
+                                    Shoalscrape Crednetials
+                            </Item>
+                            <Item href={ Dir.SCRAPER_USER_AGENTS }>
+                                    Scraper Useragents
+                            </Item>
+                    </Menu>
+
+                    <Menu 
+                        selected={ this.props.state.mail.selected }
+                        href="/"
+                        onClick={ this.onMailClick }>
+                            <span className="glyphicon glyphicon-envelope"></span>
+                    </Menu>
+
+                    <Menu 
+                        selected={ this.props.state.config.selected }
                         onClick={ this.onConfigClick }>
                             <span className="glyphicon glyphicon-cog"></span>
-                            <Item 
-                                href={ Dir.USERS }>
+                            <Item href={ Dir.USERS }>
                                     Users
+                            </Item>
+                            <Item href="">
+                                    Data Management
                             </Item> 
-                    </Menu> 
+                    </Menu>
+
+                    <Menu 
+                        selected={ this.props.state.identity.selected }
+                        onClick={ this.onIdentityClick }>
+                            <span className="glyphicon glyphicon-user"></span>
+                            <Item href="/profile">
+                                    Profile
+                            </Item>
+                            <Item onClick={ this.onLogoutClick }>
+                                    Logout
+                            </Item> 
+                    </Menu>
                 </MenuBar>
             );
         } else {
@@ -149,29 +162,24 @@ class Container extends React.Component<Props, void> {
             .clickIdentity(this.props.dispatch);
     }
 
-    private onClick = () => {
+    private onProjectsClick = () => {
         NaviAction
-            .click(this.props.dispatch);
+            .clickProjects(this.props.dispatch);
     }
 
-    private onTargetsClick = () => {
+    private onEngagementsClick = () => {
         NaviAction
-            .clickTarget(this.props.dispatch);
+            .clickEngagements(this.props.dispatch);
     }
 
-    private onPagesClick = () => {
+    private onLogsClick = () => {
         NaviAction
-            .clickPages(this.props.dispatch);
+            .clickLogs(this.props.dispatch);
     }
 
-    private onEmailClick = () => {
+    private onAssetsClick = () => {
         NaviAction
-            .clickEmail(this.props.dispatch);
-    }
-
-    private onScrapeClick = () => {
-        NaviAction
-            .clickScrape(this.props.dispatch);
+            .clickAssets(this.props.dispatch);
     }
 
     private onConfigClick = () => {
@@ -184,9 +192,14 @@ class Container extends React.Component<Props, void> {
             .logout(this.props.dispatch);
     }
 
-    private onOAuthClick = () => {
+    private onToolsClick = () => {
         NaviAction
-            .clickOAuth(this.props.dispatch);
+            .clickTools(this.props.dispatch);
+    }
+
+    private onMailClick = () => {
+        NaviAction
+            .clickMail(this.props.dispatch);
     }
 }
 

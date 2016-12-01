@@ -10,17 +10,17 @@ class CampaignService extends CrudService<CampaignDto, any> {
 
     public async read(): Promise<CampaignXDto> {
         return http.get<CampaignXDto>
-            (`${this.resource}?include[]=client.*`);
+            (`${this.resource}?include[]=client.*&per_page=30`);
     }
 
     public async getSuggestions(): Promise<{ campaigns: CampaignDto[] }> {
         return http.get<{ campaigns: CampaignDto[] }>
-            (`${this.resource}?exclude[]=*&include[]=name&include[]=id`);
+            (`${this.resource}?exclude[]=*&include[]=name&include[]=id&per_page=30`);
     }
 
     public async filterByClient(id: number): Promise<CampaignXDto> {
         return http.get<CampaignXDto>
-            (`${this.resource}?filter{client}=${id}&?include[]=client.*`);
+            (`${this.resource}?filter{client}=${id}&?include[]=client.*&per_page=30`);
     }
 }
 

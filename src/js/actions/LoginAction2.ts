@@ -7,8 +7,11 @@ import handleErr from '../validation/submit/SubmitValidationHandlerZ';
 class LoginAction {
     public submit(dispatch, values): Promise<any> {
         const { host, port, username, password } = values;
-        
-        CurrentUser.Session.setSocket({ host, port });
+
+        //normalize host
+        const normalized = host.replace(/\/$/, "");
+
+        CurrentUser.Session.setSocket({ host: normalized, port });
 
         return this.login(dispatch, username, password);
     }

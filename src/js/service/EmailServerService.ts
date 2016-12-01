@@ -9,7 +9,12 @@ class EmailServerService extends CrudService<EmailServerDto, any> {
 
     public async getSuggestions(): Promise<{ email_servers: EmailServerDto[] }> {
         return http.get<{ email_servers: EmailServerDto[] }>
-            (`${this.resource}?exclude[]=*&include[]=login&include[]=id`);
+            (`${this.resource}?exclude[]=*&include[]=login&include[]=id&per_page=30`);
+    }
+
+    public async checkEmail(dto: EmailServerDto): Promise<{ message: string, success: boolean }> {
+        return http.post<any>
+            (`${this.resource}email-check`, dto);
     }
 }
 

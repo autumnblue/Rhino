@@ -9,7 +9,12 @@ class EmailTemplateService extends CrudService<EmailTemplateDto, any> {
 
     public async getSuggestions(): Promise<{ email_templates: EmailTemplateDto[] }> {
         return http.get<{ email_templates: EmailTemplateDto[] }>
-            (`${this.resource}?exclude[]=*&include[]=subject_header&include[]=id`);
+            (`${this.resource}?exclude[]=*&include[]=subject_header&include[]=id&per_page=30`);
+    }
+
+    public async checkShortcodes(dto): Promise<any> {
+        return http.post<any>
+            (`${this.resource}shortcodes-check`, dto);
     }
 }
 

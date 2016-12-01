@@ -11,7 +11,7 @@ import EmailServerEditModal from './modals/EmailServerEditModal';
 const EmailServerRoot = (props: Props) => {
     return <div>
         <CrudContainer
-            title="EmailServers"
+            title="Email Servers"
             action={ EmailServerAction }
             {...props}>
                 <EmailServerList

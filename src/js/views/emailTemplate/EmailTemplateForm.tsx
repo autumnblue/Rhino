@@ -16,6 +16,9 @@ import { AppState } from '../../model/state/AppState';
 import IconButton from 'material-ui/IconButton';
 import ModeEdit from 'material-ui/svg-icons/editor/mode-edit';
 import ErrAlert from '../common/ErrorAlert';
+import FetchAction from '../../actions/FetchAction';
+import FlatButton from 'material-ui/FlatButton';
+import Check from 'material-ui/svg-icons/navigation/check';
 
 const FORM = 'EmailTemplateFormAdd'
 
@@ -23,7 +26,8 @@ let emailTemplateForm = reduxForm.reduxForm({
     form: FORM
 })(
 (props: FormProps 
-    & { record: EmailTemplateRecord } ) => {       
+    & { targetListValue: Ref }
+    & { record: EmailTemplateRecord } ) => {
         return <form 
             onSubmit={ props.handleSubmit(props.submit) }>
                 <ErrAlert errorMsg={ props.error } />
@@ -49,6 +53,40 @@ let emailTemplateForm = reduxForm.reduxForm({
                         component={ input }  />
                 </div>
 
+                <div>
+                    <span>
+                        <Field
+                            name="targetList"
+                            label="Target Lists"
+                            fetch={ FetchAction.getTargetListSuggestions }
+                            component={ autoComplete } />
+                    </span>
+                    <span>
+                        <FlatButton 
+                            onTouchTap={ 
+                                () => { return props['dispatch'](EmailTemplateAction
+                                    .checkShortcodes(props.record.template, props.targetListValue.id))
+                                }
+                            }
+                            label="Shortcodes"
+                            icon={ <Check /> }
+                            disabled={ props.targetListValue == null || props.targetListValue == undefined } 
+                            primary={true} />
+                    </span>
+                </div> 
+
+                <div>
+                    {
+                        props.record.shortcodeErrors &&
+                        props.record.shortcodeErrors.length == 0
+                        ?
+                        <span style={ { color: "green" } }>No invalid shortcodes found.</span>
+                        :
+                        <span style={ { color: "red" } }>{ props.record.shortcodeErrors }</span>
+                        
+                    }
+                </div>
+
                 <div className="text-area">
                     <Field
                         fetch={ () => Promise.resolve(props.record.template) }
@@ -61,15 +99,13 @@ let emailTemplateForm = reduxForm.reduxForm({
         </form>
 });
 
-//fetch={ EmailTemplateAction.get }
-
 const selector = reduxForm.formValueSelector(FORM)
 //http://redux-form.com/6.0.0-alpha.11/examples/selectingFormValues/
 export default connect(
   (state: AppState) => {
-    const pageTypeValue = selector(state, 'pageType')
+    const targetListValue = selector(state, 'targetList')
     return {
-      pageTypeValue,
+      targetListValue,
       initialValues: state.emailTemplate.selectedRecord,
       record: state.emailTemplate.selectedRecord,
       widget: state.emailTemplate.widgetState

@@ -10,33 +10,33 @@ class ActionCreator {
         });
     } 
 
-    public click(dispatch) {
+    public clickProjects(dispatch) {
         dispatch({
-            type: ActionType.MENU_CLICK
+            type: ActionType.MENU_CLICK_PROJECTS
         });
     }
 
-    public clickTarget(dispatch) {
+    public clickEngagements(dispatch) {
         dispatch({
-            type: ActionType.MENU_CLICK_TARGETS
+            type: ActionType.MENU_CLICK_ENGAGEMENTS
         });
     }
 
-    public clickPages(dispatch) {
+    public clickLogs(dispatch) {
         dispatch({
-            type: ActionType.MENU_CLICK_PAGES
+            type: ActionType.MENU_CLICK_LOGS
         });
     }
 
-    public clickEmail(dispatch) {
+    public clickAssets(dispatch) {
         dispatch({
-            type: ActionType.MENU_CLICK_EMAIL
+            type: ActionType.MENU_CLICK_ASSETS
         });
     }
 
-    public clickScrape(dispatch) {
+    public clickTools(dispatch) {
         dispatch({
-            type: ActionType.MENU_CLICK_SCRAPE
+            type: ActionType.MENU_CLICK_TOOLS
         });
     }
 
@@ -54,9 +54,9 @@ class ActionCreator {
         });
     }
 
-    public clickOAuth(dispatch) {
+    public clickMail(dispatch) {
         dispatch({
-            type: ActionType.MENU_CLICK_OAUTH
+            type: ActionType.MENU_CLICK_MAIL
         });
     }   
 }

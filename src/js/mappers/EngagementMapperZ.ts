@@ -10,7 +10,8 @@ import {
     refEmailTemplate,
     refPhishingDomain,
     refRedirectPage,
-    refSchedule 
+    refSchedule,
+    refTargetLists 
 } from './common/AssemblyUtil';
 
 class EngagementMapperStatic implements Mapper { 
@@ -32,7 +33,8 @@ class EngagementMapperStatic implements Mapper {
                 path: dto.path,
                 name: dto.name,
                 description: dto.description,
-                id: dto.id
+                id: dto.id,
+                targetLists: refTargetLists(dto, result.target_lists)
             }
             
         });

@@ -7,6 +7,7 @@ import EmailTemplateService from '../service/EmailTemplateService';
 import LandingPageService from '../service/LandingPageService';
 import RedirectPageService from '../service/RedirectPageService';
 import PhishingDomainService from '../service/PhishingDomainService';
+import VectorEmailService from '../service/VectorEmailService';
 import PreviewService from '../service/PreviewService';
 import EngagementMapper from '../mappers/EngagementMapperZ';
 import EngagementRecord from '../model/stateZ/engagement/EngagementRecord'
@@ -69,19 +70,56 @@ class EngagementAction extends ActionCreator<EngagementService> {
         });
     }
 
-    public previewEmail(id: number): Promise<any> {
-        return new PreviewService().previewEmail(id);
+    public previewEmailForEngagement(id: number): Promise<string> {
+        return new VectorEmailService()
+        .getVectorEmailForEngagement(id)
+        .then(result => {
+            return new PreviewService().previewEmail(result.id);
+        });
     }
 
-    public previewLandingPage(id: number): Promise<any> {
+    public previewLandingPage(id: number): Promise<string> {
         return new PreviewService().previewLandingPage(id);
+    }
+
+    public previewRedirectPage(id: number): Promise<string> {
+        return new PreviewService().previewRedirectPage(id);
     }
 
     public togglePreview(record?: EngagementRecord): Function {
         return (dispatch) => {
             dispatch({
                 type: ActionType.ENGAGEMENT_TOGGLE_PREVIEW,
-                payload: record
+                payload: record,
+                // context: this.qualifier
+            });    
+        }
+    }
+
+    public start(id: number): Function {
+        return(dispatch) => {
+            new EngagementService()
+            .start(id)
+            .then(dto => {
+                dispatch({
+                    type: ActionType.ENGAGEMENT_START,
+                    payload: dto.state,
+                    context: this.qualifier
+                });
+            });    
+        }
+    }
+
+    public stop(id: number): Function {
+        return(dispatch) => {
+            new EngagementService()
+            .stop(id)
+            .then(dto => {
+                dispatch({
+                    type: ActionType.ENGAGEMENT_STOP,
+                    payload: dto.state,
+                    context: this.qualifier
+                });
             });    
         }
     }

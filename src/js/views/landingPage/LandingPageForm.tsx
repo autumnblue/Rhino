@@ -25,7 +25,7 @@ let landingPageForm = reduxForm.reduxForm({
     form: FORM
 })(
 (props: FormProps 
-    & { widget: LandingPageWidget }
+    & { widget: LandingPageWidget } 
     & { record: LandingPageRecord } 
     & { pageTypeValue: 'url' | 'manual' | 'page'}) => { 
         const isScrapedPage = props.pageTypeValue && props.pageTypeValue == 'page';
@@ -75,7 +75,14 @@ let landingPageForm = reduxForm.reduxForm({
                     &&
                     <div className="text-area">
                         <Field
-                            fetch={ () => LandingPageAction.getTemplate(props.record.path) }
+                            fetch={ () => {
+                                
+                                return props.record.path
+                                ?
+                                LandingPageAction.getTemplate(props.record.path)
+                                :
+                                Promise.resolve("");
+                            } }
                             name="template"
                             label="Template"
                             component={ editor } />

@@ -12,6 +12,14 @@ class VectorEmailService extends CrudService<VectorEmailDto, any> {
         return http.get<VectorEmailXDto>
             (`${this.resource}?include[]=target.*&include[]=engagement.*&include[]=result_event.*`);
     }
+
+    public async getVectorEmailForEngagement(engagementId: number): Promise<{ id: number }> {
+        return http.get<{ vector_emails: { id: number}[] }>
+            (`${this.resource}?exclude[]=*&include[]=id&filter{engagement}=${engagementId}`)
+            .then(result => {
+                return result.vector_emails[0];
+            });            
+    }
 }
 
 export default VectorEmailService;

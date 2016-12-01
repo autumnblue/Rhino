@@ -23,12 +23,12 @@ const UserRoot = (props: Props) => {
     </div>
 }
 
-// const mapStateToProps = (app: AppState): Props => ({
-//     state: app.user
-// })
+const mapStateToProps = (app: AppState): Props => ({
+    state: app.user
+})
 
 export default connect(
-    // mapStateToProps, 
+    mapStateToProps, 
     (dispatch): Props => ({
         dispatch: dispatch
     })

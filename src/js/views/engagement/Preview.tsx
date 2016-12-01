@@ -14,6 +14,7 @@ import CircularProgress from 'material-ui/CircularProgress';
 import { connect } from 'react-redux';
 import { AppState } from '../../model/state/AppState';
 import EngagementRecord from '../../model/stateZ/engagement/EngagementRecord'
+import Play from 'material-ui/svg-icons/av/play-arrow';
 
 interface Preview {
     data: string,
@@ -37,6 +38,8 @@ class Preview extends React.Component<Props, {
     }
 
     public render() {
+        
+
         return (
             this.props.open
             &&
@@ -49,6 +52,7 @@ class Preview extends React.Component<Props, {
                 }
                 style={ { paddingTop: 0} }
                 repositionOnUpdate={ false }
+                autoScrollBodyContent={ true }
                 contentStyle={ 
                     { 
                         width: '95%',
@@ -74,7 +78,7 @@ class Preview extends React.Component<Props, {
                         </Step>
                     </Stepper>
                     <div>
-                        <div>
+                        <div className="preview">
                             { this.renderContent() }
                         </div>
                         <div>
@@ -84,15 +88,31 @@ class Preview extends React.Component<Props, {
                                 onTouchTap={ this.onPrev }
                                 style={{marginRight: 12}}
                                 />
-                            <RaisedButton
-                                label={this.state.step === 2 ? 'Confirm and Finish' : 'Confirm'}
-                                primary={true}
-                                onTouchTap={ this.onNext }
-                                />
+                            {
+                                this.props.startRequest
+                                ?
+                                <RaisedButton
+                                    label={this.state.step === 2 ? 'Start Engagement' : 'Confirm'}
+                                    primary={true}
+                                    onTouchTap={ this.state.step === 2 ? this.startEngagement : this.onNext }
+                                    icon={<Play color="green" />}
+                                    />
+                                :
+                                <RaisedButton
+                                    label={this.state.step === 2 ? 'Confirm and Finish' : 'Confirm'}
+                                    primary={true}
+                                    onTouchTap={ this.state.step === 2 ? this.finish : this.onNext }
+                                    />
+                            }
                         </div>
                     </div>
             </Dialog>
         )
+    }
+
+    private startEngagement = () => {
+        this.props.dispatch(EngagementAction.start(this.props.engagement.id))
+        this.finish();
     }
 
     private finish = () => {
@@ -106,7 +126,7 @@ class Preview extends React.Component<Props, {
     }
 
     private onNext = () => {
-        if(this.state.step === 2)
+        if(this.state.step === 3)
             this.finish()
         else {
             this.setState({
@@ -132,22 +152,23 @@ class Preview extends React.Component<Props, {
         switch(this.state.step) {
             case 0:
                 if(this.state.emailData)
-                    return <iframe srcDoc={this.state.emailData} frameBorder="0"></iframe>
+                    return <iframe srcDoc={this.state.emailData} frameBorder="0" scrolling="yes"></iframe>
                 else {
-                    EngagementAction.previewEmail(this.props.engagement.emailTemplate.id)
-                    .then(html => 
-                        this.setState({
-                            emailData: html,
-                            landingPageData: this.state.landingPageData,
-                            redirectPageData: this.state.redirectPageData,
-                            step: this.state.step
-                        })
+                    EngagementAction.previewEmailForEngagement(this.props.engagement.id)
+                    .then(html => {
+                            this.setState({
+                                emailData: html,
+                                landingPageData: this.state.landingPageData,
+                                redirectPageData: this.state.redirectPageData,
+                                step: this.state.step
+                            })
+                        }
                     )
                     return <CircularProgress size={80} thickness={7} />
                 }
             case 1:
                 if(this.state.landingPageData)
-                    return <iframe srcDoc={this.state.landingPageData} frameBorder="0"></iframe>
+                    return <iframe srcDoc={this.state.landingPageData} frameBorder="0" scrolling="yes"></iframe>
                 else {
                     EngagementAction.previewLandingPage(this.props.engagement.landingPage.id)
                     .then(html => 
@@ -161,7 +182,21 @@ class Preview extends React.Component<Props, {
                     return <CircularProgress size={80} thickness={7} />
                 }
             case 2:
-                return 'Not yet implemented...';
+                 if(this.state.redirectPageData)
+                    return <iframe srcDoc={this.state.redirectPageData} frameBorder="0" scrolling="yes"></iframe>
+                else {
+                    EngagementAction.previewRedirectPage(this.props.engagement.redirectPage.id)
+                    .then(html => {
+                            this.setState({
+                                emailData: this.state.emailData,
+                                landingPageData: this.state.landingPageData,
+                                redirectPageData: html,
+                                step: this.state.step
+                            })
+                        }
+                    )
+                    return <CircularProgress size={80} thickness={7} />
+                }
         }
     }
 }
@@ -170,6 +205,7 @@ interface Props {
     engagement?: EngagementRecord,
     open: boolean,
     dispatch?: Function
+    startRequest?: boolean
 }
 
 const mapStateToProps = (app: AppState): Props => ({

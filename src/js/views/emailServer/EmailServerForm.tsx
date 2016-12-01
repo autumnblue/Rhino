@@ -18,13 +18,24 @@ import ErrAlert from '../common/ErrorAlert';
 import Toggle from 'material-ui/Toggle';
 import Props from '../common/fields/CustomProps';
 import FieldProps from '../common/fields/FieldProps';
+import FlatButton from 'material-ui/FlatButton';
+
+const renderToggle = (props: Props & FieldProps) => {
+    return <Toggle 
+        label={props.label}
+        toggled={props.input.value ? true: false }
+        labelPosition="right"
+        onToggle={props.input.onChange}
+    />
+}
 
 const FORM = 'EmailServerForm'
 
 let emailServerForm = reduxForm.reduxForm({
     form: FORM
 })(
-(props: FormProps 
+(props: FormProps
+    & { configurationValue: string }  
     & { record: EmailServerRecord } ) => {         
         return <form 
             onSubmit={ props.handleSubmit(props.submit) }>
@@ -45,8 +56,8 @@ let emailServerForm = reduxForm.reduxForm({
                 <div>
                     <Field
                         name="useTls"
-                        label="Use TLS?"
-                        component={ Toggle } />
+                        label="Use TLS?" 
+                        component={ renderToggle } />
                 </div>              
                 <div>
                     <Field
@@ -61,13 +72,68 @@ let emailServerForm = reduxForm.reduxForm({
                         component={ input } />
                 </div>
 
+                {/*
+                <div>
+                    <span>
+                        <Field
+                        name="configuration"
+                        label="Test this configuration"
+                        component={ input } />
+                    </span>
+                    <span>
+                        <FlatButton 
+                            onTouchTap={ 
+                                () => props.dispatch(EmailServerAction
+                                    .checkEmail(props.record, props.configurationValue))
+                            }
+                            label="Primary" 
+                            primary={true} />
+                    </span>
+                </div> 
+                */}
+
+                <div>
+                    <span>
+                        <Field
+                        name="testRecipient"
+                        label="Test Recipient"
+                        component={ input } />
+                    </span>
+                    <span>
+                        <FlatButton 
+                            onTouchTap={ 
+                                () => props.dispatch(EmailServerAction
+                                    .checkEmail(props.record, props.configurationValue))
+                            }
+                            label="Check Server" 
+                            disabled={ props.record.testRecipient == null || props.record.testRecipient == undefined }
+                            primary={true} />
+                    </span>
+                </div> 
+
+                <div>
+                    {
+                        props.record.checkEmailMessage &&
+                        props.record.checkEmailMessage.length == 0
+                        ?
+                        <span style={ { color: "green" } }>OK.</span>
+                        :
+                        <span style={ { color: "red" } }>{ props.record.checkEmailMessage }</span>
+                        
+                    }
+                </div>
+
                 <Submit />
         </form>
 });
 
+const selector = reduxForm.formValueSelector(FORM)
+
 export default connect(
-    (state: AppState) => {    
+    (state: AppState) => {
+        const configurationValue = selector(state, 'configuration')    
         return {
+            configurationValue,
             initialValues: state.emailServer.selectedRecord,
             record: state.emailServer.selectedRecord    
         }

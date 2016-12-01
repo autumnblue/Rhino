@@ -47,7 +47,7 @@ let profileForm = reduxForm.reduxForm({
                     <Field
                         name="timezone"
                         label="Default Timezone"
-                        fetch={ Promise.resolve(timezones) }
+                        fetch={ () => Promise.resolve(timezones.suggestions) }
                         component={ autoComplete } /> 
                 </div>
 
@@ -58,8 +58,8 @@ let profileForm = reduxForm.reduxForm({
 export default connect(
     (state: AppState) => {    
         return {
-            // initialValues: state.profile.selectedRecord,
-            // record: state.profile.selectedRecord    
+            initialValues: state.profile.selectedRecord,
+            record: state.profile.selectedRecord    
         }
     }
 )(profileForm);

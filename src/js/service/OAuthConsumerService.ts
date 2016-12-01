@@ -9,7 +9,7 @@ class OAuthConsumerService extends CrudService<OAuthConsumerDto, any> {
 
     public async getSuggestions(): Promise<{ o_auth_consumers: OAuthConsumerDto[] }> {
         return http.get<{ o_auth_consumers: OAuthConsumerDto[] }>
-            (`${this.resource}?exclude[]=*&include[]=name&include[]=id`);
+            (`${this.resource}?exclude[]=*&include[]=name&include[]=id&per_page=30`);
     }
 }
 

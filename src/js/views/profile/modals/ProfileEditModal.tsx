@@ -15,12 +15,12 @@ const ProfileEditModal = (props: Props) => {
     </EditModalContainer>
 }
 
-// const mapStateToProps = (app: AppState): Props => ({
-//     state: app.profile
-// })
+const mapStateToProps = (app: AppState): Props => ({
+    state: app.profile
+})
 
 export default connect(
-    // mapStateToProps, 
+    mapStateToProps, 
     (dispatch): Props => ({
         dispatch: dispatch
     })
