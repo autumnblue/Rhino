@@ -2,8 +2,6 @@ import * as jwt from './token/JwtUtil';
 import { Claims } from './token/Claims';
 import { CurrentUser } from '../CurrentUser';
 import { Dir } from '../common/Constants';
-import * as factory from '../service/ServiceFactory';
-import { ServiceType } from '../service/ServiceFactory';
 import IdentityService from '../service/IdentityService';
 import store from '../main';
 import LoginAction from '../actions/LoginAction2';
