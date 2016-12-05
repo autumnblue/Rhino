@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { AppState } from '../../model/stateZ/AppState';
+import { AppState } from '../../model/state/AppState';
 import { CrudContainer, Props } from '../common/CrudContainer';
-import OAuthConsumerAction from '../../actions/OAuthConsumerAction2'
-import OAuthConsumerState from '../../model/stateZ/oAuthConsumer/OAuthConsumerState';
+import OAuthConsumerAction from '../../actions/OAuthConsumerAction'
+import OAuthConsumerState from '../../model/state/oAuthConsumer/OAuthConsumerState';
 import OAuthConsumerAddModal from './modals/OAuthConsumerAddModal';
 import OAuthConsumerList from './OAuthConsumerList';
 import OAuthConsumerEditModal from './modals/OAuthConsumerEditModal';

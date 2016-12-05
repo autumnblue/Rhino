@@ -1,6 +1,6 @@
 import { Identity } from '../security/Identity';
-import Dto from '../model/dtoZ/Dto';
-import PagedDto from '../model/dtoZ/PagedDto';
+import Dto from '../model/dto/Dto';
+import PagedDto from '../model/dto/PagedDto';
 import * as http from './HttpUtil';
 
 abstract class CrudService<T extends Dto, U extends PagedDto> {

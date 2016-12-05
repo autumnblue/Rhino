@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { EditModalContainer, Props} from '../../common/EditModalContainer';
-import ScheduleAction from '../../../actions/ScheduleAction2'
-import ScheduleState from '../../../model/stateZ/schedule/ScheduleState';
+import ScheduleAction from '../../../actions/ScheduleAction'
+import ScheduleState from '../../../model/state/schedule/ScheduleState';
 import ScheduleForm from '../ScheduleForm';
-import { AppState } from '../../../model/stateZ/AppState';
+import { AppState } from '../../../model/state/AppState';
 
 const ScheduleEditModal = (props: Props) => {
     return <EditModalContainer

@@ -1,5 +1,5 @@
 import CrudService from './CrudServiceZ';
-import ScraperUserAgentDto from '../model/dtoZ/scraperUserAgent/ScraperUserAgentDto';
+import ScraperUserAgentDto from '../model/dto/scraperUserAgent/ScraperUserAgentDto';
 import * as http from './HttpUtil';
 
 class ScraperUserAgentService extends CrudService<ScraperUserAgentDto, any> {

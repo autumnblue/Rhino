@@ -1,16 +1,16 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import EngagementRecord from '../../../model/stateZ/engagement/EngagementRecord';
-import TargetListRecord from '../../../model/stateZ/targetList/TargetListRecord';
-import Ref from '../../../model/stateZ/Ref';
+import EngagementRecord from '../../../model/state/engagement/EngagementRecord';
+import TargetListRecord from '../../../model/state/targetList/TargetListRecord';
+import Ref from '../../../model/state/Ref';
 const reduxForm = require('redux-form');
 const Field = reduxForm.Field;
 const FieldArray = reduxForm.FieldArray;
 import autoComplete from '../../common/fields/AutoComplete'
 import TextField from 'material-ui/TextField'
-import EngagementAction from '../../../actions/EngagementAction2'
+import EngagementAction from '../../../actions/EngagementAction'
 import FetchAction from '../../../actions/FetchAction'; 
-import { AppState } from '../../../model/stateZ/AppState';
+import { AppState } from '../../../model/state/AppState';
 import RefreshIndicator from 'material-ui/RefreshIndicator';
 import ErrAlert from '../../common/ErrorAlert';
 import SubmitButton from '../../common/SubmitButton';

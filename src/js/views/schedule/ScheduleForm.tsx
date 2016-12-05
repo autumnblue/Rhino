@@ -3,14 +3,14 @@ import autoComplete from '../common/fields/AutoComplete';
 import Submit from '../common/SubmitButton';
 import input from '../common/fields/Input';
 import FormProps from '../common/FormProps';
-import ScheduleRecord from '../../model/stateZ/schedule/ScheduleRecord';
+import ScheduleRecord from '../../model/state/schedule/ScheduleRecord';
 const reduxForm = require('redux-form');
 const Field = reduxForm.Field;
 import textArea from '../common/fields/TextArea';
 import { RadioButtonGroup, RadioButton } from 'material-ui/RadioButton';
 import { connect } from 'react-redux';
 import TimePicker from 'material-ui/TimePicker';
-import { AppState } from '../../model/stateZ/AppState';
+import { AppState } from '../../model/state/AppState';
 import MenuItem from 'material-ui/MenuItem';
 import select from '../common/fields/Select';
 

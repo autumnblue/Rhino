@@ -3,8 +3,8 @@ import { Table } from '../components/common/table/Table';
 import { Column } from '../components/common/table/Column';
 import { ActionCol } from '../components/common/table/ActionCol';
 import { Grid } from '../components/common/grid/Grid';
-import ShoalScrapeCredRecord from '../../model/stateZ/shoalScrapeCred/ShoalScrapeCredRecord';
-import { ViewType } from '../../model/stateZ/CrudState';
+import ShoalScrapeCredRecord from '../../model/state/shoalScrapeCred/ShoalScrapeCredRecord';
+import { ViewType } from '../../model/state/CrudState';
 
 class ShoalScrapeCredList extends React.Component<Props, void> {
     public render() {

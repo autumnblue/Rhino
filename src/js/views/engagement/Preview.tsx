@@ -6,14 +6,14 @@ import {
    StepLabel,
    StepContent,
  } from 'material-ui/Stepper';
-import EngagementAction from '../../actions/EngagementAction2';
+import EngagementAction from '../../actions/EngagementAction';
 import EmailVectorPreview from './preview/EmailVectorPreview';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 import CircularProgress from 'material-ui/CircularProgress';
 import { connect } from 'react-redux';
-import { AppState } from '../../model/stateZ/AppState';
-import EngagementRecord from '../../model/stateZ/engagement/EngagementRecord'
+import { AppState } from '../../model/state/AppState';
+import EngagementRecord from '../../model/state/engagement/EngagementRecord'
 import Play from 'material-ui/svg-icons/av/play-arrow';
 
 interface Preview {

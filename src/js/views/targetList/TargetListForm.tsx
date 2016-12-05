@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import TargetListRecord from '../../model/stateZ/targetList/TargetListRecord';
-import Ref from '../../model/stateZ/Ref';
+import TargetListRecord from '../../model/state/targetList/TargetListRecord';
+import Ref from '../../model/state/Ref';
 const reduxForm = require('redux-form');
 const Field = reduxForm.Field;
 import TargetListAction from '../../actions/TargetListAction'
@@ -14,7 +14,7 @@ import editor from '../common/fields/TextEditor';
 import Submit from '../common/SubmitButton';
 import MenuItem from 'material-ui/MenuItem';
 import FormProps from '../common/FormProps';
-import { AppState } from '../../model/stateZ/AppState';
+import { AppState } from '../../model/state/AppState';
 import IconButton from 'material-ui/IconButton';
 import ErrAlert from '../common/ErrorAlert';
 const ReactDataGrid = require('react-data-grid');

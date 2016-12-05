@@ -1,5 +1,5 @@
 import store from '../main';
-import LoginAction from '../actions/LoginAction2';
+import LoginAction from '../actions/LoginAction';
 import { Identity } from './Identity';
 import { Dir } from '../common/Constants'; 
 import { Role } from './Role';

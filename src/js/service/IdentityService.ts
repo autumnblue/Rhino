@@ -1,6 +1,6 @@
 import CrudService from './CrudServiceZ';
-import CredentialDto from '../model/dtoZ/identity/CredentialDto';
-import AuthzResponseDto from '../model/dtoZ/identity/AuthzResponseDto';
+import CredentialDto from '../model/dto/identity/CredentialDto';
+import AuthzResponseDto from '../model/dto/identity/AuthzResponseDto';
 import * as http from './HttpUtil';
 import { Service } from './Service';
 

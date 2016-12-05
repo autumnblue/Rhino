@@ -1,6 +1,6 @@
 import CrudService from './CrudServiceZ';
-import OAuthEngagementDto from '../model/dtoZ/oAuthEngagement/OAuthEngagementDto';
-import OAuthEngagementXDto from '../model/dtoZ/oAuthEngagement/OAuthEngagementXDto';
+import OAuthEngagementDto from '../model/dto/oAuthEngagement/OAuthEngagementDto';
+import OAuthEngagementXDto from '../model/dto/oAuthEngagement/OAuthEngagementXDto';
 import * as http from './HttpUtil';
 
 class OAuthEngagementService extends CrudService<OAuthEngagementDto, any> {

@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { AddModalContainer, Props } from '../../common/AddModalContainer';
-import OAuthEngagementAction from '../../../actions/OAuthEngagementAction2'
-import OAuthEngagementState from '../../../model/stateZ/oAuthEngagement/OAuthEngagementState';
+import OAuthEngagementAction from '../../../actions/OAuthEngagementAction'
+import OAuthEngagementState from '../../../model/state/oAuthEngagement/OAuthEngagementState';
 import OAuthEngagementForm from '../OAuthEngagementForm';
-import { AppState } from '../../../model/stateZ/AppState';
+import { AppState } from '../../../model/state/AppState';
 
 const OAuthEngagementAddModal = (props: Props) => 
     <AddModalContainer

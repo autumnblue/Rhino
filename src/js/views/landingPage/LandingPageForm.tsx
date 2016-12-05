@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import LandingPageRecord from '../../model/stateZ/landingPage/LandingPageRecord';
-import LandingPageWidget from '../../model/stateZ/landingPage/LandingPageWidget';
-import Ref from '../../model/stateZ/Ref';
+import LandingPageRecord from '../../model/state/landingPage/LandingPageRecord';
+import LandingPageWidget from '../../model/state/landingPage/LandingPageWidget';
+import Ref from '../../model/state/Ref';
 const reduxForm = require('redux-form');
 const Field = reduxForm.Field;
-import LandingPageAction from '../../actions/LandingPageAction2'
+import LandingPageAction from '../../actions/LandingPageAction'
 import select from '../common/fields/Select';
 import autoComplete from '../common/fields/AutoComplete';
 import input from '../common/fields/Input';
@@ -13,7 +13,7 @@ import editor from '../common/fields/TextEditor2';
 import Submit from '../common/SubmitButton';
 import MenuItem from 'material-ui/MenuItem';
 import FormProps from '../common/FormProps';
-import { AppState } from '../../model/stateZ/AppState';
+import { AppState } from '../../model/state/AppState';
 import IconButton from 'material-ui/IconButton';
 import ModeEdit from 'material-ui/svg-icons/editor/mode-edit';
 import FetchAction from '../../actions/FetchAction'

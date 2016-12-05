@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { AppState } from '../../model/stateZ/AppState';
+import { AppState } from '../../model/state/AppState';
 import { CrudContainer, Props } from '../common/CrudContainer';
-import LandingPageAction from '../../actions/LandingPageAction2'
-import LandingPageState from '../../model/stateZ/landingPage/LandingPageState';
+import LandingPageAction from '../../actions/LandingPageAction'
+import LandingPageState from '../../model/state/landingPage/LandingPageState';
 import LandingPageAddModal from './modals/LandingPageAddModal';
 import LandingPageList from './LandingPageList';
 import LandingPageEditModal from './modals/LandingPageEditModal';

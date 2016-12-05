@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { AppState } from '../../model/stateZ/AppState';
+import { AppState } from '../../model/state/AppState';
 import { CrudContainer, Props } from '../common/CrudContainer';
-import EmailTemplateAction from '../../actions/EmailTemplateAction2'
-import EmailTemplateState from '../../model/stateZ/emailTemplate/EmailTemplateState';
+import EmailTemplateAction from '../../actions/EmailTemplateAction'
+import EmailTemplateState from '../../model/state/emailTemplate/EmailTemplateState';
 import EmailTemplateAddModal from './modals/EmailTemplateAddModal';
 import EmailTemplateList from './EmailTemplateList';
 import EmailTemplateEditModal from './modals/EmailTemplateEditModal';

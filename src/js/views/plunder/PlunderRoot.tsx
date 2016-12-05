@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { AppState } from '../../model/stateZ/AppState';
+import { AppState } from '../../model/state/AppState';
 import { CrudContainer, Props } from '../common/CrudContainer';
-import PlunderAction from '../../actions/PlunderAction2'
-import PlunderState from '../../model/stateZ/plunder/PlunderState';
+import PlunderAction from '../../actions/PlunderAction'
+import PlunderState from '../../model/state/plunder/PlunderState';
 import PlunderAddModal from './modals/PlunderAddModal';
 import PlunderList from './PlunderList';
 import PlunderEditModal from './modals/PlunderEditModal';

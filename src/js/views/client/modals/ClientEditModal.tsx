@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { EditModalContainer, Props} from '../../common/EditModalContainer';
-import ClientAction from '../../../actions/ClientAction2'
-import ClientState from '../../../model/stateZ/client/ClientState';
+import ClientAction from '../../../actions/ClientAction'
+import ClientState from '../../../model/state/client/ClientState';
 import ClientForm from '../ClientForm';
-import { AppState } from '../../../model/stateZ/AppState';
+import { AppState } from '../../../model/state/AppState';
 
 const ClientEditModal = (props: Props) => {
     return <EditModalContainer

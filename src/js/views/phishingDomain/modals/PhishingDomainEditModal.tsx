@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { EditModalContainer, Props} from '../../common/EditModalContainer';
-import PhishingDomainAction from '../../../actions/PhishingDomainAction2'
-import PhishingDomainState from '../../../model/stateZ/phishingDomain/PhishingDomainState';
+import PhishingDomainAction from '../../../actions/PhishingDomainAction'
+import PhishingDomainState from '../../../model/state/phishingDomain/PhishingDomainState';
 import PhishingDomainForm from '../PhishingDomainForm';
-import { AppState } from '../../../model/stateZ/AppState';
+import { AppState } from '../../../model/state/AppState';
 
 const PhishingDomainEditModal = (props: Props) => {
     return <EditModalContainer

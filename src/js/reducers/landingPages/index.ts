@@ -1,6 +1,6 @@
 import reduce from '../common';
-import LandingPageState from '../../model/stateZ/landingPage/LandingPageState'
-import LandingPageRecord from '../../model/stateZ/landingPage/LandingPageRecord'
+import LandingPageState from '../../model/state/landingPage/LandingPageState'
+import LandingPageRecord from '../../model/state/landingPage/LandingPageRecord'
 import { Action } from '../../actions/Action';
 import { ActionType } from '../../actions/ActionType';
 import { copy } from '../../common/Util';

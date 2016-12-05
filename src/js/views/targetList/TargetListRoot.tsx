@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import RootView from '../common/RootView';
-import TargetListState from '../../model/stateZ/targetList/TargetListState';
+import TargetListState from '../../model/state/targetList/TargetListState';
 import { ToolbarGroup } from 'material-ui/Toolbar';
 import TargetListAction from '../../actions/TargetListAction';
 import { GridTile } from 'material-ui/GridList';
@@ -11,7 +11,7 @@ import FileUpload from 'material-ui/svg-icons/file/file-upload';
 import { Table } from '../components/common/table/Table';
 import { Column } from '../components/common/table/Column';
 import { ActionCol } from '../components/common/table/ActionCol';
-import { AppState } from '../../model/stateZ/AppState'; 
+import { AppState } from '../../model/state/AppState'; 
 import TargetListEditModal from './modals/TargetListEditModal'
 const Dropzone = require('react-dropzone');
 

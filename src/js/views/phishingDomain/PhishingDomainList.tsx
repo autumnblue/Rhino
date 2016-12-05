@@ -3,8 +3,8 @@ import { Table } from '../components/common/table/Table';
 import { Column } from '../components/common/table/Column';
 import { ActionCol } from '../components/common/table/ActionCol';
 import { Grid } from '../components/common/grid/Grid';
-import PhishingDomainRecord from '../../model/stateZ/phishingDomain/PhishingDomainRecord';
-import { ViewType } from '../../model/stateZ/CrudState';
+import PhishingDomainRecord from '../../model/state/phishingDomain/PhishingDomainRecord';
+import { ViewType } from '../../model/state/CrudState';
 
 class PhishingDomainList extends React.Component<Props, void> {
     public render() {

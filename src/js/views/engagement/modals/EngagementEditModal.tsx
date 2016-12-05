@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { EditModalContainer, Props} from '../../common/EditModalContainer';
-import EngagementAction from '../../../actions/EngagementAction2'
-import EngagementState from '../../../model/stateZ/engagement/EngagementState';
+import EngagementAction from '../../../actions/EngagementAction'
+import EngagementState from '../../../model/state/engagement/EngagementState';
 import EngagementForm from '../form/EngagementForm';
-import EngagementRecord from '../../../model/stateZ/engagement/EngagementRecord';
-import { AppState } from '../../../model/stateZ/AppState';
+import EngagementRecord from '../../../model/state/engagement/EngagementRecord';
+import { AppState } from '../../../model/state/AppState';
 import controls from '../form/FormControls';
 import { Control } from '../../components/common/Controls';
 

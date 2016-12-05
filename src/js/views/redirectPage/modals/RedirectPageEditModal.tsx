@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { EditModalContainer, Props} from '../../common/EditModalContainer';
-import RedirectPageAction from '../../../actions/RedirectPageAction2'
-import RedirectPageState from '../../../model/stateZ/redirectPage/RedirectPageState';
+import RedirectPageAction from '../../../actions/RedirectPageAction'
+import RedirectPageState from '../../../model/state/redirectPage/RedirectPageState';
 import RedirectPageForm from '../RedirectPageForm';
-import { AppState } from '../../../model/stateZ/AppState';
+import { AppState } from '../../../model/state/AppState';
 
 const RedirectPageEditModal = (props: Props) => {
     return <EditModalContainer

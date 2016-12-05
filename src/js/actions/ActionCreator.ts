@@ -1,8 +1,8 @@
-import Dto from '../model/dtoZ/Dto';
-import PagedDto from '../model/dtoZ/PagedDto'
-import Mapper from '../mappers/MapperZ'
+import Dto from '../model/dto/Dto';
+import PagedDto from '../model/dto/PagedDto'
+import Mapper from '../mappers/Mapper'
 import CrudService from '../service/CrudServiceZ'
-import Record from '../model/stateZ/Record';
+import Record from '../model/state/Record';
 import { ActionType } from './ActionType';
 import handleErr from '../validation/submit/SubmitValidationHandlerZ';
 

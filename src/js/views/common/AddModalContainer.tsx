@@ -2,9 +2,9 @@ import * as React from 'react';
 import * as react_redux from 'react-redux';
 import { Modal } from '../components/common/Modal2';
 import { Control } from '../components/common/Controls';
-import { AppState } from '../../model/stateZ/AppState';
-import Record from '../../model/stateZ/Record';
-import { CrudState } from '../../model/stateZ/CrudState';
+import { AppState } from '../../model/state/AppState';
+import Record from '../../model/state/Record';
+import { CrudState } from '../../model/state/CrudState';
 import ActionCreator from '../../actions/ActionCreator';
 
 export const AddModalContainer = (props: Props) => {

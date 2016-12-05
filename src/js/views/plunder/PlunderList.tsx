@@ -3,8 +3,8 @@ import { Table } from '../components/common/table/Table';
 import { Column } from '../components/common/table/Column';
 import { ActionCol } from '../components/common/table/ActionCol';
 import { Grid } from '../components/common/grid/Grid';
-import PlunderRecord from '../../model/stateZ/plunder/PlunderRecord';
-import { ViewType } from '../../model/stateZ/CrudState';
+import PlunderRecord from '../../model/state/plunder/PlunderRecord';
+import { ViewType } from '../../model/state/CrudState';
 
 class PlunderList extends React.Component<Props, void> {
     public render() {

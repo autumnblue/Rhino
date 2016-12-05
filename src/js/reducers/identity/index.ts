@@ -1,7 +1,7 @@
 import { Reducer } from 'redux';
 import { Action } from '../../actions/Action';
 import { ActionType } from '../../actions/ActionType';
-import LoginState from '../../model/stateZ/login/LoginState';
+import LoginState from '../../model/state/login/LoginState';
 import { Identity } from '../../security/Identity';
 
 

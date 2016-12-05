@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import OAuthEngagementRecord from '../../model/stateZ/oAuthEngagement/OAuthEngagementRecord';
-import OAuthEngagementWidget from '../../model/stateZ/oAuthEngagement/OAuthEngagementWidget';
-import Ref from '../../model/stateZ/Ref';
+import OAuthEngagementRecord from '../../model/state/oAuthEngagement/OAuthEngagementRecord';
+import OAuthEngagementWidget from '../../model/state/oAuthEngagement/OAuthEngagementWidget';
+import Ref from '../../model/state/Ref';
 const reduxForm = require('redux-form');
 const Field = reduxForm.Field;
 import FetchAction from '../../actions/FetchAction';
@@ -14,7 +14,7 @@ import editor from '../common/fields/TextEditor';
 import Submit from '../common/SubmitButton';
 import MenuItem from 'material-ui/MenuItem';
 import FormProps from '../common/FormProps';
-import { AppState } from '../../model/stateZ/AppState';
+import { AppState } from '../../model/state/AppState';
 import ErrAlert from '../common/ErrorAlert';
 
 const oAuthEngagementForm = reduxForm.reduxForm({

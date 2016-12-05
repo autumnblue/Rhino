@@ -1,6 +1,6 @@
 import CrudService from './CrudServiceZ';
-import TargetListDto from '../model/dtoZ/targetList/TargetListDto';
-import TargetListXDto from '../model/dtoZ/targetList/TargetListXDto';
+import TargetListDto from '../model/dto/targetList/TargetListDto';
+import TargetListXDto from '../model/dto/targetList/TargetListXDto';
 import * as http from './HttpUtil';
 
 class TargetListsService extends CrudService<TargetListDto, any> {

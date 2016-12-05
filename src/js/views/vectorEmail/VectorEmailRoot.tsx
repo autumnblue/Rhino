@@ -1,9 +1,9 @@
 // import * as React from 'react';
 // import { connect } from 'react-redux';
-// import { AppState } from '../../model/stateZ/AppState';
+// import { AppState } from '../../model/state/AppState';
 // import { CrudContainer, Props } from '../common/CrudContainer';
-// import VectorEmailAction from '../../actions/VectorEmailAction2'
-// import VectorEmailState from '../../model/stateZ/vectorEmail/VectorEmailState';
+// import VectorEmailAction from '../../actions/VectorEmailAction'
+// import VectorEmailState from '../../model/state/vectorEmail/VectorEmailState';
 // import VectorEmailAddModal from './modals/VectorEmailAddModal';
 // import VectorEmailList from './VectorEmailList';
 // import VectorEmailEditModal from './modals/VectorEmailEditModal';

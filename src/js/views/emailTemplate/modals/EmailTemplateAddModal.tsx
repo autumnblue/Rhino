@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { AddModalContainer, Props } from '../../common/AddModalContainer';
-import EmailTemplateAction from '../../../actions/EmailTemplateAction2'
-import EmailTemplateState from '../../../model/stateZ/emailTemplate/EmailTemplateState';
+import EmailTemplateAction from '../../../actions/EmailTemplateAction'
+import EmailTemplateState from '../../../model/state/emailTemplate/EmailTemplateState';
 import EmailTemplateForm from '../EmailTemplateForm';
-import { AppState } from '../../../model/stateZ/AppState';
+import { AppState } from '../../../model/state/AppState';
 
 const EmailTemplateAddModal = (props: Props) => 
     <AddModalContainer

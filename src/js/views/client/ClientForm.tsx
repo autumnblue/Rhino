@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import ClientRecord from '../../model/stateZ/client/ClientRecord';
-import ClientWidget from '../../model/stateZ/client/ClientWidget';
-import Ref from '../../model/stateZ/Ref';
+import ClientRecord from '../../model/state/client/ClientRecord';
+import ClientWidget from '../../model/state/client/ClientWidget';
+import Ref from '../../model/state/Ref';
 const reduxForm = require('redux-form');
 const Field = reduxForm.Field;
-import ClientAction from '../../actions/ClientAction2'
+import ClientAction from '../../actions/ClientAction'
 import select from '../common/fields/Select';
 import autoComplete from '../common/fields/AutoComplete';
 import input from '../common/fields/Input';
@@ -14,7 +14,7 @@ import editor from '../common/fields/TextEditor';
 import Submit from '../common/SubmitButton';
 import MenuItem from 'material-ui/MenuItem';
 import FormProps from '../common/FormProps';
-import { AppState } from '../../model/stateZ/AppState';
+import { AppState } from '../../model/state/AppState';
 import ErrAlert from '../common/ErrorAlert';
 const moment = require('moment-timezone'); 
 

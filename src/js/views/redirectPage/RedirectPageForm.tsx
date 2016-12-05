@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import RedirectPageRecord from '../../model/stateZ/redirectPage/RedirectPageRecord';
-import RedirectPageWidget from '../../model/stateZ/redirectPage/RedirectPageWidget';
-import Ref from '../../model/stateZ/Ref';
+import RedirectPageRecord from '../../model/state/redirectPage/RedirectPageRecord';
+import RedirectPageWidget from '../../model/state/redirectPage/RedirectPageWidget';
+import Ref from '../../model/state/Ref';
 const reduxForm = require('redux-form');
 const Field = reduxForm.Field;
-import RedirectPageAction from '../../actions/RedirectPageAction2'
+import RedirectPageAction from '../../actions/RedirectPageAction'
 import FetchAction from '../../actions/FetchAction'
 import select from '../common/fields/Select';
 import autoComplete from '../common/fields/AutoComplete';
@@ -14,7 +14,7 @@ import editor from '../common/fields/TextEditor2';
 import Submit from '../common/SubmitButton';
 import MenuItem from 'material-ui/MenuItem';
 import FormProps from '../common/FormProps';
-import { AppState } from '../../model/stateZ/AppState';
+import { AppState } from '../../model/state/AppState';
 import IconButton from 'material-ui/IconButton';
 import ModeEdit from 'material-ui/svg-icons/editor/mode-edit';
 import ErrAlert from '../common/ErrorAlert';

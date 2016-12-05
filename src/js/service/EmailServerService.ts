@@ -1,5 +1,5 @@
 import CrudService from './CrudServiceZ';
-import EmailServerDto from '../model/dtoZ/emailServer/EmailServerDto';
+import EmailServerDto from '../model/dto/emailServer/EmailServerDto';
 import * as http from './HttpUtil';
 
 class EmailServerService extends CrudService<EmailServerDto, any> {

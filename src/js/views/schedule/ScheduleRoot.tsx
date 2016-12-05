@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { AppState } from '../../model/stateZ/AppState';
+import { AppState } from '../../model/state/AppState';
 import { CrudContainer, Props } from '../common/CrudContainer';
-import ScheduleAction from '../../actions/ScheduleAction2'
-import ScheduleState from '../../model/stateZ/schedule/ScheduleState';
+import ScheduleAction from '../../actions/ScheduleAction'
+import ScheduleState from '../../model/state/schedule/ScheduleState';
 import ScheduleAddModal from './modals/ScheduleAddModal';
 import ScheduleList from './ScheduleList';
 import ScheduleEditModal from './modals/ScheduleEditModal';

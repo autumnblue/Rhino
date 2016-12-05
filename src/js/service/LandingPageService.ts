@@ -1,6 +1,6 @@
 import CrudService from './CrudServiceZ';
-import LandingPageDto from '../model/dtoZ/landingPage/LandingPageDto';
-import LandingPageXDto from '../model/dtoZ/landingPage/LandingPageXDto';
+import LandingPageDto from '../model/dto/landingPage/LandingPageDto';
+import LandingPageXDto from '../model/dto/landingPage/LandingPageXDto';
 import { Identity } from '../security/Identity';
 import * as http from './HttpUtil';
 

@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import PhishingDomainRecord from '../../model/stateZ/phishingDomain/PhishingDomainRecord';
-import PhishingDomainWidget from '../../model/stateZ/phishingDomain/PhishingDomainWidget';
-import Ref from '../../model/stateZ/Ref';
+import PhishingDomainRecord from '../../model/state/phishingDomain/PhishingDomainRecord';
+import PhishingDomainWidget from '../../model/state/phishingDomain/PhishingDomainWidget';
+import Ref from '../../model/state/Ref';
 const reduxForm = require('redux-form');
 const Field = reduxForm.Field;
-import PhishingDomainAction from '../../actions/PhishingDomainAction2'
+import PhishingDomainAction from '../../actions/PhishingDomainAction'
 import select from '../common/fields/Select';
 import autoComplete from '../common/fields/AutoComplete';
 import input from '../common/fields/Input';
@@ -14,7 +14,7 @@ import editor from '../common/fields/TextEditor';
 import Submit from '../common/SubmitButton';
 import MenuItem from 'material-ui/MenuItem';
 import FormProps from '../common/FormProps';
-import { AppState } from '../../model/stateZ/AppState';
+import { AppState } from '../../model/state/AppState';
 import ErrAlert from '../common/ErrorAlert';
 
 const FORM = 'PhishingDomainForm'

@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { AppState } from '../../model/stateZ/AppState';
+import { AppState } from '../../model/state/AppState';
 import { CrudContainer, Props } from '../common/CrudContainer';
-import RedirectPageAction from '../../actions/RedirectPageAction2'
-import RedirectPageState from '../../model/stateZ/redirectPage/RedirectPageState';
+import RedirectPageAction from '../../actions/RedirectPageAction'
+import RedirectPageState from '../../model/state/redirectPage/RedirectPageState';
 import RedirectPageAddModal from './modals/RedirectPageAddModal';
 import RedirectPageList from './RedirectPageList';
 import RedirectPageEditModal from './modals/RedirectPageEditModal';

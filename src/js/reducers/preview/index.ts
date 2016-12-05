@@ -1,7 +1,7 @@
 import { Reducer } from 'redux';
 import { Action } from '../../actions/Action';
 import { ActionType } from '../../actions/ActionType';
-import PreviewState from '../../model/stateZ/preview/PreviewState';
+import PreviewState from '../../model/state/preview/PreviewState';
 import { copy } from '../../common/Util';
 import { ValidatableInput } from '../../common/validation/ValidatableInput';
 

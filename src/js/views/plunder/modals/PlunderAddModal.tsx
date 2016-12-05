@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { AddModalContainer, Props } from '../../common/AddModalContainer';
-import PlunderAction from '../../../actions/PlunderAction2'
-import PlunderState from '../../../model/stateZ/plunder/PlunderState';
+import PlunderAction from '../../../actions/PlunderAction'
+import PlunderState from '../../../model/state/plunder/PlunderState';
 import PlunderForm from '../PlunderForm';
-import { AppState } from '../../../model/stateZ/AppState';
+import { AppState } from '../../../model/state/AppState';
 
 const PlunderAddModal = (props: Props) => 
     <AddModalContainer

@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { AppState } from '../../model/stateZ/AppState';
+import { AppState } from '../../model/state/AppState';
 import { CrudContainer, Props } from '../common/CrudContainer';
-import ScraperUserAgentAction from '../../actions/ScraperUserAgentAction2'
-import ScraperUserAgentState from '../../model/stateZ/scraperUserAgent/ScraperUserAgentState';
+import ScraperUserAgentAction from '../../actions/ScraperUserAgentAction'
+import ScraperUserAgentState from '../../model/state/scraperUserAgent/ScraperUserAgentState';
 import ScraperUserAgentAddModal from './modals/ScraperUserAgentAddModal';
 import ScraperUserAgentList from './ScraperUserAgentList';
 import ScraperUserAgentEditModal from './modals/ScraperUserAgentEditModal';

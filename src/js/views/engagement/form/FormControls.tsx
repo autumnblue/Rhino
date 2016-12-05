@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { Control } from '../../components/common/Controls';
-import ScheduleAction from '../../../actions/ScheduleAction2'
-import EmailTemplateAction from '../../../actions/EmailTemplateAction2'
-import EmailServerAction from '../../../actions/EmailServerAction2'
-import LandingPageAction from '../../../actions/LandingPageAction2';
-import RedirectPageAction from '../../../actions/RedirectPageAction2';
-import EngagementAction from '../../../actions/EngagementAction2';
+import ScheduleAction from '../../../actions/ScheduleAction'
+import EmailTemplateAction from '../../../actions/EmailTemplateAction'
+import EmailServerAction from '../../../actions/EmailServerAction'
+import LandingPageAction from '../../../actions/LandingPageAction';
+import RedirectPageAction from '../../../actions/RedirectPageAction';
+import EngagementAction from '../../../actions/EngagementAction';
  
  const renderEngagementControls = (props) => [
      <Control>

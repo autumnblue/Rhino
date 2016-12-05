@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Column, ColumnProps } from './Column';
 import { ActionCol, ActionProps } from './ActionCol';
-import Dto from '../../../../model/dtoZ/Dto';
+import Dto from '../../../../model/dto/Dto';
 
 class Component extends React.Component<{ data: Array<Dto> }, {}> {
     public render() {

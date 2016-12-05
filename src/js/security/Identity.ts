@@ -4,7 +4,7 @@ import { CurrentUser } from '../CurrentUser';
 import { Dir } from '../common/Constants';
 import IdentityService from '../service/IdentityService';
 import store from '../main';
-import LoginAction from '../actions/LoginAction2';
+import LoginAction from '../actions/LoginAction';
 import * as moment from 'moment';
 
 class IdentityStatic {

@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { AppState } from '../../model/stateZ/AppState';
+import { AppState } from '../../model/state/AppState';
 import { CrudContainer, Props } from '../common/CrudContainer';
-import EngagementAction from '../../actions/EngagementAction2'
-import EngagementState from '../../model/stateZ/engagement/EngagementState';
+import EngagementAction from '../../actions/EngagementAction'
+import EngagementState from '../../model/state/engagement/EngagementState';
 import EngagementAddModal from './modals/EngagementAddModal';
 import EngagementList from './EngagementList';
 import EngagementEditModal from './modals/EngagementEditModal';

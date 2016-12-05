@@ -3,8 +3,8 @@ import { Table } from '../components/common/table/Table';
 import { Column } from '../components/common/table/Column';
 import { ActionCol } from '../components/common/table/ActionCol';
 import { Grid } from '../components/common/grid/Grid';
-import OAuthConsumerRecord from '../../model/stateZ/oAuthConsumer/OAuthConsumerRecord';
-import { ViewType } from '../../model/stateZ/CrudState';
+import OAuthConsumerRecord from '../../model/state/oAuthConsumer/OAuthConsumerRecord';
+import { ViewType } from '../../model/state/CrudState';
 
 class OAuthConsumerList extends React.Component<Props, void> {
     public render() {

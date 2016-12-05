@@ -1,6 +1,6 @@
 import CrudService from './CrudServiceZ';
-import VectorEmailDto from '../model/dtoZ/vectorEmail/VectorEmailDto';
-import VectorEmailXDto from '../model/dtoZ/vectorEmail/VectorEmailXDto';
+import VectorEmailDto from '../model/dto/vectorEmail/VectorEmailDto';
+import VectorEmailXDto from '../model/dto/vectorEmail/VectorEmailXDto';
 import * as http from './HttpUtil';
 
 class VectorEmailService extends CrudService<VectorEmailDto, any> {

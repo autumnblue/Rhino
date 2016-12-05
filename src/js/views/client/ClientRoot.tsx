@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { AppState } from '../../model/stateZ/AppState';
+import { AppState } from '../../model/state/AppState';
 import { CrudContainer, Props } from '../common/CrudContainer';
-import ClientAction from '../../actions/ClientAction2'
-import ClientState from '../../model/stateZ/client/ClientState';
+import ClientAction from '../../actions/ClientAction'
+import ClientState from '../../model/state/client/ClientState';
 import ClientAddModal from './modals/ClientAddModal';
 import ClientList from './ClientList';
 import ClientEditModal from './modals/ClientEditModal';

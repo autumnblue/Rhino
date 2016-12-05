@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import PlunderRecord from '../../model/stateZ/plunder/PlunderRecord';
-import PlunderWidget from '../../model/stateZ/plunder/PlunderWidget';
-import Ref from '../../model/stateZ/Ref';
+import PlunderRecord from '../../model/state/plunder/PlunderRecord';
+import PlunderWidget from '../../model/state/plunder/PlunderWidget';
+import Ref from '../../model/state/Ref';
 const reduxForm = require('redux-form');
 const Field = reduxForm.Field;
-import PlunderAction from '../../actions/PlunderAction2'
+import PlunderAction from '../../actions/PlunderAction'
 import select from '../common/fields/Select';
 import autoComplete from '../common/fields/AutoComplete';
 import input from '../common/fields/Input';
@@ -14,7 +14,7 @@ import editor from '../common/fields/TextEditor';
 import Submit from '../common/SubmitButton';
 import MenuItem from 'material-ui/MenuItem';
 import FormProps from '../common/FormProps';
-import { AppState } from '../../model/stateZ/AppState';
+import { AppState } from '../../model/state/AppState';
 import ErrAlert from '../common/ErrorAlert';
 
 const FORM = 'PlunderForm'

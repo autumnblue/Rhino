@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Modal } from '../components/common/Modal2';
 import LoginForm from './LoginForm';
 import { connect } from 'react-redux';
-import { AppState } from '../../model/stateZ/AppState';
+import { AppState } from '../../model/state/AppState';
 import { Identity } from '../../security/Identity';
 import { Control } from '../components/common/Controls';
 

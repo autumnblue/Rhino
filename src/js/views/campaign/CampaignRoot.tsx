@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { AppState } from '../../model/stateZ/AppState';
+import { AppState } from '../../model/state/AppState';
 import { CrudContainer, Props } from '../common/CrudContainer';
-import CampaignAction from '../../actions/CampaignAction2'
-import CampaignState from '../../model/stateZ/campaign/CampaignState';
+import CampaignAction from '../../actions/CampaignAction'
+import CampaignState from '../../model/state/campaign/CampaignState';
 import CampaignAddModal from './modals/CampaignAddModal';
 import CampaignList from './CampaignList';
 import CampaignEditModal from './modals/CampaignEditModal';

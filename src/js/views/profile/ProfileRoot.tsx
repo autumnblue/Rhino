@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { AppState } from '../../model/stateZ/AppState';
+import { AppState } from '../../model/state/AppState';
 import { CrudContainer, Props } from '../common/CrudContainer';
-import ProfileAction from '../../actions/ProfileAction2'
-import ProfileState from '../../model/stateZ/profile/ProfileState';
+import ProfileAction from '../../actions/ProfileAction'
+import ProfileState from '../../model/state/profile/ProfileState';
 import ProfileAddModal from './modals/ProfileAddModal';
 import ProfileList from './ProfileList';
 import ProfileEditModal from './modals/ProfileEditModal';

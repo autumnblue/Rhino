@@ -8,10 +8,10 @@ import LandingPageService from '../service/LandingPageService';
 import RedirectPageService from '../service/RedirectPageService';
 import PhishingDomainService from '../service/PhishingDomainService';
 import PreviewService from '../service/PreviewService';
-import TargetListState from '../model/stateZ/targetList/TargetListState'
-import TargetListRecord from '../model/stateZ/targetList/TargetListRecord'
+import TargetListState from '../model/state/targetList/TargetListState'
+import TargetListRecord from '../model/state/targetList/TargetListRecord'
 import { ActionType } from './ActionType';
-import Ref from '../model/stateZ/RefZ';
+import Ref from '../model/state/RefZ';
 
 const LOAD  = 'skiff/crud/LOAD';
 

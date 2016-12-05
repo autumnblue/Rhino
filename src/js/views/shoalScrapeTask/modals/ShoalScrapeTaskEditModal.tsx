@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { EditModalContainer, Props} from '../../common/EditModalContainer';
-import ShoalScrapeTaskAction from '../../../actions/ShoalScrapeTaskAction2'
-import ShoalScrapeTaskState from '../../../model/stateZ/shoalScrapeTask/ShoalScrapeTaskState';
+import ShoalScrapeTaskAction from '../../../actions/ShoalScrapeTaskAction'
+import ShoalScrapeTaskState from '../../../model/state/shoalScrapeTask/ShoalScrapeTaskState';
 import ShoalScrapeTaskForm from '../ShoalScrapeTaskForm';
-import { AppState } from '../../../model/stateZ/AppState';
+import { AppState } from '../../../model/state/AppState';
 
 const ShoalScrapeTaskEditModal = (props: Props) => {
     return <EditModalContainer

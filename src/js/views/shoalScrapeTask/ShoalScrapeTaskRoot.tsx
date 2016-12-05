@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { AppState } from '../../model/stateZ/AppState';
+import { AppState } from '../../model/state/AppState';
 import { CrudContainer, Props } from '../common/CrudContainer';
-import ShoalScrapeTaskAction from '../../actions/ShoalScrapeTaskAction2'
-import ShoalScrapeTaskState from '../../model/stateZ/shoalScrapeTask/ShoalScrapeTaskState';
+import ShoalScrapeTaskAction from '../../actions/ShoalScrapeTaskAction'
+import ShoalScrapeTaskState from '../../model/state/shoalScrapeTask/ShoalScrapeTaskState';
 import ShoalScrapeTaskAddModal from './modals/ShoalScrapeTaskAddModal';
 import ShoalScrapeTaskList from './ShoalScrapeTaskList';
 import ShoalScrapeTaskEditModal from './modals/ShoalScrapeTaskEditModal';

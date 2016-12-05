@@ -1,6 +1,6 @@
 import reduce from '../common';
-import CampaignState from '../../model/stateZ/campaign/CampaignState'
-import CampaignRecord from '../../model/stateZ/campaign/CampaignRecord'
+import CampaignState from '../../model/state/campaign/CampaignState'
+import CampaignRecord from '../../model/state/campaign/CampaignRecord'
 import { Action } from '../../actions/Action';
 import { ActionType } from '../../actions/ActionType';
 import { copy } from '../../common/Util';

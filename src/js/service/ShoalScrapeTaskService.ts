@@ -1,6 +1,6 @@
 import CrudService from './CrudServiceZ';
-import ShoalScrapeTaskDto from '../model/dtoZ/shoalScrapeTask/ShoalScrapeTaskDto';
-import ShoalScrapeTaskXDto from '../model/dtoZ/shoalScrapeTask/ShoalScrapeTaskXDto';
+import ShoalScrapeTaskDto from '../model/dto/shoalScrapeTask/ShoalScrapeTaskDto';
+import ShoalScrapeTaskXDto from '../model/dto/shoalScrapeTask/ShoalScrapeTaskXDto';
 import * as http from './HttpUtil';
 
 class ShoalScrapeTaskService extends CrudService<ShoalScrapeTaskDto, any> {

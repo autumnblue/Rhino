@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { EditModalContainer, Props} from '../../common/EditModalContainer';
-import CampaignAction from '../../../actions/CampaignAction2'
-import CampaignState from '../../../model/stateZ/campaign/CampaignState';
+import CampaignAction from '../../../actions/CampaignAction'
+import CampaignState from '../../../model/state/campaign/CampaignState';
 import CampaignForm from '../CampaignForm';
-import { AppState } from '../../../model/stateZ/AppState';
+import { AppState } from '../../../model/state/AppState';
 
 const CampaignEditModal = (props: Props) => {
     return <EditModalContainer
