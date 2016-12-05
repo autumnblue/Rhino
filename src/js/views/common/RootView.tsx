@@ -17,7 +17,7 @@ import NoteAdd from 'material-ui/svg-icons/action/note-add';
 import FilterList from 'material-ui/svg-icons/content/filter-list';
 import EngagementAction from '../../actions/EngagementAction2';
 import { connect } from 'react-redux';
-import { AppState } from '../../model/state/AppState';
+import { AppState } from '../../model/stateZ/AppState';
 import Ref from '../../model/stateZ/Ref';
 import {
     Toolbar, 

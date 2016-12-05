@@ -4,7 +4,7 @@ import { EditModalContainer, Props} from '../../common/EditModalContainer';
 import ShoalScrapeTaskAction from '../../../actions/ShoalScrapeTaskAction2'
 import ShoalScrapeTaskState from '../../../model/stateZ/shoalScrapeTask/ShoalScrapeTaskState';
 import ShoalScrapeTaskForm from '../ShoalScrapeTaskForm';
-import { AppState } from '../../../model/state/AppState';
+import { AppState } from '../../../model/stateZ/AppState';
 
 const ShoalScrapeTaskEditModal = (props: Props) => {
     return <EditModalContainer

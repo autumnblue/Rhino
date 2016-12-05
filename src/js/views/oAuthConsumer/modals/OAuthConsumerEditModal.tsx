@@ -4,7 +4,7 @@ import { EditModalContainer, Props} from '../../common/EditModalContainer';
 import OAuthConsumerAction from '../../../actions/OAuthConsumerAction2'
 import OAuthConsumerState from '../../../model/stateZ/oAuthConsumer/OAuthConsumerState';
 import OAuthConsumerForm from '../OAuthConsumerForm';
-import { AppState } from '../../../model/state/AppState';
+import { AppState } from '../../../model/stateZ/AppState';
 
 const OAuthConsumerEditModal = (props: Props) => {
     return <EditModalContainer

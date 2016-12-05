@@ -4,7 +4,7 @@ import { AddModalContainer, Props } from '../../common/AddModalContainer';
 import PlunderAction from '../../../actions/PlunderAction2'
 import PlunderState from '../../../model/stateZ/plunder/PlunderState';
 import PlunderForm from '../PlunderForm';
-import { AppState } from '../../../model/state/AppState';
+import { AppState } from '../../../model/stateZ/AppState';
 
 const PlunderAddModal = (props: Props) => 
     <AddModalContainer

@@ -4,7 +4,7 @@ import { AddModalContainer, Props } from '../../common/AddModalContainer';
 import CampaignAction from '../../../actions/CampaignAction2'
 import CampaignState from '../../../model/stateZ/campaign/CampaignState';
 import CampaignForm from '../CampaignForm';
-import { AppState } from '../../../model/state/AppState';
+import { AppState } from '../../../model/stateZ/AppState';
 
 const CampaignAddModal = (props: Props) => 
     <AddModalContainer

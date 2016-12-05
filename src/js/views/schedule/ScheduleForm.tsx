@@ -10,7 +10,7 @@ import textArea from '../common/fields/TextArea';
 import { RadioButtonGroup, RadioButton } from 'material-ui/RadioButton';
 import { connect } from 'react-redux';
 import TimePicker from 'material-ui/TimePicker';
-import { AppState } from '../../model/state/AppState';
+import { AppState } from '../../model/stateZ/AppState';
 import MenuItem from 'material-ui/MenuItem';
 import select from '../common/fields/Select';
 

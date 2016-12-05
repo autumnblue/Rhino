@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as react_redux from 'react-redux';
 import { Modal } from '../components/common/Modal';
 import { Control } from '../components/common/Controls';
-import { AppState } from '../../model/state/AppState';
+import { AppState } from '../../model/stateZ/AppState';
 import { CrudState } from '../../model/stateZ/CrudState';
 import ActionCreator from '../../actions/ActionCreator';
 import { Panel } from '../components/common/Panel';

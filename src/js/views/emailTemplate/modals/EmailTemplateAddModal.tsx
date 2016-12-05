@@ -4,7 +4,7 @@ import { AddModalContainer, Props } from '../../common/AddModalContainer';
 import EmailTemplateAction from '../../../actions/EmailTemplateAction2'
 import EmailTemplateState from '../../../model/stateZ/emailTemplate/EmailTemplateState';
 import EmailTemplateForm from '../EmailTemplateForm';
-import { AppState } from '../../../model/state/AppState';
+import { AppState } from '../../../model/stateZ/AppState';
 
 const EmailTemplateAddModal = (props: Props) => 
     <AddModalContainer

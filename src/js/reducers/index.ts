@@ -11,7 +11,7 @@ import redirectPages from './redirectPages'
 import emailTemplate from './emailTemplate';
 import login from './identity';
 import profile from './profile';
-import { AppState } from '../model/state/AppState'
+import { AppState } from '../model/stateZ/AppState'
 import engagement from './engagement';
 import scraperUserAgent from './scraperUserAgent';
 import shoalScrapeCred from './shoalScrapeCred';

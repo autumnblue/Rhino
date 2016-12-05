@@ -4,7 +4,7 @@ import { AddModalContainer, Props } from '../../common/AddModalContainer';
 import LandingPageAction from '../../../actions/LandingPageAction2'
 import LandingPageState from '../../../model/stateZ/landingPage/LandingPageState';
 import LandingPageForm from '../LandingPageForm';
-import { AppState } from '../../../model/state/AppState';
+import { AppState } from '../../../model/stateZ/AppState';
 
 const LandingPageAddModal = (props: Props) => 
     <AddModalContainer

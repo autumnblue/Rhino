@@ -1,7 +1,7 @@
 import { Reducer } from 'redux';
 import { Action } from '../../actions/Action';
 import { ActionType } from '../../actions/ActionType';
-import { MenuState } from '../../model/state/MenuState';
+import { MenuState } from '../../model/stateZ/menu/MenuState';
 import { copy } from '../../common/Util';
 import { ValidatableInput } from '../../common/validation/ValidatableInput';
 import { Identity } from '../../security/Identity';

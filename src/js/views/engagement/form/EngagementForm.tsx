@@ -10,7 +10,7 @@ import autoComplete from '../../common/fields/AutoComplete'
 import TextField from 'material-ui/TextField'
 import EngagementAction from '../../../actions/EngagementAction2'
 import FetchAction from '../../../actions/FetchAction'; 
-import { AppState } from '../../../model/state/AppState';
+import { AppState } from '../../../model/stateZ/AppState';
 import RefreshIndicator from 'material-ui/RefreshIndicator';
 import ErrAlert from '../../common/ErrorAlert';
 import SubmitButton from '../../common/SubmitButton';

@@ -4,7 +4,7 @@ import { AddModalContainer, Props } from '../../common/AddModalContainer';
 import OAuthEngagementAction from '../../../actions/OAuthEngagementAction2'
 import OAuthEngagementState from '../../../model/stateZ/oAuthEngagement/OAuthEngagementState';
 import OAuthEngagementForm from '../OAuthEngagementForm';
-import { AppState } from '../../../model/state/AppState';
+import { AppState } from '../../../model/stateZ/AppState';
 
 const OAuthEngagementAddModal = (props: Props) => 
     <AddModalContainer

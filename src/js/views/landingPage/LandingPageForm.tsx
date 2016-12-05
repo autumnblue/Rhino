@@ -13,7 +13,7 @@ import editor from '../common/fields/TextEditor2';
 import Submit from '../common/SubmitButton';
 import MenuItem from 'material-ui/MenuItem';
 import FormProps from '../common/FormProps';
-import { AppState } from '../../model/state/AppState';
+import { AppState } from '../../model/stateZ/AppState';
 import IconButton from 'material-ui/IconButton';
 import ModeEdit from 'material-ui/svg-icons/editor/mode-edit';
 import FetchAction from '../../actions/FetchAction'

@@ -4,7 +4,7 @@ import { AddModalContainer, Props } from '../../common/AddModalContainer';
 import PhishingDomainAction from '../../../actions/PhishingDomainAction2'
 import PhishingDomainState from '../../../model/stateZ/phishingDomain/PhishingDomainState';
 import PhishingDomainForm from '../PhishingDomainForm';
-import { AppState } from '../../../model/state/AppState';
+import { AppState } from '../../../model/stateZ/AppState';
 
 const PhishingDomainAddModal = (props: Props) => 
     <AddModalContainer

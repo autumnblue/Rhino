@@ -4,7 +4,7 @@ import { AddModalContainer, Props } from '../../common/AddModalContainer';
 import RedirectPageAction from '../../../actions/RedirectPageAction2'
 import RedirectPageState from '../../../model/stateZ/redirectPage/RedirectPageState';
 import RedirectPageForm from '../RedirectPageForm';
-import { AppState } from '../../../model/state/AppState';
+import { AppState } from '../../../model/stateZ/AppState';
 
 const RedirectPageAddModal = (props: Props) => 
     <AddModalContainer

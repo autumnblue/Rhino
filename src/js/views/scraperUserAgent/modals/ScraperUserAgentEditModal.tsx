@@ -4,7 +4,7 @@ import { EditModalContainer, Props} from '../../common/EditModalContainer';
 import ScraperUserAgentAction from '../../../actions/ScraperUserAgentAction2'
 import ScraperUserAgentState from '../../../model/stateZ/scraperUserAgent/ScraperUserAgentState';
 import ScraperUserAgentForm from '../ScraperUserAgentForm';
-import { AppState } from '../../../model/state/AppState';
+import { AppState } from '../../../model/stateZ/AppState';
 
 const ScraperUserAgentEditModal = (props: Props) => {
     return <EditModalContainer

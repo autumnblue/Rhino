@@ -4,7 +4,7 @@ import { EditModalContainer, Props} from '../../common/EditModalContainer';
 import OAuthEngagementAction from '../../../actions/OAuthEngagementAction2'
 import OAuthEngagementState from '../../../model/stateZ/oAuthEngagement/OAuthEngagementState';
 import OAuthEngagementForm from '../OAuthEngagementForm';
-import { AppState } from '../../../model/state/AppState';
+import { AppState } from '../../../model/stateZ/AppState';
 
 const OAuthEngagementEditModal = (props: Props) => {
     return <EditModalContainer

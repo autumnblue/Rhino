@@ -5,7 +5,7 @@ import EngagementAction from '../../../actions/EngagementAction2'
 import EngagementState from '../../../model/stateZ/engagement/EngagementState';
 import EngagementForm from '../form/EngagementForm';
 import EngagementRecord from '../../../model/stateZ/engagement/EngagementRecord';
-import { AppState } from '../../../model/state/AppState';
+import { AppState } from '../../../model/stateZ/AppState';
 import controls from '../form/FormControls';
 import { Control } from '../../components/common/Controls';
 

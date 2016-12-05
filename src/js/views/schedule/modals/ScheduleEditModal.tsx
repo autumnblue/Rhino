@@ -4,7 +4,7 @@ import { EditModalContainer, Props} from '../../common/EditModalContainer';
 import ScheduleAction from '../../../actions/ScheduleAction2'
 import ScheduleState from '../../../model/stateZ/schedule/ScheduleState';
 import ScheduleForm from '../ScheduleForm';
-import { AppState } from '../../../model/state/AppState';
+import { AppState } from '../../../model/stateZ/AppState';
 
 const ScheduleEditModal = (props: Props) => {
     return <EditModalContainer

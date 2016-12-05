@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Cell, CellProps } from './Cell';
-import { Dto } from '../../../../model/dto/Dto';
+import Dto from '../../../../model/dtoZ/Dto';
 
 export class Grid extends React.Component<Props, {}> {
     public render() {

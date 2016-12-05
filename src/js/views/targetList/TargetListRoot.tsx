@@ -11,7 +11,7 @@ import FileUpload from 'material-ui/svg-icons/file/file-upload';
 import { Table } from '../components/common/table/Table';
 import { Column } from '../components/common/table/Column';
 import { ActionCol } from '../components/common/table/ActionCol';
-import { AppState } from '../../model/state/AppState'; 
+import { AppState } from '../../model/stateZ/AppState'; 
 import TargetListEditModal from './modals/TargetListEditModal'
 const Dropzone = require('react-dropzone');
 

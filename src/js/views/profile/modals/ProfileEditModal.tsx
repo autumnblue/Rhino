@@ -4,7 +4,7 @@ import { EditModalContainer, Props} from '../../common/EditModalContainer';
 import ProfileAction from '../../../actions/ProfileAction2'
 import ProfileState from '../../../model/stateZ/profile/ProfileState';
 import ProfileForm from '../ProfileForm';
-import { AppState } from '../../../model/state/AppState';
+import { AppState } from '../../../model/stateZ/AppState';
 
 const ProfileEditModal = (props: Props) => {
     return <EditModalContainer

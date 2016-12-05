@@ -4,7 +4,7 @@ import { AddModalContainer, Props } from '../../common/AddModalContainer';
 import ClientAction from '../../../actions/ClientAction2'
 import ClientState from '../../../model/stateZ/client/ClientState';
 import ClientForm from '../ClientForm';
-import { AppState } from '../../../model/state/AppState';
+import { AppState } from '../../../model/stateZ/AppState';
 
 const ClientAddModal = (props: Props) => 
     <AddModalContainer

@@ -15,7 +15,6 @@ import { Provider } from 'react-redux'
 import reducers from './reducers'
 import { App } from './views/App';
 import { Router, Route, browserHistory } from 'react-router';
-import { LoginPage } from './views/containers/identity/LoginPage';
 import UserRoot from './views/user/UserRoot';
 import ClientRoot from './views/client/ClientRoot';;
 import EngagementRoot from './views/engagement/EngagementRoot';
@@ -64,7 +63,6 @@ ReactDom.render(
             <Route 
                 path={"/"} 
                 component={App}>
-                <Route path={ Dir.LOGIN } component={LoginPage} />
                 <Route 
                     path={ Dir.EMAIL_TEMPLATES } 
                     component={EmailTemplateRoot}

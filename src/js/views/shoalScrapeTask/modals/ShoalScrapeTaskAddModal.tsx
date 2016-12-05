@@ -4,7 +4,7 @@ import { AddModalContainer, Props } from '../../common/AddModalContainer';
 import ShoalScrapeTaskAction from '../../../actions/ShoalScrapeTaskAction2'
 import ShoalScrapeTaskState from '../../../model/stateZ/shoalScrapeTask/ShoalScrapeTaskState';
 import ShoalScrapeTaskForm from '../ShoalScrapeTaskForm';
-import { AppState } from '../../../model/state/AppState';
+import { AppState } from '../../../model/stateZ/AppState';
 
 const ShoalScrapeTaskAddModal = (props: Props) => 
     <AddModalContainer

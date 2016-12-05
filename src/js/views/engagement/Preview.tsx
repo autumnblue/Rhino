@@ -12,7 +12,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 import CircularProgress from 'material-ui/CircularProgress';
 import { connect } from 'react-redux';
-import { AppState } from '../../model/state/AppState';
+import { AppState } from '../../model/stateZ/AppState';
 import EngagementRecord from '../../model/stateZ/engagement/EngagementRecord'
 import Play from 'material-ui/svg-icons/av/play-arrow';
 

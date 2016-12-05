@@ -13,7 +13,7 @@ import editor from '../common/fields/TextEditor';
 import Submit from '../common/SubmitButton';
 import MenuItem from 'material-ui/MenuItem';
 import FormProps from '../common/FormProps';
-import { AppState } from '../../model/state/AppState';
+import { AppState } from '../../model/stateZ/AppState';
 import ErrAlert from '../common/ErrorAlert';
 import Toggle from 'material-ui/Toggle';
 import Props from '../common/fields/CustomProps';

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { AppState } from '../../model/state/AppState';
+import { AppState } from '../../model/stateZ/AppState';
 import { CrudContainer, Props } from '../common/CrudContainer';
 import ShoalScrapeCredAction from '../../actions/ShoalScrapeCredAction2'
 import ShoalScrapeCredState from '../../model/stateZ/shoalScrapeCred/ShoalScrapeCredState';

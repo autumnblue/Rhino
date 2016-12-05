@@ -4,7 +4,7 @@ import { EditModalContainer, Props} from '../../common/EditModalContainer';
 import ClientAction from '../../../actions/ClientAction2'
 import ClientState from '../../../model/stateZ/client/ClientState';
 import ClientForm from '../ClientForm';
-import { AppState } from '../../../model/state/AppState';
+import { AppState } from '../../../model/stateZ/AppState';
 
 const ClientEditModal = (props: Props) => {
     return <EditModalContainer

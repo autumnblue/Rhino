@@ -4,7 +4,7 @@ import { AddModalContainer, Props } from '../../common/AddModalContainer';
 import OAuthResultAction from '../../../actions/OAuthResultAction2'
 import OAuthResultState from '../../../model/stateZ/oAuthResult/OAuthResultState';
 import OAuthResultForm from '../OAuthResultForm';
-import { AppState } from '../../../model/state/AppState';
+import { AppState } from '../../../model/stateZ/AppState';
 
 const OAuthResultAddModal = (props: Props) => 
     <AddModalContainer

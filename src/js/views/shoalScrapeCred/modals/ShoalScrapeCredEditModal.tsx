@@ -4,7 +4,7 @@ import { EditModalContainer, Props} from '../../common/EditModalContainer';
 import ShoalScrapeCredAction from '../../../actions/ShoalScrapeCredAction2'
 import ShoalScrapeCredState from '../../../model/stateZ/shoalScrapeCred/ShoalScrapeCredState';
 import ShoalScrapeCredForm from '../ShoalScrapeCredForm';
-import { AppState } from '../../../model/state/AppState';
+import { AppState } from '../../../model/stateZ/AppState';
 
 const ShoalScrapeCredEditModal = (props: Props) => {
     return <EditModalContainer

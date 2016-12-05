@@ -1,11 +1,9 @@
-import { IIdentityService } from './IIdentityService';
 import { Service } from '../Service';
-import { CredentialDto } from '../../model/dto/CredentialDto';
-import { AuthzResponseDto } from '../../model/dto/AuthzResponseDto';
-import { ValidationResponseDto } from '../../model/dto/ValidationResponseDto';
+import CredentialDto from '../../model/dtoZ/identity/CredentialDto';
+import AuthzResponseDto from '../../model/dtoZ/identity/AuthzResponseDto';
 import * as http from '../HttpUtil';
 
-export class IdentityService extends Service implements IIdentityService {
+export class IdentityService extends Service {
     private url: string;
 
     constructor() {
@@ -21,9 +19,5 @@ export class IdentityService extends Service implements IIdentityService {
     public async refresh(token: string): Promise<AuthzResponseDto> {
         return await http.post<AuthzResponseDto>
                     (`${this.url}refresh/`, { token: token }, false);
-    }
-
-    public async validate(dto: CredentialDto): Promise<ValidationResponseDto> {
-        return;
     }
 }

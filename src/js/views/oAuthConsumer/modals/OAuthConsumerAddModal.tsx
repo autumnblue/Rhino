@@ -4,7 +4,7 @@ import { AddModalContainer, Props } from '../../common/AddModalContainer';
 import OAuthConsumerAction from '../../../actions/OAuthConsumerAction2'
 import OAuthConsumerState from '../../../model/stateZ/oAuthConsumer/OAuthConsumerState';
 import OAuthConsumerForm from '../OAuthConsumerForm';
-import { AppState } from '../../../model/state/AppState';
+import { AppState } from '../../../model/stateZ/AppState';
 
 const OAuthConsumerAddModal = (props: Props) => 
     <AddModalContainer
