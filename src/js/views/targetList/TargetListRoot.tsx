@@ -58,7 +58,8 @@ class TargetListRoot extends React.Component<Props, { addOpen: boolean, editOpen
                 widgets={ widgets }
                 onLoad={ this.onLoad }
                 grids={grids}
-                table={table} />
+                table={table} 
+                records={this.props.state.records} />
         </div>
     }
 

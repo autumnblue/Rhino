@@ -52,6 +52,10 @@ class ActionCreator {
         dispatch({
             type: ActionType.LOGOUT
         });
+
+        dispatch({
+            type: ActionType.MENU_TOGGLE_AUTH
+        })
     }
 
     public clickMail(dispatch) {

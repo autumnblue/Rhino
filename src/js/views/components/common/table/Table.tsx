@@ -22,7 +22,7 @@ class Component extends React.Component<{ data: Array<Dto> }, {}> {
 
         const rows = this.props.data.map(datum => {
             const row = columns.map(column => {
-                let value = column.dependee ? datum[column.headKey].text: datum[column.headKey]
+                let value = column.dependee ? datum[column.headKey] && datum[column.headKey].text: datum[column.headKey]
                 if(value && value.length > 50) value = `${value.slice(0, 50)}...`
                 
                 let a: React.ReactElement<{}>;                

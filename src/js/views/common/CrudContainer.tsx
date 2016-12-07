@@ -8,6 +8,7 @@ import ActionCreator from '../../actions/ActionCreator';
 import { Panel } from '../components/common/Panel';
 import IconButton from 'material-ui/IconButton';
 import Paginator from './Paginator';
+import CircularProgress from 'material-ui/CircularProgress';
 
 export class CrudContainer extends React.Component<Props, void> {
     constructor(props) {
@@ -45,26 +46,35 @@ export class CrudContainer extends React.Component<Props, void> {
                             { viewIcon }
                         </button>
                     </Control>
-                    <div>
-                        <Paginator 
-                            currPage={this.props.state.page}
-                            pageCount={this.props.state.totalPages}
-                            onPageClick={ page=> console.log(page)} 
-                            onPrevClick={ ()=> console.log('<')}
-                            onNextClick={ ()=> console.log('>')} />
-                    </div>
+                    {
+                        this.props.state.records
+                        ?
+                        <div>
+                            <div>
+                                <Paginator 
+                                    currPage={this.props.state.page}
+                                    pageCount={this.props.state.totalPages}
+                                    onPageClick={ page=> console.log(page)} 
+                                    onPrevClick={ ()=> console.log('<')}
+                                    onNextClick={ ()=> console.log('>')} />
+                            </div>
 
-                    { this.renderChildren() }
+                            { this.renderChildren() }
 
-                    <div>
-                        <Paginator 
-                            currPage={this.props.state.page}
-                            pageCount={this.props.state.totalPages}
-                            onPageClick={ page=> console.log(page)} 
-                            onPrevClick={ ()=> console.log('<')}
-                            onNextClick={ ()=> console.log('>')} />
-                    </div>
-
+                            <div>
+                                <Paginator 
+                                    currPage={this.props.state.page}
+                                    pageCount={this.props.state.totalPages}
+                                    onPageClick={ page=> console.log(page)} 
+                                    onPrevClick={ ()=> console.log('<')}
+                                    onNextClick={ ()=> console.log('>')} />
+                            </div>
+                        </div>
+                        :
+                        <div style={{ textAlign: 'center' }}>
+                            <CircularProgress size={120} thickness={10} />
+                        </div>
+                    }
                 </Panel>
             </div>        
         )

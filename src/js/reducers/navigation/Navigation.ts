@@ -69,6 +69,10 @@ export const reducer: Reducer<MenuState> = (state = defaultState, action: Action
             newState.mail.selected = true;
             return newState;
 
+        case(ActionType.MENU_TOGGLE_AUTH):
+            unselectAll(newState);
+            return newState;
+
         default: return state;
     }
 };

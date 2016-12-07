@@ -96,6 +96,16 @@ class EngagementAction extends ActionCreator<EngagementService> {
         }
     }
 
+    public confirmStart(record: EngagementRecord): Function {
+        return (dispatch) => {
+            dispatch({
+                type: ActionType.ENGAGEMENT_CONFIRM_START,
+                payload: record,
+                // context: this.qualifier
+            });    
+        }
+    }
+
     public start(id: number): Function {
         return(dispatch) => {
             new EngagementService()

@@ -90,8 +90,8 @@ const engagementForm = reduxForm.reduxForm({
 })(
 (props: FormProps & {record: EngagementRecord }) => { 
     const start = () => {
-        props['dispatch'](EngagementAction.togglePreview(props.record));
-    //    props['dispatch'](EngagementAction.start(props.record.id));
+        //props['dispatch'](EngagementAction.togglePreview(props.record));
+        props['dispatch'](EngagementAction.confirmStart(props.record));
     }
 
     const stop = () => {

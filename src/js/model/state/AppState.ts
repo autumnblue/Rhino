@@ -20,6 +20,7 @@ import OAuthEngagementState from '../state/oAuthEngagement/OAuthEngagementState'
 import OAuthResultState from '../state/oAuthResult/OAuthResultState';
 import PlunderState from '../state/plunder/PlunderState';
 import PreviewState from '../state/preview/PreviewState';
+import VectorEmailState from '../state/vectorEmail/VectorEmailState';
 
 export interface AppState {
     navigation: MenuState
@@ -44,4 +45,5 @@ export interface AppState {
     plunder: PlunderState
     preview: PreviewState
     targetList: TargetListState
+    vectorEmail: VectorEmailState
 }

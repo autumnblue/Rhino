@@ -9,7 +9,10 @@ class LoginAction {
         const { host, port, username, password } = values;
 
         //normalize host
-        const normalized = host.replace(/\/$/, "");
+        let normalized = host.replace(/\/$/, "");
+        const pattern = /^((http|https|ftp):\/\/)/
+        if(!pattern.test(normalized))
+            normalized = `https://${normalized}`;
 
         CurrentUser.Session.setSocket({ host: normalized, port });
 
@@ -26,18 +29,22 @@ class LoginAction {
                 type: ActionType.LOGIN_SUCCESS,
                 payload: authz
             });
+
+            dispatch({
+                type: ActionType.MENU_TOGGLE_AUTH
+            })
         })
-        // .catch(err => {
-        //     Identity.reset();
-        //     return handleErr(err, <any>{
-        //         toForm(dto) {
-        //             return {
-        //                 username: dto.username,
-        //                 password: dto.password
-        //             }
-        //         }
-        //     });
-        // });
+        .catch(err => {
+            Identity.reset();
+            return handleErr(err, <any>{
+                toForm(dto) {
+                    return {
+                        username: dto.username,
+                        password: dto.password
+                    }
+                }
+            });
+        });
     }
 
     public logout(dispatch): void {

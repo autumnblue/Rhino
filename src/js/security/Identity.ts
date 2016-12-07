@@ -81,8 +81,8 @@ class IdentityStatic {
 
     public login(token: string) {
         CurrentUser.Session.setToken(token);
-        const referer = CurrentUser.Session.getReferer();
-        CurrentUser.Page.to(referer || '\\');
+        // const referer = CurrentUser.Session.getReferer();
+        // CurrentUser.Page.to(referer || '\\');
     }
 
     public isLoggedInAsync(): Promise<boolean> {
@@ -117,7 +117,10 @@ class IdentityStatic {
     private getBaseUrl(): string {
         if(!this.baseUrl) {
             const socket = CurrentUser.Session.getSocket();
-            if(!socket) this.logout();
+            if(!socket) {
+                this.logout();
+                return null;
+            }
             const host = socket.host;
             const port = socket.port 
                 ? `:${socket.port}` 

@@ -29,13 +29,15 @@ import FlatButton from 'material-ui/FlatButton';
 import { Table } from '../components/common/table/Table';
 import { Column } from '../components/common/table/Column';
 import { ActionCol } from '../components/common/table/ActionCol';
+import CircularProgress from 'material-ui/CircularProgress';
 
 const cardHeaderStyle = {
     titleStyle: {
         fontSize: 25
     },
     style: {
-        backgroundColor: '#D74037'
+        backgroundColor: '#D74037',
+        textAlign: 'left'
     }
 }
 
@@ -57,6 +59,7 @@ interface Props {
     widgets: any
     grids: GridList
     table: any
+    records: any[];
 }
 
 abstract class RootView extends React.Component<Props, { view: 'grid' | 'table', expanded: boolean }> {
@@ -88,10 +91,12 @@ abstract class RootView extends React.Component<Props, { view: 'grid' | 'table',
                             <ToolbarGroup
                                 firstChild={true}
                             >
+                                { this.props.onAdd &&
                                 <FlatButton 
                                     label="Add" 
                                     icon={ <NoteAdd /> }
-                                    onTouchTap={ this.props.onAdd }/> 
+                                    onTouchTap={ this.props.onAdd }/>
+                                } 
                             </ToolbarGroup>
                             {
                                 this.state.expanded
@@ -119,15 +124,23 @@ abstract class RootView extends React.Component<Props, { view: 'grid' | 'table',
                     expandable={true}
                     style={ { padding: 20 } }>
                         {
-                            this.state.view == 'grid'
+                            this.props.records && this.props.records.length > 0
                             ?
-                            <GridList
-                                cols={5}
-                                cellHeight={100}>
-                                    { this.props.grids }
-                            </GridList>
+                            (
+                                this.state.view == 'grid'
+                                ?
+                                <GridList
+                                    cols={5}
+                                    cellHeight={100}>
+                                        { this.props.grids }
+                                </GridList>
+                                :
+                                this.props.table
+                            )
                             :
-                            this.props.table
+                        <div style={{ textAlign: 'center' }}>
+                            <CircularProgress size={120} thickness={10} />
+                        </div>
                         }
                 </CardMedia>
             </Card>

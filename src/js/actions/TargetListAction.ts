@@ -1,15 +1,9 @@
 import ActionCreator from './ActionCreator';
+import TargetListFlatViewService from '../service/TargetListFlatViewService';
+import TargetListFlatViewState from '../model/state/targetListFlatView/TargetListFlatViewState';
 import TargetListService from '../service/TargetListService';
-import CampaignService from '../service/CampaignService';
-import ScheduleService from '../service/ScheduleService';
-import EmailServerService from '../service/EmailServerService';
-import EmailTemplateService from '../service/EmailTemplateService';
-import LandingPageService from '../service/LandingPageService';
-import RedirectPageService from '../service/RedirectPageService';
-import PhishingDomainService from '../service/PhishingDomainService';
-import PreviewService from '../service/PreviewService';
 import TargetListState from '../model/state/targetList/TargetListState'
-import TargetListRecord from '../model/state/targetList/TargetListRecord'
+import TargetListFlatViewRecord from '../model/state/targetListFlatView/TargetListFlatViewRecord'
 import { ActionType } from './ActionType';
 import Ref from '../model/state/RefZ';
 
@@ -20,17 +14,15 @@ class TargetListAction {
 
     public load(): Function {
         return (dispatch) => 
-        new TargetListService().read()
+        new TargetListFlatViewService().read()
         .then(dto => {
-            const state = new TargetListState();
-            state.records = dto.target_lists.map(dto => {
-                const record = new TargetListRecord();
+            const state = new TargetListFlatViewState();
+            state.records = dto.results.map(dto => {
+                const record = new TargetListFlatViewRecord();
                 record.description = dto.description
                 record.client = new Ref(dto.client.id, dto.client.name)
                 record.nickname = dto.nickname
-                record.target = dto.target.map(target => {
-                    return new Ref(target.id, target.email);
-                })
+                record.target = dto.target;
                 record.id = dto.id;
                 return record;
             })
@@ -78,8 +70,39 @@ class TargetListAction {
         dispatch({
             type: ActionType.CRUD_CANCEL,
             context: TargetListAction.QUALIFIER
-        })
+        }) 
     }
+
+    public addColumn(name: string) {
+        return (dispatch) => {
+            dispatch({
+                type: ActionType.TARGET_LIST_ADD_COLUMN,
+                payload: name,
+                context: TargetListAction.QUALIFIER
+            });
+        }
+    }
+
+    public updateRow(event) {
+        return (dispatch) => {
+            dispatch({
+                type: ActionType.TARGET_LIST_UPDATE_ROW,
+                payload: event,
+                context: TargetListAction.QUALIFIER
+            });
+        }
+    }
+
+    public addRow(event) {
+        return (dispatch) => {
+            dispatch({
+                type: ActionType.TARGET_LIST_ADD_ROW,
+                payload: event,
+                context: TargetListAction.QUALIFIER
+            });
+        }
+    }
+      
 }
 
 export default new TargetListAction();
