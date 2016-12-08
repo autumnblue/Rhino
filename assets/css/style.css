@@ -433,6 +433,10 @@ body {
     cursor: pointer;
 }
 
+.table>tbody>tr>td {
+    text-align: left;
+}
+
 .table>tbody>tr:hover td {
     background: #33333D;
 }
