@@ -12,7 +12,7 @@ class EmailServerService extends CrudService<EmailServerDto, any> {
             (`${this.resource}?exclude[]=*&include[]=login&include[]=id&per_page=30`);
     }
 
-    public async checkEmail(dto: EmailServerDto): Promise<{ message: string, success: boolean }> {
+    public async checkEmail(dto: EmailServerDto): Promise<{ error_message: string, success: boolean }> {
         return http.post<any>
             (`${this.resource}email-check`, dto);
     }

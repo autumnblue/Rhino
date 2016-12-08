@@ -35,7 +35,7 @@ let emailServerForm = reduxForm.reduxForm({
     form: FORM
 })(
 (props: FormProps
-    & { configurationValue: string }  
+    & { testRecipientValue: string }  
     & { record: EmailServerRecord } ) => {         
         return <form 
             onSubmit={ props.handleSubmit(props.submit) }>
@@ -103,7 +103,7 @@ let emailServerForm = reduxForm.reduxForm({
                         <FlatButton 
                             onTouchTap={ 
                                 () => props.dispatch(EmailServerAction
-                                    .checkEmail(props.record, props.configurationValue))
+                                    .checkEmail(props.record, props.testRecipientValue))
                             }
                             label="Check Server" 
                             disabled={ props.record.testRecipient == null || props.record.testRecipient == undefined }
@@ -131,9 +131,9 @@ const selector = reduxForm.formValueSelector(FORM)
 
 export default connect(
     (state: AppState) => {
-        const configurationValue = selector(state, 'configuration')    
+        const testRecipientValue = selector(state, 'testRecipient')    
         return {
-            configurationValue,
+            testRecipientValue,
             initialValues: state.emailServer.selectedRecord,
             record: state.emailServer.selectedRecord    
         }

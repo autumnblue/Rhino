@@ -28,7 +28,7 @@ class EmailServerAction extends ActionCreator<EmailServerService> {
         .then(response => {
             dispatch({
                 type: ActionType.EMAIL_SERVER_EMAIL_CHECK,
-                payload: response.message,
+                payload: response.error_message,
                 context: this.qualifier
             });
         });
