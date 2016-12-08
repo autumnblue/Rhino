@@ -1,6 +1,6 @@
 import CrudService from './CrudServiceZ';
-import RedirectPageDto from '../model/dtoZ/redirectPage/RedirectPageDto';
-import RedirectPageXDto from '../model/dtoZ/redirectPage/RedirectPageXDto';
+import RedirectPageDto from '../model/dto/redirectPage/RedirectPageDto';
+import RedirectPageXDto from '../model/dto/redirectPage/RedirectPageXDto';
 import { Identity } from '../security/Identity';
 import * as http from './HttpUtil';
 

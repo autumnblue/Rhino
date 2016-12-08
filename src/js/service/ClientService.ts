@@ -1,5 +1,5 @@
 import CrudService from './CrudServiceZ';
-import ClientDto from '../model/dtoZ/client/ClientDto';
+import ClientDto from '../model/dto/client/ClientDto';
 import * as http from './HttpUtil';
 
 class ClientService extends CrudService<ClientDto, any> {

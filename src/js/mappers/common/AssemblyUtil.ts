@@ -1,6 +1,6 @@
-import Dto from '../../model/dtoZ/Dto';
-import PagedDto from '../../model/dtoZ/PagedDto';
-import Ref from '../../model/stateZ/Ref';
+import Dto from '../../model/dto/Dto';
+import PagedDto from '../../model/dto/PagedDto';
+import Ref from '../../model/state/Ref';
 
 const tie = (owner: Dto, ownerKey: string, targets: Dto[], targetKey: string): Ref => {
     if(!targets) return null;

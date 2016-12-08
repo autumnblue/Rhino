@@ -1,5 +1,5 @@
 import CrudService from './CrudServiceZ';
-import ScheduleDto from '../model/dtoZ/schedule/ScheduleDto';
+import ScheduleDto from '../model/dto/schedule/ScheduleDto';
 import * as http from './HttpUtil';
 
 class ScheduleService extends CrudService<ScheduleDto, any> {

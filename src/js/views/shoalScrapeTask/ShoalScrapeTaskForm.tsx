@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import ShoalScrapeTaskRecord from '../../model/stateZ/shoalScrapeTask/ShoalScrapeTaskRecord';
-import ShoalScrapeTaskWidget from '../../model/stateZ/shoalScrapeTask/ShoalScrapeTaskWidget';
-import Ref from '../../model/stateZ/Ref';
+import ShoalScrapeTaskRecord from '../../model/state/shoalScrapeTask/ShoalScrapeTaskRecord';
+import ShoalScrapeTaskWidget from '../../model/state/shoalScrapeTask/ShoalScrapeTaskWidget';
+import Ref from '../../model/state/Ref';
 const reduxForm = require('redux-form');
 const Field = reduxForm.Field;
-import ShoalScrapeTaskAction from '../../actions/ShoalScrapeTaskAction2'
+import ShoalScrapeTaskAction from '../../actions/ShoalScrapeTaskAction'
 import select from '../common/fields/Select';
 import autoComplete from '../common/fields/AutoComplete';
 import input from '../common/fields/Input';

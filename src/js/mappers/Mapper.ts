@@ -1,12 +1,13 @@
-import CrudState from '../model/state/CrudState';
-import { Dto } from '../model/dto/Dto';
-import { CommitableDto } from '../model/dto/CommitableDto';
-import { ListState } from '../model/state/page/ListState';
+import { CrudState } from '../model/state/CrudState';
+import Record from '../model/state/Record';
+import CommitableDto from '../model/dto/CommitableDto';
+import PagedDto from '../model/dto/PagedDto';
+import Dto from '../model/dto/Dto';
 
 interface Mapper {
-    toState(dto: Dto): CrudState;
-    toStates(dtos: any): CrudState[];
-    toDto(state: CrudState): CommitableDto;
+    toState(dto: PagedDto): CrudState;
+    toForm(dto: any): any;
+    toDto(state: Record): CommitableDto;
 }
 
 export default Mapper;

@@ -1,7 +1,7 @@
 import CrudService from './CrudServiceZ';
-import EngagementDto from '../model/dtoZ/engagement/EngagementDto';
-import CampaignDto from '../model/dtoZ/campaign/CampaignDto';
-import EngagementXDto from '../model/dtoZ/engagement/EngagementXDto';
+import EngagementDto from '../model/dto/engagement/EngagementDto';
+import CampaignDto from '../model/dto/campaign/CampaignDto';
+import EngagementXDto from '../model/dto/engagement/EngagementXDto';
 import CampaignService from './CampaignService';
 import * as http from './HttpUtil';
 

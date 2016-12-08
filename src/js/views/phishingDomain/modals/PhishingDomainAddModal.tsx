@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { AddModalContainer, Props } from '../../common/AddModalContainer';
-import PhishingDomainAction from '../../../actions/PhishingDomainAction2'
-import PhishingDomainState from '../../../model/stateZ/phishingDomain/PhishingDomainState';
+import PhishingDomainAction from '../../../actions/PhishingDomainAction'
+import PhishingDomainState from '../../../model/state/phishingDomain/PhishingDomainState';
 import PhishingDomainForm from '../PhishingDomainForm';
 import { AppState } from '../../../model/state/AppState';
 

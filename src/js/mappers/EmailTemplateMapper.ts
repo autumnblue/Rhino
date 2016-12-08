@@ -1,39 +1,45 @@
-import EmailTemplateState from '../model/state2/emailTemplate/EmailTemplateState';
-import EmailTemplateForm from '../model/state2/emailTemplate/EmailTemplateForm';
-import EmailTemplateXDto from '../model/dto2/emailTemplate/EmailTemplateXDto';
-import EmailTemplateDto from '../model/dto2/emailTemplate/EmailTemplateDto';
-import Dependee from '../model/state2/Dependee';
+import Mapper from './Mapper';
+import EmailTemplateXDto from '../model/dto/emailTemplate/EmailTemplateXDto';
+import EmailTemplateDto from '../model/dto/emailTemplate/EmailTemplateDto';
+import EmailTemplateState from '../model/state/emailTemplate/EmailTemplateState';
+import EmailTemplateRecord from '../model/state/emailTemplate/EmailTemplateRecord';
 
-class EmailTemplateMapperStatic {
-    public toState = (dto: EmailTemplateXDto): EmailTemplateState => {
+class EmailTemplateMapperStatic implements Mapper { 
+    toState(result: EmailTemplateXDto): EmailTemplateState {
         const state = new EmailTemplateState();
 
-        state.forms = dto.email_templates.map(emailTemplate => {
-
-        return {
-            id: emailTemplate.id,
-            fromHeader: emailTemplate.from_header,
-            name: emailTemplate.name,
-            subjectHeader: emailTemplate.subject_header,
-            template: emailTemplate.template
-        }});
-
-        state.dependencies = {
+        state.records = result.email_templates.map(dto => {             
+            return {
+                subjectHeader: dto.subject_header,
+                fromHeader: dto.from_header,
+                template: dto.template,
+                name: dto.name,
+                id: dto.id
+            }
             
-        }
-
-        //state.mode = 'ROOT';
+        });        
 
         return state;
     }
-    
-    public toDto(form: EmailTemplateForm): EmailTemplateDto {
+
+    toForm(dto: EmailTemplateDto) {
         return {
-            "subject_header": form.subjectHeader,
-            "from_header": form.fromHeader,
-            "id": form.id,
-            "template": form.template,
-            "name": form.name
+            subjectHeader: dto.subject_header,
+            fromHeader: dto.from_header,
+            template: dto.template,
+            name: dto.name,
+            id: dto.id
+        }
+    }
+
+    toDto(state: EmailTemplateRecord): EmailTemplateDto {
+        return {
+            "subject_header": state.subjectHeader,
+            "from_header": state.fromHeader,
+            "template": state.template,
+            "name": state.name,    
+            id: state.id,
+            commit: true      
         }
     }
 }

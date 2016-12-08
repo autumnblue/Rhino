@@ -3,8 +3,8 @@
 // import { Column } from '../components/common/table/Column';
 // import { ActionCol } from '../components/common/table/ActionCol';
 // import { Grid } from '../components/common/grid/Grid';
-// import VectorEmailRecord from '../../model/stateZ/vectorEmail/VectorEmailRecord';
-// import { ViewType } from '../../model/stateZ/CrudState';
+// import VectorEmailRecord from '../../model/state/vectorEmail/VectorEmailRecord';
+// import { ViewType } from '../../model/state/CrudState';
 
 // class VectorEmailList extends React.Component<Props, void> {
 //     public render() {

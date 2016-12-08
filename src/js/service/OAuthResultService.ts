@@ -1,6 +1,6 @@
 import CrudService from './CrudServiceZ';
-import OAuthResultDto from '../model/dtoZ/oAuthResult/OAuthResultDto';
-import OAuthResultXDto from '../model/dtoZ/oAuthResult/OAuthResultXDto';
+import OAuthResultDto from '../model/dto/oAuthResult/OAuthResultDto';
+import OAuthResultXDto from '../model/dto/oAuthResult/OAuthResultXDto';
 import * as http from './HttpUtil';
 
 class OAuthResultService extends CrudService<OAuthResultDto, any> {

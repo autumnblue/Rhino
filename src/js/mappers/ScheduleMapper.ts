@@ -1,44 +1,50 @@
-import ScheduleState from '../model/state2/schedule/ScheduleState';
-import ScheduleForm from '../model/state2/schedule/ScheduleForm';
-import ScheduleXDto from '../model/dto2/schedule/ScheduleXDto';
-import ScheduleDto from '../model/dto2/schedule/ScheduleDto';
-import Dependee from '../model/state2/Dependee';
+import Mapper from './Mapper';
+import ScheduleXDto from '../model/dto/schedule/ScheduleXDto';
+import ScheduleDto from '../model/dto/schedule/ScheduleDto';
+import ScheduleState from '../model/state/schedule/ScheduleState';
+import ScheduleRecord from '../model/state/schedule/ScheduleRecord';
 
-class ScheduleMapperStatic {
-    public toState = (dto: ScheduleXDto): ScheduleState => {
+class ScheduleMapperStatic implements Mapper { 
+    toState(result: ScheduleXDto): ScheduleState {
         const state = new ScheduleState();
 
-        state.forms = dto.schedule_intervals.map(schedule => {
-
-        return {
-            id: schedule.id,
-            name: schedule.name  , 
-            batchSize: schedule.batch_size,
-            // emailSendInterval: ValidatableInput
-            batchInterval: schedule.batch_interval,
-            startType: schedule.start_type,
-            startAt: schedule.start_at,
-            timeBetweenBatches: schedule.time_between_batches
-        }});
-
-        state.dependencies = {
-            
-        }
-
-        //state.mode = 'ROOT';
+        state.records = result.schedule_intervals.map(dto => {             
+            return {
+                startType: dto.start_type,
+                startAt: dto.start_at,
+                name: dto.name,
+                batchInterval: dto.batch_interval,
+                timeBetweenBatches: dto.time_between_batches,
+                batchSize: dto.batch_size,
+                id: dto.id
+            }
+        });        
 
         return state;
     }
-    
-    public toDto(form: ScheduleForm): ScheduleDto {
+
+    toForm(dto: ScheduleDto) {
         return {
-            "start_type": form.startType,
-            "start_at": form.startAt,
-            "name": form.name,
-            "batch_interval": form.batchInterval,
-            "time_between_batches": form.timeBetweenBatches,
-            "id": form.id,
-            "batch_size": form.batchSize
+            startType: dto.start_type,
+            startAt: dto.start_at,
+            name: dto.name,
+            batchInterval: dto.batch_interval,
+            timeBetweenBatches: dto.time_between_batches,
+            batchSize: dto.batch_size,
+            id: dto.id
+        }
+    }
+
+    toDto(state: ScheduleRecord): ScheduleDto {
+        return {
+            "start_type": state.startType,
+            "start_at": state.startAt,
+            "name": state.name,
+            "batch_interval": state.batchInterval,
+            "time_between_batches": state.timeBetweenBatches,
+            "batch_size": state.batchSize,
+            commit: true,
+            id: state.id           
         }
     }
 }

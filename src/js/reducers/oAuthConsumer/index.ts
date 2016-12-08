@@ -1,5 +1,5 @@
 import reduce from '../common';
-import OAuthConsumerState from '../../model/stateZ/oAuthConsumer/OAuthConsumerState'
-import OAuthConsumerRecord from '../../model/stateZ/oAuthConsumer/OAuthConsumerRecord'
+import OAuthConsumerState from '../../model/state/oAuthConsumer/OAuthConsumerState'
+import OAuthConsumerRecord from '../../model/state/oAuthConsumer/OAuthConsumerRecord'
 
 export default reduce(new OAuthConsumerState(), new OAuthConsumerRecord());

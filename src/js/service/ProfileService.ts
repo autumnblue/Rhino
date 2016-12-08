@@ -1,6 +1,6 @@
 import CrudService from './CrudServiceZ';
-import ProfileDto from '../model/dtoZ/profile/ProfileDto';
-import ProfileXDto from '../model/dtoZ/profile/ProfileXDto';
+import ProfileDto from '../model/dto/profile/ProfileDto';
+import ProfileXDto from '../model/dto/profile/ProfileXDto';
 import * as http from './HttpUtil';
 
 class ProfileService extends CrudService<ProfileDto, any> {

@@ -15,7 +15,6 @@ import { Provider } from 'react-redux'
 import reducers from './reducers'
 import { App } from './views/App';
 import { Router, Route, browserHistory } from 'react-router';
-import { LoginPage } from './views/containers/identity/LoginPage';
 import UserRoot from './views/user/UserRoot';
 import ClientRoot from './views/client/ClientRoot';;
 import EngagementRoot from './views/engagement/EngagementRoot';
@@ -35,6 +34,8 @@ import OAuthResultRoot from './views/oAuthResult/OAuthResultRoot';
 import OAuthEngagementRoot from './views/oAuthEngagement/OAuthEngagementRoot';
 import PlunderRoot from './views/plunder/PlunderRoot';
 import TargetListRoot from './views/targetList/TargetListRoot';
+import VectorEmailRoot from './views/vectorEmail/VectorEmailRoot';
+import LoginRoot from './views/identity/LoginRoot';
 import { Dir } from './common/Constants';  
 import { permit } from './security/RenderRules';
 import { Role } from './security/Role';
@@ -64,7 +65,10 @@ ReactDom.render(
             <Route 
                 path={"/"} 
                 component={App}>
-                <Route path={ Dir.LOGIN } component={LoginPage} />
+                <Route 
+                    path={ Dir.LOGIN } 
+                    component={LoginRoot} 
+                    />
                 <Route 
                     path={ Dir.EMAIL_TEMPLATES } 
                     component={EmailTemplateRoot}
@@ -158,6 +162,11 @@ ReactDom.render(
                 <Route 
                     path={ Dir.TARGET_LISTS } 
                     component={TargetListRoot}
+                    onEnter={ () => permit(Role.AUTHENTICATED) } 
+                    />
+                <Route 
+                    path={ Dir.VECTOR_EMAIL } 
+                    component={VectorEmailRoot}
                     onEnter={ () => permit(Role.AUTHENTICATED) } 
                     />
             </Route>

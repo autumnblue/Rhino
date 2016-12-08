@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import ProfileRecord from '../../model/stateZ/profile/ProfileRecord';
-import ProfileWidget from '../../model/stateZ/profile/ProfileWidget';
-import Ref from '../../model/stateZ/Ref';
+import ProfileRecord from '../../model/state/profile/ProfileRecord';
+import ProfileWidget from '../../model/state/profile/ProfileWidget';
+import Ref from '../../model/state/Ref';
 const reduxForm = require('redux-form');
 const Field = reduxForm.Field;
-import ProfileAction from '../../actions/ProfileAction2'
+import ProfileAction from '../../actions/ProfileAction'
 import FetchAction from '../../actions/FetchAction'
 import select from '../common/fields/Select';
 import autoComplete from '../common/fields/AutoComplete';

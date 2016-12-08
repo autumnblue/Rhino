@@ -1,6 +1,6 @@
 import CrudService from './CrudServiceZ';
-import PlunderDto from '../model/dtoZ/plunder/PlunderDto';
-import PlunderXDto from '../model/dtoZ/plunder/PlunderXDto';
+import PlunderDto from '../model/dto/plunder/PlunderDto';
+import PlunderXDto from '../model/dto/plunder/PlunderXDto';
 import * as http from './HttpUtil';
 
 class PlunderService extends CrudService<PlunderDto, any> {

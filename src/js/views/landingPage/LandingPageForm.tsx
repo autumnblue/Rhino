@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import LandingPageRecord from '../../model/stateZ/landingPage/LandingPageRecord';
-import LandingPageWidget from '../../model/stateZ/landingPage/LandingPageWidget';
-import Ref from '../../model/stateZ/Ref';
+import LandingPageRecord from '../../model/state/landingPage/LandingPageRecord';
+import LandingPageWidget from '../../model/state/landingPage/LandingPageWidget';
+import Ref from '../../model/state/Ref';
 const reduxForm = require('redux-form');
 const Field = reduxForm.Field;
-import LandingPageAction from '../../actions/LandingPageAction2'
+import LandingPageAction from '../../actions/LandingPageAction'
 import select from '../common/fields/Select';
 import autoComplete from '../common/fields/AutoComplete';
 import input from '../common/fields/Input';

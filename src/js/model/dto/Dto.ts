@@ -1,3 +1,5 @@
-export interface Dto {
-    id?: number; //optional for transient objects 
+interface Dto {
+    id: number
 }
+
+export default Dto;

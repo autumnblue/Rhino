@@ -1,6 +1,6 @@
 import reduce from '../common';
-import EmailTemplateState from '../../model/stateZ/emailTemplate/EmailTemplateState'
-import EmailTemplateRecord from '../../model/stateZ/emailTemplate/EmailTemplateRecord'
+import EmailTemplateState from '../../model/state/emailTemplate/EmailTemplateState'
+import EmailTemplateRecord from '../../model/state/emailTemplate/EmailTemplateRecord'
 import { Action } from '../../actions/Action';
 import { ActionType } from '../../actions/ActionType';
 import { copy } from '../../common/Util';

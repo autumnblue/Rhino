@@ -3,8 +3,8 @@ import { Table } from '../components/common/table/Table';
 import { Column } from '../components/common/table/Column';
 import { ActionCol } from '../components/common/table/ActionCol';
 import { Grid } from '../components/common/grid/Grid';
-import LandingPageRecord from '../../model/stateZ/landingPage/LandingPageRecord';
-import { ViewType } from '../../model/stateZ/CrudState';
+import LandingPageRecord from '../../model/state/landingPage/LandingPageRecord';
+import { ViewType } from '../../model/state/CrudState';
 
 class LandingPageList extends React.Component<Props, void> {
     public render() {

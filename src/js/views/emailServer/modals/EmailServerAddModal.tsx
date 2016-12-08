@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { AddModalContainer, Props } from '../../common/AddModalContainer';
-import EmailServerAction from '../../../actions/EmailServerAction2'
-import EmailServerState from '../../../model/stateZ/emailServer/EmailServerState';
+import EmailServerAction from '../../../actions/EmailServerAction'
+import EmailServerState from '../../../model/state/emailServer/EmailServerState';
 import EmailServerForm from '../EmailServerForm';
 import { AppState } from '../../../model/state/AppState';
 

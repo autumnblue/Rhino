@@ -1,5 +1,5 @@
 import * as React from 'react';
-import EngagementAction from '../../../actions/EngagementAction2';
+import EngagementAction from '../../../actions/EngagementAction';
 import CircularProgress from 'material-ui/CircularProgress';
 import PreviewProps from './PreviewProps';
 

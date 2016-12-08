@@ -1,55 +1,63 @@
-import LandingPageState from '../model/state2/landingPage/LandingPageState';
-import LandingPageForm from '../model/state2/landingPage/LandingPageForm';
-import LandingPageXDto from '../model/dto2/landingPage/LandingPageXDto';
-import LandingPageDto from '../model/dto2/landingPage/LandingPageDto';
-import Dependee from '../model/state2/Dependee';
+import Mapper from './Mapper';
+import LandingPageXDto from '../model/dto/landingPage/LandingPageXDto';
+import LandingPageDto from '../model/dto/landingPage/LandingPageDto';
+import LandingPageState from '../model/state/landingPage/LandingPageState';
+import LandingPageRecord from '../model/state/landingPage/LandingPageRecord';
+import { 
+    refScraperUserAgent
+} from './common/AssemblyUtil';
 
-class LandingPageMapperStatic {
-    public toState = (dto: LandingPageXDto): LandingPageState => {
+class LandingPageMapperStatic implements Mapper { 
+    toState(result: LandingPageXDto): LandingPageState {
         const state = new LandingPageState();
 
-        state.forms = dto.landing_pages.filter(page => !page.is_redirect_page).map(page => {
-            let scraperUserAgent
-                = dto.scraper_user_agent
-                && dto.scraper_user_agent.filter(obj => obj.id == page.scraper_user_agent)[0];
-          
+        state.records = result.landing_pages.map(dto => {             
             return {
-                status: page.status, //TODO enum,
-                name: page.name,
-                url: page.url,
-                isRedirectPage: page.is_redirect_page,
-                pageType: page.page_type,
-                path: page.path,
-                scraperUserAgent: scraperUserAgent && { id: scraperUserAgent.id, label: scraperUserAgent.name },
-                dateCreated:page.date_created,
-                id: page.id,
-                source: page.source
-        }});
-
-        state.dependencies = {
-            scraperUserAgent:
-                dto.scraper_user_agent 
-                && dto.scraper_user_agent
-                    .map(obj => ({ id: obj.id, label: obj.name })),    
-        }
-
-        //state.mode = 'ROOT';
+                scraperUserAgent: refScraperUserAgent(dto, result.scraper_user_agent),
+                status: dto.status,
+                name: dto.name,
+                url: dto.url,
+                isRedirectPage: dto.is_redirect_page,
+                pageType: dto.page_type,
+                path: dto.path,
+                dateCreated: dto.date_created,
+                id: dto.id,
+                source: dto.source
+            }
+            
+        });        
 
         return state;
     }
-    
-    public toDto(form: LandingPageForm): LandingPageDto {
+
+    toForm(dto: LandingPageDto) {
         return {
-            "status": form.status,
-            "name": form.name,
-            "url": form.url,
-            "is_redirect_page": form.isRedirectPage,
-            "page_type": form.pageType,
-            "path": form.path,
-            "scraper_user_agent": form.scraperUserAgent && form.scraperUserAgent.id,
-            "date_created": form.dateCreated,
-            "id": form.id,
-            source: form.source
+            scraperUserAgent: dto.scraper_user_agent,
+            status: dto.status,
+            name: dto.name,
+            url: dto.url,
+            isRedirectPage: dto.is_redirect_page,
+            pageType: dto.page_type,
+            path: dto.path,
+            dateCreated: dto.date_created,
+            id: dto.id,
+            source: dto.source
+        }
+    }
+
+    toDto(state: LandingPageRecord): LandingPageDto {
+        return {
+            "status": state.status,
+            "name": state.name,
+            "url": state.url,
+            "is_redirect_page": state.isRedirectPage,
+            "page_type": state.pageType,
+            "path": state.path,
+            "scraper_user_agent": state.scraperUserAgent && state.scraperUserAgent.id,
+            "date_created": state.dateCreated,
+            source: state.source,
+            commit: true,
+            id: state.id            
         }
     }
 }

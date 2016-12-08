@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { AddModalContainer, Props } from '../../common/AddModalContainer';
-import ShoalScrapeCredAction from '../../../actions/ShoalScrapeCredAction2'
-import ShoalScrapeCredState from '../../../model/stateZ/shoalScrapeCred/ShoalScrapeCredState';
+import ShoalScrapeCredAction from '../../../actions/ShoalScrapeCredAction'
+import ShoalScrapeCredState from '../../../model/state/shoalScrapeCred/ShoalScrapeCredState';
 import ShoalScrapeCredForm from '../ShoalScrapeCredForm';
 import { AppState } from '../../../model/state/AppState';
 

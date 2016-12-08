@@ -1,8 +1,8 @@
 import { Reducer } from 'redux';
 import { Action } from '../../actions/Action';
 import { ActionType } from '../../actions/ActionType';
-import { CrudState} from '../../model/stateZ/CrudState';
-import Record from '../../model/stateZ/Record';
+import { CrudState} from '../../model/state/CrudState';
+import Record from '../../model/state/Record';
 import { copy } from '../../common/Util';
 
 const reduce = <T extends CrudState>(

@@ -6,14 +6,14 @@ import {
    StepLabel,
    StepContent,
  } from 'material-ui/Stepper';
-import EngagementAction from '../../actions/EngagementAction2';
+import EngagementAction from '../../actions/EngagementAction';
 import EmailVectorPreview from './preview/EmailVectorPreview';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 import CircularProgress from 'material-ui/CircularProgress';
 import { connect } from 'react-redux';
 import { AppState } from '../../model/state/AppState';
-import EngagementRecord from '../../model/stateZ/engagement/EngagementRecord'
+import EngagementRecord from '../../model/state/engagement/EngagementRecord'
 import Play from 'material-ui/svg-icons/av/play-arrow';
 
 interface Preview {
@@ -95,7 +95,7 @@ class Preview extends React.Component<Props, {
                                     label={this.state.step === 2 ? 'Start Engagement' : 'Confirm'}
                                     primary={true}
                                     onTouchTap={ this.state.step === 2 ? this.startEngagement : this.onNext }
-                                    icon={<Play color="green" />}
+                                    icon={ this.state.step === 2 ? <Play color="green" /> : null }
                                     />
                                 :
                                 <RaisedButton
@@ -170,6 +170,9 @@ class Preview extends React.Component<Props, {
                 if(this.state.landingPageData)
                     return <iframe srcDoc={this.state.landingPageData} frameBorder="0" scrolling="yes"></iframe>
                 else {
+                    if(!this.props.engagement.landingPage)
+                        return 'Unable to load Landing Page at this time.'
+                    this.props.engagement.landingPage
                     EngagementAction.previewLandingPage(this.props.engagement.landingPage.id)
                     .then(html => 
                         this.setState({
@@ -179,12 +182,20 @@ class Preview extends React.Component<Props, {
                             step: this.state.step
                         })
                     )
+                    .catch(error => {
+                        this.state.landingPageData = `${error}`;
+                        this.setState(
+                            Object.assign({}, this.state)
+                        )
+                    })
                     return <CircularProgress size={80} thickness={7} />
                 }
             case 2:
                  if(this.state.redirectPageData)
                     return <iframe srcDoc={this.state.redirectPageData} frameBorder="0" scrolling="yes"></iframe>
                 else {
+                    if(!this.props.engagement.redirectPage)
+                        return 'Unable to load Redirect Page at this time.'
                     EngagementAction.previewRedirectPage(this.props.engagement.redirectPage.id)
                     .then(html => {
                             this.setState({
@@ -195,6 +206,12 @@ class Preview extends React.Component<Props, {
                             })
                         }
                     )
+                    .catch(error => {
+                        this.state.redirectPageData = `${error}`;
+                        this.setState(
+                            Object.assign({}, this.state)
+                        )
+                    })
                     return <CircularProgress size={80} thickness={7} />
                 }
         }
@@ -210,7 +227,8 @@ interface Props {
 
 const mapStateToProps = (app: AppState): Props => ({
     engagement: app.preview.engagement,
-    open: app.preview.open
+    open: app.preview.open,
+    startRequest: app.preview.startRequest
 })
 
 export default connect(

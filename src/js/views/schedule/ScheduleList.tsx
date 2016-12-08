@@ -3,8 +3,8 @@ import { Table } from '../components/common/table/Table';
 import { Column } from '../components/common/table/Column';
 import { ActionCol } from '../components/common/table/ActionCol';
 import { Grid } from '../components/common/grid/Grid';
-import ScheduleRecord from '../../model/stateZ/schedule/ScheduleRecord';
-import { ViewType } from '../../model/stateZ/CrudState';
+import ScheduleRecord from '../../model/state/schedule/ScheduleRecord';
+import { ViewType } from '../../model/state/CrudState';
 
 class ScheduleList extends React.Component<Props, void> {
     public render() {

@@ -1,6 +1,6 @@
 import reduce from '../common';
-import EngagementState from '../../model/stateZ/engagement/EngagementState'
-import EngagementRecord from '../../model/stateZ/engagement/EngagementRecord'
+import EngagementState from '../../model/state/engagement/EngagementState'
+import EngagementRecord from '../../model/state/engagement/EngagementRecord'
 import { Action } from '../../actions/Action';
 import { ActionType } from '../../actions/ActionType';
 import { copy } from '../../common/Util';

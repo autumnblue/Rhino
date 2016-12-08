@@ -1,5 +1,7 @@
-import { Dto } from './Dto';
+import Dto from './Dto';
 
-export interface CommitableDto extends Dto {
-    commit?: boolean
+interface CommitableDto extends Dto {
+    commit: boolean
 }
+
+export default CommitableDto;

@@ -2,11 +2,9 @@ import * as jwt from './token/JwtUtil';
 import { Claims } from './token/Claims';
 import { CurrentUser } from '../CurrentUser';
 import { Dir } from '../common/Constants';
-import * as factory from '../service/ServiceFactory';
-import { ServiceType } from '../service/ServiceFactory';
 import IdentityService from '../service/IdentityService';
 import store from '../main';
-import LoginAction from '../actions/LoginAction2';
+import LoginAction from '../actions/LoginAction';
 import * as moment from 'moment';
 
 class IdentityStatic {
@@ -83,8 +81,8 @@ class IdentityStatic {
 
     public login(token: string) {
         CurrentUser.Session.setToken(token);
-        const referer = CurrentUser.Session.getReferer();
-        CurrentUser.Page.to(referer || '\\');
+        // const referer = CurrentUser.Session.getReferer();
+        // CurrentUser.Page.to(referer || '\\');
     }
 
     public isLoggedInAsync(): Promise<boolean> {
@@ -119,7 +117,10 @@ class IdentityStatic {
     private getBaseUrl(): string {
         if(!this.baseUrl) {
             const socket = CurrentUser.Session.getSocket();
-            if(!socket) this.logout();
+            if(!socket) {
+                this.logout();
+                return null;
+            }
             const host = socket.host;
             const port = socket.port 
                 ? `:${socket.port}` 

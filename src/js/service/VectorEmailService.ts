@@ -1,24 +1,26 @@
-import CrudService from './CrudServiceZ';
-import VectorEmailDto from '../model/dtoZ/vectorEmail/VectorEmailDto';
-import VectorEmailXDto from '../model/dtoZ/vectorEmail/VectorEmailXDto';
+import { Service } from './Service';
 import * as http from './HttpUtil';
+import VectorEmailDto from '../model/dto/embedded/VectorEmailDto'
 
-class VectorEmailService extends CrudService<VectorEmailDto, any> {
+class VectorEmailService extends Service {
+    private url: string;
+
     constructor() {
-        super('vector-emails');
+        super();
+        this.url = `${this.baseServiceUrl()}`;
     }
 
-    public async read(): Promise<VectorEmailXDto> {
-        return http.get<VectorEmailXDto>
-            (`${this.resource}?include[]=target.*&include[]=engagement.*&include[]=result_event.*`);
+    public async read(): Promise<{ vector_emails: VectorEmailDto[] }> {
+        return await http.get<any>
+                    (`${this.url}/v2/vector-emails/`);
     }
 
     public async getVectorEmailForEngagement(engagementId: number): Promise<{ id: number }> {
         return http.get<{ vector_emails: { id: number}[] }>
-            (`${this.resource}?exclude[]=*&include[]=id&filter{engagement}=${engagementId}`)
+            (`${this.url}/v1/vector-emails/?exclude[]=*&include[]=id&filter{engagement}=${engagementId}`)
             .then(result => {
                 return result.vector_emails[0];
-            });            
+            });  
     }
 }
 

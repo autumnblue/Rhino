@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import EngagementRecord from '../../../model/stateZ/engagement/EngagementRecord';
-import TargetListRecord from '../../../model/stateZ/targetList/TargetListRecord';
-import Ref from '../../../model/stateZ/Ref';
+import EngagementRecord from '../../../model/state/engagement/EngagementRecord';
+import TargetListRecord from '../../../model/state/targetList/TargetListRecord';
+import Ref from '../../../model/state/Ref';
 const reduxForm = require('redux-form');
 const Field = reduxForm.Field;
 const FieldArray = reduxForm.FieldArray;
 import autoComplete from '../../common/fields/AutoComplete'
 import TextField from 'material-ui/TextField'
-import EngagementAction from '../../../actions/EngagementAction2'
+import EngagementAction from '../../../actions/EngagementAction'
 import FetchAction from '../../../actions/FetchAction'; 
 import { AppState } from '../../../model/state/AppState';
 import RefreshIndicator from 'material-ui/RefreshIndicator';
@@ -90,8 +90,8 @@ const engagementForm = reduxForm.reduxForm({
 })(
 (props: FormProps & {record: EngagementRecord }) => { 
     const start = () => {
-        props['dispatch'](EngagementAction.togglePreview(props.record));
-    //    props['dispatch'](EngagementAction.start(props.record.id));
+        //props['dispatch'](EngagementAction.togglePreview(props.record));
+        props['dispatch'](EngagementAction.confirmStart(props.record));
     }
 
     const stop = () => {

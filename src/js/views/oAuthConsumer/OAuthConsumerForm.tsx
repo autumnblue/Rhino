@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import OAuthConsumerRecord from '../../model/stateZ/oAuthConsumer/OAuthConsumerRecord';
-import OAuthConsumerWidget from '../../model/stateZ/oAuthConsumer/OAuthConsumerWidget';
-import Ref from '../../model/stateZ/Ref';
+import OAuthConsumerRecord from '../../model/state/oAuthConsumer/OAuthConsumerRecord';
+import OAuthConsumerWidget from '../../model/state/oAuthConsumer/OAuthConsumerWidget';
+import Ref from '../../model/state/Ref';
 const reduxForm = require('redux-form');
 const Field = reduxForm.Field;
-import OAuthConsumerAction from '../../actions/OAuthConsumerAction2'
+import OAuthConsumerAction from '../../actions/OAuthConsumerAction'
 import select from '../common/fields/Select';
 import autoComplete from '../common/fields/AutoComplete';
 import input from '../common/fields/Input';

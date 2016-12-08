@@ -3,8 +3,8 @@ import { Table } from '../components/common/table/Table';
 import { Column } from '../components/common/table/Column';
 import { ActionCol } from '../components/common/table/ActionCol';
 import { Grid } from '../components/common/grid/Grid';
-import ShoalScrapeTaskRecord from '../../model/stateZ/shoalScrapeTask/ShoalScrapeTaskRecord';
-import { ViewType } from '../../model/stateZ/CrudState';
+import ShoalScrapeTaskRecord from '../../model/state/shoalScrapeTask/ShoalScrapeTaskRecord';
+import { ViewType } from '../../model/state/CrudState';
 
 class ShoalScrapeTaskList extends React.Component<Props, void> {
     public render() {

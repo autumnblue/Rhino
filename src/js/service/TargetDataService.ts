@@ -1,6 +1,6 @@
 import CrudService from './CrudServiceZ';
-import TargetDataDto from '../model/dtoZ/targetData/TargetDataDto';
-import TargetDataXDto from '../model/dtoZ/targetData/TargetDataXDto';
+import TargetDataDto from '../model/dto/targetData/TargetDataDto';
+import TargetDataXDto from '../model/dto/targetData/TargetDataXDto';
 import * as http from './HttpUtil';
 
 class TargetDataService extends CrudService<TargetDataDto, any> {

@@ -1,5 +1,5 @@
 import CrudService from './CrudServiceZ';
-import PhishingDomainDto from '../model/dtoZ/phishingDomain/PhishingDomainDto';
+import PhishingDomainDto from '../model/dto/phishingDomain/PhishingDomainDto';
 import * as http from './HttpUtil';
 
 class PhishingDomainService extends CrudService<PhishingDomainDto, any> {

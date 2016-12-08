@@ -1,17 +1,18 @@
 import * as React from 'react';
+import { Link } from 'react-router';
 
 export class Item extends React.Component<ItemProps, void> {
     public render() {
         return ( 
             <li>
-                <a 
-                    href={ this.props.href || '#' }
+                <Link 
+                    to={ this.props.href || '#' }
                     onClick={ this.props.onClick }>
                     <span 
                         className={ this.props.selected ? 'hilite' : ''}>
                             { this.props.children }
                     </span>
-                </a>
+                </Link>
             </li>
         )
     }
@@ -20,5 +21,5 @@ export class Item extends React.Component<ItemProps, void> {
 export interface ItemProps {
     selected?: boolean
     href?: string
-    onClick?(): void
+    onClick?(): void 
 }

@@ -1,4 +1,4 @@
-import Ref from '../../../model/stateZ/Ref';
+import Ref from '../../../model/state/Ref';
 
 interface Props {
     data: Ref

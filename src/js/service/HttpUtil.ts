@@ -1,7 +1,5 @@
 import * as popsicle from 'popsicle';
 import { Identity } from '../security/Identity';
-import handleErr from '../validation/submit/landingPages/LandingPagesFormSubmitValidator';
-
 
 const addAuthzHeader = (headers: { [name: string]: string }): Promise<void> => {
     return Identity.getToken()

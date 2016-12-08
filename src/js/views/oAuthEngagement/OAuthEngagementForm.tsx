@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import OAuthEngagementRecord from '../../model/stateZ/oAuthEngagement/OAuthEngagementRecord';
-import OAuthEngagementWidget from '../../model/stateZ/oAuthEngagement/OAuthEngagementWidget';
-import Ref from '../../model/stateZ/Ref';
+import OAuthEngagementRecord from '../../model/state/oAuthEngagement/OAuthEngagementRecord';
+import OAuthEngagementWidget from '../../model/state/oAuthEngagement/OAuthEngagementWidget';
+import Ref from '../../model/state/Ref';
 const reduxForm = require('redux-form');
 const Field = reduxForm.Field;
 import FetchAction from '../../actions/FetchAction';

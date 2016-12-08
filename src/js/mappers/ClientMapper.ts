@@ -1,30 +1,44 @@
-import ClientState from '../model/state/ClientState';
-import { ListState } from '../model/state/page/ListState';
-import { ClientDto } from '../model/dto/ClientDto';
 import Mapper from './Mapper';
+import ClientXDto from '../model/dto/client/ClientXDto';
+import ClientDto from '../model/dto/client/ClientDto';
+import ClientState from '../model/state/client/ClientState';
+import ClientRecord from '../model/state/client/ClientRecord';
 
-class ClientMapperStatic implements Mapper {
-    public toState = (dto: ClientDto): ClientState => {
-        if(dto['client']) dto = dto['client']; //normalize from response
-        
+class ClientMapperStatic implements Mapper { 
+    toState(result: ClientXDto): ClientState {
+        const state = new ClientState();
+
+        state.records = result.clients.map(dto => {             
+            return {
+                id: dto.id,
+                name: dto.name,
+                url: dto.url,
+                timezone: dto.default_time_zone,
+            }
+            
+        });        
+
+        return state;
+    }
+
+    toForm(dto: ClientDto) {
         return {
             id: dto.id,
             name: dto.name,
             url: dto.url,
-            timezone: dto.default_time_zone.toString()
-        } 
+            timezone: dto.default_time_zone,
+        }
     }
 
-    public toStates = (dtos: any): ClientState[] => {
-        return dtos.clients
-            .map(dto => this.toState(dto));
+    toDto(state: ClientRecord): ClientDto {
+        return {
+            "url": state.url,
+            "default_time_zone": state.timezone,
+            "name": state.name,
+            commit: true,
+            id: state.id            
+        }
     }
-
-    public toDto = (state: ClientState): ClientDto => ({
-        name: state.name, 
-        url: state.url,
-        default_time_zone: state.timezone
-    })
 }
 const ClientMapper = new ClientMapperStatic();
 export default ClientMapper;

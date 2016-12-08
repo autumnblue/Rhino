@@ -1,5 +1,5 @@
 import CrudService from './CrudServiceZ';
-import OAuthConsumerDto from '../model/dtoZ/oAuthConsumer/OAuthConsumerDto';
+import OAuthConsumerDto from '../model/dto/oAuthConsumer/OAuthConsumerDto';
 import * as http from './HttpUtil';
 
 class OAuthConsumerService extends CrudService<OAuthConsumerDto, any> {

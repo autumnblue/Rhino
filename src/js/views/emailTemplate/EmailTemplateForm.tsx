@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import EmailTemplateRecord from '../../model/stateZ/emailTemplate/EmailTemplateRecord';
-import Ref from '../../model/stateZ/Ref';
+import EmailTemplateRecord from '../../model/state/emailTemplate/EmailTemplateRecord';
+import Ref from '../../model/state/Ref';
 const reduxForm = require('redux-form');
 const Field = reduxForm.Field;
-import EmailTemplateAction from '../../actions/EmailTemplateAction2'
+import EmailTemplateAction from '../../actions/EmailTemplateAction'
 import select from '../common/fields/Select';
 import autoComplete from '../common/fields/AutoComplete';
 import input from '../common/fields/Input';

@@ -4,16 +4,17 @@ import { MenuBar } from '../../components/menu/MenuBar';
 import { Menu } from '../../components/menu/Menu';
 import { Item } from '../../components/menu/Item';
 import { AppState } from '../../../model/state/AppState';
-import { MenuState } from '../../../model/state/MenuState';
+import { MenuState } from '../../../model/state/menu/MenuState';
 import { NaviAction } from '../../../actions/navigation/NaviAction';
 import { Dir } from '../../../common/Constants';
 import IconButton from 'material-ui/IconButton';
 import MailOutline from 'material-ui/svg-icons/communication/mail-outline';
 import Settings from 'material-ui/svg-icons/action/settings';
+import { Identity } from '../../../security/Identity'
 
 class Container extends React.Component<Props, void> {
     public render() {
-        if(this.props.state.handle) { 
+        if(Identity.isLoggedIn()) { 
             return (
                 <MenuBar>
                     <Menu 
@@ -59,7 +60,7 @@ class Container extends React.Component<Props, void> {
                         selected={ this.props.state.logs.selected }
                         onClick={ this.onLogsClick }>
                             <span>Logs</span>
-                            <Item href="">
+                            <Item href={ Dir.VECTOR_EMAIL }>
                                     Email Log
                             </Item>
                             <Item href="">

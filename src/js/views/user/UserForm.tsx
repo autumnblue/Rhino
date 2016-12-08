@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import UserRecord from '../../model/stateZ/user/UserRecord';
-import Ref from '../../model/stateZ/Ref';
+import UserRecord from '../../model/state/user/UserRecord';
+import Ref from '../../model/state/Ref';
 const reduxForm = require('redux-form');
 const Field = reduxForm.Field;
-import UserAction from '../../actions/UserAction2'
+import UserAction from '../../actions/UserAction'
 import select from '../common/fields/Select';
 import autoComplete from '../common/fields/AutoComplete';
 import input from '../common/fields/Input';

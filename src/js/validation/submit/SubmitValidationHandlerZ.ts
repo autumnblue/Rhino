@@ -1,4 +1,4 @@
-import Mapper from '../../mappers/MapperZ';
+import Mapper from '../../mappers/Mapper';
 const reduxForm = require('redux-form');
 import * as popsicle from 'popsicle';
 

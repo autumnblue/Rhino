@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import RootView from '../common/RootView';
-import TargetListState from '../../model/stateZ/targetList/TargetListState';
+import TargetListState from '../../model/state/targetList/TargetListState';
 import { ToolbarGroup } from 'material-ui/Toolbar';
 import TargetListAction from '../../actions/TargetListAction';
 import { GridTile } from 'material-ui/GridList';
@@ -58,7 +58,8 @@ class TargetListRoot extends React.Component<Props, { addOpen: boolean, editOpen
                 widgets={ widgets }
                 onLoad={ this.onLoad }
                 grids={grids}
-                table={table} />
+                table={table} 
+                records={this.props.state.records} />
         </div>
     }
 

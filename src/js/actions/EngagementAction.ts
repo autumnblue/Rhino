@@ -1,91 +1,138 @@
-import EngagementService from '../service/engagement/EngagementService';
-import EngagementXDto from '../model/dto2/engagement/EngagementXDto';
+import ActionCreator from './ActionCreator';
+import EngagementService from '../service/EngagementService';
+import CampaignService from '../service/CampaignService';
+import ScheduleService from '../service/ScheduleService';
+import EmailServerService from '../service/EmailServerService';
+import EmailTemplateService from '../service/EmailTemplateService';
+import LandingPageService from '../service/LandingPageService';
+import RedirectPageService from '../service/RedirectPageService';
+import PhishingDomainService from '../service/PhishingDomainService';
+import VectorEmailService from '../service/VectorEmailService';
+import PreviewService from '../service/PreviewService';
 import EngagementMapper from '../mappers/EngagementMapper';
-import EngagementForm from '../model/state2/engagement/EngagementForm';
+import EngagementRecord from '../model/state/engagement/EngagementRecord'
 import { ActionType } from './ActionType';
+import Ref from '../model/state/Ref';
 
-class EngagementActionCreator {
-    public initPage(dispatch): void {
-        const obj = new EngagementXDto();
-        
+class EngagementAction extends ActionCreator<EngagementService> {
+    private static QUALIFIER = 'engagement';
+
+    constructor() {
+        super(EngagementService, EngagementMapper, EngagementAction.QUALIFIER)
+    }
+
+    public fetch(): Function {
+        return (dispatch) => 
         new EngagementService().read()
-        .then(fulfilled => {
-            const state = EngagementMapper.toState(fulfilled);
+        .then(dtos => {
+            const state = EngagementMapper.toState(dtos);
 
             dispatch({
                 type: ActionType.CRUD_INIT,
                 payload: state,
+                context: this.qualifier
             });
         });
     }
 
-    public openEdit(dispatch, id: number, context?) {
-        dispatch({
-            type: ActionType.CRUD_OPEN_EDIT,
-            payload: id,
-            context
-        });
-    }
-
-    public update(dispatch, values: EngagementForm, context?): Promise<any> {
-        const dto = EngagementMapper.toDto(values)
-        dto['commit'] = true;
-        return new EngagementService().update(dto)
-        .then(updated => {
+    public openEdit(id: number): Function {
+        return (dispatch) => {
             dispatch({
-                type: ActionType.CRUD_EDIT_SUCCESS,
-                payload: null,
-                context
-            })
-
-        })
-    }
-
-     public create(dispatch, values: EngagementForm, context?): Promise<any> {
-        const dto = EngagementMapper.toDto(values);
-        dto['commit'] = true;
-        return new EngagementService().create(dto)
-        .then(created => {
-            dispatch({
-                type: ActionType.CRUD_ADD_SUCCESS,
-                payload: null,
-                context
-            })
-        });
-    }
-
-    public openAdd(dispatch, context?): void {
-        dispatch({
-            type: ActionType.CRUD_OPEN_ADD,
-            context
-        });
-    }
-
-    public remove(dispatch, id: number, context?) {
-        new EngagementService().delete(id)
-        .then(removed => 
-            dispatch({
-                type: ActionType.CRUD_REMOVE_SUCCESS,
+                type: ActionType.CRUD_OPEN_EDIT,
                 payload: id,
-                context
-            })
-        );
+                context: this.qualifier
+            });
+        }
     }
 
-    public toggleView(dispatch, context?) {
-        dispatch({
-            type: ActionType.CRUD_TOGGLE_VIEW,
-            context
+    public openAdd(): Function {
+        return (dispatch) => {
+            dispatch({
+                type: ActionType.CRUD_OPEN_ADD,
+                context: this.qualifier
+            });
+        }
+    }
+
+    public filterByClient(id: number): Function {
+        if(!id) return this.fetch();
+
+        return (dispatch) => 
+        new EngagementService().filterByClient(id)
+        .then(dtos => {
+            const state = EngagementMapper.toState(dtos);
+
+            dispatch({
+                type: ActionType.CRUD_INIT,
+                payload: state,
+                context: this.qualifier
+            });
         });
     }
 
-    public cancel(dispatch, context?) {
-        dispatch({
-            type: ActionType.CRUD_CANCEL,
-            context
-        })
+    public previewEmailForEngagement(id: number): Promise<string> {
+        return new VectorEmailService()
+        .getVectorEmailForEngagement(id)
+        .then(result => {
+            return new PreviewService().previewEmail(result.id);
+        });
+    }
+
+    public previewLandingPage(id: number): Promise<string> {
+        return new PreviewService().previewLandingPage(id);
+    }
+
+    public previewRedirectPage(id: number): Promise<string> {
+        return new PreviewService().previewRedirectPage(id);
+    }
+
+    public togglePreview(record?: EngagementRecord): Function {
+        return (dispatch) => {
+            dispatch({
+                type: ActionType.ENGAGEMENT_TOGGLE_PREVIEW,
+                payload: record,
+                // context: this.qualifier
+            });    
+        }
+    }
+
+    public confirmStart(record: EngagementRecord): Function {
+        return (dispatch) => {
+            dispatch({
+                type: ActionType.ENGAGEMENT_CONFIRM_START,
+                payload: record,
+                // context: this.qualifier
+            });    
+        }
+    }
+
+    public start(id: number): Function {
+        return(dispatch) => {
+            new EngagementService()
+            .start(id)
+            .then(dto => {
+                dispatch({
+                    type: ActionType.ENGAGEMENT_START,
+                    payload: dto.state,
+                    context: this.qualifier
+                });
+            });    
+        }
+    }
+
+    public stop(id: number): Function {
+        return(dispatch) => {
+            new EngagementService()
+            .stop(id)
+            .then(dto => {
+                dispatch({
+                    type: ActionType.ENGAGEMENT_STOP,
+                    payload: dto.state,
+                    context: this.qualifier
+                });
+            });    
+        }
     }
 }
 
-const EngagementAction: EngagementActionCreator = new EngagementActionCreator();
-export default EngagementAction;
+export default new EngagementAction();

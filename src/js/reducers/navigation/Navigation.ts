@@ -1,7 +1,7 @@
 import { Reducer } from 'redux';
 import { Action } from '../../actions/Action';
 import { ActionType } from '../../actions/ActionType';
-import { MenuState } from '../../model/state/MenuState';
+import { MenuState } from '../../model/state/menu/MenuState';
 import { copy } from '../../common/Util';
 import { ValidatableInput } from '../../common/validation/ValidatableInput';
 import { Identity } from '../../security/Identity';
@@ -67,6 +67,10 @@ export const reducer: Reducer<MenuState> = (state = defaultState, action: Action
         case(ActionType.MENU_CLICK_MAIL):
             unselectAll(newState);
             newState.mail.selected = true;
+            return newState;
+
+        case(ActionType.MENU_TOGGLE_AUTH):
+            unselectAll(newState);
             return newState;
 
         default: return state;

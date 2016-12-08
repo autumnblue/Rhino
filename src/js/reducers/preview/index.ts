@@ -1,12 +1,13 @@
 import { Reducer } from 'redux';
 import { Action } from '../../actions/Action';
 import { ActionType } from '../../actions/ActionType';
-import PreviewState from '../../model/stateZ/preview/PreviewState';
+import PreviewState from '../../model/state/preview/PreviewState';
 import { copy } from '../../common/Util';
 import { ValidatableInput } from '../../common/validation/ValidatableInput';
 
 const defaultState = {
     open: false,
+    startRequest: false,
     emailConfirmed: false,
     landingPageConfirmed: false,
     redirectPageConfirmed: false
@@ -32,6 +33,12 @@ const reducer: Reducer<PreviewState> = (state: PreviewState = defaultState, acti
 
         case ActionType.REDIRECT_PAGE_PREVIEW_CONFIRMED:
             newState.redirectPageConfirmed = true;
+            return newState;
+
+        case ActionType.ENGAGEMENT_CONFIRM_START:
+            newState.startRequest = true;
+            newState.open = true;
+            newState.engagement = action.payload;
             return newState;
        
         default: return state;

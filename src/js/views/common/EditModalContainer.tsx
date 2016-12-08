@@ -2,10 +2,10 @@ import * as React from 'react';
 import * as react_redux from 'react-redux';
 import { Modal } from '../components/common/Modal2';
 import { Control } from '../components/common/Controls';
-import { CrudState } from '../../model/stateZ/CrudState';
+import { CrudState } from '../../model/state/CrudState';
 import { ConfirmableButton } from '../components/common/ConfirmableButton';
 import ActionCreator from '../../actions/ActionCreator';
-import Record from '../../model/stateZ/Record';
+import Record from '../../model/state/Record';
 
 export const EditModalContainer = (props: Props) => {
     const onSubmit = (values: Record):Promise<any> => {

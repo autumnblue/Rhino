@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { EditModalContainer, Props} from '../../common/EditModalContainer';
-import ProfileAction from '../../../actions/ProfileAction2'
-import ProfileState from '../../../model/stateZ/profile/ProfileState';
+import ProfileAction from '../../../actions/ProfileAction'
+import ProfileState from '../../../model/state/profile/ProfileState';
 import ProfileForm from '../ProfileForm';
 import { AppState } from '../../../model/state/AppState';
 

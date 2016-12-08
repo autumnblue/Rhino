@@ -1,5 +1,5 @@
 import CrudService from './CrudServiceZ';
-import ResultEventDto from '../model/dtoZ/resultEvent/ResultEventDto';
+import ResultEventDto from '../model/dto/resultEvent/ResultEventDto';
 import * as http from './HttpUtil';
 
 class ResultEventService extends CrudService<ResultEventDto, any> {

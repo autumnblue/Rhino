@@ -11,7 +11,7 @@ import ShoalScrapeCredService from '../service/ShoalScrapeCredService';
 import OAuthConsumerService from '../service/OAuthConsumerService';
 import UserService from '../service/UserService';
 import TargetListService from '../service/TargetListService';
-import Ref from '../model/stateZ/Ref';
+import Ref from '../model/state/Ref';
 
 class FetchAction {
     public getCampaignSuggestions(dispatch): Promise<Ref[]> {

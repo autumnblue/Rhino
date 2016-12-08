@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Ref from '../../../model/stateZ/Ref';
+import Ref from '../../../model/state/Ref';
 import AutoComplete from 'material-ui/AutoComplete';
 import RefreshIndicator from 'material-ui/RefreshIndicator';
 import Props from './CustomProps';

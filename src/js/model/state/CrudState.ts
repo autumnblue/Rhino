@@ -1,12 +1,22 @@
-class CrudState {
-    constructor(context?) {
-        this.context = context;
+import Record from './Record';
+
+export abstract class CrudState {
+    constructor(qualifier: string) {
+        this.qualifier = qualifier
     }
 
-    id?: number
-    data?: any
-    visible?: boolean
-    context?: string
+    records: Array<Record>;
+    selectedRecord: Record;
+
+    mode: ModeType = 'root';
+    view: ViewType = 'grid';
+    widgetState = {};
+
+    // selectedRecordId: number
+    qualifier: string;
+    page: number
+    totalPages: number
 }
 
-export default CrudState;
+export type ViewType = 'grid' | 'table'
+export type ModeType = 'root' | 'add' | 'edit'

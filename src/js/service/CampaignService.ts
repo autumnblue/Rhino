@@ -1,6 +1,6 @@
 import CrudService from './CrudServiceZ';
-import CampaignDto from '../model/dtoZ/campaign/CampaignDto';
-import CampaignXDto from '../model/dtoZ/campaign/CampaignXDto';
+import CampaignDto from '../model/dto/campaign/CampaignDto';
+import CampaignXDto from '../model/dto/campaign/CampaignXDto';
 import * as http from './HttpUtil';
 
 class CampaignService extends CrudService<CampaignDto, any> {

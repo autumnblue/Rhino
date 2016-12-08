@@ -1,43 +1,51 @@
-import EmailServerState from '../model/state2/emailServer/EmailServerState';
-import EmailServerForm from '../model/state2/emailServer/EmailServerForm';
-import EmailServerXDto from '../model/dto2/emailServer/EmailServerXDto';
-import EmailServerDto from '../model/dto2/emailServer/EmailServerDto';
-import Dependee from '../model/state2/Dependee';
+import Mapper from './Mapper';
+import EmailServerXDto from '../model/dto/emailServer/EmailServerXDto';
+import EmailServerDto from '../model/dto/emailServer/EmailServerDto';
+import EmailServerState from '../model/state/emailServer/EmailServerState';
+import EmailServerRecord from '../model/state/emailServer/EmailServerRecord';
 
-class EmailServerMapperStatic {
-    public toState = (dto: EmailServerXDto): EmailServerState => {
+class EmailServerMapperStatic implements Mapper { 
+    toState(result: EmailServerXDto): EmailServerState {
         const state = new EmailServerState();
 
-        state.forms = dto.email_servers.map(emailServer => {
-
-        return {
-            id: emailServer.id,
-            useTls: emailServer.use_tls,
-            testRecipient: emailServer.test_recipient,
-            host: emailServer.host,
-            port: emailServer.port,
-            login: emailServer.login,
-            password: emailServer.password
-        }});
-
-        state.dependencies = {
+        state.records = result.email_servers.map(dto => {             
+            return {
+                useTls: dto.use_tls,
+                host: dto.host,
+                login: dto.login,
+                testRecipient: dto.test_recipient,
+                password: dto.password,
+                port: dto.port,
+                id: dto.id
+            }
             
-        }
-
-        //state.mode = 'ROOT';
+        });        
 
         return state;
     }
-    
-    public toDto(form: EmailServerForm): EmailServerDto {
+
+    toForm(dto: EmailServerDto) {
         return {
-            "use_tls": form.useTls,
-            "host": form.host,
-            "login": form.login,
-            "test_recipient": form.testRecipient,
-            "password": form.password,
-            "port": form.port,
-            "id": form.id
+            useTls: dto.use_tls,
+            host: dto.host,
+            login: dto.login,
+            testRecipient: dto.test_recipient,
+            password: dto.password,
+            port: dto.port,
+            id: dto.id
+        }
+    }
+
+    toDto(state: EmailServerRecord): EmailServerDto {
+        return {
+            "use_tls": state.useTls,
+            "host": state.host,
+            "login": state.login,
+            "test_recipient": state.testRecipient,
+            "password": state.password,
+            "port": state.port,
+            commit: true,
+            id: state.id           
         }
     }
 }

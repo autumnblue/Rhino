@@ -1,28 +1,26 @@
-import { MenuState } from './MenuState';
-import { UserAddState, UserEditState, UserPageState } from './UserState';
-import ClientState from '../stateZ/client/ClientState';
-import UserState from '../stateZ/user/UserState';
-import CampaignState from '../stateZ/campaign/CampaignState';
-import EmailServerState from '../stateZ/emailServer/EmailServerState';
-import PhishingDomainState from '../stateZ/phishingDomain/PhishingDomainState';
-import LandingPageState from '../stateZ/landingPage/LandingPageState';
-import ScheduleState from '../stateZ/schedule/ScheduleState';
-import ProfileState from '../stateZ/profile/ProfileState';
-import { ListState } from './page/ListState';
-import EngagementState from '../stateZ/engagement/EngagementState';
-import TargetListState from '../stateZ/targetList/TargetListState';
-import LoginState from '../stateZ/login/LoginState';
-import RedirectPageState from '../stateZ/redirectPage/RedirectPageState';
-import EmailTemplateState from '../stateZ/emailTemplate/EmailTemplateState';
-import Schedule from '../state2/schedule/ScheduleState';
-import ScraperUserAgentState from '../stateZ/scraperUserAgent/ScraperUserAgentState';
-import ShoalScrapeCredState from '../stateZ/shoalScrapeCred/ShoalScrapeCredState';
-import ShoalScrapeTaskState from '../stateZ/shoalScrapeTask/ShoalScrapeTaskState';
-import OAuthConsumerState from '../stateZ/oAuthConsumer/OAuthConsumerState';
-import OAuthEngagementState from '../stateZ/oAuthEngagement/OAuthEngagementState';
-import OAuthResultState from '../stateZ/oAuthResult/OAuthResultState';
-import PlunderState from '../stateZ/plunder/PlunderState';
-import PreviewState from '../stateZ/preview/PreviewState';
+import { MenuState } from '../state/menu/MenuState';
+import ClientState from '../state/client/ClientState';
+import UserState from '../state/user/UserState';
+import CampaignState from '../state/campaign/CampaignState';
+import EmailServerState from '../state/emailServer/EmailServerState';
+import PhishingDomainState from '../state/phishingDomain/PhishingDomainState';
+import LandingPageState from '../state/landingPage/LandingPageState';
+import ScheduleState from '../state/schedule/ScheduleState';
+import ProfileState from '../state/profile/ProfileState';
+import EngagementState from '../state/engagement/EngagementState';
+import TargetListState from '../state/targetList/TargetListState';
+import LoginState from '../state/login/LoginState';
+import RedirectPageState from '../state/redirectPage/RedirectPageState';
+import EmailTemplateState from '../state/emailTemplate/EmailTemplateState';
+import ScraperUserAgentState from '../state/scraperUserAgent/ScraperUserAgentState';
+import ShoalScrapeCredState from '../state/shoalScrapeCred/ShoalScrapeCredState';
+import ShoalScrapeTaskState from '../state/shoalScrapeTask/ShoalScrapeTaskState';
+import OAuthConsumerState from '../state/oAuthConsumer/OAuthConsumerState';
+import OAuthEngagementState from '../state/oAuthEngagement/OAuthEngagementState';
+import OAuthResultState from '../state/oAuthResult/OAuthResultState';
+import PlunderState from '../state/plunder/PlunderState';
+import PreviewState from '../state/preview/PreviewState';
+import VectorEmailState from '../state/vectorEmail/VectorEmailState';
 
 export interface AppState {
     navigation: MenuState
@@ -47,4 +45,5 @@ export interface AppState {
     plunder: PlunderState
     preview: PreviewState
     targetList: TargetListState
+    vectorEmail: VectorEmailState
 }

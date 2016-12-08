@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import CampaignRecord from '../../model/stateZ/campaign/CampaignRecord';
-import CampaignWidget from '../../model/stateZ/campaign/CampaignWidget';
-import Ref from '../../model/stateZ/Ref';
+import CampaignRecord from '../../model/state/campaign/CampaignRecord';
+import CampaignWidget from '../../model/state/campaign/CampaignWidget';
+import Ref from '../../model/state/Ref';
 const reduxForm = require('redux-form');
 const Field = reduxForm.Field;
-import CampaignAction from '../../actions/CampaignAction2'
+import CampaignAction from '../../actions/CampaignAction'
 import FetchAction from '../../actions/FetchAction'
 import select from '../common/fields/Select';
 import autoComplete from '../common/fields/AutoComplete';
