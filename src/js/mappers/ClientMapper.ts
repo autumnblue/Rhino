@@ -33,7 +33,7 @@ class ClientMapperStatic implements Mapper {
     toDto(state: ClientRecord): ClientDto {
         return {
             "url": state.url,
-            "default_time_zone": state.timezone,
+            "default_time_zone": state.timezone['text'],
             "name": state.name,
             commit: true,
             id: state.id            
