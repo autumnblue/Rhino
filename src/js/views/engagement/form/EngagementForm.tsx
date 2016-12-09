@@ -18,6 +18,7 @@ import FlatButton from 'material-ui/FlatButton';
 import Play from 'material-ui/svg-icons/av/play-arrow';
 import Stop from 'material-ui/svg-icons/av/stop';
 import Checkbox from 'material-ui/Checkbox'
+import { ModeType } from '../../../model/state/CrudState';
 
 interface Props {
     data: Ref
@@ -88,7 +89,7 @@ const FORM = 'EngagementFormAdd'
 const engagementForm = reduxForm.reduxForm({
     form: FORM
 })(
-(props: FormProps & {record: EngagementRecord }) => { 
+(props: FormProps & {record: EngagementRecord } & { mode: ModeType }) => { 
     const start = () => {
         //props['dispatch'](EngagementAction.togglePreview(props.record));
         props['dispatch'](EngagementAction.confirmStart(props.record));
@@ -102,20 +103,23 @@ const engagementForm = reduxForm.reduxForm({
         onSubmit={ props.handleSubmit(props.submit) }>
             <ErrAlert errorMsg={ props.error } />
 
-            <div>
-                <FlatButton
-                    label="Start Engagement"
-                    onClick={start}
-                    disabled={props.record.state === 4}
-                    icon={<Play color="green"/>}
-                    />
-                <FlatButton
-                    label="Stop Engagement"
-                    onClick={stop}
-                    disabled={props.record.state === 0}
-                    icon={<Stop color="red"/>}
-                    />
-            </div>
+            { 
+                props.mode !== 'add'
+                && <div>
+                    <FlatButton
+                        label="Start Engagement"
+                        onClick={start}
+                        disabled={props.record.state === 4}
+                        icon={<Play color="green"/>}
+                        />
+                    <FlatButton
+                        label="Stop Engagement"
+                        onClick={stop}
+                        disabled={props.record.state === 0}
+                        icon={<Stop color="red"/>}
+                        />
+                </div>
+            }
 
             <div>
                 <Field
