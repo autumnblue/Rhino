@@ -23,6 +23,7 @@ import plunder from './plunder';
 import preview from './preview';
 import targetList from './targetList';
 import vectorEmail from '../ducks/VectorEmail';
+import feedback from '../ducks/Feedback';
 const reduxForm = require('redux-form');
 
 const app = combineReducers<AppState>({
@@ -49,7 +50,8 @@ const app = combineReducers<AppState>({
     form: reduxForm.reducer,
     preview: preview,
     targetList: targetList,
-    vectorEmail: vectorEmail
+    vectorEmail: vectorEmail,
+    feedback: feedback
 });
 
 export default app;

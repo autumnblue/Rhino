@@ -19,6 +19,7 @@ import Toggle from 'material-ui/Toggle';
 import Props from '../common/fields/CustomProps';
 import FieldProps from '../common/fields/FieldProps';
 import FlatButton from 'material-ui/FlatButton';
+import CircularProgress from 'material-ui/CircularProgress';
 
 const renderToggle = (props: Props & FieldProps) => {
     return <Toggle 
@@ -72,26 +73,6 @@ let emailServerForm = reduxForm.reduxForm({
                         component={ input } />
                 </div>
 
-                {/*
-                <div>
-                    <span>
-                        <Field
-                        name="configuration"
-                        label="Test this configuration"
-                        component={ input } />
-                    </span>
-                    <span>
-                        <FlatButton 
-                            onTouchTap={ 
-                                () => props.dispatch(EmailServerAction
-                                    .checkEmail(props.record, props.configurationValue))
-                            }
-                            label="Primary" 
-                            primary={true} />
-                    </span>
-                </div> 
-                */}
-
                 <div>
                     <span>
                         <Field
@@ -109,19 +90,13 @@ let emailServerForm = reduxForm.reduxForm({
                             disabled={ props.record.testRecipient == null || props.record.testRecipient == undefined }
                             primary={true} />
                     </span>
+                    <span>
+                        {
+                            props.record.checkEmailMessage
+                            && <CircularProgress size={30} thickness={2} />
+                        }
+                    </span>
                 </div> 
-
-                <div>
-                    {
-                        props.record.checkEmailMessage &&
-                        props.record.checkEmailMessage.length == 0
-                        ?
-                        <span style={ { color: "green" } }>OK.</span>
-                        :
-                        <span style={ { color: "red" } }>{ props.record.checkEmailMessage }</span>
-                        
-                    }
-                </div>
 
                 <Submit />
         </form>

@@ -21,6 +21,7 @@ import OAuthResultState from '../state/oAuthResult/OAuthResultState';
 import PlunderState from '../state/plunder/PlunderState';
 import PreviewState from '../state/preview/PreviewState';
 import VectorEmailState from '../state/vectorEmail/VectorEmailState';
+import FeedbackState from './FeedbackState';
 
 export interface AppState {
     navigation: MenuState
@@ -46,4 +47,5 @@ export interface AppState {
     preview: PreviewState
     targetList: TargetListState
     vectorEmail: VectorEmailState
+    feedback: FeedbackState
 }
