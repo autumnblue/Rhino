@@ -64,7 +64,7 @@ class FetchAction {
         .then(suggestions => {
             return suggestions.email_templates.map(suggestion => ({
                 id: suggestion.id,
-                text: suggestion.subject_header
+                text: suggestion.name
             }))
         });
     }
