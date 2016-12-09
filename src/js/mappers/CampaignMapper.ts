@@ -14,7 +14,6 @@ class CampaignMapperStatic implements Mapper {
         state.records = result.campaigns.map(dto => {             
             return {
                 client: refClient(dto, result.clients),
-                url: dto.url,
                 name: dto.name,
                 description: dto.description,
                 id: dto.id
@@ -28,7 +27,6 @@ class CampaignMapperStatic implements Mapper {
     toForm(dto: CampaignDto) {
         return {
             client: dto.client,
-            url: dto.url,
             name: dto.name,
             description: dto.description,
             id: dto.id
@@ -37,7 +35,6 @@ class CampaignMapperStatic implements Mapper {
 
     toDto(state: CampaignRecord): CampaignDto {
         return {
-            "url": state.url,
             "client": state.client && state.client.id,
             "description": state.description,
             "name": state.name,
