@@ -14,7 +14,7 @@ const EngagementAddModalContainer = (props: Props) =>
         controls={ controls(props) }
         submitId="engagement-submit-form"
         {...props}>
-            <EngagementForm />
+            <EngagementForm mode="add" />
     </AddModalContainer>
 
 const mapStateToProps = (app: AppState): Props => ({

@@ -17,7 +17,6 @@ import { App } from './views/App';
 import { Router, Route, browserHistory } from 'react-router';
 import UserRoot from './views/user/UserRoot';
 import ClientRoot from './views/client/ClientRoot';;
-import EngagementRoot from './views/engagement/EngagementRoot';
 import EmailTemplateRoot from './views/emailTemplate/EmailTemplateRoot';
 import ProfileRoot from './views/profile/ProfileRoot';
 import CampaignRoot from './views/campaign/CampaignRoot'; 
@@ -43,7 +42,7 @@ import { Identity } from './security/Identity';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 const darkBaseTheme = require('material-ui/styles/baseThemes/darkBaseTheme').default;
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import Engagement from './views/engagement/Engagement';
+import EngagementRoot from './views/engagement/EngagementRoot';
 import thunk from 'redux-thunk';
 
 darkBaseTheme.fontFamily = 'rajdhani';
@@ -76,7 +75,7 @@ ReactDom.render(
                     />
                  <Route 
                     path={ Dir.ENGAGEMENTS } 
-                    component={Engagement}
+                    component={EngagementRoot}
                     onEnter={ () => permit(Role.AUTHENTICATED) } 
                     />
                 <Route 
