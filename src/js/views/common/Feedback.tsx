@@ -20,13 +20,8 @@ const feedback = (props: Props) => {
             bodyStyle={
                 {
                     flexGrow: 0,
-                    width: '85%',
+                    height: '100%',
                     backgroundColor: 'black'
-                }
-            } 
-            style={
-                {
-                    width: '100%'
                 }
             }/>
     );

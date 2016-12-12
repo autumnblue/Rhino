@@ -93,7 +93,10 @@ let emailServerForm = reduxForm.reduxForm({
                     <span>
                         {
                             props.record.checkEmailMessage
-                            && <CircularProgress size={30} thickness={2} />
+                            && <CircularProgress
+                                style={{ padding: 10 }} 
+                                size={30} 
+                                thickness={2} />
                         }
                     </span>
                 </div> 
