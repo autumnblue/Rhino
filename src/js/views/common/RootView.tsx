@@ -67,7 +67,7 @@ abstract class RootView extends React.Component<Props, { view: 'grid' | 'table',
         super(props);
         this.props.onLoad();
         this.state = {
-            view: 'grid',
+            view: 'table',
             expanded: true
         }
     }
@@ -148,7 +148,7 @@ abstract class RootView extends React.Component<Props, { view: 'grid' | 'table',
 
     private onToggleView = () => {
         this.setState({
-            view: this.state.view == 'grid' ? 'table' : 'grid',
+            view: this.state.view == 'table' ? 'grid' : 'table',
             expanded: this.state.expanded
         });
     }

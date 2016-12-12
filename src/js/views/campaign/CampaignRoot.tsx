@@ -38,7 +38,7 @@ class CampaignRoot extends React.Component<Props, { addOpen: boolean, editOpen: 
                 <Column head="Description" headKey="description" />
                 <Column head="Client" headKey="client" dependee />
                 <ActionCol edit delete 
-                    editCallback={this.props.state.records}/>
+                    editCallback={this.onEdit}/>
             </Table>
         
         return <div>
