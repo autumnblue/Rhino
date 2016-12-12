@@ -17,7 +17,7 @@ class TargetListAction {
         new TargetListFlatViewService().read()
         .then(dto => {
             const state = new TargetListFlatViewState();
-            state.records = dto.results.map(dto => {
+            state.records = dto.target_lists.map(dto => {
                 const record = new TargetListFlatViewRecord();
                 record.description = dto.description
                 record.client = new Ref(dto.client.id, dto.client.name)
@@ -101,6 +101,10 @@ class TargetListAction {
                 context: TargetListAction.QUALIFIER
             });
         }
+    }
+
+    public update() {
+        
     }
       
 }
