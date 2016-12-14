@@ -9,7 +9,7 @@ export default reduce(
     new EmailServerState(), 
     new EmailServerRecord(),
     (state: EmailServerState, action: Action) => {
-        if(action.type == ActionType.EMAIL_SERVER_EMAIL_CHECK) {
+        if(action.type == ActionType.EMAIL_SERVER_EMAIL_CHECK_PENDING) {
             const newState = copy<EmailServerState>(state);
             newState.selectedRecord.checkEmailMessage = action.payload;
             return newState;
