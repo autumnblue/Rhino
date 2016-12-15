@@ -13,6 +13,7 @@ import { Column } from '../components/common/table/Column';
 import { ActionCol } from '../components/common/table/ActionCol';
 import { AppState } from '../../model/state/AppState'; 
 import TargetListEditModal from './modals/TargetListEditModal'
+import TargetListAddModal from './modals/TargetListAddModal'
 const Dropzone = require('react-dropzone');
 
 class TargetListRoot extends React.Component<Props, { addOpen: boolean, editOpen: boolean }> {
@@ -50,6 +51,7 @@ class TargetListRoot extends React.Component<Props, { addOpen: boolean, editOpen
         
         return <div>
             <TargetListEditModal />
+            <TargetListAddModal />
             <RootView
                 title="Target Lists"
                 onAdd={ this.onAdd }

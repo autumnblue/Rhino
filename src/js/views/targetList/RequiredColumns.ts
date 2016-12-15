@@ -2,8 +2,7 @@ export const required = [
     'firstname',
     'lastname',
     'email',
-    'timezone',
-    'id'
+    'timezone'
 ]
 
 export const isRequired = (name): boolean => {

@@ -25,9 +25,17 @@ class TargetListEditor extends React.Component<FieldProps & { handleSplit: Funct
     private columns: any[];
     
     constructor(props) {
+        //         let target = {};
+        // if(!this.props.input.value || this.props.input.value.length <= 0) {
+        //     required.forEach(required => {
+        //         target[required] = '';
+        //     })
+        //     target = [target]
+        // } else target = this.props.input.value;
+
         super(props);
         this.state = {
-            target: this.props.input.value,
+            target: this.props.input.value || [{firstname: '', lastname: '', email: '', timezone: ''},{firstname: '', lastname: '', email: '', timezone: ''}],
             isOpen: false,
             checkedColumns: new Array<string>()
         };
@@ -36,6 +44,7 @@ class TargetListEditor extends React.Component<FieldProps & { handleSplit: Funct
     public render() {
         const columns = this.state.target && this.state.target.length > 0
             ? Object.keys(this.state.target[0])
+            // .filter(key => key !== 'id')
             .map(key => {
                 return {
                     key,
@@ -104,12 +113,18 @@ class TargetListEditor extends React.Component<FieldProps & { handleSplit: Funct
                                         <ToolbarTitle text="Column" style={{ marginLeft: 20 }}/>
                                         <TextField
                                             hintText="New Column"
+                                            onChange={
+                                                (event) => {
+                                                    this.state.columnName = event.target.value;
+                                                    this.setState(Object.assign({}, this.state));
+                                                } }
                                             onBlur={
                                                 (event) => {
                                                     this.handleColumnInput(event.target.value);
                                                 } }
                                         />
                                         <IconButton
+                                            disabled={ !this.state.columnName }
                                             tooltip="Add Column"  
                                             onTouchTap={ this.handleColumnAdd }>
                                                 <AddCircle />
@@ -139,7 +154,7 @@ class TargetListEditor extends React.Component<FieldProps & { handleSplit: Funct
                                     rowGetter={this.rowGetter}
                                     rowsCount={this.props.input.value.length}
                                     minHeight={500}
-                                    onRowUpdated={this.onUpdateRow} 
+                                    onRowUpdated={ this.onUpdateRow } 
                                     rowRenderer={ this.row } />
                             </div>
                         </div>
@@ -223,7 +238,7 @@ class TargetListEditor extends React.Component<FieldProps & { handleSplit: Funct
     }
 
     private rowGetter = (rowIdx) => {
-        return copy<any>(this.props.input.value[rowIdx])
+        return copy<any>(this.state.target[rowIdx])
     }
 
     private onUpdateRow = (event) => {
@@ -235,6 +250,8 @@ class TargetListEditor extends React.Component<FieldProps & { handleSplit: Funct
             column[this.state.columnName] = ''
         })
 
+        this.state.columnName == null;
+
         this.setState(Object.assign({}, this.state));
     }
 
@@ -245,12 +262,20 @@ class TargetListEditor extends React.Component<FieldProps & { handleSplit: Funct
     }
 
     private handleRowAdd = () => {
-        const newRow = Object.assign({}, this.state.target[0])
-            
-        Object.keys(newRow)
-        .forEach(key => {
-            newRow[key] = '';
-        });
+        let newRow = {};
+        console.log(this.state.target);
+        if(this.state.target.length > 0) {
+            newRow = Object.assign({}, this.state.target[0])
+        
+            Object.keys(newRow)
+            .forEach(key => {
+                newRow[key] = '';
+            });
+        } else
+            //for empty rows
+            required.forEach(required => {
+                newRow[required] = '';
+            });
 
         this.state.target.push(newRow);
         this.setState(Object.assign({}, this.state));

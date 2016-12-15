@@ -35,7 +35,7 @@ const feedback = (props: Props) => {
 
                 contentStyle={ 
                     {
-                        color: 'blue'
+                        color: 'green'
                     } 
                 }
                 bodyStyle={

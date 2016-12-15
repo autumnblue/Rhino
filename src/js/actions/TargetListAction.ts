@@ -163,7 +163,7 @@ class TargetListAction {
        .then(() => {
             dispatch({
                 type: types.ALERT_INFO,
-                payload: "Created"
+                payload: `Created new Target List split from ${values.nickname}`
             });
 
            dispatch({
