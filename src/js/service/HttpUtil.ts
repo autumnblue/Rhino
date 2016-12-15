@@ -34,7 +34,7 @@ export const upload = async <T>(url: string, body: any, authz = true): Promise<T
 
 export const post = async <T>(url: string, body: any, authz = true): Promise<T> => {
     let headers: { [name: string]: string } = {
-        'Content-Type': 'application/x-www-form-urlencoded'
+        'Content-Type': 'application/json'
     }
     if(authz) await addAuthzHeader(headers);
     

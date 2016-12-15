@@ -52,6 +52,11 @@ let targetListForm = reduxForm.reduxForm({
         constructor() {
             super();
         }         
+
+        private handleSplit = (categorized: any[]) => {
+            const split = Object.assign({ target: categorized }, this.props.record);
+            TargetListAction.split(this.props.dispatch, split);
+        }
         
         public render() {
             
@@ -82,6 +87,7 @@ let targetListForm = reduxForm.reduxForm({
                
                 <Field
                     name="target"
+                    handleSplit={ this.handleSplit }
                     component={ TargetListEditor } />
                
                 <Submit />

@@ -1,4 +1,4 @@
-const required = [
+export const required = [
     'firstname',
     'lastname',
     'email',
@@ -6,10 +6,8 @@ const required = [
     'id'
 ]
 
-const isRequired = (name): boolean => {
+export const isRequired = (name): boolean => {
     return required.filter(str => {
         return name === str;
     }).length > 0
 }
-
-export default isRequired;

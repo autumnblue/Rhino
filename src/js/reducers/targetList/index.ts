@@ -35,4 +35,8 @@ export default reduce(new TargetListFlatViewState(), new TargetListFlatViewRecor
 
             return copy<TargetListFlatViewState>(state);
         }
+
+        if(action.type == ActionType.TARGET_LIST_SPLIT_SUCCESS) {
+            return copy<TargetListFlatViewState>(state);
+        }
     });

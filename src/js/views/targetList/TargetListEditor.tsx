@@ -16,9 +16,10 @@ import {
     ToolbarTitle } from 'material-ui/Toolbar';
 import AddCircle from 'material-ui/svg-icons/content/add-circle';
 import RemoveCircle from 'material-ui/svg-icons/content/remove-circle';
-import isRequired from './RequiredColumns';
+import { isRequired, required } from './RequiredColumns';
+import Checkbox from 'material-ui/Checkbox';
 
-class TargetListEditor extends React.Component<FieldProps, { target: any, isOpen: boolean, columnName?: string, selectedColumn?: string }> {
+class TargetListEditor extends React.Component<FieldProps & { handleSplit: Function }, { target: any, isOpen: boolean, columnName?: string, selectedColumn?: string, checkedColumns?: string[] }> {
     private selectedRow: number;
     private selectedCol: number;
     private columns: any[];
@@ -27,19 +28,29 @@ class TargetListEditor extends React.Component<FieldProps, { target: any, isOpen
         super(props);
         this.state = {
             target: this.props.input.value,
-            isOpen: false
+            isOpen: false,
+            checkedColumns: new Array<string>()
         };
     }
 
     public render() {
-        const columns = Object.keys(this.state.target[0])
+        const columns = this.state.target && this.state.target.length > 0
+            ? Object.keys(this.state.target[0])
             .map(key => {
                 return {
                     key,
                     name: key,
-                    editable: true
+                    editable: true,
+                    headerRenderer: isRequired(key) ? null: this.splittableHeader(key)
                 }
             })
+            : required.map(value => {
+                return {
+                    value,
+                    name: value,
+                    editable: true
+                }
+            });
 
         return (
             <div id="ss-dialog">
@@ -77,15 +88,19 @@ class TargetListEditor extends React.Component<FieldProps, { target: any, isOpen
                             <Toolbar style={ { backgroundColor: 'rgb(28,28,38)', marginBottom: 10, paddingBottom: 5 } }>
                                     <ToolbarGroup>
                                         <ToolbarTitle text="Row" />
-                                        <IconButton 
+                                        <IconButton
+                                            tooltip="Add Row" 
                                             onTouchTap={ this.handleRowAdd }>
                                                 <AddCircle />
                                         </IconButton>
-                                        <IconButton 
+                                        <IconButton
+                                            tooltip="Remove Row"  
                                             onTouchTap={ this.handleRowRemove }>
                                                 <RemoveCircle />
                                         </IconButton>
-                                    <ToolbarSeparator />
+
+                                        <ToolbarSeparator />
+                                        
                                         <ToolbarTitle text="Column" style={{ marginLeft: 20 }}/>
                                         <TextField
                                             hintText="New Column"
@@ -94,15 +109,25 @@ class TargetListEditor extends React.Component<FieldProps, { target: any, isOpen
                                                     this.handleColumnInput(event.target.value);
                                                 } }
                                         />
-                                        <IconButton 
+                                        <IconButton
+                                            tooltip="Add Column"  
                                             onTouchTap={ this.handleColumnAdd }>
                                                 <AddCircle />
                                         </IconButton>
                                         <IconButton
+                                            tooltip="Remove Column" 
                                             disabled={ isRequired(this.state.selectedColumn) } 
                                             onTouchTap={ this.handleColumnRemove }>
                                                 <RemoveCircle />
                                         </IconButton>
+
+                                        <ToolbarSeparator />
+
+                                        <RaisedButton
+                                            label="Split Selected & Save"
+                                            disabled={ this.state.checkedColumns.length == 0 }
+                                            default={true}
+                                            onTouchTap={ this.handleSplit }/>
                                     </ToolbarGroup>
                                 </Toolbar>            
    
@@ -115,12 +140,31 @@ class TargetListEditor extends React.Component<FieldProps, { target: any, isOpen
                                     rowsCount={this.props.input.value.length}
                                     minHeight={500}
                                     onRowUpdated={this.onUpdateRow} 
-                                    rowRenderer={ this.row }/>
+                                    rowRenderer={ this.row } />
                             </div>
                         </div>
                 </Dialog>
             </div>
         )
+    }
+
+    private handleSplit = () => {
+        const categorized = this.state.target
+            .map(target => {
+                let obj = {};
+                Object.keys(target).forEach(key => {
+                    if(this.state.checkedColumns.indexOf(key) > - 1)
+                        obj[key] = target[key];
+
+                    required.forEach(str => {
+                        obj[str] = target[str]
+                    })
+                })
+                return obj;            
+            });
+
+        //TargetListAction.create(this.props['dispatch'], categorized);
+        this.props.handleSplit(categorized);
     }
 
     private handleCellSelect = (cell) => {
@@ -131,12 +175,28 @@ class TargetListEditor extends React.Component<FieldProps, { target: any, isOpen
         this.setState(Object.assign({}, this.state)); 
     }
 
+    private splittableHeader = (key) => {
+        return (
+            <span>
+                <Checkbox
+                    onCheck={
+                        (event, isChecked) => {
+                            if(isChecked) 
+                                this.state.checkedColumns.push(key);
+                            else
+                                this.state.checkedColumns
+                                    .splice(this.state.checkedColumns.indexOf(key))
+                            this.setState(Object.assign({}, this.state));
+                        }
+                    } 
+                    label={ key } 
+                    style={{ marginRight: 4 }}/>
+            </span>
+        );
+    }
+
     private row = React.createClass({
         handleClick: (columns) => {
-            // columns.forEach(col => {
-            //     col.title=<AddCircle />
-            //     console.log(col);
-            // })
             this.columns = columns; //TODO remove instant columns property
         },
         render: function() { 

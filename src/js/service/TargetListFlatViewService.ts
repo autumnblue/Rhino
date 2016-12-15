@@ -14,7 +14,12 @@ class TargetListsFlatViewService extends CrudService<TargetListFlatViewDto, any>
 
     public async update(dto): Promise<any> {
         return http.patch<any>
-            (`${this.resource}${dto.id}/`, dto);
+            (`${this.base}/api/v2/target-lists-flat-view/${dto.id}/`, dto);
+    }
+
+    public async create(dto): Promise<any> {
+        return http.post<any>
+            (`${this.base}/api/v2/target-lists-flat-view`, dto);
     }
 }
 
