@@ -19,6 +19,7 @@ import Play from 'material-ui/svg-icons/av/play-arrow';
 import Stop from 'material-ui/svg-icons/av/stop';
 import Checkbox from 'material-ui/Checkbox'
 import { ModeType } from '../../../model/state/CrudState';
+// import FormProps from '../../common/FormProps';
 
 interface Props {
     data: Ref
@@ -51,11 +52,12 @@ const renderTextArea = (props: Props & FieldProps) => {
     />
 }
 
-const renderCheckbox = (props: Props & FieldProps) => {
-    return <Checkbox 
-        label={props.label}
-        checked={props.input.value ? true: false }
-        onCheck={props.input.onChange}
+// label={props.label}
+// checked={props.input.value ? true: false }
+// onCheck={props.input.onChange}
+const RenderCheckbox = (props: Props & FieldProps) => {
+    return <Checkbox {...props}
+
     />
 }
 
@@ -90,6 +92,15 @@ const engagementForm = reduxForm.reduxForm({
     form: FORM
 })(
 (props: FormProps & {record: EngagementRecord } & { mode: ModeType }) => { 
+    const available = () => {
+         return FetchAction.getTargetListSuggestionsForClient(props['dispatch'], props.record.clientId)
+                .then(results => {
+                    return results.map(result => {
+                        return <RenderCheckbox label={result.text} defaultChecked={false} />
+                    });
+                })
+    }
+
     const start = () => {
         //props['dispatch'](EngagementAction.togglePreview(props.record));
         props['dispatch'](EngagementAction.confirmStart(props.record));
@@ -190,7 +201,9 @@ const engagementForm = reduxForm.reduxForm({
             </div>
             
             <label>Target Lists</label>
-            <FieldArray name="targetLists" component={lists =>
+            { available }
+            {/*  
+            <FieldArray name="availableTargetLists" component={lists =>
                 (
                     <div>
                     {
@@ -203,7 +216,8 @@ const engagementForm = reduxForm.reduxForm({
                     }
                     </div>
                 )
-            } />
+            */}
+            }
             
             <SubmitButton submitId="engagement-submit-form" />
     </form>

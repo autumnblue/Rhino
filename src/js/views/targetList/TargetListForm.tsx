@@ -20,6 +20,7 @@ import ErrAlert from '../common/ErrorAlert';
 const ReactDataGrid = require('react-data-grid');
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField'
+import TargetListEditor from './TargetListEditor';
 
  //helper to generate a random date
 // function randomDate(start, end) {
@@ -52,34 +53,8 @@ let targetListForm = reduxForm.reduxForm({
             super();
         }         
         
-        private rowGetter = (rowIdx) => {
-            return this.props.record.target[rowIdx]
-        }
-
-        private addColumn(column: string, columns) {
-            if(column) {
-                columns.push({
-                    key: this.props.newColumnValue,
-                    name: this.props.newColumnValue,
-                    editable: true
-                })
-                //this.setState(this.state)
-            }
-        }
-
         public render() {
             
-
-            const columns = Object.keys(this.props.record.target[0])
-            .map(key => {
-                return {
-                    key,
-                    name: key,
-                    editable: true
-                }
-            })
-
-            // this.addColumn(this.props.newColumnValue, columns);                    
 
         return <form 
             onSubmit={ this.props.handleSubmit(this.props.submit) }>
@@ -105,57 +80,21 @@ let targetListForm = reduxForm.reduxForm({
                         component={ autoComplete } /> 
                 </div>
                
-                <RaisedButton 
-                    label="Add Row" 
-                    onTouchTap={ this.onAddRow }/>
-
-                <Field
-                    name="newColumn"
-                    label="Column Name"
-                    component={ tf } />
-                <RaisedButton 
-                    label="Add Column" 
-                    onTouchTap={ this.onColumnAdd }/>
-
                 <Field
                     name="target"
-                    component={
-                        (props) => <div id="spreadsheet">
-
-                            <ReactDataGrid
-                                enableCellSelect={true}
-                                columns={columns}
-                                rowGetter={this.rowGetter}
-                                rowsCount={this.props.record.target.length}
-                                minHeight={500}
-                                onRowUpdated={this.onUpdateRow} />
-                        </div>
-                    } />
+                    component={ TargetListEditor } />
                
                 <Submit />
         </form>
         }
-
-        private onUpdateRow = (event) => {
-            this.props.dispatch(TargetListAction.updateRow(event))
-        }
-
-        private onAddRow = (event) => {
-            this.props.dispatch(TargetListAction.addRow(event))
-        }
-
-        private onColumnAdd = () => {
-            
-        }
 }));
 
-// const selector = reduxForm.formValueSelector('TargetListForm')
+const selector = reduxForm.formValueSelector('TargetListForm')
 
 export default connect(
     (state: AppState) => {
-        // const newColumnValue = selector(state, 'newColumn')    
+        const newColumnValue = selector(state, 'newColumn')    
         return {
-            // newColumnValue,
             initialValues: state.targetList.selectedRecord,
             record: state.targetList.selectedRecord    
         }

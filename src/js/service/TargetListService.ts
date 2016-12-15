@@ -22,6 +22,11 @@ class TargetListsService extends CrudService<TargetListDto, any> {
         return http.get<{ target_lists: TargetListDto[] }>
             (`${this.resource}?exclude[]=*&include[]=nickname&include[]=id`);
     }
+
+    public async getSuggestionsForClient(id: number): Promise<{ target_lists: TargetListDto[] }> {
+        return http.get<{ target_lists: TargetListDto[] }>
+            (`${this.resource}?filter{client.id}=${id}&exclude[]=*&include[]=nickname&include[]=id&per_page=30`);
+    }
 }
 
 export default TargetListsService;

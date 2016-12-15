@@ -156,6 +156,17 @@ class FetchAction {
             }))
         })
     }
+
+    public getTargetListSuggestionsForClient(dispatch, client: number): Promise<Ref[]> {
+        return new TargetListService()
+        .getSuggestionsForClient(client)
+        .then(suggestions => {
+            return suggestions.target_lists.map(suggestion => ({
+                id: suggestion.id,
+                text: suggestion.nickname
+            }))
+        })
+    }
 }
 
 export default new FetchAction();

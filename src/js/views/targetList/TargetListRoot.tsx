@@ -41,13 +41,11 @@ class TargetListRoot extends React.Component<Props, { addOpen: boolean, editOpen
         })
 
         const table = <Table data={ this.props.state.records }>
-            <Column head="State" headKey="state" />
-            <Column head="Title" headKey="name" />
+            <Column head="Nickname" headKey="nickname" />
             <Column head="Description" headKey="description" />
-            <Column head="Campaign" headKey="campaign" dependee />
-            <Column head="Landing Page" headKey="landingPage" dependee />
+            <Column head="Client" headKey="client" dependee />
             <ActionCol edit delete 
-                editCallback={(id) => this.onEdit}/>
+                editCallback={(id) => this.onEdit(id)}/>
         </Table>
         
         return <div>

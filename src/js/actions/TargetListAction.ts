@@ -4,8 +4,10 @@ import TargetListFlatViewState from '../model/state/targetListFlatView/TargetLis
 import TargetListService from '../service/TargetListService';
 import TargetListState from '../model/state/targetList/TargetListState'
 import TargetListFlatViewRecord from '../model/state/targetListFlatView/TargetListFlatViewRecord'
+import TargetListFlatViewDto from '../model/dto/targetListFlatView/TargetListFlatViewDto';
 import { ActionType } from './ActionType';
 import Ref from '../model/state/RefZ';
+import handleErr from '../validation/submit/SubmitValidationHandlerZ';
 
 const LOAD  = 'skiff/crud/LOAD';
 
@@ -103,10 +105,36 @@ class TargetListAction {
         }
     }
 
-    public update() {
-        
-    }
-      
+    public update(dispatch, values: TargetListFlatViewRecord) {
+        const dto: any= {
+            description: values.description,
+            client: values.client.id,
+            nickname: values.nickname,
+            target: values.target,
+            id: values.id
+        }
+       return new TargetListFlatViewService().update(dto)
+       .then(() => {
+           dispatch(this.load());
+
+           dispatch({
+               type: ActionType.CRUD_EDIT_SUCCESS,
+               context: TargetListAction.QUALIFIER
+           })
+       })
+       .catch(err => {
+           return handleErr(err, <any>{
+                toForm(dto) {
+                    return {
+                        description: dto.description,
+                        client: dto.client.id,
+                        nickname: dto.nickname,
+                        target: dto.target
+                    }
+                }
+            });
+       });
+    }      
 }
 
 export default new TargetListAction();

@@ -107,7 +107,7 @@ export const patch = async <T>(url: string, body: any, authz = true): Promise<T>
     if(authz) await addAuthzHeader(headers);
     
     return await popsicle.request({
-        method: 'PUT',
+        method: 'PATCH',
         url: url,
         body: body,
         headers: headers
