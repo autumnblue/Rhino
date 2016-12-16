@@ -15,6 +15,8 @@ import { AppState } from '../../model/state/AppState';
 import TargetListEditModal from './modals/TargetListEditModal'
 import TargetListAddModal from './modals/TargetListAddModal'
 const Dropzone = require('react-dropzone');
+const fs = require('browserify-fs');
+//const fs = require('fs');
 
 class TargetListRoot extends React.Component<Props, { addOpen: boolean, editOpen: boolean }> {
     public render() {
@@ -64,7 +66,7 @@ class TargetListRoot extends React.Component<Props, { addOpen: boolean, editOpen
     }
 
     private onDrop = (files: any[]) => {
-        this.props.dispatch(TargetListAction.upload(files[0]));
+        this.props.dispatch(TargetListAction.upload({ file: files[0] }));
     }
 
     private onAdd = () => {

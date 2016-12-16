@@ -39,4 +39,10 @@ export default reduce(new TargetListFlatViewState(), new TargetListFlatViewRecor
         if(action.type == ActionType.TARGET_LIST_SPLIT_SUCCESS) {
             return copy<TargetListFlatViewState>(state);
         }
+
+        if(action.type == ActionType.TARGET_LIST_UPLOAD) {
+            state.mode = 'add'
+            state.selectedRecord = action.payload;
+            return copy<TargetListFlatViewState>(state);
+        }
     });

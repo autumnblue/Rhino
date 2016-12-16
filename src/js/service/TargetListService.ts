@@ -13,7 +13,7 @@ class TargetListsService extends CrudService<TargetListDto, any> {
             (`${this.resource}?exclude[]=client.*&include[]=client.name&include[]=client.id&exclude[]=target.*&include[]=target.id&include[]=target.email`);
     }
 
-    public async uploadCsv(file): Promise<any> {
+    public async uploadCsv(file): Promise< { target_list: TargetListDto }> {
         return http.upload<any>
             (`${this.resource}csv-file`, file);
     }

@@ -61,11 +61,27 @@ class TargetListAction {
          return (dispatch) => {
             new TargetListService().uploadCsv(csv)
             .then(dto => {
+                const record = new TargetListFlatViewRecord();
+                record.client = null,
+                record.description = dto.target_list.description,
+                record.nickname = dto.target_list.nickname,
+                record.target = <any>dto.target_list.target
+
                 dispatch({
-                    type: ActionType.CRUD_OPEN_ADD,
+                    type: ActionType.TARGET_LIST_UPLOAD,
+                    payload: record,
                     context: TargetListAction.QUALIFIER
                 });
             })
+            .catch(err => {
+                if(err.non_field_errors) {
+                    dispatch({
+                        type: types.ALERT_ERR,
+                        payload: `err.non_field_errors`
+                    });
+                }
+
+            });
         }
     }
 
@@ -183,6 +199,13 @@ class TargetListAction {
                 }
             });
        });
+    }
+
+    public alert(dispatch, msg: string) {
+        dispatch({
+            type: types.ALERT_ERR,
+            payload: msg
+        });
     }
 
     public update(dispatch, values: TargetListFlatViewRecord) {

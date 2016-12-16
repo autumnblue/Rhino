@@ -19,20 +19,12 @@ import RemoveCircle from 'material-ui/svg-icons/content/remove-circle';
 import { isRequired, required } from './RequiredColumns';
 import Checkbox from 'material-ui/Checkbox';
 
-class TargetListEditor extends React.Component<FieldProps & { handleSplit: Function }, { target: any, isOpen: boolean, columnName?: string, selectedColumn?: string, checkedColumns?: string[] }> {
+class TargetListEditor extends React.Component<FieldProps & { handleSplit: Function, feedbackFn(msg: string): void }, { target: any, isOpen: boolean, columnName?: string, selectedColumn?: string, checkedColumns?: string[] }> {
     private selectedRow: number;
     private selectedCol: number;
     private columns: any[];
     
     constructor(props) {
-        //         let target = {};
-        // if(!this.props.input.value || this.props.input.value.length <= 0) {
-        //     required.forEach(required => {
-        //         target[required] = '';
-        //     })
-        //     target = [target]
-        // } else target = this.props.input.value;
-
         super(props);
         this.state = {
             target: this.props.input.value || [{firstname: '', lastname: '', email: '', timezone: ''}, {firstname: '', lastname: '', email: '', timezone: ''}],
@@ -297,14 +289,22 @@ class TargetListEditor extends React.Component<FieldProps & { handleSplit: Funct
     }
 
     private handleOk = () => {
-        this.props.input.onChange(this.state.target);
-        this.close();
-    }
-}
+        const colKeys = Object.keys(this.state.target[0]);
+        let inError = false;
+        
+        required.forEach(required => {
+            if(colKeys.indexOf(required) == -1) {
+                inError = true;
+                this.props.feedbackFn(`${required} column is required`);
+                //TODO break
+            }
+        })
 
-interface Props {
-    target: { [key:string]: string }[],
-    handleUpdateRow(event): void
+        if(!inError) {
+            this.props.input.onChange(this.state.target);
+            this.close();
+        }
+    }
 }
 
 export default TargetListEditor;

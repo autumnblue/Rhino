@@ -57,6 +57,10 @@ let targetListForm = reduxForm.reduxForm({
             const split = Object.assign({ target: categorized }, this.props.record);
             TargetListAction.split(this.props.dispatch, split);
         }
+
+        private feedbackFn = (msg: string) => {
+            TargetListAction.alert(this.props.dispatch, msg);
+        }
         
         public render() {
             
@@ -87,6 +91,7 @@ let targetListForm = reduxForm.reduxForm({
                
                 <Field
                     name="target"
+                    feedbackFn={ this.feedbackFn }
                     handleSplit={ this.handleSplit }
                     component={ TargetListEditor } />
                
