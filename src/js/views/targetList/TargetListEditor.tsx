@@ -35,7 +35,7 @@ class TargetListEditor extends React.Component<FieldProps & { handleSplit: Funct
 
         super(props);
         this.state = {
-            target: this.props.input.value || [{firstname: '', lastname: '', email: '', timezone: ''},{firstname: '', lastname: '', email: '', timezone: ''}],
+            target: this.props.input.value || [{firstname: '', lastname: '', email: '', timezone: ''}, {firstname: '', lastname: '', email: '', timezone: ''}],
             isOpen: false,
             checkedColumns: new Array<string>()
         };
@@ -44,7 +44,7 @@ class TargetListEditor extends React.Component<FieldProps & { handleSplit: Funct
     public render() {
         const columns = this.state.target && this.state.target.length > 0
             ? Object.keys(this.state.target[0])
-            // .filter(key => key !== 'id')
+            .filter(key => key != 'id')
             .map(key => {
                 return {
                     key,
@@ -113,18 +113,13 @@ class TargetListEditor extends React.Component<FieldProps & { handleSplit: Funct
                                         <ToolbarTitle text="Column" style={{ marginLeft: 20 }}/>
                                         <TextField
                                             hintText="New Column"
-                                            onChange={
-                                                (event) => {
-                                                    this.state.columnName = event.target.value;
-                                                    this.setState(Object.assign({}, this.state));
-                                                } }
                                             onBlur={
                                                 (event) => {
                                                     this.handleColumnInput(event.target.value);
                                                 } }
                                         />
                                         <IconButton
-                                            disabled={ !this.state.columnName }
+                                            disabled={ false /*!this.state.columnName*/ }
                                             tooltip="Add Column"  
                                             onTouchTap={ this.handleColumnAdd }>
                                                 <AddCircle />
@@ -246,16 +241,23 @@ class TargetListEditor extends React.Component<FieldProps & { handleSplit: Funct
     }
 
     private handleColumnAdd = () => {
+        if(!this.state.columnName) return;
+        
         this.state.target.forEach(column => {
             column[this.state.columnName] = ''
         })
 
-        this.state.columnName == null;
+        //this.state.columnName == null;
 
         this.setState(Object.assign({}, this.state));
     }
 
     private handleColumnInput = (value) => {
+        // onChange={
+        // (event) => {
+        //     this.state.columnName = event.target.value;
+        //     this.setState(Object.assign({}, this.state));
+        // } }
         this.state.columnName = value;
 
         this.setState(Object.assign({}, this.state));
@@ -263,19 +265,19 @@ class TargetListEditor extends React.Component<FieldProps & { handleSplit: Funct
 
     private handleRowAdd = () => {
         let newRow = {};
-        console.log(this.state.target);
-        if(this.state.target.length > 0) {
+        // console.log(this.state.target);
+        // if(this.state.target.length > 0) {
             newRow = Object.assign({}, this.state.target[0])
         
             Object.keys(newRow)
             .forEach(key => {
                 newRow[key] = '';
             });
-        } else
-            //for empty rows
-            required.forEach(required => {
-                newRow[required] = '';
-            });
+        // } else
+        //     //for empty rows
+        //     required.forEach(required => {
+        //         newRow[required] = '';
+        //     });
 
         this.state.target.push(newRow);
         this.setState(Object.assign({}, this.state));
