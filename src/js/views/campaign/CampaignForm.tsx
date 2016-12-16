@@ -50,12 +50,6 @@ let campaignForm = reduxForm.reduxForm({
                         label="Description"
                         component={ textArea } />
                 </div>
-                <div>
-                    <Field
-                        name="url"
-                        label="URL"
-                        component={ input } />
-                </div>
 
                 <Submit />
         </form>
