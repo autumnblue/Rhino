@@ -34,7 +34,7 @@ export const upload = async <T>(url: string, body: any, authz = true): Promise<T
 
 export const post = async <T>(url: string, body: any, authz = true): Promise<T> => {
     let headers: { [name: string]: string } = {
-        'Content-Type': 'application/x-www-form-urlencoded'
+        'Content-Type': 'application/json'
     }
     if(authz) await addAuthzHeader(headers);
     
@@ -107,7 +107,7 @@ export const patch = async <T>(url: string, body: any, authz = true): Promise<T>
     if(authz) await addAuthzHeader(headers);
     
     return await popsicle.request({
-        method: 'PUT',
+        method: 'PATCH',
         url: url,
         body: body,
         headers: headers

@@ -15,6 +15,8 @@ class EngagementRecord implements Record {
     state: number;
     path: string;
     id: number;
+    availableTargetLists? = new Array<Ref>(); //transient
+    clientId?: number; //transient
 }
 
 export default EngagementRecord;

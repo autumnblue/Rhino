@@ -25,8 +25,11 @@ export const EditModalContainer = (props: Props) => {
     }
 
     const children = React.Children.map(props.children, child => {
+        const presentSubmit = child['props'] 
+            && child['props'].submit            
+
         return React.cloneElement(child as React.ReactElement<any>,
-            { submit: onSubmit, values: props.state });
+            { submit: presentSubmit || onSubmit, values: props.state });
     });
 
     return (

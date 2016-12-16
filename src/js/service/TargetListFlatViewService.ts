@@ -7,9 +7,19 @@ class TargetListsFlatViewService extends CrudService<TargetListFlatViewDto, any>
         super('target-lists-flat-view');
     }
 
-    public async read(): Promise<{ results: TargetListFlatViewDto[] }> {
+    public async read(): Promise<{ target_lists: TargetListFlatViewDto[] }> {
         return http.get<any>
-            (`${this.resource}?per_page=60`);
+            (`${this.base}/api/v2/target-lists-flat-view/?per_page=60`);
+    }
+
+    public async update(dto): Promise<any> {
+        return http.patch<any>
+            (`${this.base}/api/v2/target-lists-flat-view/${dto.id}/`, dto);
+    }
+
+    public async create(dto): Promise<any> {
+        return http.post<any>
+            (`${this.base}/api/v2/target-lists-flat-view`, dto);
     }
 }
 

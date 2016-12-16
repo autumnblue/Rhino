@@ -6,25 +6,47 @@ import FeedbackState from '../../model/state/FeedbackState';
 
 //https://github.com/callemall/material-ui/issues/2811#issuecomment-169441872
 const feedback = (props: Props) => {
-    return (
-        <Snackbar
-            open={ !!props.state.errMsg }
-            message={props.state.errMsg || ''}
-            autoHideDuration={ 10000 }
+    if(props.state.errMsg) {
+        return (
+            <Snackbar
+                open={ true }
+                message={props.state.errMsg || ''}
+                autoHideDuration={ 10000 }
 
-            contentStyle={ 
-                {
-                    color: 'red'
-                } 
-            }
-            bodyStyle={
-                {
-                    flexGrow: 0,
-                    height: '100%',
-                    backgroundColor: 'black'
+                contentStyle={ 
+                    {
+                        color: 'red'
+                    } 
                 }
-            }/>
-    );
+                bodyStyle={
+                    {
+                        flexGrow: 0,
+                        height: '100%',
+                        backgroundColor: 'black'
+                    }
+                }/>
+        )
+    } else if (props.state.infoMsg) {
+        return (
+            <Snackbar
+                open={ true }
+                message={props.state.infoMsg || ''}
+                autoHideDuration={ 10000 }
+
+                contentStyle={ 
+                    {
+                        color: 'green'
+                    } 
+                }
+                bodyStyle={
+                    {
+                        flexGrow: 0,
+                        height: '100%',
+                        backgroundColor: 'black'
+                    }
+                }/>
+        )
+    } else return null;
 }
 
 interface Props {

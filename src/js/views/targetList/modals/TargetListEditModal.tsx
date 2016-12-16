@@ -6,6 +6,10 @@ import TargetListState from '../../../model/state/targetList/TargetListState';
 import TargetListForm from '../TargetListForm';
 import { AppState } from '../../../model/state/AppState';
 
+// const onSubmit = (values, arg0, arg1) => {
+//     TargetListAction.update(arg1.record)
+// }
+
 const TargetListEditModal = (props: Props) => {
     return <EditModalContainer
         title="Edit Target List"

@@ -5,13 +5,14 @@ import * as http from './HttpUtil';
 
 abstract class CrudService<T extends Dto, U extends PagedDto> {
     protected resource: string;
+    protected base: string;
 
     constructor(resourceName: string) {
-        const base = Identity
+        this.base = Identity
             .Server
             .getBaseUrl();
         
-        this.resource = `${base}/api/v1/${resourceName}/`;
+        this.resource = `${this.base}/api/v1/${resourceName}/`;
     }
 
     public async create(dto: T): Promise<T> {
