@@ -21,6 +21,7 @@ import OAuthResultState from '../state/oAuthResult/OAuthResultState';
 import PlunderState from '../state/plunder/PlunderState';
 import PreviewState from '../state/preview/PreviewState';
 import VectorEmailState from '../state/vectorEmail/VectorEmailState';
+import ResultEventState from '../state/resultEvent/ResultEventState';
 import FeedbackState from './FeedbackState';
 
 export interface AppState {
@@ -48,4 +49,5 @@ export interface AppState {
     targetList: TargetListState
     vectorEmail: VectorEmailState
     feedback: FeedbackState
+    resultEvent: ResultEventState
 }

@@ -11,7 +11,7 @@ body {
 #content {
     text-align: center;
     min-height: 80vh;
-    margin: 95px 50px 0px 50px;
+    margin: 105px 50px 0px 50px;
 }
 
 #content-body {
@@ -119,10 +119,11 @@ body {
 #ribbon {
     text-align: left;
     color: white;
-    background-color: rgba(28,28,38, .6);
+    background-color: rgba(28,28,38, .85);
     /*background-color: rgba(215,64,55, .7);*/
     width: 100%;
     font-size: 18px;
+    display: table;
 }
 
 #ribbon a:link {
@@ -141,6 +142,8 @@ body {
 
 #ribbon li {
     padding: 10px 0px 10px 0px;
+    height: 48px;
+    padding-top: 12px;
 }
 
 #ribbon li span {
@@ -168,6 +171,9 @@ body {
 
 #gutter {
     background-color: rgb(215,64,55);
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    margin-top: 5px;
 }
 
 #gutter li a {
@@ -698,3 +704,76 @@ ul.dialog-context {
     padding: 3px;
     overflow: hidden;
 }
+
+#right-hand-menu {
+    display: inline;
+}
+
+.list-inline {
+    display: inline;
+}
+
+#ribbon #right-hand-menu {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: right;
+    padding-right: 50px;
+}
+
+#ribbon #left-hand-menu {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: left;
+    padding-left: 50px;
+}
+
+.triangle-up {
+    width: 0; 
+    height: 0; 
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid white;
+    position:relative;
+    bottom: -7px;
+    margin: auto;
+    width: 10px;
+}
+.triangle-up:after{
+    content:'';
+    width: 0; 
+    height: 0; 
+    border-left: 9px solid transparent;
+    border-right: 9px solid transparent;
+    border-bottom: 9px solid rgb(215,64,55);  
+    position:absolute;
+    top:1px;
+    left:-9px;
+}
+
+.icon-menu-item:hover {
+    background-color: rgb(43, 43, 53);
+}
+
+/*.icon-menu-item-selected:before{
+    content:'';
+    width: 0; 
+    height: 0; 
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid white;
+    position:absolute;
+    bottom:-1px;
+    left:15px;
+}
+
+.icon-menu-item-selected:after{
+    content:'';
+    width: 0; 
+    height: 0; 
+    border-left: 9px solid transparent;
+    border-right: 9px solid transparent;
+    border-bottom: 9px solid #1C1C26;
+    position:absolute;
+    bottom:-1px;
+    left:16px;
+}*/

@@ -17,6 +17,7 @@ export class Menu extends React.Component<MenuProps, void> {
                             { children }
                         </span>
                 </a>
+                { this.props.selected && <div className="triangle-up"></div> }
             </li>
         )
     }

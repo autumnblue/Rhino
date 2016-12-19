@@ -30,8 +30,15 @@ export const reducer: Reducer<MenuState> = (state = defaultState, action: Action
 
     switch(action.type) {
         case(ActionType.MENU_CLICK_ID):
-            unselectAll(newState);
+            newState.config.selected = false;
+            newState.mail.selected = false;
             newState.identity.selected = true;
+            return newState;
+
+        case(ActionType.MENU_UNCLICK_ID):
+            newState.config.selected = false;
+            newState.mail.selected = false;
+            newState.identity.selected = false;
             return newState;
 
         case(ActionType.MENU_CLICK_PROJECTS):
@@ -60,12 +67,22 @@ export const reducer: Reducer<MenuState> = (state = defaultState, action: Action
             return newState;
 
         case(ActionType.MENU_CLICK_CONFIG):
-            unselectAll(newState);
+            newState.config.selected = true;
+            newState.mail.selected = false;
+            newState.identity.selected = false;
             newState.config.selected = true;
             return newState;
 
+        case(ActionType.MENU_UNCLICK_CONFIG):
+            newState.config.selected = false;
+            newState.mail.selected = false;
+            newState.identity.selected = false;
+            return newState;
+
         case(ActionType.MENU_CLICK_MAIL):
-            unselectAll(newState);
+            newState.config.selected = false;
+            newState.mail.selected = true;
+            newState.identity.selected = false;
             newState.mail.selected = true;
             return newState;
 

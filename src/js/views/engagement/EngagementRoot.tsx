@@ -19,6 +19,7 @@ import EmailTemplateAddModal from '../emailTemplate/modals/EmailTemplateAddModal
 import EmailServerAddModal from '../emailServer/modals/EmailServerAddModal';
 import LandingPageAddModal from '../landingPage/modals/LandingPageAddModal';
 import RedirectPageAddModal from '../redirectPage/modals/RedirectPageAddModal';
+import ResultEventModal from '../resultEvent/ResultEventModal';
 import Preview from './Preview';
 import FlatButton from 'material-ui/FlatButton';
 import FilterList from 'material-ui/svg-icons/content/filter-list';
@@ -91,6 +92,7 @@ class EngagementRoot extends React.Component<Props, { addOpen: boolean, editOpen
             <EmailTemplateAddModal />
             <LandingPageAddModal />
             <RedirectPageAddModal />
+            <ResultEventModal />
             
             <RootView
                 title="Engagements"

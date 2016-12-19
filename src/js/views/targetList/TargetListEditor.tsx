@@ -65,6 +65,7 @@ class TargetListEditor extends React.Component<FieldProps & { handleSplit: Funct
                 </div>
 
                 <Dialog
+                    autoScrollBodyContent={true}
                     title="Target List Editor"
                     actions={[,
                         <FlatButton

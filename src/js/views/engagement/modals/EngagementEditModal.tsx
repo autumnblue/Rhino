@@ -8,8 +8,11 @@ import EngagementRecord from '../../../model/state/engagement/EngagementRecord';
 import { AppState } from '../../../model/state/AppState';
 import controls from '../form/FormControls';
 import { Control } from '../../components/common/Controls';
+import { view } from '../../../ducks/ResultEvent'
 
 const EngagementEditModal = (props: Props) => {
+    const selectedRecord = props.state.selectedRecord as EngagementRecord;
+
     return <EditModalContainer
         title="Edit Engagement"
         action={ EngagementAction }
@@ -21,6 +24,14 @@ const EngagementEditModal = (props: Props) => {
                         props.dispatch(EngagementAction.togglePreview(props.state.selectedRecord as EngagementRecord))
                     } }>
                         PREVIEW
+                    </button>
+                </Control>,
+                <Control key="results">
+                    <button onClick={ () => {
+                        props.dispatch(view(selectedRecord.name, selectedRecord.id))
+                    } }>
+                        <span className="glyphicon glyphicon-eye-open"></span>
+                        RESULTS
                     </button>
                 </Control>
             ]
