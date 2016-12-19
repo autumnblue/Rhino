@@ -1,6 +1,5 @@
 import { CrudState } from '../CrudState';
 import ResultEventRecord from './ResultEventRecord';
-import ResultEventWidget from './ResultEventWidget';
 
 class ResultEventState extends CrudState {
     constructor() {
@@ -9,7 +8,7 @@ class ResultEventState extends CrudState {
 
     records: ResultEventRecord[];
     selectedRecord: ResultEventRecord;
-    widgetState: ResultEventWidget;
+    engagmentName?: string;
 }
 
 export default ResultEventState;

@@ -10,6 +10,12 @@ class ActionCreator {
         });
     } 
 
+    public unclickIdentity(dispatch) {
+        dispatch({
+            type: ActionType.MENU_UNCLICK_ID
+        });
+    }
+
     public clickProjects(dispatch) {
         dispatch({
             type: ActionType.MENU_CLICK_PROJECTS
@@ -43,6 +49,12 @@ class ActionCreator {
     public clickConfig(dispatch) {
         dispatch({
             type: ActionType.MENU_CLICK_CONFIG
+        });
+    }
+
+    public unclickConfig(dispatch) {
+        dispatch({
+            type: ActionType.MENU_UNCLICK_CONFIG
         });
     }
 

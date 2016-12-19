@@ -24,6 +24,7 @@ import preview from './preview';
 import targetList from './targetList';
 import vectorEmail from '../ducks/VectorEmail';
 import feedback from '../ducks/Feedback';
+import resultEvent from '../ducks/ResultEvent';
 const reduxForm = require('redux-form');
 
 const app = combineReducers<AppState>({
@@ -51,6 +52,7 @@ const app = combineReducers<AppState>({
     preview: preview,
     targetList: targetList,
     vectorEmail: vectorEmail,
+    resultEvent: resultEvent,
     feedback: feedback
 });
 

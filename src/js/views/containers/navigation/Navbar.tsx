@@ -8,14 +8,19 @@ import { MenuState } from '../../../model/state/menu/MenuState';
 import { NaviAction } from '../../../actions/navigation/NaviAction';
 import { Dir } from '../../../common/Constants';
 import IconButton from 'material-ui/IconButton';
-import MailOutline from 'material-ui/svg-icons/communication/mail-outline';
 import Settings from 'material-ui/svg-icons/action/settings';
 import { Identity } from '../../../security/Identity'
+import IconMenu from 'material-ui/IconMenu';
+import MenuItem from 'material-ui/MenuItem';
+import AccountCircle from 'material-ui/svg-icons/action/account-circle';
+import MailOutline from 'material-ui/svg-icons/communication/mail-outline';
+import { Link } from 'react-router';
 
 class Container extends React.Component<Props, void> {
     public render() {
         if(Identity.isLoggedIn()) { 
             return (
+                <div>
                 <MenuBar>
                     <Menu 
                         selected={ this.props.state.projects.selected }
@@ -109,38 +114,54 @@ class Container extends React.Component<Props, void> {
                                     Scraper Useragents
                             </Item>
                     </Menu>
+                    
+                        <IconMenu
+                                className={`icon-menu-item ${this.props.state.mail.selected ? 'icon-menu-item-selected' : ''}`}
+                                iconButtonElement={<IconButton><MailOutline /></IconButton>}
+                                anchorOrigin={{horizontal: 'middle', vertical: 'bottom'}}
+                                targetOrigin={{horizontal: 'middle', vertical: 'top'}}
+                                onTouchTap={ this.onMailClick }
+                                 menuStyle={{ backgroundColor: '#1C1C26', border: '1px solid white' }}
+                                 animated={true}>
+                                { null }
+                        </IconMenu>
 
-                    <Menu 
-                        selected={ this.props.state.mail.selected }
-                        href="/"
-                        onClick={ this.onMailClick }>
-                            <span className="glyphicon glyphicon-envelope"></span>
-                    </Menu>
+                        <IconMenu
+                                className={`icon-menu-item ${this.props.state.config.selected ? 'icon-menu-item-selected' : ''}`}
+                                iconButtonElement={<IconButton><Settings /></IconButton>}
+                                anchorOrigin={{horizontal: 'middle', vertical: 'bottom'}}
+                                targetOrigin={{horizontal: 'middle', vertical: 'top'}}
+                                menuStyle={{ backgroundColor: '#1C1C26', border: '1px solid white' }}
+                                onTouchTap={ this.onConfigClick }
+                                onRequestChange={(open)=> !open && this.offConfigClick() }
+                                touchTapCloseDelay={1} 
+                                animated={true}>
+                                        <MenuItem 
+                                                primaryText="Users" 
+                                                containerElement={<Link to={Dir.USERS} />} />
+                                        <MenuItem primaryText="Data Management" />
+                        </IconMenu>
+                        <IconMenu
+                                className={`icon-menu-item ${this.props.state.identity.selected ? 'icon-menu-item-selected' : '' }`}
+                                iconButtonElement={<IconButton><AccountCircle /></IconButton>}
+                                anchorOrigin={{horizontal: 'middle', vertical: 'bottom'}}
+                                targetOrigin={{horizontal: 'middle', vertical: 'top'}}
+                                onTouchTap={ this.onIdentityClick }
+                                onRequestChange={(open)=> !open && this.offIdentityClick() }
+                                touchTapCloseDelay={1} 
+                                menuStyle={{ backgroundColor: '#1C1C26', border: '1px solid white' }}
+                                animated={true}>
+                                        <MenuItem 
+                                                primaryText="Profile"
+                                                containerElement={<Link to={Dir.PROFILE} />} />
+                                        <MenuItem 
+                                                primaryText="Logout" 
+                                                onTouchTap={this.onLogoutClick}/>
+                        </IconMenu>
 
-                    <Menu 
-                        selected={ this.props.state.config.selected }
-                        onClick={ this.onConfigClick }>
-                            <span className="glyphicon glyphicon-cog"></span>
-                            <Item href={ Dir.USERS }>
-                                    Users
-                            </Item>
-                            <Item href="">
-                                    Data Management
-                            </Item> 
-                    </Menu>
-
-                    <Menu 
-                        selected={ this.props.state.identity.selected }
-                        onClick={ this.onIdentityClick }>
-                            <span className="glyphicon glyphicon-user"></span>
-                            <Item href="/profile">
-                                    Profile
-                            </Item>
-                            <Item onClick={ this.onLogoutClick }>
-                                    Logout
-                            </Item> 
-                    </Menu>
                 </MenuBar>
+                        
+                </div>
             );
         } else {
             return (
@@ -156,6 +177,11 @@ class Container extends React.Component<Props, void> {
                 </MenuBar>
             );
         }
+    }
+
+    private offIdentityClick = () => {
+            NaviAction
+                .unclickIdentity(this.props.dispatch);
     }
 
     private onIdentityClick = () => {
@@ -186,6 +212,11 @@ class Container extends React.Component<Props, void> {
     private onConfigClick = () => {
         NaviAction
             .clickConfig(this.props.dispatch);
+    }
+
+    private offConfigClick = () => {
+        NaviAction
+            .unclickConfig(this.props.dispatch);
     }
 
     private onLogoutClick = () => {
