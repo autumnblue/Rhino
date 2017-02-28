@@ -45,7 +45,7 @@ abstract class ActionCreator<S extends CrudService<Dto, PagedDto>> {
         });
     }
 
-    public update(dispatch, values: Record): Promise<Record> {
+    public update(dispatch, values: Record): Promise<any> {
         const map = this.mapper;
         const dto = map.toDto(values)
         return new this.ServiceCls().update(dto)
@@ -62,7 +62,7 @@ abstract class ActionCreator<S extends CrudService<Dto, PagedDto>> {
         })
     }
 
-    public create(dispatch, values: Record): Promise<Record> {
+    public create(dispatch, values: Record): Promise<any> {
         const map = this.mapper;
         const dto = map.toDto(values)
         return new this.ServiceCls().create(dto)

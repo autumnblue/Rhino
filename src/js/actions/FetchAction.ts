@@ -95,7 +95,7 @@ class FetchAction {
         return new ScraperUserAgentService()
         .getSuggestions()
         .then(suggestions => {
-            const mapped: Ref[] = suggestions.scraper_user_agents.map(suggestion => ({
+            return suggestions.scraper_user_agents.map(suggestion => ({
                 id: suggestion.id,
                 text: suggestion.name
             }))

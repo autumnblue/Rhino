@@ -38,20 +38,23 @@
     "start": "php -S localhost:8000 -t dist/ local_dev/router.php"
   },
   "dependencies": {
+    "browserify-fs": "^1.0.0",
+    "geopattern": "^1.2.3",
     "jwt-decode": "^2.1.0",
     "material-ui": "^0.16.4",
     "moment": "^2.15.1",
     "moment-timezone": "^0.5.7",
     "popsicle": "^8.2.0",
-    "react": "^15.3.2",
+    "react": "^15.4.2",
     "react-addons-css-transition-group": "^15.3.2",
-    "react-data-grid": "^1.0.65",
+    "react-data-grid": "^2.0.17",
     "react-dom": "^15.3.2",
     "react-dropzone": "^3.7.3",
     "react-redux": "^4.4.5",
     "react-router": "^2.8.1",
-    "react-tap-event-plugin": "^1.0.0",
+    "react-tap-event-plugin": "^2.0.0",
     "redux": "^3.6.0",
+    "redux-form": "^6.5.0",
     "redux-thunk": "^2.1.0"
   },
   "devDependencies": {
