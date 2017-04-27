@@ -8,7 +8,7 @@ Install all the type definitions for static typing and code completion
 `npm run typings install`
 
 ### Setting up a dev environment
-`npm run mock:setup`
+`npm run setup:mock`
 Requires Docker Engine and Docker Compose.  See the [mock/README.md](mock/README.md) for more information.
 `npm run build`
 The result will be a bundled js file that will include all dependencies for use in a single html script tag.  Start a server at project root to use the app.

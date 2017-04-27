@@ -16,14 +16,15 @@ import Ref from '../model/state/Ref';
 class FetchAction {
     public getCampaignSuggestions(dispatch): Promise<Ref[]> {
         return new CampaignService()
-        .getSuggestions()
-        .then(suggestions => {
-            return suggestions.campaigns.map(suggestion => ({
-                id: suggestion.id,
-                text: suggestion.name
-            }))
-        });
-    }
+            .getSuggestions()
+            .then(suggestions => {
+                return suggestions.campaigns.map(suggestion => ({
+                    id: suggestion.id,
+                    text: suggestion.name
+                }))
+            })
+    };
+
 
     public getPhishingDomainSuggestions(dispatch): Promise<Ref[]> {
         return new PhishingDomainService()

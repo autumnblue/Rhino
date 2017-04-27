@@ -47,7 +47,7 @@
     "popsicle": "^8.2.0",
     "react": "^15.4.2",
     "react-addons-css-transition-group": "^15.3.2",
-    "react-data-grid": "^2.0.17",
+    "react-data-grid": "^2.0.32",
     "react-dom": "^15.3.2",
     "react-dropzone": "^3.7.3",
     "react-redux": "^4.4.5",
