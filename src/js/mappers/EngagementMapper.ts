@@ -25,7 +25,7 @@ class EngagementMapperStatic implements Mapper {
                 campaign: refCampaign(dto, result.campaigns),
                 emailTemplate: refEmailTemplate(dto, result.email_templates),
                 schedule: refSchedule(dto, result.schedule_intervals),
-                redirectPage: refLandingPage(dto, result.landing_pages
+                redirectPage: refRedirectPage(dto, result.landing_pages
                     .filter(page => page.is_redirect_page)),
                 emailServer: refEmailServer(dto, result.email_servers),
                 phishingDomain: refPhishingDomain(dto, result.phishing_domains),
