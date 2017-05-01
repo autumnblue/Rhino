@@ -11,6 +11,16 @@ module.exports = {
     entry: {
         app: [
             './src/js/index.tsx',
+        ],
+        vendor: [
+            'react',
+            'react-dom',
+            'react-redux',
+            'react-router',
+            'redux-thunk',
+            'redux',
+            'redux-form',
+            'material-ui'
         ]
     },
     output: {
@@ -80,9 +90,20 @@ module.exports = {
                 NODE_ENV: isProduction ? JSON.stringify('production') : JSON.stringify('development'),
             }
         }),
+        new webpack.optimize.CommonsChunkPlugin({name: 'vendor', filename: 'vendor.js', minChunks: Infinity}),
         new webpack.LoaderOptionsPlugin({
             minimize: true,
-            debug: false
+            debug: false,
+            options: {
+                postcss: [
+                    autoprefixer({
+                        browsers: ['Chrome >= 49', 'Firefox >= 49', 'Edge >= 13']
+                    })
+                ],
+                resolve: {
+                    extensions: ['.ts', '.tsx', '.js']
+                }
+            }
         }),
         new CheckerPlugin()
     ]

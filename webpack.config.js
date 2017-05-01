@@ -19,15 +19,16 @@ module.exports = {
             'webpack/hot/only-dev-server',
             './src/js/index.tsx',
         ],
-        // vendor: [
-        //
-        //     'react',
-        //     'react-dom',
-        //     'react-redux',
-        //     'react-router',
-        //     'redux-thunk',
-        //     'redux'
-        // ]
+        vendor: [
+            'react',
+            'react-dom',
+            'react-redux',
+            'react-router',
+            'redux-thunk',
+            'redux',
+            'redux-form',
+            'material-ui'
+        ]
     },
     output: {
         path: outPath,
@@ -86,10 +87,10 @@ module.exports = {
         ],
     },
     resolve: {
-        // modules: [
-        //     path.resolve(__dirname, 'src'),
-        //     'node_modules'
-        // ],
+        modules: [
+            path.resolve(__dirname, 'src'),
+            'node_modules'
+        ],
         extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
         plugins: [
             new TsConfigPathsPlugin(/* { tsconfig, compiler } */)
@@ -105,7 +106,7 @@ module.exports = {
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin(),
-        // new webpack.optimize.CommonsChunkPlugin({name: 'vendor', filename: 'vendor.js', minChunks: Infinity}),
+        new webpack.optimize.CommonsChunkPlugin({name: 'vendor', filename: 'vendor.js', minChunks: Infinity}),
         new webpack.LoaderOptionsPlugin({
             debug: false,
             options: {
@@ -126,10 +127,6 @@ module.exports = {
         // https://github.com/webpack/webpack-dev-server/issues/60#issuecomment-103411179
         fs: 'empty',
         net: 'empty'
-    },
-    externals: {
-        "react": "React",
-        "react-dom": "ReactDOM"
     },
     devServer: {
         hot: true,
