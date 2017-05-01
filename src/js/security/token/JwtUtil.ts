@@ -1,5 +1,5 @@
 import { Claims } from './Claims';
-import { CurrentUser } from '../../CurrentUser';
+import { CurrentUser } from '../../service/CurrentUser';
 import * as moment from 'moment';
 
 export const decode = (): Claims => {

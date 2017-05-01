@@ -1,4 +1,4 @@
-import { CurrentUser } from '../CurrentUser';
+import { CurrentUser } from '../service/CurrentUser';
 import { Identity } from '../security/Identity';
 import IdentityService from '../service/IdentityService';
 import { ActionType } from './ActionType';

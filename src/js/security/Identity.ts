@@ -1,9 +1,9 @@
 import * as jwt from './token/JwtUtil';
 import { Claims } from './token/Claims';
-import { CurrentUser } from '../CurrentUser';
+import { CurrentUser } from '../service/CurrentUser';
 // import { Dir } from '../common/Constants';
 import IdentityService from '../service/IdentityService';
-import store from '../store';
+import store from '../reducers/store';
 import LoginAction from '../actions/LoginAction';
 // import * as moment from 'moment';
 
