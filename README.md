@@ -2,18 +2,25 @@
 Skiff development and testing requires [Node.js](https://nodejs.org/). 
 
 Install all the dependencies:
-`npm install`
+
+    `npm install`
 
 ### Setting up a dev environment
 
-`npm run mock:setup`
+    `npm run setup:mock`
+
 Requires Docker Engine and Docker Compose.  See the [mock/README.md](mock/README.md) for more information.
 
-`npm start`
-The result will be a bundled js file that will include all dependencies for use in a single html script tag.  Start a server at project root to use the app.
+    `npm run build`
 
-#### For development
-`npm run dev`
+The result will be a bundled js file that will include all dependencies for use in a single html script tag.
+
+    `npm start`
+
+Start a server at project root to use the app.
+
+##### For development
+    `npm run dev`
 
 ## Architecture/Design
 Tools

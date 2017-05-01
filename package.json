@@ -25,7 +25,7 @@
     "publish:minor": "npm version minor && npm run prepack && npm publish build",
     "publish:patch": "npm version patch && npm run prepack && npm publish build",
     "dev": "./node_modules/.bin/webpack-dev-server",
-    "start": "npm run build && node server.js"
+    "start": "node server.js"
   },
   "dependencies": {
     "@types/history": "^2.0.48",
