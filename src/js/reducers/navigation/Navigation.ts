@@ -5,6 +5,7 @@ import { MenuState } from '../../model/state/menu/MenuState';
 import { copy } from '../../common/Util';
 import { ValidatableInput } from '../../common/validation/ValidatableInput';
 import { Identity } from '../../security/Identity';
+console.log(Identity);
 
 const defaultState: MenuState = {
     handle: Identity.getHandle(),

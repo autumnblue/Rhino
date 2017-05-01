@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
-//        "allowSyntheticDefaultImports": true,
-//        "outDir": "./dist/",
+        "allowSyntheticDefaultImports": true,
+        "outDir": "./dist/",
 //        "rootDir": "src",
         "lib": ["ES6", "ES2015", "DOM"],
 //        "removeComments": true,
@@ -9,11 +9,14 @@
         "noImplicitAny": false,
         "moduleResolution": "node",
         "module": "commonjs",
-        "target": "ES2015",
+        "target": "es5",
         "jsx": "react",
-        "sourceMap": true
-//        "typeRoots": [ "./node_modules/@types" ]
+        "sourceMap": true,
+        "allowJs": true
     },
+    "include": [
+        "src"
+    ],
     "awesomeTypescriptLoaderOptions": {
 //        "useCache": true
 //        "useTranspileModule": true

@@ -13,7 +13,7 @@ const autoprefixer = require('autoprefixer');
 module.exports = {
     devtool: 'source-map',
     entry: {
-        main: [
+        app: [
             'react-hot-loader/patch',
             'webpack-dev-server/client?http://localhost:8080',
             'webpack/hot/only-dev-server',
@@ -31,16 +31,19 @@ module.exports = {
     },
     output: {
         path: outPath,
-        publicPath: '/',
+        publicPath: '/dist/',
         filename: 'bundle.js'
     },
     module: {
         rules: [
             {
+                enforce: 'pre',
                 test: /\.ts(x?)$/,
                 use: [
+                    'react-hot-loader/webpack',
                     'awesome-typescript-loader'
-                ]
+                ],
+                exclude: /node_modules/
             },
             {
                 enforce: "pre",
@@ -104,6 +107,7 @@ module.exports = {
         new webpack.HotModuleReplacementPlugin(),
         // new webpack.optimize.CommonsChunkPlugin({name: 'vendor', filename: 'vendor.js', minChunks: Infinity}),
         new webpack.LoaderOptionsPlugin({
+            debug: false,
             options: {
                 postcss: [
                     autoprefixer({

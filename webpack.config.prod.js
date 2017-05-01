@@ -25,19 +25,21 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.(ts|tsx)?$/,
+                test: /\.ts(x?)$/,
                 use: [
-                    'awesome-typescript-loader?module=es6'
-                ],
-                exclude: path.resolve(__dirname, 'node_modules'),
-                include: path.resolve(__dirname, "src")
+                    'awesome-typescript-loader'
+                ]
+            },
+            {
+                enforce: "pre",
+                test: /\.js$/,
+                loader: "source-map-loader"
             },
             {
                 test: /\.(css|scss)$/,
                 use: [
                     'style-loader',
                     'css-loader',
-                    'postcss-loader',
                     'sass-loader'
                 ]
             },
@@ -86,18 +88,6 @@ module.exports = {
         new webpack.DefinePlugin({
             'process.env': {
                 NODE_ENV: isProduction ? JSON.stringify('production') : JSON.stringify('development'),
-            }
-        }),
-        new webpack.optimize.OccurrenceOrderPlugin(),
-        new webpack.NamedModulesPlugin(),
-        // new webpack.optimize.CommonsChunkPlugin({name: 'vendor', filename: 'vendor.js', minChunks: Infinity}),
-        new webpack.LoaderOptionsPlugin({
-            options: {
-                postcss: [
-                    autoprefixer({
-                        browsers: ['Chrome >= 49', 'Firefox >= 49', 'Edge >= 13']
-                    })
-                ]
             }
         }),
         new CheckerPlugin()

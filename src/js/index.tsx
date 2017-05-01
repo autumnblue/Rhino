@@ -17,6 +17,8 @@ const render = (MainRoot) => {
 
 render(MainRoot);
 
+// declare const module: any;
+
 if ( module.hot ) {
     module.hot.accept('./main', () => {
         render(MainRoot);
