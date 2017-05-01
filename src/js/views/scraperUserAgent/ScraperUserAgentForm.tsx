@@ -43,7 +43,7 @@ let scraperUserAgentForm = reduxForm.reduxForm({
                         component={ textArea } />
                 </div>
 
-                <Submit />
+                <Submit submitId="userForm" />
         </form>
 });
 

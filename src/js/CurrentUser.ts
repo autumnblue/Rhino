@@ -1,5 +1,5 @@
 import { SessionStorageKey, Dir } from './common/Constants';
-import store from './main';
+import store from './store';
 import LoginAction from './actions/LoginAction';
 
 class PageStatic {

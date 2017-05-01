@@ -1,12 +1,22 @@
 {
-    "compilerOptions": { 
-        "outDir": "build",
-        "rootDir": "src", 
-        "target": "es6",
+    "compilerOptions": {
+//        "allowSyntheticDefaultImports": true,
+//        "outDir": "./dist/",
+//        "rootDir": "src",
+        "lib": ["ES6", "ES2015", "DOM"],
+//        "removeComments": true,
+//        "preserveConstEnums": true,
+        "noImplicitAny": false,
+        "moduleResolution": "node",
         "module": "commonjs",
-        "jsx": "react"
-    }, 
-    "exclude": [
-        "node_modules"
-    ]
+        "target": "ES2015",
+        "jsx": "react",
+        "sourceMap": true
+//        "typeRoots": [ "./node_modules/@types" ]
+    },
+    "awesomeTypescriptLoaderOptions": {
+//        "useCache": true
+//        "useTranspileModule": true
+//        "transpileOnly": true
+    }
 }

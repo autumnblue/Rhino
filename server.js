@@ -4,7 +4,7 @@ const port = process.env.PORT || 8080
 const app = express()
 const webpack = require('webpack')
 const WebpackDevServer = require('webpack-dev-server')
-const config = require('../webpack.config')
+const config = require('./webpack.config')
 
 // serve static assets normally
 // app.use(express.static('/'))
@@ -19,6 +19,7 @@ const config = require('../webpack.config')
 // app.listen(port)
 
 const server = new WebpackDevServer(webpack(config), {
+    publicPath: config.output.publicPath,
     hot: true,
     historyApiFallback: true,
     port: port,
