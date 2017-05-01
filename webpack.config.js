@@ -129,7 +129,7 @@ module.exports = {
     },
     externals: {
         "react": "React",
-        "react-dom": " ReactDOM"
+        "react-dom": "ReactDOM"
     },
     devServer: {
         hot: true,

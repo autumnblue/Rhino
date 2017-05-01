@@ -1,17 +1,13 @@
 const path = require('path');
 const webpack = require('webpack');
 const { CheckerPlugin } = require('awesome-typescript-loader');
-const { TsConfigPathsPlugin } = require('awesome-typescript-loader');
 
 const isProduction = process.argv.indexOf('-p') >= 0;
-const sourcePath = path.join(__dirname, './src');
 const outPath = path.join(__dirname, './dist');
-const nodeEnv = process.env.NODE_ENV || 'development';
 
 const autoprefixer = require('autoprefixer');
 
 module.exports = {
-    devtool: 'source-map',
     entry: {
         app: [
             './src/js/index.tsx',
@@ -25,6 +21,7 @@ module.exports = {
     module: {
         rules: [
             {
+                enforce: "pre",
                 test: /\.ts(x?)$/,
                 use: [
                     'awesome-typescript-loader'
@@ -33,7 +30,11 @@ module.exports = {
             {
                 enforce: "pre",
                 test: /\.js$/,
-                loader: "source-map-loader"
+                exclude: /node_modules/,
+                loader: 'babel-loader',
+                query: {
+                    presets: ['es2015']
+                }
             },
             {
                 test: /\.(css|scss)$/,
@@ -70,18 +71,7 @@ module.exports = {
         ],
     },
     resolve: {
-        // modules: [
-        //     path.resolve(__dirname, 'src'),
-        //     'node_modules'
-        // ],
         extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
-        plugins: [
-            new TsConfigPathsPlugin(/* { tsconfig, compiler } */)
-        ]
-    },
-    externals: {
-        "react": "React",
-        "react-dom": " ReactDOM"
     },
     plugins: [
         // hot reload
@@ -89,6 +79,10 @@ module.exports = {
             'process.env': {
                 NODE_ENV: isProduction ? JSON.stringify('production') : JSON.stringify('development'),
             }
+        }),
+        new webpack.LoaderOptionsPlugin({
+            minimize: true,
+            debug: false
         }),
         new CheckerPlugin()
     ]

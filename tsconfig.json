@@ -18,8 +18,8 @@
         "src"
     ],
     "awesomeTypescriptLoaderOptions": {
-//        "useCache": true
-//        "useTranspileModule": true
-//        "transpileOnly": true
+        "useCache": true,
+//        "useTranspileModule": true,
+        "transpileOnly": true
     }
 }
