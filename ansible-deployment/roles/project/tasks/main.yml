@@ -48,6 +48,6 @@
     owner: "{{ project.user }}"
     path: "{{ project.root }}"
     recurse: yes
-    mode: u=rwX,g=rX,o=rX
+    mode: u=rwX,g=rwX,o=rX
 
 - include: build.yml
