@@ -38,8 +38,6 @@
   args:
       chdir: "{{ project.root }}"
   register: pm2
-  become: true
-  become_user: "{{ project.user }}"
   
 - debug: var=pm2.stdout_lines
 
