@@ -6,7 +6,7 @@
   become_user: "{{ project.user }}"
 
 - name: project | remove previous pm2 configuration
-  shell: "pm2 unstartup -u skiff"
+  shell: "pm2 unstartup -u {{ project.user }}"
   ignore_errors: true
 
 - name: project | npm install
