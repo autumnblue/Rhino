@@ -5,6 +5,10 @@
   become: true
   become_user: "{{ project.user }}"
 
+- name: project | remove previous pm2 configuration
+  shell: "pm2 unstartup -u skiff"
+  ignore_errors: true
+
 - name: project | npm install
   shell: "npm install --unsafe-perm"
   args:
