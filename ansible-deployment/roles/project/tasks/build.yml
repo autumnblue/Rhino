@@ -42,7 +42,7 @@
 - debug: var=pm2.stdout_lines
 
 - name: project | pm2 start
-  shell: "pm2 start server.js"
+  shell: "pm2 start server.js -i 0"
   args:
       chdir: "{{ project.root }}"
   register: pm2start
