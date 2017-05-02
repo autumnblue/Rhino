@@ -1,0 +1,50 @@
+---
+#- name: project | yarn
+#  shell: yarn
+#  args:
+#    chdir: "{{ project.root }}"
+#  register: yarn
+#- debug: var=yarn.stdout_lines
+
+- name: project | npm install
+  shell: "npm install --unsafe-perm"
+  args:
+      chdir: "{{ project.root }}"
+  register: npminstall
+- debug: var=npminstall.stdout_lines
+
+- name: project | npm run build
+  shell: "npm run build"
+  args:
+      chdir: "{{ project.root }}"
+  register: npmsetup
+- debug: var=npmsetup.stdout_lines
+
+- name: project | set perms on "{{ project.root }}"
+  file:
+    group: "{{ project.group }}"
+    owner: "{{ project.user }}"
+    path: "{{ project.root }}"
+    recurse: yes
+    mode: 775
+    
+- name: project | pm2
+  shell: "npm install pm2 -g"
+  args:
+      chdir: "{{ project.root }}"
+  register: pm2
+- debug: var=pm2.stdout_lines
+
+- name: project | pm2 start
+  shell: "pm2 start --interpreter ./local_dev/router.js"
+  args:
+      chdir: "{{ project.root }}"
+  register: pm2start
+- debug: var=pm2start.stdout_lines
+
+- name: project | pm2 startup
+  shell: "pm2 startup"
+  args:
+      chdir: "{{ project.root }}"
+  register: pm2startup
+- debug: var=pm2startup.stdout_lines
