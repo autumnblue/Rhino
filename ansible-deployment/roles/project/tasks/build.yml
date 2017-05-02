@@ -52,12 +52,10 @@
 - debug: var=pm2start.stdout_lines
 
 - name: project | pm2 startup
-  shell: "pm2 startup"
+  shell: "pm2 startup systemd -u "{{ project.user }}" --hp /home/"{{ project.user }}""
   args:
       chdir: "{{ project.root }}"
   register: pm2startup
-  become: true
-  become_user: "{{ project.user }}"
     
 - debug: var=pm2startup.stdout_lines
 
