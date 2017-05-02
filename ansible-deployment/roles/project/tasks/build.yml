@@ -36,7 +36,7 @@
 - debug: var=pm2.stdout_lines
 
 - name: project | pm2 start
-  shell: "pm2 start --interpreter ./local_dev/router.js"
+  shell: "pm2 start server.js"
   args:
       chdir: "{{ project.root }}"
   register: pm2start
