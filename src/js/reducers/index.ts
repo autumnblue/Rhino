@@ -25,7 +25,7 @@ import targetList from './targetList';
 import vectorEmail from '../ducks/VectorEmail';
 import feedback from '../ducks/Feedback';
 import resultEvent from '../ducks/ResultEvent';
-const reduxForm = require('redux-form');
+import { reducer as ReduxFormReducer } from 'redux-form';
 
 const app = combineReducers<AppState>({
     navigation: navigation.reducer,    
@@ -48,7 +48,7 @@ const app = combineReducers<AppState>({
     oAuthEngagement: oAuthEngagement,
     oAuthResult: oAuthResult,
     plunder: plunder,
-    form: reduxForm.reducer,
+    form: ReduxFormReducer,
     preview: preview,
     targetList: targetList,
     vectorEmail: vectorEmail,

@@ -1,6 +1,6 @@
-import { SessionStorageKey, Dir } from './common/Constants';
-import store from './main';
-import LoginAction from './actions/LoginAction';
+import { SessionStorageKey, Dir } from '../common/Constants';
+import store from '../reducers/store';
+import LoginAction from '../actions/LoginAction';
 
 class PageStatic {
     public isLogin(): boolean {

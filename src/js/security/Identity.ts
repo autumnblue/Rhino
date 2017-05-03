@@ -1,11 +1,11 @@
 import * as jwt from './token/JwtUtil';
 import { Claims } from './token/Claims';
-import { CurrentUser } from '../CurrentUser';
-import { Dir } from '../common/Constants';
+import { CurrentUser } from '../service/CurrentUser';
+// import { Dir } from '../common/Constants';
 import IdentityService from '../service/IdentityService';
-import store from '../main';
+import store from '../reducers/store';
 import LoginAction from '../actions/LoginAction';
-import * as moment from 'moment';
+// import * as moment from 'moment';
 
 class IdentityStatic {
     // private claims: Claims;

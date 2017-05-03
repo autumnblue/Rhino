@@ -2,22 +2,32 @@
 Skiff development and testing requires [Node.js](https://nodejs.org/). 
 
 Install all the dependencies:
-`npm install`
 
-Install all the type definitions for static typing and code completion
-`npm run typings install`
+    `npm install`
 
 ### Setting up a dev environment
-`npm run mock:setup`
+
+    `npm run setup:mock`
+
 Requires Docker Engine and Docker Compose.  See the [mock/README.md](mock/README.md) for more information.
-`npm run build`
-The result will be a bundled js file that will include all dependencies for use in a single html script tag.  Start a server at project root to use the app.
+
+    `npm run build`
+
+The result will be a bundled js file that will include all dependencies for use in a single html script tag.
+
+    `npm start`
+
+Start a server at project root to use the app.
+
+##### For development
+    `npm run dev`
 
 ## Architecture/Design
 Tools
 * React.js
 * Redux
-* Typescript
+* Typescript2
+* Webpack2
 
 Business logic predominantly lives in the *reducers/*.  The one exception is validation in *actions/* due to asynchronous server-side calls and different action emitting per outcome (https://github.com/reactjs/redux/issues/1165#issuecomment-228102314). 
 

@@ -1,4 +1,4 @@
-import store from '../main';
+import store from '../reducers/store';
 import LoginAction from '../actions/LoginAction';
 import { Identity } from './Identity';
 import { Dir } from '../common/Constants'; 
